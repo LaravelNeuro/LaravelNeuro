@@ -33,12 +33,10 @@ class ApiAdapter {
         return $this;
     }
 
-    public function connect($method = 'POST')
+    private function connect($method)
     {
         try {
-            $request = $this->request;
-            $stream = $this->stream;
-            $this->response = $this->client->request($method, $this->api, ["json" => $request, "stream" => $stream]);
+            $response = $this->client->request($method, $this->api, ["json" => $this->request, "stream" => $this->stream]);
 
         } catch (GuzzleException $e) {
 
@@ -46,13 +44,13 @@ class ApiAdapter {
 
         }
         
-        return $this;
+        return $response;
     }
 
-    public function json()
+    public function json($method = 'POST')
     {
         if($this->error !== false) return $this->error;
-        $response = $this->response;
+        $response = $this->connect($method);
         if ($this->stream) {
             return $this->yield($response, "json");
         } else {
@@ -60,10 +58,10 @@ class ApiAdapter {
         }
     }
 
-    public function array()
+    public function array($method = 'POST')
     {
         if($this->error !== false) return $this->error;
-        $response = $this->response;
+        $response = $this->connect($method);
         if ($this->stream) {
             return $this->yield($response, "array");
         } else {
@@ -71,10 +69,10 @@ class ApiAdapter {
         }
     }
 
-    public function responseOnly()
+    public function responseOnly($method = 'POST')
     {
         if($this->error !== false) return $this->error;
-        $response = $this->response;
+        $response = $this->connect($method);
         if ($this->stream) {
             return $this->yield($response, "text");
         } else {
@@ -104,24 +102,35 @@ class ApiAdapter {
 
     private function yield($response, $type)
     {
+        $buffer = '';
         $body = $response->getBody();
-        while(!$body->eof())
-        {
-            switch($type)
-            {
-                case "text":
-                    yield json_decode($body->read(175))->response;
-                    break;
-                case "array":
-                    yield json_decode($body->read(175));
-                    break;
-                case "json":
-                    yield $body->read(150);
-                    break;
-                default:
-                    yield $body->read(150);
-                    break;
-            } 
+
+        while (!$body->eof()) {
+            $buffer .= $body->read(10); // Small chunk size
+
+            while (($breakPosition = strpos($buffer, "\n")) !== false) {
+                $jsonString = substr($buffer, 0, $breakPosition);
+                $buffer = substr($buffer, $breakPosition + 1);
+
+                $jsonObject = json_decode($jsonString, true);
+                if ($jsonObject) {
+                    switch($type)
+                        {
+                            case "text":
+                                yield $jsonObject->response;
+                                break;
+                            case "array":
+                                yield $jsonObject;
+                                break;
+                            case "json":
+                                yield json_encode($jsonObject, JSON_PRETTY_PRINT);
+                                break;
+                            default:
+                                yield $jsonObject;
+                                break;
+                        } 
+                }
+            }
         }
     }
 }
