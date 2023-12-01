@@ -41,7 +41,7 @@ class ApiAdapter {
 
         } catch (GuzzleException $e) {
 
-            return ["error" => $e];
+            $this->error = $e;
 
         }
         
