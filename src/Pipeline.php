@@ -1,5 +1,5 @@
 <?php
-namespace Kbirenheide\LaravelAI;
+namespace Kbirenheide\LaravelAi;
 
 use Kbirenheide\LaravelAI\ApiAdapter;
 

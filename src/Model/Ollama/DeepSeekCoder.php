@@ -1,5 +1,5 @@
 <?php
-namespace Kbirenheide\LaravelAI\Model\Ollama;
+namespace Kbirenheide\LaravelAi\Model\Ollama;
 
 use Kbirenheide\LaravelAI\Pipeline;
 
