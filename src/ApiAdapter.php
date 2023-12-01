@@ -28,6 +28,7 @@ class ApiAdapter {
     public function stream()
     {
         $this->stream = true;
+        $this->request["stream"] = true;
 
         return $this;
     }
@@ -35,9 +36,9 @@ class ApiAdapter {
     public function connect($method = 'POST')
     {
         try {
-
-            $request = array_merge($this->request, ["stream" => $this->stream]);
-            $this->response = $this->client->request($method, $this->api, ["json" => $request, "stream" => $this->stream]);
+            $request = $this->request;
+            $stream = $this->stream;
+            $this->response = $this->client->request($method, $this->api, ["json" => $request, "stream" => $stream]);
 
         } catch (GuzzleException $e) {
 
