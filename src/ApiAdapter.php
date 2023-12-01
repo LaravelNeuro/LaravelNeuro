@@ -15,7 +15,7 @@ class ApiAdapter {
 
     public function __construct()
     {
-        $this->client = new Client();
+        $this->client = new Client(['debug' => true]);
     }
 
     public function api($address)
