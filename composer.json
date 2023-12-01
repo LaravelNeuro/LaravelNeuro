@@ -1,0 +1,19 @@
+{
+    "name": "kbirenheide/laravel-ai",
+    "description": "A laravel framework for connecting to OpenAI and Ollama API, sent prompts, collect responses, create agents and agent networks, and put them to work.",
+    "type": "library",
+    "require": {
+        "guzzlehttp/guzzle": "^7.8"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Kbirenheide\\LaravelAi\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Koray Birenheide"
+        }
+    ]
+}
