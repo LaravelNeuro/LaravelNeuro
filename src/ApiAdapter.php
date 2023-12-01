@@ -11,6 +11,7 @@ class ApiAdapter {
     protected $request = [];
     protected $response;
     protected $stream = false;
+    protected $error = false;
 
     public function __construct()
     {
@@ -49,6 +50,7 @@ class ApiAdapter {
 
     public function json()
     {
+        if($this->error !== false) return $this->error;
         $response = $this->response;
         if ($this->stream) {
             return $this->yield($response, "json");
@@ -59,6 +61,7 @@ class ApiAdapter {
 
     public function array()
     {
+        if($this->error !== false) return $this->error;
         $response = $this->response;
         if ($this->stream) {
             return $this->yield($response, "array");
@@ -69,6 +72,7 @@ class ApiAdapter {
 
     public function responseOnly()
     {
+        if($this->error !== false) return $this->error;
         $response = $this->response;
         if ($this->stream) {
             return $this->yield($response, "text");
