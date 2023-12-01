@@ -114,6 +114,7 @@ class ApiAdapter {
 
                 $jsonObject = json_decode($jsonString, true);
                 if ($jsonObject) {
+                    $jsonObject = (object) $jsonObject;
                     switch($type)
                         {
                             case "text":
