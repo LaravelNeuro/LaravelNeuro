@@ -12,9 +12,9 @@ class ApiAdapter {
     protected $response;
     protected $stream = false;
 
-    public function __construct(Client $client)
+    public function __construct()
     {
-        $this->client = $client;
+        $this->client = new Client();
     }
 
     public function api($address)
