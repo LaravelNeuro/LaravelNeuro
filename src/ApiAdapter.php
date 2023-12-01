@@ -36,7 +36,7 @@ class ApiAdapter {
     {
         try {
 
-            $request = $this->stream ? array_merge($this->request, ['stream' => true]) : $this->request;
+            $request = array_merge($this->request, ["stream" => $this->stream]);
             $this->response = $this->client->request($method, $this->api, ["json" => $request]);
 
         } catch (GuzzleException $e) {
