@@ -32,7 +32,7 @@ class ApiAdapter {
         return $this;
     }
 
-    public function connect($method = 'GET')
+    public function connect($method = 'POST')
     {
         try {
 
@@ -109,16 +109,16 @@ class ApiAdapter {
             switch($type)
             {
                 case "text":
-                    yield json_decode($body->read(1024))->response;
+                    yield json_decode($body->read(150))->response;
                     break;
                 case "array":
-                    yield json_decode($body);
+                    yield json_decode($body->read(150));
                     break;
                 case "json":
-                    yield $body->read(1024);
+                    yield $body->read(150);
                     break;
                 default:
-                    yield $body->read(1024);
+                    yield $body->read(150);
                     break;
             } 
         }
