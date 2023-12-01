@@ -37,7 +37,7 @@ class ApiAdapter {
         try {
 
             $request = array_merge($this->request, ["stream" => $this->stream]);
-            $this->response = $this->client->request($method, $this->api, ["json" => $request]);
+            $this->response = $this->client->request($method, $this->api, ["json" => $request, "stream" => $this->stream]);
 
         } catch (GuzzleException $e) {
 
@@ -109,10 +109,10 @@ class ApiAdapter {
             switch($type)
             {
                 case "text":
-                    yield json_decode($body->read(150))->response;
+                    yield json_decode($body->read(175))->response;
                     break;
                 case "array":
-                    yield json_decode($body->read(150));
+                    yield json_decode($body->read(175));
                     break;
                 case "json":
                     yield $body->read(150);
