@@ -1,7 +1,7 @@
 <?php
 namespace Kbirenheide\L3MA\Pipelines\LLM\Ollama;
-use Kbirenheide\L3MA\Prompt;
 
+use Kbirenheide\L3MA\Prompts\Ollama\Prompt;
 use Kbirenheide\L3MA\Pipeline;
 
 class DeepSeekCoder extends Pipeline {
