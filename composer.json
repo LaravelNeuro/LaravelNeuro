@@ -22,7 +22,7 @@
         "post-install-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postInstall",
             "php artisan optimize",
-            "php artisan vendor:publish kbirenheide/laravel-ai"
+            "php artisan vendor:publish --tag=l3ma-config"
         ]
     },
     "authors": [
