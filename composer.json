@@ -18,6 +18,13 @@
           ]
         }
     },      
+    "scripts": {
+        "post-install-cmd": [
+            "Illuminate\\Foundation\\ComposerScripts::postInstall",
+            "php artisan optimize",
+            "php artisan vendor:publish"
+        ]
+    },
     "authors": [
         {
             "name": "Koray Birenheide"

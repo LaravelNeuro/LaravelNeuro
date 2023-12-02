@@ -26,6 +26,6 @@ class MakeLLMpipeline extends Command
 
     protected function getStub()
     {
-        return file_get_contents(__DIR__.'/../../resources/stubs/ai-model.stub');
+        return file_get_contents(__DIR__.'/../../resources/stubs/llm-pipeline.stub');
     }
 }
