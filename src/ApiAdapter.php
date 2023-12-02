@@ -1,5 +1,5 @@
 <?php
-namespace Kbirenheide\LaravelAi;
+namespace Kbirenheide\L3MA;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
@@ -106,7 +106,7 @@ class ApiAdapter {
         $body = $response->getBody();
 
         while (!$body->eof()) {
-            $buffer .= $body->read(10); // Small chunk size
+            $buffer .= $body->read(10);
 
             while (($breakPosition = strpos($buffer, "\n")) !== false) {
                 $jsonString = substr($buffer, 0, $breakPosition);

@@ -8,7 +8,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Kbirenheide\\LaravelAi\\": "src/"
+            "Kbirenheide\\L3MA\\": "src/"
         }
     },
     "authors": [

@@ -1,7 +1,7 @@
 <?php
-namespace Kbirenheide\LaravelAi;
+namespace Kbirenheide\L3MA;
 
-use Kbirenheide\LaravelAi\ApiAdapter;
+use Kbirenheide\L3MA\ApiAdapter;
 
 class Pipeline extends ApiAdapter {
 

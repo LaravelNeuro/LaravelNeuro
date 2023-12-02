@@ -1,0 +1,23 @@
+<?php
+
+namespace App\Pipelines\LLM;
+
+use Kbirenheide\L3MA\Pipeline;
+
+class {{modelName}} extends Pipeline
+{
+    protected $model = "";  // set the name of the default model this Pipeline should use
+    protected $api = "";    // set the default url of the API serving your model
+
+    public function setPrompt()
+    {
+        //**  Implement your prompt-building logic here   **//
+        //      remember to set set $this->prompt and       //
+        //      $this->request["prompt"]                    //
+        //                                                  //
+        //**************************************************//  
+    
+        return $this;
+    }
+
+}
