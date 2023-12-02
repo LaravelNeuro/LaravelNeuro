@@ -1,16 +1,17 @@
 <?php
-namespace Kbirenheide\L3MA;
+namespace Kbirenheide\L3MA\Prompts\Ollama;
+
 use Illuminate\Support\Collection;
 
 class Prompt extends Collection {
 
-    public function pushPurpose($string)
+    public function pushRole($string)
     {
         if (!is_string($string)) {
             throw new \InvalidArgumentException("The value for pushPurpose must be a string.");
         }
 
-            $this->push([ "type" => "purpose",
+            $this->push((object)[ "type" => "role",
                                       "block" => $string]);
 
         return $this;
@@ -21,7 +22,7 @@ class Prompt extends Collection {
             throw new \InvalidArgumentException("The value for pushSystem must be a string.");
         }
 
-            $this->push([ "type" => "system",
+            $this->push((object)[ "type" => "system",
                                       "block" => $string]);
                                       
         return $this;
@@ -32,7 +33,7 @@ class Prompt extends Collection {
             throw new \InvalidArgumentException("The value for pushUser must be a string.");
         }
 
-            $this->push([ "type" => "user",
+            $this->push((object)[ "type" => "user",
                                       "block" => $string]);
                                       
         return $this;

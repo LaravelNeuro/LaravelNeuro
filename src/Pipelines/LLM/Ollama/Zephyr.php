@@ -1,7 +1,7 @@
 <?php
 namespace Kbirenheide\L3MA\Pipelines\LLM\Ollama;
-use Kbirenheide\L3MA\Prompt;
 
+use Kbirenheide\L3MA\Prompt;
 use Kbirenheide\L3MA\Pipeline;
 
 class Zephyr extends Pipeline {
@@ -12,6 +12,7 @@ class Zephyr extends Pipeline {
     public function __construct()
     {
         $this->model = config('l3ma.models.Zephyr.model');
+        $this->request["model"] = $this->model;
         $this->api = config('l3ma.models.Zephyr.api');
         if(empty($this->model))
         {
@@ -32,7 +33,6 @@ class Zephyr extends Pipeline {
         elseif($prompt instanceof Prompt)
         {
             $this->prompt = '';
-            $purpose = '';
 
             foreach($prompt as $key => $element)
             {
@@ -40,32 +40,30 @@ class Zephyr extends Pipeline {
                 {
                     case "system":
                         $this->prompt .= "\n<|agent|>\n";
-                        $this->prompt .= $element->block."\n";
+                        $this->prompt .= $element->block."</s>\n";
+                            if($key == (count($prompt) - 1))
+                            {
+                                $this->prompt .= "</s>\n";
+                            }
                         break;
                     case "user":
                         $this->prompt .= "\n<|user|>\n";
-                        $this->prompt .= $element->block."\n";
+                        $this->prompt .= $element->block."</s>\n";
                         break;
-                    case "purpose":
-                        $purpose = "\n<|system|>\n".$element->block."\n";
-                    case "default":
-                        $this->prompt .= "\n<|agent|>\n";
-                        $this->prompt .= $element->block;
-                        if($key == (count($prompt) - 1))
-                        {
-                            $this->prompt .= "</s>\n";
-                        }
+                    case "role":
+                        $this->request["system"] .= $element->block;
+                        break;
+                    default:
+                        //
                         break;
                 }
                 
             }
-            
-            if($prompt[count($prompt) - 1]->type == "system")
+
+            if($prompt[count($prompt) - 1]->type == "user")
             {
                 $this->prompt .= "\n<|agent|>\n";
-            }
-
-            $this->prompt = $purpose . $this->prompt;
+            }   
 
         }
         else

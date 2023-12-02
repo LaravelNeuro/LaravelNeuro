@@ -13,11 +13,6 @@ class ApiAdapter {
     protected $stream = false;
     protected $error = false;
 
-    public function __construct()
-    {
-        $this->client = new Client();
-    }
-
     public function api($address)
     {
         $this->api = $address;
@@ -35,16 +30,21 @@ class ApiAdapter {
 
     private function connect($method)
     {
+        $response = false;
         try {
-            $response = $this->client->request($method, $this->api, ["json" => $this->request, "stream" => $this->stream]);
+
+            $client = new Client();
+            $this->request["prompt"] = trim($this->request["prompt"], " \n\r\t\v\x00");
+            $response = $client->request($method, $this->api, ["json" => $this->request, "stream" => $this->stream]);
+            
+            return $response;
 
         } catch (GuzzleException $e) {
 
             $this->error = $e;
-
+            return $e;
         }
-        
-        return $response;
+
     }
 
     public function json($method = 'POST')

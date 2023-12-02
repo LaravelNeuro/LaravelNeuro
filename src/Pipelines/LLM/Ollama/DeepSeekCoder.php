@@ -12,6 +12,7 @@ class DeepSeekCoder extends Pipeline {
     public function __construct()
     {
         $this->model = config('l3ma.models.DeepSeekCoder.model');
+        $this->request["model"] = $this->model;
         $this->api = config('l3ma.models.DeepSeekCoder.api');
         if(empty($this->model))
         {
@@ -46,9 +47,9 @@ class DeepSeekCoder extends Pipeline {
                         $this->prompt .= "\n### Response:\n";
                         $this->prompt .= $element->block."\n";
                         break;
-                    case "purpose":
-                        $purpose = $element->block."\n";
-                    case "default":
+                    case "role":
+                        $this->request["system"] .= $element->block;
+                    default:
                         $this->prompt .= "\n### Instruction:\n";
                         $this->prompt .= $element->block."\n";
                         break;
