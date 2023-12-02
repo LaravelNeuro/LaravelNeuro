@@ -9,7 +9,7 @@ class {{modelName}} extends Pipeline
     protected $model = "";  // set the name of the default model this Pipeline should use
     protected $api = "";    // set the default url of the API serving your model
 
-    public function setPrompt()
+    public function setPrompt($prompt)
     {
         //**  Implement your prompt-building logic here   **//
         //      remember to set set $this->prompt and       //
