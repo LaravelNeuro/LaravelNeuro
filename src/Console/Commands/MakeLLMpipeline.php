@@ -15,9 +15,17 @@ class MakeLLMpipeline extends Command
         $stub = $this->getStub();
         $modelTemplate = str_replace('{{modelName}}', $name, $stub);
 
-        $path = app_path("Pipelines/LLM/{$name}.php");
-        if (!file_exists($path)) {
-            file_put_contents($path, $modelTemplate);
+        $dirPath = app_path('Pipelines/LLM');
+
+        if (!is_dir($dirPath)) {
+            mkdir($dirPath, 0755, true); // true for recursive creation
+        }
+
+        $filePath = $dirPath . "/{$name}.php";
+
+        $filePath = app_path("Pipelines/LLM/{$name}.php");
+        if (!file_exists($filePath)) {
+            file_put_contents($filePath, $modelTemplate);
             $this->info("AI Model {$name} created successfully.");
         } else {
             $this->error("AI Model {$name} already exists.");
