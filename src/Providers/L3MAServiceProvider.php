@@ -10,7 +10,7 @@ Class L3MAServiceProvider extends ServiceProvider {
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
-                \Kbirenheide\LaravelAi\Console\Commands\MakeLLMpipeline::class,
+                Kbirenheide\L3MA\Console\Commands\MakeLLMpipeline::class,
             ]);
         }
 
