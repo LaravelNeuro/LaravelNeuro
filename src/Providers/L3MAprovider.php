@@ -4,7 +4,7 @@ namespace Kbirenheide\L3MA\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-Class L3MA extends ServiceProvider {
+Class L3MAprovider extends ServiceProvider {
 
     public function boot()
     {

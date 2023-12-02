@@ -4,7 +4,7 @@ namespace Kbirenheide\L3MA\Console\Commands;
 
 use Illuminate\Console\Command;
 
-class MakeAIModelCommand extends Command
+class MakeLLMpipeline extends Command
 {
     protected $signature = 'make:llmpipe {name}';
     protected $description = 'Create a new AI model pipeline class';
