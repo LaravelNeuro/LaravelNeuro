@@ -11,6 +11,13 @@
             "Kbirenheide\\L3MA\\": "src/"
         }
     },
+    "extra": {
+        "laravel": {
+          "providers": [
+            "Kbirenheide\\L3MA\\Providers\\L3MAServiceProvider"
+          ]
+        }
+    },      
     "authors": [
         {
             "name": "Koray Birenheide"
