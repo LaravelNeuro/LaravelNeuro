@@ -1,8 +1,8 @@
 <?php
-namespace Kbirenheide\L3MA;
+namespace Kbirenheide\LaravelNeuro;
 
-use Kbirenheide\L3MA\ApiAdapter;
-use Kbirenheide\L3MA\Prompts\Ollama\Prompt;
+use Kbirenheide\LaravelNeuro\ApiAdapter;
+use Kbirenheide\LaravelNeuro\Prompts\Ollama\Prompt;
 
 class Pipeline extends ApiAdapter {
 
@@ -34,7 +34,7 @@ class Pipeline extends ApiAdapter {
                 switch($element->type)
                 {
                     case "role":
-                        $this->request["system"] .= $element->block;
+                        $this->request["system"] = $element->block;
                         break;
                     default:
                         $this->prompt .= $element->block."\n";
@@ -54,12 +54,12 @@ class Pipeline extends ApiAdapter {
         return $this;
     }
 
-    public function getModel($model)
+    public function getModel()
     {
         return $this->model;
     }
 
-    public function getPrompt($prompt)
+    public function getPrompt()
     {
         return $this->prompt;
     }

@@ -1,8 +1,8 @@
 <?php
-namespace Kbirenheide\L3MA\Pipelines\LLM\Ollama;
+namespace Kbirenheide\LaravelNeuro\Pipelines\LLM\Ollama;
 
-use Kbirenheide\L3MA\Prompts\Ollama\Prompt;
-use Kbirenheide\L3MA\Pipeline;
+use Kbirenheide\LaravelNeuro\Prompts\Ollama\Prompt;
+use Kbirenheide\LaravelNeuro\Pipeline;
 
 class Zephyr extends Pipeline {
 
@@ -11,16 +11,16 @@ class Zephyr extends Pipeline {
 
     public function __construct()
     {
-        $this->model = config('l3ma.models.Zephyr.model');
+        $this->model = config('LaravelNeuro.models.Zephyr.model');
         $this->request["model"] = $this->model;
-        $this->api = config('l3ma.models.Zephyr.api');
+        $this->api = config('LaravelNeuro.models.Zephyr.api');
         if(empty($this->model))
         {
-            throw new \InvalidArgumentException("No model name has been set for this pipeline in the l3ma config file (app/config/l3ma.php).");
+            throw new \InvalidArgumentException("No model name has been set for this pipeline in the LaravelNeuro config file (app/config/LaravelNeuro.php).");
         }
         if(empty($this->api))
         {
-            throw new \InvalidArgumentException("No api address has been set for this pipeline in the l3ma config file (app/config/l3ma.php).");
+            throw new \InvalidArgumentException("No api address has been set for this pipeline in the LaravelNeuro config file (app/config/LaravelNeuro.php).");
         }
     }
 
@@ -51,7 +51,7 @@ class Zephyr extends Pipeline {
                         $this->prompt .= $element->block."</s>\n";
                         break;
                     case "role":
-                        $this->request["system"] .= $element->block;
+                        $this->request["system"] = $element->block;
                         break;
                     default:
                         //

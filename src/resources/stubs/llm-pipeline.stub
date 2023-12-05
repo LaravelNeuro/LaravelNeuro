@@ -2,7 +2,7 @@
 
 namespace App\Pipelines\LLM;
 
-use Kbirenheide\L3MA\Pipeline;
+use Kbirenheide\LaravelNeuro\Pipeline;
 
 class {{modelName}} extends Pipeline
 {

@@ -1,8 +1,8 @@
 <?php
-namespace Kbirenheide\L3MA\Pipelines\LLM\Ollama;
+namespace Kbirenheide\LaravelNeuro\Pipelines\LLM\Ollama;
 
-use Kbirenheide\L3MA\Prompts\Ollama\Prompt;
-use Kbirenheide\L3MA\Pipeline;
+use Kbirenheide\LaravelNeuro\Prompts\Ollama\Prompt;
+use Kbirenheide\LaravelNeuro\Pipeline;
 
 class DeepSeekCoder extends Pipeline {
 
@@ -11,16 +11,16 @@ class DeepSeekCoder extends Pipeline {
 
     public function __construct()
     {
-        $this->model = config('l3ma.models.DeepSeekCoder.model');
+        $this->model = config('LaravelNeuro.models.DeepSeekCoder.model');
         $this->request["model"] = $this->model;
-        $this->api = config('l3ma.models.DeepSeekCoder.api');
+        $this->api = config('LaravelNeuro.models.DeepSeekCoder.api');
         if(empty($this->model))
         {
-            throw new \InvalidArgumentException("No model name has been set for this pipeline in the l3ma config file (app/config/l3ma.php).");
+            throw new \InvalidArgumentException("No model name has been set for this pipeline in the LaravelNeuro config file (app/config/LaravelNeuro.php).");
         }
         if(empty($this->api))
         {
-            throw new \InvalidArgumentException("No api address has been set for this pipeline in the l3ma config file (app/config/l3ma.php).");
+            throw new \InvalidArgumentException("No api address has been set for this pipeline in the LaravelNeuro config file (app/config/LaravelNeuro.php).");
         }
     }
 
@@ -48,7 +48,7 @@ class DeepSeekCoder extends Pipeline {
                         $this->prompt .= $element->block."\n";
                         break;
                     case "role":
-                        $this->request["system"] .= $element->block;
+                        $this->request["system"] = $element->block;
                     default:
                         $this->prompt .= "\n### Instruction:\n";
                         $this->prompt .= $element->block."\n";

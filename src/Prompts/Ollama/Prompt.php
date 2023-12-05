@@ -1,5 +1,5 @@
 <?php
-namespace Kbirenheide\L3MA\Prompts\Ollama;
+namespace Kbirenheide\LaravelNeuro\Prompts\Ollama;
 
 use Illuminate\Support\Collection;
 

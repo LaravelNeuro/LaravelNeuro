@@ -1,5 +1,5 @@
 <?php
-namespace Kbirenheide\L3MA;
+namespace Kbirenheide\LaravelNeuro;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
@@ -13,7 +13,7 @@ class ApiAdapter {
     protected $stream = false;
     protected $error = false;
 
-    public function api($address)
+    public function setApi($address)
     {
         $this->api = $address;
 
@@ -82,7 +82,10 @@ class ApiAdapter {
 
     private function return($response, $type)
     {
+        try {
+
         $body = $response->getBody();
+        
         switch($type)
             {
                 case "text":
@@ -98,11 +101,20 @@ class ApiAdapter {
                     return $body;
                     break;
             } 
+
+        } catch (GuzzleException $e) {
+
+            $this->error = $e;
+            return $e;
+        }    
     }  
 
     private function yield($response, $type)
     {
         $buffer = '';
+
+        try {
+            
         $body = $response->getBody();
 
         while (!$body->eof()) {
@@ -133,5 +145,11 @@ class ApiAdapter {
                 }
             }
         }
+
+        } catch (GuzzleException $e) {
+
+            $this->error = $e;
+            return $e;
+        }   
     }
 }

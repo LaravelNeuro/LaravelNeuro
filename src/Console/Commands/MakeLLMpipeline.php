@@ -1,6 +1,6 @@
 <?php
 
-namespace Kbirenheide\L3MA\Console\Commands;
+namespace Kbirenheide\LaravelNeuro\Console\Commands;
 
 use Illuminate\Console\Command;
 
