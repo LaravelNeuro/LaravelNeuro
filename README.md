@@ -1,5 +1,7 @@
 # Welcome to LaravelNeuro
 
+![Build Status](https://github.com/LaravelNeuro/LaravelNeuro/actions/workflows/ci.yml/badge.svg)
+
 This Laravel package enhances your PHP Laravel application by introducing two powerful features:
 1. **Integrating AI APIs** into your application code using Pipeline and Prompt Classes.
 2. **Setting up and running complex state machines** that network any number of generative AI agents and functions to automate tasks and content generation.
