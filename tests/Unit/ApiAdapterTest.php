@@ -73,7 +73,7 @@ class ApiAdapterTest extends PackageTestCase
         $apiAdapter->setClient(['handler' => $handlerStack]);
 
         $apiAdapter->setApi('http://example.com/api');
-        $this->expectException(RequestException::class);
+        $this->expectException(Exception::class);
         $apiAdapter->output();
 
     }

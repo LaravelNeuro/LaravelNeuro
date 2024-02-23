@@ -89,7 +89,6 @@ class ApiAdapter {
                 print_r($this->headers);
                 echo "\nRequest: \n";
                 print_r($this->request);
-                echo "\nRequestType: " . $this->getRequestType()->value . "\n";
             }
             switch($this->getRequestType())
             {
