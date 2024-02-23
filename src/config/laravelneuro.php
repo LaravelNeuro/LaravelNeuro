@@ -18,7 +18,7 @@ return [
             'api' => '',
         ],
         'gpt-3-5-turbo' => [
-            'model' => 'gpt-3.5-turbo-1106',
+            'model' => 'gpt-3.5-turbo-0125',
             'api' => 'https://api.openai.com/v1/chat/completions',
         ],
         'dall-e-2' => [
@@ -28,6 +28,10 @@ return [
         'tts-1' => [
             'model' => 'tts-1',
             'api' => 'https://api.openai.com/v1/audio/speech',
+        ],
+        'whisper-1' => [
+            'model' => 'whisper-1',
+            'api' => 'https://api.openai.com/v1/audio/transcriptions',
         ],
         'eleven-monolingual-v1' => [
             'model' => 'eleven_monolingual_v1', 

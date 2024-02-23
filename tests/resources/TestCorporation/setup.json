@@ -19,7 +19,6 @@
         "agents": [
           {
             "name": "ChatCompletion",
-            "apiProvider": "OPENAI",
             "pipeline": "LaravelNeuro\\LaravelNeuro\\Pipelines\\OpenAI\\ChatCompletion",     
             "role": "You are a helpful assistant.",
             "outputModel": "internal.TestDataSetOne",
@@ -27,7 +26,6 @@
           },
           {
             "name": "AudioTTS",
-            "apiProvider": "ELEVENLABS",
             "apiType": "TTS",
             "model": "eleven_multilingual_v2",
             "pipeline": "LaravelNeuro\\LaravelNeuro\\Pipelines\\ElevenLabs\\AudioTTS",
@@ -36,7 +34,6 @@
           },
           {
             "name": "DallE",    
-            "apiProvider": "OPENAI",
             "apiType": "IMAGE",
             "pipeline": "LaravelNeuro\\LaravelNeuro\\Pipelines\\OpenAI\\DallE",
             "promptClass": "LaravelNeuro\\LaravelNeuro\\Prompts\\PNSQFprompt",    

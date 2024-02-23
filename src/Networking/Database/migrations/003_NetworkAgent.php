@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('model')->nullable();
             $table->string('api')->nullable();
             $table->enum('apiType', ['CHATCOMPLETION', 'IMAGE', 'BASIC', 'TTS', 'STT', 'VIDEO'])->default('CHATCOMPLETION');
-            $table->enum('apiProvider', ['OPENAI', 'OLLAMA', 'ELEVENLABS', 'GENERIC']);
             $table->string('pipeline');
             $table->text('role')->nullable();
             $table->text('prompt')->nullable();

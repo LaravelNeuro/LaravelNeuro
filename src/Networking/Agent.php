@@ -5,7 +5,6 @@ use LaravelNeuro\LaravelNeuro\Pipeline;
 use LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkAgent;
 use LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkUnit;
 
-use LaravelNeuro\LaravelNeuro\Enums\APIprovider;
 use LaravelNeuro\LaravelNeuro\Enums\APItype;
 
 class Agent extends Pipeline {
@@ -13,7 +12,6 @@ class Agent extends Pipeline {
     public string $name;
     public APItype $apiType;
     public string $promptClass;
-    public APIprovider $apiProvider;
     public string $pipelineClass;
     public string $role;
     public $outputModel = false;
@@ -33,7 +31,6 @@ class Agent extends Pipeline {
         $agentInstance = (object) [
             "id" => $agent->id,
             "apiType" => $agent->apiType,
-            "apiProvider" => $agent->apiProvider,
             "role" => $agent->role,
             "prompt" => $agent->prompt,
             "promptClass" => $agent->promptClass,
@@ -65,12 +62,6 @@ class Agent extends Pipeline {
     public function setApiType(APItype $set)
     {
         $this->apiType = $set;
-        return $this;
-    }
-
-    public function setApiProvider(APIprovider $set)
-    {
-        $this->apiProvider = $set;
         return $this;
     }
 
@@ -117,7 +108,6 @@ class Agent extends Pipeline {
         $agent->model = $this->model;
         $agent->api = $this->api;
         if(!empty($this->apiType ?? null)) $agent->apiType = $this->apiType;
-        $agent->apiProvider = $this->apiProvider;
         if(!empty($this->promptClass ?? null)) $agent->promptClass = $this->promptClass;
         $agent->prompt = $this->prompt ?? null;
         $agent->pipeline = $this->pipelineClass;

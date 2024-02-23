@@ -224,7 +224,6 @@ class Incorporate {
                     $constructAgent = new Agent;
                     $constructAgent->setName(self::validateProperty($agent, "name", "string"));
                     $constructAgent->setPipelineClass(self::validateProperty($agent, "pipeline", "string"));
-                    $constructAgent->setApiProvider(self::validateProperty($agent, "apiProvider", "APIprovider"));
 
                     if(isset($agent->model)) $constructAgent->setModel(self::validateProperty($agent, "model", "string"));
                     if(isset($agent->apiLink)) $constructAgent->setApi(self::validateProperty($agent, "apiLink", "string"));                
@@ -243,7 +242,7 @@ class Incorporate {
                 $setup->pushUnit($constructUnit);
             }
 
-            if(is_array(self::validateProperty($import, "models", "array")) && count($import->models) !== 0)
+            if(isset($import->models) && is_array(self::validateProperty($import, "models", "array")) && count($import->models) !== 0)
             {
                 foreach($import->models as $model)
                 {              
@@ -298,53 +297,59 @@ class Incorporate {
             if (!Storage::disk('lneuro_app')->exists($destination)) {
                 Storage::disk('lneuro_app')->makeDirectory($destination);
             }
+            if (!Storage::disk('lneuro_app')->exists($destination . '/Database/migrations')) {
+                Storage::disk('lneuro_app')->makeDirectory($destination . '/Database/migrations');
+            }
+            if (!Storage::disk('lneuro_app')->exists($destination . '/Database/Models')) {
+                Storage::disk('lneuro_app')->makeDirectory($destination . '/Database/Models');
+            }
 
             $migrationNumber = 0;
 
-            foreach($this->models as $key => $model)
-            {     
-                $makeModel = $nameSpace.'\\'.'Database'.'\\'.'Models'.'\\'.$model->name;
+                foreach($this->models as $key => $model)
+                {     
+                    $makeModel = $nameSpace.'\\'.'Database'.'\\'.'Models'.'\\'.$model->name;
 
-                $commandState = Command::SUCCESS;
+                    $commandState = Command::SUCCESS;
 
-                try {
-                   $commandState = Artisan::call('make:model',  ["name" => $makeModel]);
-                   if($commandState == Command::FAILURE) 
-                            {
-                                $this->errors->push(sprintf('There was a problem creating your Laravel Neuro Corporation\'s Model with the name [%s].', $model->name));
-                            }
-                }
-                catch(\Exception $e)
-                {
-                    $this->errors->push($e);
-                }
-
-                try {
-                    if($model->migration)
+                    try {
+                    $commandState = Artisan::call('make:model',  ["name" => $makeModel]);
+                    if($commandState == Command::FAILURE) 
+                                {
+                                    $this->errors->push(sprintf('There was a problem creating your Laravel Neuro Corporation\'s Model with the name [%s].', $model->name));
+                                }
+                    }
+                    catch(\Exception $e)
                     {
-                        $migrationNumber++;
-                        $migrationName = str_pad($migrationNumber, 3, "0", STR_PAD_LEFT) . $model->name . '_migration';
-                        $snakeCaseName = Str::snake($model->name);
-                        $tableName = Str::plural($snakeCaseName);
-                        $migrationPath = app_path($destination.'/Database/migrations');
-                        
-                        $commandState = Artisan::call('lneuro:make-network-migration', [
-                                                            "name" => $migrationName, 
-                                                            "--path" => $migrationPath,
-                                                            "--create" => $tableName,
-                                                            "--truename"
-                                                            ]);
-                        if($commandState == Command::FAILURE) 
-                            {
-                                $this->errors->push(sprintf('There was a problem creating your Laravel Neuro Corporation\'s migration for the Model with the name [%s], it may already exist.', $model->name));
-                            }
+                        $this->errors->push($e);
+                    }
+
+                    try {
+                        if($model->migration)
+                        {
+                            $migrationNumber++;
+                            $migrationName = str_pad($migrationNumber, 3, "0", STR_PAD_LEFT) . $model->name . '_migration';
+                            $snakeCaseName = Str::snake($model->name);
+                            $tableName = Str::plural($snakeCaseName);
+                            $migrationPath = app_path($destination.'/Database/migrations');
+                            
+                            $commandState = Artisan::call('lneuro:make-network-migration', [
+                                                                "name" => $migrationName, 
+                                                                "--path" => $migrationPath,
+                                                                "--create" => $tableName,
+                                                                "--truename"
+                                                                ]);
+                            if($commandState == Command::FAILURE) 
+                                {
+                                    $this->errors->push(sprintf('There was a problem creating your Laravel Neuro Corporation\'s migration for the Model with the name [%s], it may already exist.', $model->name));
+                                }
+                        }
+                    }
+                    catch(\Exception $e)
+                    {
+                        $this->errors->push($e);
                     }
                 }
-                catch(\Exception $e)
-                {
-                    $this->errors->push($e);
-                }
-            }
 
             $units = [];
             foreach($this->units as $unit)
@@ -587,16 +592,16 @@ class Incorporate {
             
             Storage::disk('lneuro_app')->put($filePath, $config);
 
-            $filePath = $destination.'/Bootstrap.php';
+                $filePath = $destination.'/Bootstrap.php';
 
-            if (!Storage::disk('lneuro_app')->exists($filePath)) {      
-            $bootstrap = Incorporate::getStub('bootstrap');
-            $bootstrap = str_replace('{{CorporationNameSpace}}', $nameSpace, $bootstrap);
-            $bootstrap = str_replace('{{CorporationName}}', $mainscriptName, $bootstrap);
-            $bootstrap = str_replace('{{CorporationNameSpaceDoubleSlash}}', str_replace('\\','\\\\', $nameSpace), $bootstrap);
-            
-            Storage::disk('lneuro_app')->put($filePath, $bootstrap);
-            }
+                if (!Storage::disk('lneuro_app')->exists($filePath)) {      
+                $bootstrap = Incorporate::getStub('bootstrap');
+                $bootstrap = str_replace('{{CorporationNameSpace}}', $nameSpace, $bootstrap);
+                $bootstrap = str_replace('{{CorporationName}}', $mainscriptName, $bootstrap);
+                $bootstrap = str_replace('{{CorporationNameSpaceDoubleSlash}}', str_replace('\\','\\\\', $nameSpace), $bootstrap);
+                
+                Storage::disk('lneuro_app')->put($filePath, $bootstrap);
+                }
 
             return ["corporationId" => $corporation->id, "corporationName" => $corporation->name, "corporationDescription" => $corporation->description, "units" => $units, "transitions" => $this->transitions->toArray(), "errors" => $this->errors->toArray()];
     }

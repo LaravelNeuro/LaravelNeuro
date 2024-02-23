@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkUnit;
 
-use LaravelNeuro\LaravelNeuro\Enums\APIprovider;
 use LaravelNeuro\LaravelNeuro\Enums\APItype;
 
 class NetworkAgent extends Model
@@ -31,11 +30,4 @@ class NetworkAgent extends Model
         )->shouldCache();
     }
 
-    protected function apiProvider(): Attribute
-    {
-        return Attribute::make(
-            get: fn (string $value) => (APIprovider::tryFrom($value) ?? throw new \Exception("There appears to be a mismatch between the Database enum and the PHP enum for NetworkAgent->apiProvider / APIprovider, where each NetworkAgent->apiProvider should correspond to a APIprovider case.")),
-            set: fn (APIprovider $value) => $value->value,
-        )->shouldCache();
-    }
 }

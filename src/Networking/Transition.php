@@ -145,6 +145,17 @@ class Transition {
                             $mutate = json_encode($data, JSON_PRETTY_PRINT);
                         }
                     break;
+                case 'Corporation':
+                    $loader = $detect[1];
+                    $data = $corporation->$loader;
+                    $mutate = $data;
+                    break;
+                case 'Head':
+                    if($detect[1] == "data")
+                        $mutate = $this->head->getData();
+                    else
+                        $mutate = $entity[0];
+                    break;
                 default:
                     $mutate = $entity[0];
                     break;

@@ -5,12 +5,14 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Support\Facades\Storage;
+use LaravelNeuro\LaravelNeuro\Enums\RequestType;
 
 class ApiAdapter {
 
     protected $client = false;
     protected $api;
     protected $request;
+    protected RequestType $requestType = RequestType::JSON;
     protected $response;
     protected $fileType;
     protected $stream = false;
@@ -51,6 +53,17 @@ class ApiAdapter {
         return $this->api;
     }
 
+    public function getRequestType()
+    {
+        return $this->requestType;
+    }
+
+    public function setRequestType(RequestType $requestType)
+    {
+        $this->requestType = $requestType;
+        return $this;
+    }
+
     public function setClient(array $options = [])
     {
         $this->client = new Client($options);
@@ -76,14 +89,26 @@ class ApiAdapter {
                 print_r($this->headers);
                 echo "\nRequest: \n";
                 print_r($this->request);
+                echo "\nRequestType: " . $this->getRequestType()->value . "\n";
             }
-            $response = $client->request($method, $this->api, ["json" => $this->request, "stream" => $this->stream, "headers" => $this->headers]);
+            switch($this->getRequestType())
+            {
+                case RequestType::JSON:
+                    $response = $client->request($method, $this->api, ["json" => $this->request, "stream" => $this->stream, "headers" => $this->headers]);
+                    break;
+                case RequestType::MULTIPART:                
+                    $response = $client->post($this->api, ["headers" => $this->headers, "multipart" => $this->request]);
+                    break;
+                default:
+                    $response = $client->request($method, $this->api, ["json" => $this->request, "stream" => $this->stream, "headers" => $this->headers]);
+                    break;
+            }
             
             return $response;
 
         } catch (RequestException $e) {
             $this->error = $e->getResponse()->getBody() . $e;
-            throw $e;
+            throw new \Exception($e->getResponse()->getBody());
         } catch (\Exception $e) {
             // Handle broader range of exceptions
             $this->error = $e;

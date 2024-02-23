@@ -12,7 +12,7 @@ class {{modelName}} extends Pipeline
     public function setPrompt($prompt)
     {
         //**  Implement your prompt-building logic here   **//
-        //      remember to set set $this->prompt and       //
+        //      remember to set $this->prompt and           //
         //      $this->request["prompt"]                    //
         //                                                  //
         //**************************************************//  
