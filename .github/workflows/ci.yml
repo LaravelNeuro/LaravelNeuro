@@ -17,7 +17,7 @@ jobs:
       with:
         php-version: '8.2' # Choose the PHP version compatible with your package
         coverage: xdebug
-        extensions: mbstring, xml, opcache, pdo_mysql, mbstring, exif, bcmath, xml, curl, gd, zip, intl # Add the extensions your package requires
+        extensions: mbstring, xml, opcache, pdo_mysql, mbstring, exif, bcmath, xml, curl, gd, zip, intl, xdebug # Add the extensions your package requires
         tools: composer, phpunit # Tools to install
 
     - name: Install Dependencies
@@ -26,5 +26,12 @@ jobs:
     - name: Add Testing Permissions
       run: chmod +x vendor/bin/phpunit
 
-    - name: Run Tests
-      run: vendor/bin/phpunit
+    - name: Run Tests with Coverage
+      run: vendor/bin/phpunit --coverage-clover build/logs/clover.xml
+
+    - name: Upload coverage to Coveralls
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        path-to-lcov: ./build/logs/clover.xml # Path to the coverage report
+        coveralls-endpoint: https://coveralls.io # This is optional if you are using coveralls.io  
