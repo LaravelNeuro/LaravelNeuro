@@ -29,9 +29,11 @@ jobs:
     - name: Run Tests with Coverage
       run: vendor/bin/phpunit --coverage-clover build/logs/clover.xml
 
+    - name: Convert Clover XML to LCOV
+      run: vendor/bin/php-coveralls -v --coverage_clover=build/logs/clover.xml --json_path=build/logs/coveralls-upload.json
+
     - name: Upload coverage to Coveralls
       uses: coverallsapp/github-action@master
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
-        path-to-lcov: ./build/logs/clover.xml # Path to the coverage report
-        coveralls-endpoint: https://coveralls.io # This is optional if you are using coveralls.io  
+        path-to-lcov: ./build/logs/coveralls-upload.json 
