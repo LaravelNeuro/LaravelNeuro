@@ -23,5 +23,8 @@ jobs:
     - name: Install Dependencies
       run: composer install --prefer-dist --no-progress --no-suggest
 
+    - name: Add Testing Permissions
+      run: chmod +x vendor/bin/phpunit
+
     - name: Run Tests
       run: vendor/bin/phpunit
