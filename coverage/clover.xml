@@ -1,0 +1,2290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1706527175">
+  <project timestamp="1706527175">
+    <file name="/var/www/html/LaravelAI/src/ApiAdapter.php">
+      <class name="LaravelNeuro\LaravelNeuro\ApiAdapter" namespace="global">
+        <metrics complexity="21" methods="12" coveredmethods="12" conditionals="0" coveredconditionals="0" statements="77" coveredstatements="77" elements="89" coveredelements="89"/>
+      </class>
+      <line num="21" type="method" name="debug" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="23" type="stmt" count="1"/>
+      <line num="24" type="stmt" count="1"/>
+      <line num="27" type="method" name="setHeaderEntry" visibility="public" complexity="1" crap="1" count="8"/>
+      <line num="29" type="stmt" count="8"/>
+      <line num="32" type="method" name="unsetHeaderEntry" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="34" type="stmt" count="1"/>
+      <line num="37" type="method" name="getHeaders" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="39" type="stmt" count="1"/>
+      <line num="42" type="method" name="setApi" visibility="public" complexity="1" crap="1" count="12"/>
+      <line num="44" type="stmt" count="12"/>
+      <line num="46" type="stmt" count="12"/>
+      <line num="49" type="method" name="getApi" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="51" type="stmt" count="1"/>
+      <line num="54" type="method" name="setClient" visibility="public" complexity="1" crap="1" count="9"/>
+      <line num="56" type="stmt" count="9"/>
+      <line num="57" type="stmt" count="9"/>
+      <line num="60" type="method" name="getClient" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="62" type="stmt" count="1"/>
+      <line num="65" type="method" name="connect" visibility="private" complexity="5" crap="5" count="8"/>
+      <line num="67" type="stmt" count="8"/>
+      <line num="68" type="stmt" count="8"/>
+      <line num="71" type="stmt" count="8"/>
+      <line num="72" type="stmt" count="8"/>
+      <line num="74" type="stmt" count="1"/>
+      <line num="75" type="stmt" count="1"/>
+      <line num="76" type="stmt" count="1"/>
+      <line num="77" type="stmt" count="1"/>
+      <line num="78" type="stmt" count="1"/>
+      <line num="80" type="stmt" count="8"/>
+      <line num="82" type="stmt" count="6"/>
+      <line num="84" type="stmt" count="3"/>
+      <line num="85" type="stmt" count="2"/>
+      <line num="86" type="stmt" count="2"/>
+      <line num="87" type="stmt" count="1"/>
+      <line num="89" type="stmt" count="1"/>
+      <line num="90" type="stmt" count="1"/>
+      <line num="95" type="method" name="fileMake" visibility="public" complexity="1" crap="1" count="4"/>
+      <line num="97" type="stmt" count="4"/>
+      <line num="98" type="stmt" count="4"/>
+      <line num="99" type="stmt" count="4"/>
+      <line num="100" type="stmt" count="4"/>
+      <line num="101" type="stmt" count="4"/>
+      <line num="102" type="stmt" count="4"/>
+      <line num="103" type="stmt" count="4"/>
+      <line num="104" type="stmt" count="4"/>
+      <line num="105" type="stmt" count="4"/>
+      <line num="106" type="stmt" count="4"/>
+      <line num="107" type="stmt" count="4"/>
+      <line num="108" type="stmt" count="4"/>
+      <line num="109" type="stmt" count="4"/>
+      <line num="110" type="stmt" count="4"/>
+      <line num="111" type="stmt" count="4"/>
+      <line num="112" type="stmt" count="4"/>
+      <line num="113" type="stmt" count="4"/>
+      <line num="114" type="stmt" count="4"/>
+      <line num="115" type="stmt" count="4"/>
+      <line num="117" type="stmt" count="4"/>
+      <line num="119" type="stmt" count="4"/>
+      <line num="120" type="stmt" count="4"/>
+      <line num="122" type="stmt" count="4"/>
+      <line num="123" type="stmt" count="4"/>
+      <line num="125" type="stmt" count="4"/>
+      <line num="126" type="stmt" count="4"/>
+      <line num="127" type="stmt" count="4"/>
+      <line num="128" type="stmt" count="4"/>
+      <line num="129" type="stmt" count="4"/>
+      <line num="130" type="stmt" count="4"/>
+      <line num="132" type="stmt" count="4"/>
+      <line num="135" type="method" name="output" visibility="public" complexity="1" crap="1" count="8"/>
+      <line num="137" type="stmt" count="8"/>
+      <line num="138" type="stmt" count="6"/>
+      <line num="140" type="stmt" count="6"/>
+      <line num="143" type="method" name="stream" visibility="public" complexity="6" crap="6" count="1"/>
+      <line num="145" type="stmt" count="1"/>
+      <line num="146" type="stmt" count="1"/>
+      <line num="147" type="stmt" count="1"/>
+      <line num="149" type="stmt" count="1"/>
+      <line num="151" type="stmt" count="1"/>
+      <line num="153" type="stmt" count="1"/>
+      <line num="154" type="stmt" count="1"/>
+      <line num="155" type="stmt" count="1"/>
+      <line num="157" type="stmt" count="1"/>
+      <line num="158" type="stmt" count="1"/>
+      <line num="159" type="stmt" count="1"/>
+      <line num="161" type="stmt" count="1"/>
+      <line num="163" type="stmt" count="1"/>
+      <line num="164" type="stmt" count="1"/>
+      <line num="165" type="stmt" count="1"/>
+      <metrics loc="170" ncloc="169" classes="1" methods="12" coveredmethods="12" conditionals="0" coveredconditionals="0" statements="77" coveredstatements="77" elements="89" coveredelements="89"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/Console/Commands/CorporationMakeMigration.php">
+      <class name="LaravelNeuro\LaravelNeuro\Console\Commands\CorporationMakeMigration" namespace="global">
+        <metrics complexity="5" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="19" coveredstatements="15" elements="21" coveredelements="16"/>
+      </class>
+      <line num="30" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="17"/>
+      <line num="32" type="stmt" count="17"/>
+      <line num="35" type="method" name="writeMigration" visibility="protected" complexity="4" crap="4.18" count="2"/>
+      <line num="37" type="stmt" count="2"/>
+      <line num="38" type="stmt" count="2"/>
+      <line num="39" type="stmt" count="2"/>
+      <line num="41" type="stmt" count="2"/>
+      <line num="42" type="stmt" count="2"/>
+      <line num="43" type="stmt" count="2"/>
+      <line num="44" type="stmt" count="2"/>
+      <line num="46" type="stmt" count="1"/>
+      <line num="48" type="stmt" count="0"/>
+      <line num="49" type="stmt" count="0"/>
+      <line num="53" type="stmt" count="1"/>
+      <line num="54" type="stmt" count="1"/>
+      <line num="55" type="stmt" count="1"/>
+      <line num="60" type="stmt" count="1"/>
+      <line num="62" type="stmt" count="0"/>
+      <line num="63" type="stmt" count="0"/>
+      <line num="67" type="stmt" count="1"/>
+      <line num="68" type="stmt" count="1"/>
+      <metrics loc="73" ncloc="63" classes="1" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="19" coveredstatements="15" elements="21" coveredelements="16"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/Console/Commands/CorporationRun.php">
+      <class name="LaravelNeuro\LaravelNeuro\Console\Commands\CorporationRun" namespace="global">
+        <metrics complexity="6" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="28" coveredstatements="16" elements="29" coveredelements="16"/>
+      </class>
+      <line num="33" type="method" name="handle" visibility="public" complexity="6" crap="8.83" count="1"/>
+      <line num="35" type="stmt" count="1"/>
+      <line num="36" type="stmt" count="1"/>
+      <line num="37" type="stmt" count="1"/>
+      <line num="38" type="stmt" count="1"/>
+      <line num="39" type="stmt" count="1"/>
+      <line num="41" type="stmt" count="1"/>
+      <line num="43" type="stmt" count="0"/>
+      <line num="44" type="stmt" count="0"/>
+      <line num="45" type="stmt" count="0"/>
+      <line num="49" type="stmt" count="1"/>
+      <line num="52" type="stmt" count="1"/>
+      <line num="54" type="stmt" count="0"/>
+      <line num="55" type="stmt" count="0"/>
+      <line num="58" type="stmt" count="1"/>
+      <line num="60" type="stmt" count="1"/>
+      <line num="62" type="stmt" count="1"/>
+      <line num="63" type="stmt" count="1"/>
+      <line num="65" type="stmt" count="0"/>
+      <line num="67" type="stmt" count="0"/>
+      <line num="68" type="stmt" count="0"/>
+      <line num="69" type="stmt" count="0"/>
+      <line num="73" type="stmt" count="1"/>
+      <line num="74" type="stmt" count="1"/>
+      <line num="75" type="stmt" count="1"/>
+      <line num="76" type="stmt" count="1"/>
+      <line num="78" type="stmt" count="0"/>
+      <line num="80" type="stmt" count="0"/>
+      <line num="81" type="stmt" count="0"/>
+      <metrics loc="85" ncloc="71" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="28" coveredstatements="16" elements="29" coveredelements="16"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/Console/Commands/IncorporateInstall.php">
+      <class name="LaravelNeuro\LaravelNeuro\Console\Commands\IncorporateInstall" namespace="global">
+        <metrics complexity="8" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="32" coveredstatements="13" elements="33" coveredelements="13"/>
+      </class>
+      <line num="31" type="method" name="handle" visibility="public" complexity="8" crap="21.40" count="2"/>
+      <line num="33" type="stmt" count="2"/>
+      <line num="35" type="stmt" count="2"/>
+      <line num="36" type="stmt" count="2"/>
+      <line num="37" type="stmt" count="2"/>
+      <line num="38" type="stmt" count="2"/>
+      <line num="39" type="stmt" count="2"/>
+      <line num="41" type="stmt" count="0"/>
+      <line num="42" type="stmt" count="0"/>
+      <line num="43" type="stmt" count="0"/>
+      <line num="45" type="stmt" count="0"/>
+      <line num="49" type="stmt" count="2"/>
+      <line num="52" type="stmt" count="2"/>
+      <line num="54" type="stmt" count="2"/>
+      <line num="56" type="stmt" count="2"/>
+      <line num="57" type="stmt" count="2"/>
+      <line num="58" type="stmt" count="2"/>
+      <line num="59" type="stmt" count="2"/>
+      <line num="61" type="stmt" count="0"/>
+      <line num="63" type="stmt" count="0"/>
+      <line num="64" type="stmt" count="0"/>
+      <line num="65" type="stmt" count="0"/>
+      <line num="66" type="stmt" count="0"/>
+      <line num="67" type="stmt" count="0"/>
+      <line num="68" type="stmt" count="0"/>
+      <line num="70" type="stmt" count="0"/>
+      <line num="71" type="stmt" count="0"/>
+      <line num="74" type="stmt" count="0"/>
+      <line num="75" type="stmt" count="0"/>
+      <line num="77" type="stmt" count="0"/>
+      <line num="78" type="stmt" count="0"/>
+      <line num="82" type="stmt" count="0"/>
+      <line num="83" type="stmt" count="0"/>
+      <metrics loc="87" ncloc="71" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="32" coveredstatements="13" elements="33" coveredelements="13"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/Console/Commands/IncorporateSetup.php">
+      <class name="LaravelNeuro\LaravelNeuro\Console\Commands\IncorporateSetup" namespace="global">
+        <metrics complexity="3" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="18" coveredstatements="15" elements="19" coveredelements="15"/>
+      </class>
+      <line num="31" type="method" name="handle" visibility="public" complexity="3" crap="3.04" count="2"/>
+      <line num="33" type="stmt" count="2"/>
+      <line num="35" type="stmt" count="2"/>
+      <line num="36" type="stmt" count="2"/>
+      <line num="37" type="stmt" count="2"/>
+      <line num="38" type="stmt" count="2"/>
+      <line num="40" type="stmt" count="2"/>
+      <line num="42" type="stmt" count="0"/>
+      <line num="46" type="stmt" count="2"/>
+      <line num="49" type="stmt" count="2"/>
+      <line num="51" type="stmt" count="2"/>
+      <line num="52" type="stmt" count="2"/>
+      <line num="53" type="stmt" count="2"/>
+      <line num="54" type="stmt" count="2"/>
+      <line num="55" type="stmt" count="2"/>
+      <line num="56" type="stmt" count="2"/>
+      <line num="57" type="stmt" count="2"/>
+      <line num="61" type="stmt" count="0"/>
+      <line num="62" type="stmt" count="0"/>
+      <metrics loc="66" ncloc="52" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="18" coveredstatements="15" elements="19" coveredelements="15"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/Console/Commands/MakeLLMpipeline.php">
+      <class name="LaravelNeuro\LaravelNeuro\Console\Commands\MakeLLMpipeline" namespace="global">
+        <metrics complexity="4" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="0" elements="15" coveredelements="0"/>
+      </class>
+      <line num="27" type="method" name="handle" visibility="public" complexity="3" crap="12" count="0"/>
+      <line num="29" type="stmt" count="0"/>
+      <line num="30" type="stmt" count="0"/>
+      <line num="31" type="stmt" count="0"/>
+      <line num="33" type="stmt" count="0"/>
+      <line num="35" type="stmt" count="0"/>
+      <line num="36" type="stmt" count="0"/>
+      <line num="39" type="stmt" count="0"/>
+      <line num="41" type="stmt" count="0"/>
+      <line num="42" type="stmt" count="0"/>
+      <line num="43" type="stmt" count="0"/>
+      <line num="44" type="stmt" count="0"/>
+      <line num="46" type="stmt" count="0"/>
+      <line num="54" type="method" name="getStub" visibility="protected" complexity="1" crap="2" count="0"/>
+      <line num="56" type="stmt" count="0"/>
+      <metrics loc="58" ncloc="39" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="0" elements="15" coveredelements="0"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/Console/Commands/PackageSetup.php">
+      <class name="LaravelNeuro\LaravelNeuro\Console\Commands\PackageSetup" namespace="global">
+        <metrics complexity="5" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="0" elements="11" coveredelements="0"/>
+      </class>
+      <line num="13" type="method" name="handle" visibility="public" complexity="3" crap="12" count="0"/>
+      <line num="15" type="stmt" count="0"/>
+      <line num="16" type="stmt" count="0"/>
+      <line num="17" type="stmt" count="0"/>
+      <line num="19" type="stmt" count="0"/>
+      <line num="20" type="stmt" count="0"/>
+      <line num="22" type="stmt" count="0"/>
+      <line num="26" type="method" name="runMigrations" visibility="protected" complexity="1" crap="2" count="0"/>
+      <line num="28" type="stmt" count="0"/>
+      <line num="31" type="method" name="rollbackMigrations" visibility="protected" complexity="1" crap="2" count="0"/>
+      <line num="33" type="stmt" count="0"/>
+      <metrics loc="35" ncloc="35" classes="1" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="0" elements="11" coveredelements="0"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/Enums/APIprovider.php">
+      <metrics loc="11" ncloc="11" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/Enums/APItype.php">
+      <metrics loc="13" ncloc="13" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/Enums/IncorporatePrebuild.php">
+      <metrics loc="9" ncloc="9" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/Enums/PNSQFquality.php">
+      <metrics loc="9" ncloc="9" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/Enums/StuckHandler.php">
+      <metrics loc="10" ncloc="10" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/Enums/TransitionType.php">
+      <metrics loc="10" ncloc="10" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/Enums/TuringHistory.php">
+      <metrics loc="12" ncloc="12" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/Enums/TuringMode.php">
+      <metrics loc="10" ncloc="10" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/Enums/TuringMove.php">
+      <metrics loc="10" ncloc="10" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/Enums/TuringState.php">
+      <metrics loc="11" ncloc="11" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/Enums/UnitReceiver.php">
+      <metrics loc="9" ncloc="9" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/Networking/Agent.php">
+      <class name="LaravelNeuro\LaravelNeuro\Networking\Agent" namespace="global">
+        <metrics complexity="16" methods="12" coveredmethods="10" conditionals="0" coveredconditionals="0" statements="54" coveredstatements="52" elements="66" coveredelements="62"/>
+      </class>
+      <line num="24" type="method" name="init" visibility="public" complexity="3" crap="3" count="1"/>
+      <line num="26" type="stmt" count="1"/>
+      <line num="27" type="stmt" count="1"/>
+      <line num="29" type="stmt" count="1"/>
+      <line num="30" type="stmt" count="1"/>
+      <line num="31" type="stmt" count="1"/>
+      <line num="33" type="stmt" count="1"/>
+      <line num="34" type="stmt" count="1"/>
+      <line num="35" type="stmt" count="1"/>
+      <line num="36" type="stmt" count="1"/>
+      <line num="37" type="stmt" count="1"/>
+      <line num="38" type="stmt" count="1"/>
+      <line num="39" type="stmt" count="1"/>
+      <line num="40" type="stmt" count="1"/>
+      <line num="41" type="stmt" count="1"/>
+      <line num="42" type="stmt" count="1"/>
+      <line num="43" type="stmt" count="1"/>
+      <line num="44" type="stmt" count="1"/>
+      <line num="45" type="stmt" count="1"/>
+      <line num="46" type="stmt" count="1"/>
+      <line num="48" type="stmt" count="1"/>
+      <line num="51" type="method" name="setRole" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="53" type="stmt" count="2"/>
+      <line num="54" type="stmt" count="2"/>
+      <line num="56" type="stmt" count="2"/>
+      <line num="59" type="method" name="setName" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="61" type="stmt" count="2"/>
+      <line num="62" type="stmt" count="2"/>
+      <line num="65" type="method" name="setApiType" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="67" type="stmt" count="2"/>
+      <line num="68" type="stmt" count="2"/>
+      <line num="71" type="method" name="setApiProvider" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="73" type="stmt" count="2"/>
+      <line num="74" type="stmt" count="2"/>
+      <line num="77" type="method" name="setPipelineClass" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="79" type="stmt" count="2"/>
+      <line num="80" type="stmt" count="2"/>
+      <line num="83" type="method" name="setPromptClass" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="85" type="stmt" count="2"/>
+      <line num="86" type="stmt" count="2"/>
+      <line num="89" type="method" name="setOutputModel" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="91" type="stmt" count="2"/>
+      <line num="92" type="stmt" count="2"/>
+      <line num="95" type="method" name="validateOutput" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="97" type="stmt" count="2"/>
+      <line num="98" type="stmt" count="2"/>
+      <line num="101" type="method" name="getName" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="103" type="stmt" count="0"/>
+      <line num="106" type="method" name="getRole" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="108" type="stmt" count="0"/>
+      <line num="111" type="method" name="install" visibility="public" complexity="3" crap="3" count="2"/>
+      <line num="113" type="stmt" count="2"/>
+      <line num="115" type="stmt" count="2"/>
+      <line num="116" type="stmt" count="2"/>
+      <line num="117" type="stmt" count="2"/>
+      <line num="118" type="stmt" count="2"/>
+      <line num="119" type="stmt" count="2"/>
+      <line num="120" type="stmt" count="2"/>
+      <line num="121" type="stmt" count="2"/>
+      <line num="122" type="stmt" count="2"/>
+      <line num="123" type="stmt" count="2"/>
+      <line num="124" type="stmt" count="2"/>
+      <line num="125" type="stmt" count="2"/>
+      <line num="126" type="stmt" count="2"/>
+      <line num="128" type="stmt" count="2"/>
+      <line num="130" type="stmt" count="2"/>
+      <metrics loc="134" ncloc="134" classes="1" methods="12" coveredmethods="10" conditionals="0" coveredconditionals="0" statements="54" coveredstatements="52" elements="66" coveredelements="62"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/Networking/Corporation.php">
+      <class name="LaravelNeuro\LaravelNeuro\Networking\Corporation" namespace="global">
+        <metrics complexity="48" methods="10" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="207" coveredstatements="152" elements="217" coveredelements="156"/>
+      </class>
+      <line num="39" type="method" name="__construct" visibility="public" complexity="9" crap="9.04" count="1"/>
+      <line num="41" type="stmt" count="1"/>
+      <line num="42" type="stmt" count="1"/>
+      <line num="44" type="stmt" count="1"/>
+      <line num="46" type="stmt" count="1"/>
+      <line num="47" type="stmt" count="1"/>
+      <line num="48" type="stmt" count="1"/>
+      <line num="50" type="stmt" count="1"/>
+      <line num="52" type="stmt" count="1"/>
+      <line num="54" type="stmt" count="1"/>
+      <line num="56" type="stmt" count="1"/>
+      <line num="59" type="stmt" count="1"/>
+      <line num="60" type="stmt" count="1"/>
+      <line num="63" type="stmt" count="1"/>
+      <line num="65" type="stmt" count="0"/>
+      <line num="66" type="stmt" count="0"/>
+      <line num="67" type="stmt" count="0"/>
+      <line num="68" type="stmt" count="0"/>
+      <line num="69" type="stmt" count="0"/>
+      <line num="73" type="stmt" count="1"/>
+      <line num="76" type="stmt" count="1"/>
+      <line num="78" type="stmt" count="1"/>
+      <line num="79" type="stmt" count="1"/>
+      <line num="80" type="stmt" count="1"/>
+      <line num="81" type="stmt" count="1"/>
+      <line num="83" type="stmt" count="1"/>
+      <line num="84" type="stmt" count="1"/>
+      <line num="86" type="stmt" count="1"/>
+      <line num="88" type="stmt" count="1"/>
+      <line num="90" type="stmt" count="1"/>
+      <line num="92" type="stmt" count="1"/>
+      <line num="93" type="stmt" count="1"/>
+      <line num="94" type="stmt" count="1"/>
+      <line num="95" type="stmt" count="1"/>
+      <line num="96" type="stmt" count="1"/>
+      <line num="100" type="stmt" count="1"/>
+      <line num="101" type="stmt" count="1"/>
+      <line num="102" type="stmt" count="1"/>
+      <line num="103" type="stmt" count="1"/>
+      <line num="104" type="stmt" count="1"/>
+      <line num="105" type="stmt" count="1"/>
+      <line num="106" type="stmt" count="1"/>
+      <line num="108" type="stmt" count="1"/>
+      <line num="110" type="stmt" count="1"/>
+      <line num="112" type="stmt" count="1"/>
+      <line num="113" type="stmt" count="1"/>
+      <line num="114" type="stmt" count="1"/>
+      <line num="115" type="stmt" count="1"/>
+      <line num="116" type="stmt" count="1"/>
+      <line num="119" type="stmt" count="1"/>
+      <line num="120" type="stmt" count="1"/>
+      <line num="121" type="stmt" count="1"/>
+      <line num="122" type="stmt" count="1"/>
+      <line num="123" type="stmt" count="1"/>
+      <line num="124" type="stmt" count="1"/>
+      <line num="126" type="stmt" count="1"/>
+      <line num="128" type="stmt" count="1"/>
+      <line num="130" type="stmt" count="1"/>
+      <line num="131" type="stmt" count="1"/>
+      <line num="132" type="stmt" count="1"/>
+      <line num="133" type="stmt" count="1"/>
+      <line num="134" type="stmt" count="1"/>
+      <line num="136" type="stmt" count="1"/>
+      <line num="139" type="method" name="debug" visibility="protected" complexity="3" crap="3" count="1"/>
+      <line num="141" type="stmt" count="1"/>
+      <line num="142" type="stmt" count="1"/>
+      <line num="145" type="method" name="scrubDataSet" visibility="public" complexity="4" crap="4" count="1"/>
+      <line num="146" type="stmt" count="1"/>
+      <line num="147" type="stmt" count="1"/>
+      <line num="148" type="stmt" count="1"/>
+      <line num="151" type="stmt" count="1"/>
+      <line num="153" type="stmt" count="1"/>
+      <line num="156" type="method" name="initial" visibility="protected" complexity="1" crap="2" count="0"/>
+      <line num="158" type="stmt" count="0"/>
+      <line num="159" type="stmt" count="0"/>
+      <line num="160" type="stmt" count="0"/>
+      <line num="161" type="stmt" count="0"/>
+      <line num="162" type="stmt" count="0"/>
+      <line num="164" type="stmt" count="0"/>
+      <line num="166" type="stmt" count="0"/>
+      <line num="169" type="method" name="continue" visibility="protected" complexity="1" crap="2" count="0"/>
+      <line num="171" type="stmt" count="0"/>
+      <line num="173" type="stmt" count="0"/>
+      <line num="176" type="method" name="final" visibility="protected" complexity="1" crap="2" count="0"/>
+      <line num="178" type="stmt" count="0"/>
+      <line num="180" type="stmt" count="0"/>
+      <line num="183" type="method" name="getHeadPosition" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="185" type="stmt" count="1"/>
+      <line num="188" type="method" name="setHeadPosition" visibility="public" complexity="3" crap="3" count="1"/>
+      <line num="190" type="stmt" count="1"/>
+      <line num="191" type="stmt" count="1"/>
+      <line num="192" type="stmt" count="1"/>
+      <line num="195" type="method" name="goTo" visibility="private" complexity="7" crap="9.83" count="1"/>
+      <line num="199" type="stmt" count="1"/>
+      <line num="201" type="stmt" count="1"/>
+      <line num="203" type="stmt" count="1"/>
+      <line num="204" type="stmt" count="1"/>
+      <line num="206" type="stmt" count="1"/>
+      <line num="208" type="stmt" count="1"/>
+      <line num="210" type="stmt" count="1"/>
+      <line num="211" type="stmt" count="1"/>
+      <line num="212" type="stmt" count="1"/>
+      <line num="214" type="stmt" count="0"/>
+      <line num="215" type="stmt" count="0"/>
+      <line num="216" type="stmt" count="0"/>
+      <line num="218" type="stmt" count="1"/>
+      <line num="219" type="stmt" count="1"/>
+      <line num="220" type="stmt" count="1"/>
+      <line num="224" type="stmt" count="0"/>
+      <line num="227" type="stmt" count="1"/>
+      <line num="228" type="stmt" count="1"/>
+      <line num="230" type="stmt" count="1"/>
+      <line num="231" type="stmt" count="1"/>
+      <line num="232" type="stmt" count="1"/>
+      <line num="233" type="stmt" count="1"/>
+      <line num="234" type="stmt" count="1"/>
+      <line num="235" type="stmt" count="1"/>
+      <line num="236" type="stmt" count="1"/>
+      <line num="238" type="stmt" count="1"/>
+      <line num="239" type="stmt" count="0"/>
+      <line num="241" type="stmt" count="0"/>
+      <line num="242" type="stmt" count="0"/>
+      <line num="243" type="stmt" count="0"/>
+      <line num="245" type="stmt" count="0"/>
+      <line num="248" type="stmt" count="0"/>
+      <line num="249" type="stmt" count="0"/>
+      <line num="250" type="stmt" count="0"/>
+      <line num="251" type="stmt" count="0"/>
+      <line num="252" type="stmt" count="0"/>
+      <line num="253" type="stmt" count="0"/>
+      <line num="254" type="stmt" count="0"/>
+      <line num="256" type="stmt" count="0"/>
+      <line num="259" type="stmt" count="1"/>
+      <line num="260" type="stmt" count="1"/>
+      <line num="261" type="stmt" count="1"/>
+      <line num="262" type="stmt" count="1"/>
+      <line num="264" type="stmt" count="1"/>
+      <line num="272" type="method" name="run" visibility="public" complexity="18" crap="25.00" count="1"/>
+      <line num="274" type="stmt" count="1"/>
+      <line num="275" type="stmt" count="1"/>
+      <line num="276" type="stmt" count="1"/>
+      <line num="279" type="stmt" count="1"/>
+      <line num="280" type="stmt" count="1"/>
+      <line num="282" type="stmt" count="1"/>
+      <line num="283" type="stmt" count="1"/>
+      <line num="284" type="stmt" count="1"/>
+      <line num="286" type="stmt" count="1"/>
+      <line num="288" type="stmt" count="1"/>
+      <line num="290" type="stmt" count="1"/>
+      <line num="292" type="stmt" count="1"/>
+      <line num="293" type="stmt" count="1"/>
+      <line num="295" type="stmt" count="1"/>
+      <line num="296" type="stmt" count="1"/>
+      <line num="298" type="stmt" count="1"/>
+      <line num="299" type="stmt" count="1"/>
+      <line num="301" type="stmt" count="1"/>
+      <line num="302" type="stmt" count="1"/>
+      <line num="304" type="stmt" count="1"/>
+      <line num="305" type="stmt" count="1"/>
+      <line num="306" type="stmt" count="1"/>
+      <line num="307" type="stmt" count="1"/>
+      <line num="308" type="stmt" count="1"/>
+      <line num="310" type="stmt" count="0"/>
+      <line num="311" type="stmt" count="0"/>
+      <line num="314" type="stmt" count="1"/>
+      <line num="316" type="stmt" count="1"/>
+      <line num="318" type="stmt" count="1"/>
+      <line num="319" type="stmt" count="1"/>
+      <line num="320" type="stmt" count="1"/>
+      <line num="321" type="stmt" count="1"/>
+      <line num="322" type="stmt" count="1"/>
+      <line num="323" type="stmt" count="1"/>
+      <line num="324" type="stmt" count="0"/>
+      <line num="325" type="stmt" count="0"/>
+      <line num="326" type="stmt" count="0"/>
+      <line num="327" type="stmt" count="0"/>
+      <line num="328" type="stmt" count="0"/>
+      <line num="330" type="stmt" count="0"/>
+      <line num="331" type="stmt" count="0"/>
+      <line num="332" type="stmt" count="0"/>
+      <line num="333" type="stmt" count="0"/>
+      <line num="334" type="stmt" count="0"/>
+      <line num="335" type="stmt" count="0"/>
+      <line num="336" type="stmt" count="0"/>
+      <line num="337" type="stmt" count="0"/>
+      <line num="338" type="stmt" count="0"/>
+      <line num="339" type="stmt" count="0"/>
+      <line num="340" type="stmt" count="0"/>
+      <line num="341" type="stmt" count="0"/>
+      <line num="342" type="stmt" count="0"/>
+      <line num="343" type="stmt" count="0"/>
+      <line num="345" type="stmt" count="0"/>
+      <line num="346" type="stmt" count="1"/>
+      <line num="347" type="stmt" count="1"/>
+      <line num="348" type="stmt" count="1"/>
+      <line num="349" type="stmt" count="1"/>
+      <line num="350" type="stmt" count="1"/>
+      <line num="353" type="stmt" count="1"/>
+      <line num="355" type="stmt" count="1"/>
+      <line num="356" type="stmt" count="1"/>
+      <line num="357" type="stmt" count="1"/>
+      <line num="360" type="stmt" count="1"/>
+      <line num="362" type="stmt" count="1"/>
+      <line num="364" type="stmt" count="1"/>
+      <line num="366" type="stmt" count="1"/>
+      <line num="368" type="stmt" count="1"/>
+      <line num="373" type="stmt" count="1"/>
+      <line num="374" type="stmt" count="1"/>
+      <line num="377" type="stmt" count="1"/>
+      <line num="379" type="stmt" count="1"/>
+      <line num="380" type="stmt" count="1"/>
+      <line num="381" type="stmt" count="1"/>
+      <line num="382" type="stmt" count="1"/>
+      <line num="384" type="stmt" count="1"/>
+      <line num="386" type="stmt" count="1"/>
+      <line num="387" type="stmt" count="1"/>
+      <line num="389" type="stmt" count="1"/>
+      <metrics loc="393" ncloc="388" classes="1" methods="10" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="207" coveredstatements="152" elements="217" coveredelements="156"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/Networking/Database/Models/NetworkAgent.php">
+      <class name="LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkAgent" namespace="global">
+        <metrics complexity="3" methods="3" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="9" coveredstatements="8" elements="12" coveredelements="10"/>
+      </class>
+      <line num="21" type="method" name="unit" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="23" type="stmt" count="0"/>
+      <line num="26" type="method" name="apiType" visibility="protected" complexity="1" crap="1" count="2"/>
+      <line num="28" type="stmt" count="2"/>
+      <line num="29" type="stmt" count="2"/>
+      <line num="30" type="stmt" count="2"/>
+      <line num="31" type="stmt" count="2"/>
+      <line num="34" type="method" name="apiProvider" visibility="protected" complexity="1" crap="1" count="2"/>
+      <line num="36" type="stmt" count="2"/>
+      <line num="37" type="stmt" count="2"/>
+      <line num="38" type="stmt" count="2"/>
+      <line num="39" type="stmt" count="2"/>
+      <metrics loc="42" ncloc="42" classes="1" methods="3" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="9" coveredstatements="8" elements="12" coveredelements="10"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/Networking/Database/Models/NetworkCorporation.php">
+      <class name="LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkCorporation" namespace="global">
+        <metrics complexity="2" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="1" elements="4" coveredelements="2"/>
+      </class>
+      <line num="14" type="method" name="projects" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="16" type="stmt" count="0"/>
+      <line num="19" type="method" name="units" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="21" type="stmt" count="1"/>
+      <metrics loc="24" ncloc="24" classes="1" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="1" elements="4" coveredelements="2"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/Networking/Database/Models/NetworkDataSet.php">
+      <class name="LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkDataSet" namespace="global">
+        <metrics complexity="2" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="0" elements="4" coveredelements="0"/>
+      </class>
+      <line num="15" type="method" name="project" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="17" type="stmt" count="0"/>
+      <line num="20" type="method" name="template" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="22" type="stmt" count="0"/>
+      <metrics loc="25" ncloc="25" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="0" elements="4" coveredelements="0"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/Networking/Database/Models/NetworkDataSetTemplate.php">
+      <class name="LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkDataSetTemplate" namespace="global">
+        <metrics complexity="2" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="1" elements="4" coveredelements="2"/>
+      </class>
+      <line num="15" type="method" name="unit" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="17" type="stmt" count="0"/>
+      <line num="20" type="method" name="dataSets" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="22" type="stmt" count="1"/>
+      <metrics loc="25" ncloc="25" classes="1" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="1" elements="4" coveredelements="2"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/Networking/Database/Models/NetworkHistory.php">
+      <class name="LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkHistory" namespace="global">
+        <metrics complexity="4" methods="4" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="4" elements="11" coveredelements="5"/>
+      </class>
+      <line num="20" type="method" name="project" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="22" type="stmt" count="0"/>
+      <line num="25" type="method" name="unit" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="27" type="stmt" count="0"/>
+      <line num="30" type="method" name="agent" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="32" type="stmt" count="0"/>
+      <line num="35" type="method" name="entryType" visibility="protected" complexity="1" crap="1" count="1"/>
+      <line num="37" type="stmt" count="1"/>
+      <line num="38" type="stmt" count="1"/>
+      <line num="39" type="stmt" count="1"/>
+      <line num="40" type="stmt" count="1"/>
+      <metrics loc="43" ncloc="43" classes="1" methods="4" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="4" elements="11" coveredelements="5"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/Networking/Database/Models/NetworkProject.php">
+      <class name="LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkProject" namespace="global">
+        <metrics complexity="4" methods="4" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="0" elements="8" coveredelements="0"/>
+      </class>
+      <line num="17" type="method" name="corporation" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="19" type="stmt" count="0"/>
+      <line num="22" type="method" name="states" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="24" type="stmt" count="0"/>
+      <line num="27" type="method" name="dataSets" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="29" type="stmt" count="0"/>
+      <line num="32" type="method" name="history" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="34" type="stmt" count="0"/>
+      <metrics loc="37" ncloc="37" classes="1" methods="4" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="0" elements="8" coveredelements="0"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/Networking/Database/Models/NetworkState.php">
+      <class name="LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkState" namespace="global">
+        <metrics complexity="2" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="4" elements="7" coveredelements="5"/>
+      </class>
+      <line num="17" type="method" name="project" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="19" type="stmt" count="0"/>
+      <line num="22" type="method" name="type" visibility="protected" complexity="1" crap="1" count="1"/>
+      <line num="24" type="stmt" count="1"/>
+      <line num="25" type="stmt" count="1"/>
+      <line num="26" type="stmt" count="1"/>
+      <line num="27" type="stmt" count="1"/>
+      <metrics loc="30" ncloc="30" classes="1" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="4" elements="7" coveredelements="5"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/Networking/Database/Models/NetworkUnit.php">
+      <class name="LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkUnit" namespace="global">
+        <metrics complexity="5" methods="5" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="6" elements="13" coveredelements="9"/>
+      </class>
+      <line num="21" type="method" name="corporation" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="23" type="stmt" count="0"/>
+      <line num="26" type="method" name="agents" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="28" type="stmt" count="1"/>
+      <line num="31" type="method" name="dataSets" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="33" type="stmt" count="0"/>
+      <line num="36" type="method" name="dataSetTemplates" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="38" type="stmt" count="1"/>
+      <line num="41" type="method" name="defaultReceiverType" visibility="protected" complexity="1" crap="1" count="2"/>
+      <line num="43" type="stmt" count="2"/>
+      <line num="44" type="stmt" count="2"/>
+      <line num="45" type="stmt" count="2"/>
+      <line num="46" type="stmt" count="2"/>
+      <metrics loc="49" ncloc="49" classes="1" methods="5" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="6" elements="13" coveredelements="9"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/Networking/Database/Models/NetworkUnitModels.php">
+      <class name="LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkUnit" namespace="global">
+        <metrics complexity="5" methods="5" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="0" elements="13" coveredelements="0"/>
+      </class>
+      <line num="21" type="method" name="corporation" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="23" type="stmt" count="0"/>
+      <line num="26" type="method" name="agents" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="28" type="stmt" count="0"/>
+      <line num="31" type="method" name="dataSets" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="33" type="stmt" count="0"/>
+      <line num="36" type="method" name="dataSetTemplates" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="38" type="stmt" count="0"/>
+      <line num="41" type="method" name="defaultReceiverType" visibility="protected" complexity="1" crap="2" count="0"/>
+      <line num="43" type="stmt" count="0"/>
+      <line num="44" type="stmt" count="0"/>
+      <line num="45" type="stmt" count="0"/>
+      <line num="46" type="stmt" count="0"/>
+      <metrics loc="49" ncloc="49" classes="1" methods="5" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="0" elements="13" coveredelements="0"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/Networking/Database/migrations/001_NetworkCorporation.php">
+      <line num="7" type="stmt" count="2"/>
+      <line num="8" type="stmt" count="2"/>
+      <line num="14" type="stmt" count="17"/>
+      <line num="15" type="stmt" count="17"/>
+      <line num="16" type="stmt" count="17"/>
+      <line num="17" type="stmt" count="17"/>
+      <line num="18" type="stmt" count="17"/>
+      <line num="19" type="stmt" count="17"/>
+      <line num="20" type="stmt" count="17"/>
+      <line num="21" type="stmt" count="17"/>
+      <line num="29" type="stmt" count="16"/>
+      <line num="31" type="stmt" count="2"/>
+      <metrics loc="32" ncloc="26" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="12" coveredstatements="12" elements="12" coveredelements="12"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/Networking/Database/migrations/002_NetworkUnit.php">
+      <line num="7" type="stmt" count="2"/>
+      <line num="8" type="stmt" count="2"/>
+      <line num="14" type="stmt" count="17"/>
+      <line num="15" type="stmt" count="17"/>
+      <line num="16" type="stmt" count="17"/>
+      <line num="17" type="stmt" count="17"/>
+      <line num="18" type="stmt" count="17"/>
+      <line num="19" type="stmt" count="17"/>
+      <line num="20" type="stmt" count="17"/>
+      <line num="21" type="stmt" count="17"/>
+      <line num="22" type="stmt" count="17"/>
+      <line num="23" type="stmt" count="17"/>
+      <line num="31" type="stmt" count="16"/>
+      <line num="33" type="stmt" count="2"/>
+      <metrics loc="34" ncloc="28" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="14" coveredstatements="14" elements="14" coveredelements="14"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/Networking/Database/migrations/003_NetworkAgent.php">
+      <line num="7" type="stmt" count="2"/>
+      <line num="8" type="stmt" count="2"/>
+      <line num="14" type="stmt" count="17"/>
+      <line num="15" type="stmt" count="17"/>
+      <line num="16" type="stmt" count="17"/>
+      <line num="17" type="stmt" count="17"/>
+      <line num="18" type="stmt" count="17"/>
+      <line num="19" type="stmt" count="17"/>
+      <line num="20" type="stmt" count="17"/>
+      <line num="21" type="stmt" count="17"/>
+      <line num="22" type="stmt" count="17"/>
+      <line num="23" type="stmt" count="17"/>
+      <line num="24" type="stmt" count="17"/>
+      <line num="25" type="stmt" count="17"/>
+      <line num="26" type="stmt" count="17"/>
+      <line num="27" type="stmt" count="17"/>
+      <line num="28" type="stmt" count="17"/>
+      <line num="29" type="stmt" count="17"/>
+      <line num="30" type="stmt" count="17"/>
+      <line num="38" type="stmt" count="16"/>
+      <line num="40" type="stmt" count="2"/>
+      <metrics loc="41" ncloc="35" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="21" coveredstatements="21" elements="21" coveredelements="21"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/Networking/Database/migrations/004_NetworkProject.php">
+      <line num="7" type="stmt" count="2"/>
+      <line num="8" type="stmt" count="2"/>
+      <line num="14" type="stmt" count="17"/>
+      <line num="15" type="stmt" count="17"/>
+      <line num="16" type="stmt" count="17"/>
+      <line num="17" type="stmt" count="17"/>
+      <line num="18" type="stmt" count="17"/>
+      <line num="19" type="stmt" count="17"/>
+      <line num="20" type="stmt" count="17"/>
+      <line num="21" type="stmt" count="17"/>
+      <line num="29" type="stmt" count="16"/>
+      <line num="31" type="stmt" count="2"/>
+      <metrics loc="32" ncloc="26" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="12" coveredstatements="12" elements="12" coveredelements="12"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/Networking/Database/migrations/005_NetworkDataSetTemplate.php">
+      <line num="7" type="stmt" count="2"/>
+      <line num="8" type="stmt" count="2"/>
+      <line num="14" type="stmt" count="17"/>
+      <line num="15" type="stmt" count="17"/>
+      <line num="16" type="stmt" count="17"/>
+      <line num="17" type="stmt" count="17"/>
+      <line num="18" type="stmt" count="17"/>
+      <line num="19" type="stmt" count="17"/>
+      <line num="20" type="stmt" count="17"/>
+      <line num="21" type="stmt" count="17"/>
+      <line num="22" type="stmt" count="17"/>
+      <line num="30" type="stmt" count="16"/>
+      <line num="32" type="stmt" count="2"/>
+      <metrics loc="33" ncloc="27" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="13" elements="13" coveredelements="13"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/Networking/Database/migrations/006_NetworkDataSet.php">
+      <line num="7" type="stmt" count="2"/>
+      <line num="8" type="stmt" count="2"/>
+      <line num="14" type="stmt" count="17"/>
+      <line num="15" type="stmt" count="17"/>
+      <line num="16" type="stmt" count="17"/>
+      <line num="17" type="stmt" count="17"/>
+      <line num="18" type="stmt" count="17"/>
+      <line num="19" type="stmt" count="17"/>
+      <line num="20" type="stmt" count="17"/>
+      <line num="21" type="stmt" count="17"/>
+      <line num="22" type="stmt" count="17"/>
+      <line num="30" type="stmt" count="16"/>
+      <line num="32" type="stmt" count="2"/>
+      <metrics loc="33" ncloc="27" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="13" elements="13" coveredelements="13"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/Networking/Database/migrations/007_NetworkHistory.php">
+      <line num="7" type="stmt" count="2"/>
+      <line num="8" type="stmt" count="2"/>
+      <line num="14" type="stmt" count="17"/>
+      <line num="15" type="stmt" count="17"/>
+      <line num="16" type="stmt" count="17"/>
+      <line num="17" type="stmt" count="17"/>
+      <line num="18" type="stmt" count="17"/>
+      <line num="19" type="stmt" count="17"/>
+      <line num="20" type="stmt" count="17"/>
+      <line num="21" type="stmt" count="17"/>
+      <line num="22" type="stmt" count="17"/>
+      <line num="23" type="stmt" count="17"/>
+      <line num="24" type="stmt" count="17"/>
+      <line num="25" type="stmt" count="17"/>
+      <line num="33" type="stmt" count="16"/>
+      <line num="35" type="stmt" count="2"/>
+      <metrics loc="36" ncloc="30" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="16" coveredstatements="16" elements="16" coveredelements="16"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/Networking/Database/migrations/008_NetworkStateMachine.php">
+      <line num="7" type="stmt" count="2"/>
+      <line num="8" type="stmt" count="2"/>
+      <line num="14" type="stmt" count="17"/>
+      <line num="15" type="stmt" count="17"/>
+      <line num="16" type="stmt" count="17"/>
+      <line num="17" type="stmt" count="17"/>
+      <line num="18" type="stmt" count="17"/>
+      <line num="19" type="stmt" count="17"/>
+      <line num="20" type="stmt" count="17"/>
+      <line num="21" type="stmt" count="17"/>
+      <line num="22" type="stmt" count="17"/>
+      <line num="30" type="stmt" count="16"/>
+      <line num="32" type="stmt" count="2"/>
+      <metrics loc="33" ncloc="27" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="13" elements="13" coveredelements="13"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/Networking/Incorporate.php">
+      <class name="LaravelNeuro\LaravelNeuro\Networking\Incorporate" namespace="global">
+        <metrics complexity="92" methods="17" coveredmethods="10" conditionals="0" coveredconditionals="0" statements="312" coveredstatements="260" elements="329" coveredelements="270"/>
+      </class>
+      <line num="27" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="29" type="stmt" count="2"/>
+      <line num="30" type="stmt" count="2"/>
+      <line num="31" type="stmt" count="2"/>
+      <line num="32" type="stmt" count="2"/>
+      <line num="35" type="method" name="validateProperty" visibility="private" complexity="8" crap="8.51" count="2"/>
+      <line num="36" type="stmt" count="2"/>
+      <line num="37" type="stmt" count="0"/>
+      <line num="40" type="stmt" count="2"/>
+      <line num="42" type="stmt" count="2"/>
+      <line num="43" type="stmt" count="2"/>
+      <line num="44" type="stmt" count="2"/>
+      <line num="45" type="stmt" count="2"/>
+      <line num="46" type="stmt" count="2"/>
+      <line num="47" type="stmt" count="2"/>
+      <line num="48" type="stmt" count="2"/>
+      <line num="52" type="stmt" count="2"/>
+      <line num="53" type="stmt" count="0"/>
+      <line num="55" type="stmt" count="2"/>
+      <line num="56" type="stmt" count="0"/>
+      <line num="58" type="stmt" count="2"/>
+      <line num="61" type="method" name="setName" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="63" type="stmt" count="2"/>
+      <line num="64" type="stmt" count="2"/>
+      <line num="67" type="method" name="setNameSpace" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="69" type="stmt" count="2"/>
+      <line num="70" type="stmt" count="2"/>
+      <line num="73" type="method" name="setDescription" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="75" type="stmt" count="2"/>
+      <line num="76" type="stmt" count="2"/>
+      <line num="79" type="method" name="setCharta" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="81" type="stmt" count="2"/>
+      <line num="82" type="stmt" count="2"/>
+      <line num="85" type="method" name="getName" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="87" type="stmt" count="0"/>
+      <line num="90" type="method" name="getNameSpace" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="92" type="stmt" count="2"/>
+      <line num="95" type="method" name="getDescription" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="97" type="stmt" count="0"/>
+      <line num="100" type="method" name="getCharta" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="102" type="stmt" count="0"/>
+      <line num="105" type="method" name="pushUnit" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="107" type="stmt" count="2"/>
+      <line num="108" type="stmt" count="2"/>
+      <line num="111" type="method" name="pushModel" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="113" type="stmt" count="2"/>
+      <line num="114" type="stmt" count="2"/>
+      <line num="117" type="method" name="pushTransition" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="119" type="stmt" count="2"/>
+      <line num="120" type="stmt" count="2"/>
+      <line num="123" type="method" name="prebuild" visibility="public" complexity="10" crap="16.40" count="2"/>
+      <line num="125" type="stmt" count="2"/>
+      <line num="126" type="stmt" count="2"/>
+      <line num="127" type="stmt" count="2"/>
+      <line num="129" type="stmt" count="0"/>
+      <line num="131" type="stmt" count="0"/>
+      <line num="134" type="stmt" count="2"/>
+      <line num="137" type="stmt" count="2"/>
+      <line num="138" type="stmt" count="2"/>
+      <line num="140" type="stmt" count="0"/>
+      <line num="141" type="stmt" count="0"/>
+      <line num="142" type="stmt" count="0"/>
+      <line num="144" type="stmt" count="0"/>
+      <line num="148" type="stmt" count="2"/>
+      <line num="152" type="stmt" count="2"/>
+      <line num="153" type="stmt" count="2"/>
+      <line num="154" type="stmt" count="2"/>
+      <line num="155" type="stmt" count="2"/>
+      <line num="156" type="stmt" count="0"/>
+      <line num="157" type="stmt" count="0"/>
+      <line num="158" type="stmt" count="0"/>
+      <line num="159" type="stmt" count="0"/>
+      <line num="161" type="stmt" count="0"/>
+      <line num="163" type="stmt" count="2"/>
+      <line num="165" type="stmt" count="2"/>
+      <line num="168" type="stmt" count="2"/>
+      <line num="169" type="stmt" count="2"/>
+      <line num="173" type="stmt" count="2"/>
+      <line num="174" type="stmt" count="2"/>
+      <line num="176" type="stmt" count="0"/>
+      <line num="179" type="stmt" count="2"/>
+      <line num="182" type="method" name="installFromJSON" visibility="public" complexity="19" crap="19" count="2"/>
+      <line num="185" type="stmt" count="2"/>
+      <line num="187" type="stmt" count="2"/>
+      <line num="188" type="stmt" count="0"/>
+      <line num="191" type="stmt" count="2"/>
+      <line num="193" type="stmt" count="2"/>
+      <line num="194" type="stmt" count="2"/>
+      <line num="195" type="stmt" count="2"/>
+      <line num="196" type="stmt" count="2"/>
+      <line num="198" type="stmt" count="2"/>
+      <line num="200" type="stmt" count="2"/>
+      <line num="201" type="stmt" count="2"/>
+      <line num="202" type="stmt" count="2"/>
+      <line num="204" type="stmt" count="2"/>
+      <line num="205" type="stmt" count="2"/>
+      <line num="206" type="stmt" count="2"/>
+      <line num="208" type="stmt" count="2"/>
+      <line num="210" type="stmt" count="2"/>
+      <line num="212" type="stmt" count="2"/>
+      <line num="214" type="stmt" count="2"/>
+      <line num="215" type="stmt" count="2"/>
+      <line num="216" type="stmt" count="2"/>
+      <line num="217" type="stmt" count="2"/>
+      <line num="218" type="stmt" count="2"/>
+      <line num="222" type="stmt" count="2"/>
+      <line num="224" type="stmt" count="2"/>
+      <line num="225" type="stmt" count="2"/>
+      <line num="226" type="stmt" count="2"/>
+      <line num="227" type="stmt" count="2"/>
+      <line num="229" type="stmt" count="2"/>
+      <line num="230" type="stmt" count="2"/>
+      <line num="232" type="stmt" count="2"/>
+      <line num="233" type="stmt" count="2"/>
+      <line num="234" type="stmt" count="2"/>
+      <line num="236" type="stmt" count="2"/>
+      <line num="237" type="stmt" count="2"/>
+      <line num="238" type="stmt" count="2"/>
+      <line num="240" type="stmt" count="2"/>
+      <line num="243" type="stmt" count="2"/>
+      <line num="246" type="stmt" count="2"/>
+      <line num="248" type="stmt" count="2"/>
+      <line num="250" type="stmt" count="2"/>
+      <line num="251" type="stmt" count="2"/>
+      <line num="252" type="stmt" count="0"/>
+      <line num="253" type="stmt" count="2"/>
+      <line num="257" type="stmt" count="2"/>
+      <line num="259" type="stmt" count="2"/>
+      <line num="260" type="stmt" count="2"/>
+      <line num="261" type="stmt" count="2"/>
+      <line num="262" type="stmt" count="2"/>
+      <line num="265" type="stmt" count="2"/>
+      <line num="269" type="method" name="install" visibility="public" complexity="42" crap="49.92" count="2"/>
+      <line num="271" type="stmt" count="2"/>
+      <line num="272" type="stmt" count="2"/>
+      <line num="273" type="stmt" count="2"/>
+      <line num="274" type="stmt" count="2"/>
+      <line num="275" type="stmt" count="2"/>
+      <line num="277" type="stmt" count="2"/>
+      <line num="279" type="stmt" count="2"/>
+      <line num="281" type="stmt" count="2"/>
+      <line num="283" type="stmt" count="0"/>
+      <line num="284" type="stmt" count="0"/>
+      <line num="285" type="stmt" count="0"/>
+      <line num="287" type="stmt" count="0"/>
+      <line num="291" type="stmt" count="2"/>
+      <line num="292" type="stmt" count="2"/>
+      <line num="295" type="stmt" count="2"/>
+      <line num="296" type="stmt" count="2"/>
+      <line num="298" type="stmt" count="2"/>
+      <line num="299" type="stmt" count="0"/>
+      <line num="302" type="stmt" count="2"/>
+      <line num="304" type="stmt" count="2"/>
+      <line num="306" type="stmt" count="2"/>
+      <line num="308" type="stmt" count="2"/>
+      <line num="311" type="stmt" count="2"/>
+      <line num="312" type="stmt" count="2"/>
+      <line num="314" type="stmt" count="2"/>
+      <line num="317" type="stmt" count="0"/>
+      <line num="319" type="stmt" count="0"/>
+      <line num="323" type="stmt" count="2"/>
+      <line num="325" type="stmt" count="2"/>
+      <line num="326" type="stmt" count="2"/>
+      <line num="327" type="stmt" count="2"/>
+      <line num="328" type="stmt" count="2"/>
+      <line num="329" type="stmt" count="2"/>
+      <line num="331" type="stmt" count="2"/>
+      <line num="332" type="stmt" count="2"/>
+      <line num="333" type="stmt" count="2"/>
+      <line num="334" type="stmt" count="2"/>
+      <line num="335" type="stmt" count="2"/>
+      <line num="336" type="stmt" count="2"/>
+      <line num="337" type="stmt" count="2"/>
+      <line num="339" type="stmt" count="2"/>
+      <line num="343" type="stmt" count="0"/>
+      <line num="345" type="stmt" count="0"/>
+      <line num="349" type="stmt" count="2"/>
+      <line num="350" type="stmt" count="2"/>
+      <line num="352" type="stmt" count="2"/>
+      <line num="353" type="stmt" count="2"/>
+      <line num="356" type="stmt" count="2"/>
+      <line num="358" type="stmt" count="2"/>
+      <line num="360" type="stmt" count="2"/>
+      <line num="362" type="stmt" count="2"/>
+      <line num="363" type="stmt" count="1"/>
+      <line num="366" type="stmt" count="2"/>
+      <line num="367" type="stmt" count="2"/>
+      <line num="368" type="stmt" count="2"/>
+      <line num="370" type="stmt" count="2"/>
+      <line num="371" type="stmt" count="2"/>
+      <line num="372" type="stmt" count="1"/>
+      <line num="374" type="stmt" count="1"/>
+      <line num="375" type="stmt" count="1"/>
+      <line num="376" type="stmt" count="1"/>
+      <line num="377" type="stmt" count="1"/>
+      <line num="378" type="stmt" count="1"/>
+      <line num="380" type="stmt" count="1"/>
+      <line num="382" type="stmt" count="1"/>
+      <line num="384" type="stmt" count="1"/>
+      <line num="386" type="stmt" count="1"/>
+      <line num="391" type="stmt" count="1"/>
+      <line num="392" type="stmt" count="1"/>
+      <line num="393" type="stmt" count="1"/>
+      <line num="394" type="stmt" count="1"/>
+      <line num="396" type="stmt" count="1"/>
+      <line num="397" type="stmt" count="1"/>
+      <line num="398" type="stmt" count="1"/>
+      <line num="399" type="stmt" count="1"/>
+      <line num="401" type="stmt" count="1"/>
+      <line num="403" type="stmt" count="1"/>
+      <line num="406" type="stmt" count="1"/>
+      <line num="407" type="stmt" count="1"/>
+      <line num="408" type="stmt" count="1"/>
+      <line num="409" type="stmt" count="1"/>
+      <line num="411" type="stmt" count="0"/>
+      <line num="412" type="stmt" count="0"/>
+      <line num="413" type="stmt" count="0"/>
+      <line num="416" type="stmt" count="0"/>
+      <line num="419" type="stmt" count="1"/>
+      <line num="420" type="stmt" count="1"/>
+      <line num="421" type="stmt" count="1"/>
+      <line num="423" type="stmt" count="1"/>
+      <line num="427" type="stmt" count="1"/>
+      <line num="429" type="stmt" count="1"/>
+      <line num="430" type="stmt" count="1"/>
+      <line num="431" type="stmt" count="1"/>
+      <line num="433" type="stmt" count="1"/>
+      <line num="435" type="stmt" count="1"/>
+      <line num="437" type="stmt" count="1"/>
+      <line num="439" type="stmt" count="1"/>
+      <line num="444" type="stmt" count="1"/>
+      <line num="445" type="stmt" count="1"/>
+      <line num="446" type="stmt" count="1"/>
+      <line num="448" type="stmt" count="1"/>
+      <line num="449" type="stmt" count="1"/>
+      <line num="451" type="stmt" count="1"/>
+      <line num="453" type="stmt" count="1"/>
+      <line num="456" type="stmt" count="1"/>
+      <line num="457" type="stmt" count="1"/>
+      <line num="458" type="stmt" count="1"/>
+      <line num="463" type="stmt" count="2"/>
+      <line num="464" type="stmt" count="0"/>
+      <line num="467" type="stmt" count="2"/>
+      <line num="468" type="stmt" count="2"/>
+      <line num="470" type="stmt" count="2"/>
+      <line num="471" type="stmt" count="2"/>
+      <line num="473" type="stmt" count="1"/>
+      <line num="474" type="stmt" count="1"/>
+      <line num="475" type="stmt" count="1"/>
+      <line num="477" type="stmt" count="1"/>
+      <line num="479" type="stmt" count="1"/>
+      <line num="480" type="stmt" count="1"/>
+      <line num="481" type="stmt" count="1"/>
+      <line num="482" type="stmt" count="1"/>
+      <line num="483" type="stmt" count="1"/>
+      <line num="485" type="stmt" count="1"/>
+      <line num="487" type="stmt" count="1"/>
+      <line num="488" type="stmt" count="1"/>
+      <line num="490" type="stmt" count="1"/>
+      <line num="492" type="stmt" count="1"/>
+      <line num="493" type="stmt" count="1"/>
+      <line num="494" type="stmt" count="1"/>
+      <line num="495" type="stmt" count="1"/>
+      <line num="496" type="stmt" count="1"/>
+      <line num="498" type="stmt" count="1"/>
+      <line num="500" type="stmt" count="1"/>
+      <line num="501" type="stmt" count="1"/>
+      <line num="505" type="stmt" count="0"/>
+      <line num="506" type="stmt" count="0"/>
+      <line num="507" type="stmt" count="0"/>
+      <line num="508" type="stmt" count="0"/>
+      <line num="511" type="stmt" count="1"/>
+      <line num="513" type="stmt" count="1"/>
+      <line num="514" type="stmt" count="1"/>
+      <line num="516" type="stmt" count="1"/>
+      <line num="518" type="stmt" count="1"/>
+      <line num="519" type="stmt" count="1"/>
+      <line num="521" type="stmt" count="1"/>
+      <line num="522" type="stmt" count="1"/>
+      <line num="523" type="stmt" count="1"/>
+      <line num="524" type="stmt" count="1"/>
+      <line num="526" type="stmt" count="1"/>
+      <line num="528" type="stmt" count="1"/>
+      <line num="529" type="stmt" count="1"/>
+      <line num="530" type="stmt" count="1"/>
+      <line num="533" type="stmt" count="1"/>
+      <line num="534" type="stmt" count="1"/>
+      <line num="535" type="stmt" count="1"/>
+      <line num="536" type="stmt" count="1"/>
+      <line num="538" type="stmt" count="1"/>
+      <line num="539" type="stmt" count="1"/>
+      <line num="543" type="stmt" count="0"/>
+      <line num="544" type="stmt" count="0"/>
+      <line num="545" type="stmt" count="0"/>
+      <line num="546" type="stmt" count="0"/>
+      <line num="551" type="stmt" count="0"/>
+      <line num="552" type="stmt" count="0"/>
+      <line num="553" type="stmt" count="0"/>
+      <line num="554" type="stmt" count="0"/>
+      <line num="555" type="stmt" count="0"/>
+      <line num="556" type="stmt" count="0"/>
+      <line num="557" type="stmt" count="0"/>
+      <line num="558" type="stmt" count="0"/>
+      <line num="559" type="stmt" count="0"/>
+      <line num="560" type="stmt" count="0"/>
+      <line num="563" type="stmt" count="1"/>
+      <line num="565" type="stmt" count="1"/>
+      <line num="568" type="stmt" count="1"/>
+      <line num="569" type="stmt" count="1"/>
+      <line num="570" type="stmt" count="1"/>
+      <line num="571" type="stmt" count="1"/>
+      <line num="574" type="stmt" count="2"/>
+      <line num="575" type="stmt" count="2"/>
+      <line num="576" type="stmt" count="2"/>
+      <line num="577" type="stmt" count="2"/>
+      <line num="578" type="stmt" count="2"/>
+      <line num="579" type="stmt" count="2"/>
+      <line num="580" type="stmt" count="2"/>
+      <line num="582" type="stmt" count="2"/>
+      <line num="584" type="stmt" count="2"/>
+      <line num="586" type="stmt" count="2"/>
+      <line num="587" type="stmt" count="1"/>
+      <line num="588" type="stmt" count="1"/>
+      <line num="589" type="stmt" count="1"/>
+      <line num="590" type="stmt" count="1"/>
+      <line num="592" type="stmt" count="1"/>
+      <line num="595" type="stmt" count="2"/>
+      <line num="598" type="method" name="getStub" visibility="public" complexity="1" crap="1" count="3"/>
+      <line num="600" type="stmt" count="3"/>
+      <metrics loc="603" ncloc="594" classes="1" methods="17" coveredmethods="10" conditionals="0" coveredconditionals="0" statements="312" coveredstatements="260" elements="329" coveredelements="270"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/Networking/Transition.php">
+      <class name="LaravelNeuro\LaravelNeuro\Networking\Transition" namespace="global">
+        <metrics complexity="73" methods="13" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="219" coveredstatements="142" elements="232" coveredelements="143"/>
+      </class>
+      <line num="37" type="method" name="__construct" visibility="public" complexity="3" crap="3.04" count="1"/>
+      <line num="39" type="stmt" count="1"/>
+      <line num="40" type="stmt" count="1"/>
+      <line num="41" type="stmt" count="1"/>
+      <line num="43" type="stmt" count="1"/>
+      <line num="45" type="stmt" count="1"/>
+      <line num="46" type="stmt" count="1"/>
+      <line num="47" type="stmt" count="1"/>
+      <line num="48" type="stmt" count="1"/>
+      <line num="49" type="stmt" count="1"/>
+      <line num="51" type="stmt" count="0"/>
+      <line num="54" type="stmt" count="1"/>
+      <line num="58" type="stmt" count="0"/>
+      <line num="63" type="method" name="preProcessPrompt" visibility="protected" complexity="1" crap="2" count="0"/>
+      <line num="65" type="stmt" count="0"/>
+      <line num="68" type="method" name="preProcessInput" visibility="protected" complexity="1" crap="2" count="0"/>
+      <line num="70" type="stmt" count="0"/>
+      <line num="73" type="method" name="postProcessPrompt" visibility="protected" complexity="1" crap="2" count="0"/>
+      <line num="75" type="stmt" count="0"/>
+      <line num="78" type="method" name="postProcessOutput" visibility="protected" complexity="1" crap="1" count="1"/>
+      <line num="80" type="stmt" count="1"/>
+      <line num="83" type="method" name="modifyPipeline" visibility="protected" complexity="1" crap="2" count="0"/>
+      <line num="85" type="stmt" count="0"/>
+      <line num="88" type="method" name="applyData" visibility="public" complexity="15" crap="23.96" count="1"/>
+      <line num="90" type="stmt" count="1"/>
+      <line num="91" type="stmt" count="1"/>
+      <line num="92" type="stmt" count="1"/>
+      <line num="93" type="stmt" count="1"/>
+      <line num="94" type="stmt" count="1"/>
+      <line num="95" type="stmt" count="1"/>
+      <line num="96" type="stmt" count="1"/>
+      <line num="98" type="stmt" count="1"/>
+      <line num="99" type="stmt" count="0"/>
+      <line num="100" type="stmt" count="0"/>
+      <line num="103" type="stmt" count="0"/>
+      <line num="104" type="stmt" count="0"/>
+      <line num="105" type="stmt" count="0"/>
+      <line num="106" type="stmt" count="0"/>
+      <line num="108" type="stmt" count="0"/>
+      <line num="111" type="stmt" count="0"/>
+      <line num="112" type="stmt" count="0"/>
+      <line num="114" type="stmt" count="0"/>
+      <line num="118" type="stmt" count="1"/>
+      <line num="119" type="stmt" count="1"/>
+      <line num="120" type="stmt" count="0"/>
+      <line num="121" type="stmt" count="0"/>
+      <line num="123" type="stmt" count="0"/>
+      <line num="128" type="stmt" count="1"/>
+      <line num="129" type="stmt" count="1"/>
+      <line num="131" type="stmt" count="1"/>
+      <line num="133" type="stmt" count="1"/>
+      <line num="134" type="stmt" count="1"/>
+      <line num="138" type="stmt" count="1"/>
+      <line num="139" type="stmt" count="1"/>
+      <line num="140" type="stmt" count="1"/>
+      <line num="141" type="stmt" count="1"/>
+      <line num="142" type="stmt" count="1"/>
+      <line num="144" type="stmt" count="1"/>
+      <line num="148" type="stmt" count="0"/>
+      <line num="150" type="stmt" count="1"/>
+      <line num="152" type="stmt" count="1"/>
+      <line num="153" type="stmt" count="1"/>
+      <line num="155" type="stmt" count="1"/>
+      <line num="157" type="stmt" count="1"/>
+      <line num="159" type="stmt" count="1"/>
+      <line num="162" type="method" name="callAgent" visibility="public" complexity="25" crap="38.78" count="1"/>
+      <line num="164" type="stmt" count="1"/>
+      <line num="166" type="stmt" count="1"/>
+      <line num="169" type="stmt" count="1"/>
+      <line num="171" type="stmt" count="1"/>
+      <line num="173" type="stmt" count="0"/>
+      <line num="175" type="stmt" count="0"/>
+      <line num="178" type="stmt" count="1"/>
+      <line num="180" type="stmt" count="1"/>
+      <line num="183" type="stmt" count="1"/>
+      <line num="185" type="stmt" count="0"/>
+      <line num="187" type="stmt" count="0"/>
+      <line num="189" type="stmt" count="1"/>
+      <line num="190" type="stmt" count="1"/>
+      <line num="194" type="stmt" count="1"/>
+      <line num="195" type="stmt" count="1"/>
+      <line num="198" type="stmt" count="1"/>
+      <line num="200" type="stmt" count="1"/>
+      <line num="201" type="stmt" count="1"/>
+      <line num="204" type="stmt" count="1"/>
+      <line num="206" type="stmt" count="1"/>
+      <line num="207" type="stmt" count="1"/>
+      <line num="208" type="stmt" count="1"/>
+      <line num="209" type="stmt" count="1"/>
+      <line num="210" type="stmt" count="1"/>
+      <line num="211" type="stmt" count="1"/>
+      <line num="212" type="stmt" count="1"/>
+      <line num="214" type="stmt" count="1"/>
+      <line num="215" type="stmt" count="1"/>
+      <line num="216" type="stmt" count="1"/>
+      <line num="219" type="stmt" count="1"/>
+      <line num="221" type="stmt" count="1"/>
+      <line num="223" type="stmt" count="1"/>
+      <line num="225" type="stmt" count="0"/>
+      <line num="227" type="stmt" count="0"/>
+      <line num="230" type="stmt" count="1"/>
+      <line num="231" type="stmt" count="1"/>
+      <line num="232" type="stmt" count="1"/>
+      <line num="233" type="stmt" count="1"/>
+      <line num="234" type="stmt" count="1"/>
+      <line num="235" type="stmt" count="1"/>
+      <line num="237" type="stmt" count="1"/>
+      <line num="238" type="stmt" count="1"/>
+      <line num="239" type="stmt" count="1"/>
+      <line num="243" type="stmt" count="1"/>
+      <line num="244" type="stmt" count="1"/>
+      <line num="246" type="stmt" count="1"/>
+      <line num="248" type="stmt" count="1"/>
+      <line num="250" type="stmt" count="1"/>
+      <line num="252" type="stmt" count="1"/>
+      <line num="253" type="stmt" count="1"/>
+      <line num="256" type="stmt" count="1"/>
+      <line num="257" type="stmt" count="0"/>
+      <line num="261" type="stmt" count="1"/>
+      <line num="264" type="stmt" count="1"/>
+      <line num="267" type="stmt" count="1"/>
+      <line num="268" type="stmt" count="1"/>
+      <line num="270" type="stmt" count="0"/>
+      <line num="272" type="stmt" count="1"/>
+      <line num="273" type="stmt" count="1"/>
+      <line num="276" type="stmt" count="1"/>
+      <line num="278" type="stmt" count="1"/>
+      <line num="279" type="stmt" count="1"/>
+      <line num="280" type="stmt" count="0"/>
+      <line num="283" type="stmt" count="1"/>
+      <line num="284" type="stmt" count="1"/>
+      <line num="286" type="stmt" count="1"/>
+      <line num="287" type="stmt" count="0"/>
+      <line num="290" type="stmt" count="1"/>
+      <line num="291" type="stmt" count="1"/>
+      <line num="292" type="stmt" count="0"/>
+      <line num="295" type="stmt" count="1"/>
+      <line num="296" type="stmt" count="0"/>
+      <line num="299" type="stmt" count="1"/>
+      <line num="300" type="stmt" count="0"/>
+      <line num="304" type="stmt" count="1"/>
+      <line num="305" type="stmt" count="1"/>
+      <line num="307" type="stmt" count="1"/>
+      <line num="310" type="stmt" count="1"/>
+      <line num="312" type="stmt" count="1"/>
+      <line num="314" type="stmt" count="1"/>
+      <line num="315" type="stmt" count="1"/>
+      <line num="316" type="stmt" count="1"/>
+      <line num="317" type="stmt" count="1"/>
+      <line num="318" type="stmt" count="1"/>
+      <line num="319" type="stmt" count="1"/>
+      <line num="321" type="stmt" count="1"/>
+      <line num="323" type="stmt" count="1"/>
+      <line num="324" type="stmt" count="1"/>
+      <line num="325" type="stmt" count="1"/>
+      <line num="330" type="stmt" count="0"/>
+      <line num="331" type="stmt" count="0"/>
+      <line num="332" type="stmt" count="0"/>
+      <line num="333" type="stmt" count="0"/>
+      <line num="334" type="stmt" count="0"/>
+      <line num="335" type="stmt" count="0"/>
+      <line num="336" type="stmt" count="0"/>
+      <line num="337" type="stmt" count="0"/>
+      <line num="338" type="stmt" count="0"/>
+      <line num="340" type="stmt" count="1"/>
+      <line num="343" type="stmt" count="0"/>
+      <line num="345" type="stmt" count="0"/>
+      <line num="346" type="stmt" count="0"/>
+      <line num="347" type="stmt" count="0"/>
+      <line num="348" type="stmt" count="0"/>
+      <line num="349" type="stmt" count="0"/>
+      <line num="350" type="stmt" count="0"/>
+      <line num="351" type="stmt" count="0"/>
+      <line num="355" type="method" name="handle" visibility="public" complexity="6" crap="7.73" count="1"/>
+      <line num="357" type="stmt" count="1"/>
+      <line num="359" type="stmt" count="1"/>
+      <line num="361" type="stmt" count="0"/>
+      <line num="362" type="stmt" count="0"/>
+      <line num="363" type="stmt" count="0"/>
+      <line num="364" type="stmt" count="0"/>
+      <line num="370" type="stmt" count="1"/>
+      <line num="371" type="stmt" count="1"/>
+      <line num="374" type="stmt" count="1"/>
+      <line num="375" type="stmt" count="1"/>
+      <line num="377" type="stmt" count="1"/>
+      <line num="380" type="method" name="setUnitById" visibility="public" complexity="6" crap="6.13" count="1"/>
+      <line num="382" type="stmt" count="1"/>
+      <line num="384" type="stmt" count="1"/>
+      <line num="385" type="stmt" count="0"/>
+      <line num="388" type="stmt" count="1"/>
+      <line num="390" type="stmt" count="1"/>
+      <line num="392" type="stmt" count="1"/>
+      <line num="393" type="stmt" count="1"/>
+      <line num="395" type="stmt" count="1"/>
+      <line num="397" type="stmt" count="1"/>
+      <line num="398" type="stmt" count="1"/>
+      <line num="399" type="stmt" count="1"/>
+      <line num="404" type="stmt" count="1"/>
+      <line num="408" type="stmt" count="0"/>
+      <line num="413" type="method" name="setUnitByName" visibility="public" complexity="3" crap="12" count="0"/>
+      <line num="415" type="stmt" count="0"/>
+      <line num="417" type="stmt" count="0"/>
+      <line num="418" type="stmt" count="0"/>
+      <line num="421" type="stmt" count="0"/>
+      <line num="423" type="stmt" count="0"/>
+      <line num="425" type="stmt" count="0"/>
+      <line num="427" type="stmt" count="0"/>
+      <line num="431" type="stmt" count="0"/>
+      <line num="436" type="method" name="setAgentById" visibility="public" complexity="5" crap="5.15" count="1"/>
+      <line num="438" type="stmt" count="1"/>
+      <line num="440" type="stmt" count="1"/>
+      <line num="441" type="stmt" count="0"/>
+      <line num="444" type="stmt" count="1"/>
+      <line num="446" type="stmt" count="1"/>
+      <line num="448" type="stmt" count="1"/>
+      <line num="449" type="stmt" count="1"/>
+      <line num="452" type="stmt" count="1"/>
+      <line num="454" type="stmt" count="1"/>
+      <line num="456" type="stmt" count="1"/>
+      <line num="460" type="stmt" count="0"/>
+      <line num="465" type="method" name="setAgentByName" visibility="public" complexity="5" crap="30" count="0"/>
+      <line num="467" type="stmt" count="0"/>
+      <line num="469" type="stmt" count="0"/>
+      <line num="470" type="stmt" count="0"/>
+      <line num="473" type="stmt" count="0"/>
+      <line num="475" type="stmt" count="0"/>
+      <line num="477" type="stmt" count="0"/>
+      <line num="478" type="stmt" count="0"/>
+      <line num="481" type="stmt" count="0"/>
+      <line num="483" type="stmt" count="0"/>
+      <line num="485" type="stmt" count="0"/>
+      <line num="489" type="stmt" count="0"/>
+      <metrics loc="494" ncloc="481" classes="1" methods="13" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="219" coveredstatements="142" elements="232" coveredelements="143"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/Networking/TuringStrip.php">
+      <class name="LaravelNeuro\LaravelNeuro\Networking\TuringStrip" namespace="global">
+        <metrics complexity="10" methods="8" coveredmethods="7" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="10" elements="21" coveredelements="17"/>
+      </class>
+      <line num="15" type="method" name="setMode" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="17" type="stmt" count="1"/>
+      <line num="18" type="stmt" count="1"/>
+      <line num="21" type="method" name="setNext" visibility="public" complexity="3" crap="12" count="0"/>
+      <line num="23" type="stmt" count="0"/>
+      <line num="24" type="stmt" count="0"/>
+      <line num="25" type="stmt" count="0"/>
+      <line num="28" type="method" name="setData" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="30" type="stmt" count="1"/>
+      <line num="31" type="stmt" count="1"/>
+      <line num="34" type="method" name="setPosition" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="36" type="stmt" count="1"/>
+      <line num="38" type="stmt" count="1"/>
+      <line num="41" type="method" name="getPosition" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="43" type="stmt" count="1"/>
+      <line num="46" type="method" name="getMode" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="48" type="stmt" count="1"/>
+      <line num="51" type="method" name="getNext" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="53" type="stmt" count="1"/>
+      <line num="56" type="method" name="getData" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="58" type="stmt" count="1"/>
+      <metrics loc="61" ncloc="61" classes="1" methods="8" coveredmethods="7" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="10" elements="21" coveredelements="17"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/Networking/Unit.php">
+      <class name="LaravelNeuro\LaravelNeuro\Networking\Unit" namespace="global">
+        <metrics complexity="15" methods="11" coveredmethods="7" conditionals="0" coveredconditionals="0" statements="38" coveredstatements="34" elements="49" coveredelements="41"/>
+      </class>
+      <line num="19" type="method" name="__construct" visibility="public" complexity="2" crap="2" count="2"/>
+      <line num="21" type="stmt" count="2"/>
+      <line num="27" type="stmt" count="2"/>
+      <line num="28" type="stmt" count="2"/>
+      <line num="32" type="method" name="setName" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="34" type="stmt" count="2"/>
+      <line num="35" type="stmt" count="2"/>
+      <line num="38" type="method" name="setDescription" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="40" type="stmt" count="2"/>
+      <line num="41" type="stmt" count="2"/>
+      <line num="44" type="method" name="configureDataSet" visibility="public" complexity="2" crap="2" count="2"/>
+      <line num="46" type="stmt" count="2"/>
+      <line num="47" type="stmt" count="2"/>
+      <line num="48" type="stmt" count="2"/>
+      <line num="49" type="stmt" count="2"/>
+      <line num="52" type="method" name="pushAgent" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="54" type="stmt" count="2"/>
+      <line num="55" type="stmt" count="2"/>
+      <line num="58" type="method" name="setDefaultReceiver" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="60" type="stmt" count="2"/>
+      <line num="61" type="stmt" count="2"/>
+      <line num="64" type="method" name="getName" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="66" type="stmt" count="0"/>
+      <line num="69" type="method" name="getDescription" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="71" type="stmt" count="0"/>
+      <line num="74" type="method" name="getDataSet" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="76" type="stmt" count="0"/>
+      <line num="79" type="method" name="getDefaultReceiver" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="81" type="stmt" count="0"/>
+      <line num="84" type="method" name="install" visibility="public" complexity="3" crap="3" count="2"/>
+      <line num="86" type="stmt" count="2"/>
+      <line num="88" type="stmt" count="2"/>
+      <line num="89" type="stmt" count="2"/>
+      <line num="90" type="stmt" count="2"/>
+      <line num="91" type="stmt" count="2"/>
+      <line num="92" type="stmt" count="2"/>
+      <line num="94" type="stmt" count="2"/>
+      <line num="96" type="stmt" count="2"/>
+      <line num="98" type="stmt" count="2"/>
+      <line num="99" type="stmt" count="2"/>
+      <line num="100" type="stmt" count="2"/>
+      <line num="101" type="stmt" count="2"/>
+      <line num="102" type="stmt" count="2"/>
+      <line num="103" type="stmt" count="2"/>
+      <line num="106" type="stmt" count="2"/>
+      <line num="107" type="stmt" count="2"/>
+      <line num="109" type="stmt" count="2"/>
+      <line num="110" type="stmt" count="2"/>
+      <line num="113" type="stmt" count="2"/>
+      <metrics loc="116" ncloc="115" classes="1" methods="11" coveredmethods="7" conditionals="0" coveredconditionals="0" statements="38" coveredstatements="34" elements="49" coveredelements="41"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/Pipeline.php">
+      <class name="LaravelNeuro\LaravelNeuro\Pipeline" namespace="global">
+        <metrics complexity="12" methods="6" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="24" coveredstatements="24" elements="30" coveredelements="30"/>
+      </class>
+      <line num="14" type="method" name="setModel" visibility="public" complexity="1" crap="1" count="10"/>
+      <line num="16" type="stmt" count="10"/>
+      <line num="17" type="stmt" count="10"/>
+      <line num="19" type="stmt" count="10"/>
+      <line num="22" type="method" name="setPrompt" visibility="public" complexity="6" crap="6" count="5"/>
+      <line num="24" type="stmt" count="5"/>
+      <line num="26" type="stmt" count="3"/>
+      <line num="28" type="stmt" count="2"/>
+      <line num="30" type="stmt" count="1"/>
+      <line num="32" type="stmt" count="1"/>
+      <line num="34" type="stmt" count="1"/>
+      <line num="36" type="stmt" count="1"/>
+      <line num="37" type="stmt" count="1"/>
+      <line num="38" type="stmt" count="1"/>
+      <line num="40" type="stmt" count="1"/>
+      <line num="41" type="stmt" count="1"/>
+      <line num="49" type="stmt" count="1"/>
+      <line num="52" type="stmt" count="4"/>
+      <line num="54" type="stmt" count="4"/>
+      <line num="57" type="method" name="getModel" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="59" type="stmt" count="1"/>
+      <line num="62" type="method" name="getPrompt" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="64" type="stmt" count="1"/>
+      <line num="67" type="method" name="output" visibility="public" complexity="1" crap="1" count="5"/>
+      <line num="69" type="stmt" count="5"/>
+      <line num="70" type="stmt" count="5"/>
+      <line num="73" type="method" name="stream" visibility="public" complexity="2" crap="2" count="1"/>
+      <line num="75" type="stmt" count="1"/>
+      <line num="77" type="stmt" count="1"/>
+      <line num="79" type="stmt" count="1"/>
+      <metrics loc="82" ncloc="82" classes="1" methods="6" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="24" coveredstatements="24" elements="30" coveredelements="30"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/Pipelines/ElevenLabs/AudioTTS.php">
+      <class name="LaravelNeuro\LaravelNeuro\Pipelines\ElevenLabs\AudioTTS" namespace="global">
+        <metrics complexity="16" methods="6" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="48" coveredstatements="37" elements="54" coveredelements="40"/>
+      </class>
+      <line num="18" type="method" name="__construct" visibility="public" complexity="4" crap="4.11" count="1"/>
+      <line num="20" type="stmt" count="1"/>
+      <line num="22" type="stmt" count="1"/>
+      <line num="23" type="stmt" count="1"/>
+      <line num="24" type="stmt" count="1"/>
+      <line num="25" type="stmt" count="1"/>
+      <line num="27" type="stmt" count="1"/>
+      <line num="28" type="stmt" count="1"/>
+      <line num="30" type="stmt" count="1"/>
+      <line num="31" type="stmt" count="1"/>
+      <line num="32" type="stmt" count="1"/>
+      <line num="34" type="stmt" count="1"/>
+      <line num="36" type="stmt" count="0"/>
+      <line num="38" type="stmt" count="1"/>
+      <line num="40" type="stmt" count="0"/>
+      <line num="42" type="stmt" count="1"/>
+      <line num="44" type="stmt" count="0"/>
+      <line num="48" type="method" name="setModel" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="50" type="stmt" count="1"/>
+      <line num="51" type="stmt" count="1"/>
+      <line num="53" type="stmt" count="1"/>
+      <line num="56" type="method" name="setPrompt" visibility="public" complexity="7" crap="9.10" count="1"/>
+      <line num="58" type="stmt" count="1"/>
+      <line num="60" type="stmt" count="1"/>
+      <line num="62" type="stmt" count="0"/>
+      <line num="63" type="stmt" count="0"/>
+      <line num="64" type="stmt" count="0"/>
+      <line num="65" type="stmt" count="0"/>
+      <line num="67" type="stmt" count="1"/>
+      <line num="68" type="stmt" count="1"/>
+      <line num="69" type="stmt" count="1"/>
+      <line num="71" type="stmt" count="1"/>
+      <line num="73" type="stmt" count="1"/>
+      <line num="74" type="stmt" count="1"/>
+      <line num="76" type="stmt" count="1"/>
+      <line num="77" type="stmt" count="1"/>
+      <line num="79" type="stmt" count="1"/>
+      <line num="80" type="stmt" count="0"/>
+      <line num="82" type="stmt" count="1"/>
+      <line num="83" type="stmt" count="0"/>
+      <line num="87" type="stmt" count="0"/>
+      <line num="90" type="stmt" count="1"/>
+      <line num="93" type="method" name="output" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="95" type="stmt" count="1"/>
+      <line num="98" type="method" name="raw" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="100" type="stmt" count="1"/>
+      <line num="102" type="stmt" count="1"/>
+      <line num="105" type="method" name="store" visibility="public" complexity="2" crap="2.02" count="1"/>
+      <line num="107" type="stmt" count="1"/>
+      <line num="108" type="stmt" count="1"/>
+      <line num="109" type="stmt" count="1"/>
+      <line num="110" type="stmt" count="1"/>
+      <line num="111" type="stmt" count="1"/>
+      <line num="113" type="stmt" count="0"/>
+      <metrics loc="116" ncloc="116" classes="1" methods="6" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="48" coveredstatements="37" elements="54" coveredelements="40"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/Pipelines/Ollama/DeepSeekCoder.php">
+      <class name="LaravelNeuro\LaravelNeuro\Pipelines\Ollama\DeepSeekCoder" namespace="global">
+        <metrics complexity="14" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="37" coveredstatements="0" elements="40" coveredelements="0"/>
+      </class>
+      <line num="14" type="method" name="__construct" visibility="public" complexity="3" crap="12" count="0"/>
+      <line num="16" type="stmt" count="0"/>
+      <line num="17" type="stmt" count="0"/>
+      <line num="18" type="stmt" count="0"/>
+      <line num="19" type="stmt" count="0"/>
+      <line num="21" type="stmt" count="0"/>
+      <line num="23" type="stmt" count="0"/>
+      <line num="25" type="stmt" count="0"/>
+      <line num="29" type="method" name="stream" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="31" type="stmt" count="0"/>
+      <line num="32" type="stmt" count="0"/>
+      <line num="34" type="stmt" count="0"/>
+      <line num="37" type="method" name="setPrompt" visibility="public" complexity="10" crap="110" count="0"/>
+      <line num="39" type="stmt" count="0"/>
+      <line num="41" type="stmt" count="0"/>
+      <line num="43" type="stmt" count="0"/>
+      <line num="45" type="stmt" count="0"/>
+      <line num="46" type="stmt" count="0"/>
+      <line num="48" type="stmt" count="0"/>
+      <line num="50" type="stmt" count="0"/>
+      <line num="52" type="stmt" count="0"/>
+      <line num="53" type="stmt" count="0"/>
+      <line num="54" type="stmt" count="0"/>
+      <line num="55" type="stmt" count="0"/>
+      <line num="56" type="stmt" count="0"/>
+      <line num="57" type="stmt" count="0"/>
+      <line num="58" type="stmt" count="0"/>
+      <line num="59" type="stmt" count="0"/>
+      <line num="60" type="stmt" count="0"/>
+      <line num="61" type="stmt" count="0"/>
+      <line num="63" type="stmt" count="0"/>
+      <line num="64" type="stmt" count="0"/>
+      <line num="65" type="stmt" count="0"/>
+      <line num="70" type="stmt" count="0"/>
+      <line num="72" type="stmt" count="0"/>
+      <line num="75" type="stmt" count="0"/>
+      <line num="80" type="stmt" count="0"/>
+      <line num="81" type="stmt" count="0"/>
+      <line num="85" type="stmt" count="0"/>
+      <line num="87" type="stmt" count="0"/>
+      <metrics loc="90" ncloc="90" classes="1" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="37" coveredstatements="0" elements="40" coveredelements="0"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/Pipelines/Ollama/Zephyr.php">
+      <class name="LaravelNeuro\LaravelNeuro\Pipelines\Ollama\Zephyr" namespace="global">
+        <metrics complexity="15" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="37" coveredstatements="0" elements="40" coveredelements="0"/>
+      </class>
+      <line num="14" type="method" name="__construct" visibility="public" complexity="3" crap="12" count="0"/>
+      <line num="16" type="stmt" count="0"/>
+      <line num="17" type="stmt" count="0"/>
+      <line num="18" type="stmt" count="0"/>
+      <line num="19" type="stmt" count="0"/>
+      <line num="21" type="stmt" count="0"/>
+      <line num="23" type="stmt" count="0"/>
+      <line num="25" type="stmt" count="0"/>
+      <line num="29" type="method" name="stream" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="31" type="stmt" count="0"/>
+      <line num="32" type="stmt" count="0"/>
+      <line num="34" type="stmt" count="0"/>
+      <line num="37" type="method" name="setPrompt" visibility="public" complexity="11" crap="132" count="0"/>
+      <line num="39" type="stmt" count="0"/>
+      <line num="41" type="stmt" count="0"/>
+      <line num="43" type="stmt" count="0"/>
+      <line num="45" type="stmt" count="0"/>
+      <line num="47" type="stmt" count="0"/>
+      <line num="49" type="stmt" count="0"/>
+      <line num="51" type="stmt" count="0"/>
+      <line num="52" type="stmt" count="0"/>
+      <line num="53" type="stmt" count="0"/>
+      <line num="54" type="stmt" count="0"/>
+      <line num="56" type="stmt" count="0"/>
+      <line num="58" type="stmt" count="0"/>
+      <line num="59" type="stmt" count="0"/>
+      <line num="60" type="stmt" count="0"/>
+      <line num="61" type="stmt" count="0"/>
+      <line num="62" type="stmt" count="0"/>
+      <line num="63" type="stmt" count="0"/>
+      <line num="64" type="stmt" count="0"/>
+      <line num="65" type="stmt" count="0"/>
+      <line num="68" type="stmt" count="0"/>
+      <line num="73" type="stmt" count="0"/>
+      <line num="75" type="stmt" count="0"/>
+      <line num="78" type="stmt" count="0"/>
+      <line num="83" type="stmt" count="0"/>
+      <line num="84" type="stmt" count="0"/>
+      <line num="88" type="stmt" count="0"/>
+      <line num="90" type="stmt" count="0"/>
+      <metrics loc="93" ncloc="92" classes="1" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="37" coveredstatements="0" elements="40" coveredelements="0"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/Pipelines/OpenAI/AudioTTS.php">
+      <class name="LaravelNeuro\LaravelNeuro\Pipelines\OpenAI\AudioTTS" namespace="global">
+        <metrics complexity="11" methods="5" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="35" coveredstatements="28" elements="40" coveredelements="29"/>
+      </class>
+      <line num="15" type="method" name="__construct" visibility="public" complexity="4" crap="4.03" count="2"/>
+      <line num="17" type="stmt" count="2"/>
+      <line num="18" type="stmt" count="2"/>
+      <line num="19" type="stmt" count="2"/>
+      <line num="20" type="stmt" count="2"/>
+      <line num="21" type="stmt" count="2"/>
+      <line num="22" type="stmt" count="2"/>
+      <line num="23" type="stmt" count="2"/>
+      <line num="24" type="stmt" count="2"/>
+      <line num="26" type="stmt" count="2"/>
+      <line num="27" type="stmt" count="2"/>
+      <line num="29" type="stmt" count="2"/>
+      <line num="31" type="stmt" count="0"/>
+      <line num="33" type="stmt" count="2"/>
+      <line num="35" type="stmt" count="0"/>
+      <line num="37" type="stmt" count="2"/>
+      <line num="39" type="stmt" count="1"/>
+      <line num="43" type="method" name="setPrompt" visibility="public" complexity="3" crap="3.07" count="1"/>
+      <line num="45" type="stmt" count="1"/>
+      <line num="47" type="stmt" count="1"/>
+      <line num="48" type="stmt" count="1"/>
+      <line num="49" type="stmt" count="1"/>
+      <line num="50" type="stmt" count="1"/>
+      <line num="51" type="stmt" count="1"/>
+      <line num="52" type="stmt" count="1"/>
+      <line num="53" type="stmt" count="0"/>
+      <line num="57" type="stmt" count="0"/>
+      <line num="60" type="stmt" count="1"/>
+      <line num="63" type="method" name="output" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="65" type="stmt" count="1"/>
+      <line num="68" type="method" name="store" visibility="public" complexity="2" crap="2.02" count="1"/>
+      <line num="70" type="stmt" count="1"/>
+      <line num="71" type="stmt" count="1"/>
+      <line num="72" type="stmt" count="1"/>
+      <line num="73" type="stmt" count="1"/>
+      <line num="74" type="stmt" count="1"/>
+      <line num="76" type="stmt" count="0"/>
+      <line num="79" type="method" name="raw" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="81" type="stmt" count="0"/>
+      <line num="82" type="stmt" count="0"/>
+      <metrics loc="85" ncloc="85" classes="1" methods="5" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="35" coveredstatements="28" elements="40" coveredelements="29"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/Pipelines/OpenAI/ChatCompletion.php">
+      <class name="LaravelNeuro\LaravelNeuro\Pipelines\OpenAI\ChatCompletion" namespace="global">
+        <metrics complexity="22" methods="9" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="58" coveredstatements="39" elements="67" coveredelements="43"/>
+      </class>
+      <line num="14" type="method" name="__construct" visibility="public" complexity="4" crap="4.03" count="3"/>
+      <line num="16" type="stmt" count="3"/>
+      <line num="17" type="stmt" count="3"/>
+      <line num="18" type="stmt" count="3"/>
+      <line num="19" type="stmt" count="3"/>
+      <line num="20" type="stmt" count="3"/>
+      <line num="21" type="stmt" count="3"/>
+      <line num="22" type="stmt" count="3"/>
+      <line num="23" type="stmt" count="3"/>
+      <line num="25" type="stmt" count="3"/>
+      <line num="26" type="stmt" count="3"/>
+      <line num="28" type="stmt" count="3"/>
+      <line num="30" type="stmt" count="0"/>
+      <line num="32" type="stmt" count="3"/>
+      <line num="34" type="stmt" count="0"/>
+      <line num="36" type="stmt" count="3"/>
+      <line num="38" type="stmt" count="1"/>
+      <line num="42" type="method" name="setPrompt" visibility="public" complexity="7" crap="7.01" count="2"/>
+      <line num="44" type="stmt" count="2"/>
+      <line num="46" type="stmt" count="2"/>
+      <line num="48" type="stmt" count="2"/>
+      <line num="50" type="stmt" count="2"/>
+      <line num="52" type="stmt" count="2"/>
+      <line num="53" type="stmt" count="2"/>
+      <line num="54" type="stmt" count="2"/>
+      <line num="55" type="stmt" count="2"/>
+      <line num="56" type="stmt" count="2"/>
+      <line num="57" type="stmt" count="1"/>
+      <line num="58" type="stmt" count="1"/>
+      <line num="59" type="stmt" count="1"/>
+      <line num="60" type="stmt" count="2"/>
+      <line num="61" type="stmt" count="2"/>
+      <line num="62" type="stmt" count="2"/>
+      <line num="64" type="stmt" count="2"/>
+      <line num="68" type="stmt" count="2"/>
+      <line num="73" type="stmt" count="0"/>
+      <line num="76" type="stmt" count="2"/>
+      <line num="79" type="method" name="output" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="81" type="stmt" count="2"/>
+      <line num="84" type="method" name="text" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="86" type="stmt" count="2"/>
+      <line num="87" type="stmt" count="2"/>
+      <line num="90" type="method" name="json" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="92" type="stmt" count="1"/>
+      <line num="93" type="stmt" count="1"/>
+      <line num="96" type="method" name="array" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="98" type="stmt" count="1"/>
+      <line num="99" type="stmt" count="1"/>
+      <line num="102" type="method" name="streamText" visibility="public" complexity="3" crap="12" count="0"/>
+      <line num="104" type="stmt" count="0"/>
+      <line num="105" type="stmt" count="0"/>
+      <line num="106" type="stmt" count="0"/>
+      <line num="108" type="stmt" count="0"/>
+      <line num="109" type="stmt" count="0"/>
+      <line num="110" type="stmt" count="0"/>
+      <line num="114" type="method" name="streamJson" visibility="public" complexity="2" crap="6" count="0"/>
+      <line num="116" type="stmt" count="0"/>
+      <line num="117" type="stmt" count="0"/>
+      <line num="118" type="stmt" count="0"/>
+      <line num="120" type="stmt" count="0"/>
+      <line num="121" type="stmt" count="0"/>
+      <line num="125" type="method" name="streamArray" visibility="public" complexity="2" crap="6" count="0"/>
+      <line num="127" type="stmt" count="0"/>
+      <line num="128" type="stmt" count="0"/>
+      <line num="129" type="stmt" count="0"/>
+      <line num="131" type="stmt" count="0"/>
+      <line num="132" type="stmt" count="0"/>
+      <metrics loc="136" ncloc="136" classes="1" methods="9" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="58" coveredstatements="39" elements="67" coveredelements="43"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/Pipelines/OpenAI/DallE.php">
+      <class name="LaravelNeuro\LaravelNeuro\Pipelines\OpenAI\DallE" namespace="global">
+        <metrics complexity="19" methods="7" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="54" coveredstatements="38" elements="61" coveredelements="39"/>
+      </class>
+      <line num="16" type="method" name="__construct" visibility="public" complexity="4" crap="4.03" count="3"/>
+      <line num="18" type="stmt" count="3"/>
+      <line num="19" type="stmt" count="3"/>
+      <line num="20" type="stmt" count="3"/>
+      <line num="21" type="stmt" count="3"/>
+      <line num="22" type="stmt" count="3"/>
+      <line num="23" type="stmt" count="3"/>
+      <line num="24" type="stmt" count="3"/>
+      <line num="25" type="stmt" count="3"/>
+      <line num="27" type="stmt" count="3"/>
+      <line num="28" type="stmt" count="3"/>
+      <line num="30" type="stmt" count="3"/>
+      <line num="32" type="stmt" count="0"/>
+      <line num="34" type="stmt" count="3"/>
+      <line num="36" type="stmt" count="0"/>
+      <line num="38" type="stmt" count="3"/>
+      <line num="40" type="stmt" count="1"/>
+      <line num="44" type="method" name="setPrompt" visibility="public" complexity="2" crap="2.01" count="2"/>
+      <line num="46" type="stmt" count="2"/>
+      <line num="48" type="stmt" count="2"/>
+      <line num="49" type="stmt" count="2"/>
+      <line num="50" type="stmt" count="2"/>
+      <line num="51" type="stmt" count="2"/>
+      <line num="52" type="stmt" count="2"/>
+      <line num="53" type="stmt" count="2"/>
+      <line num="57" type="stmt" count="0"/>
+      <line num="60" type="stmt" count="2"/>
+      <line num="63" type="method" name="setFileType" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="65" type="stmt" count="0"/>
+      <line num="66" type="stmt" count="0"/>
+      <line num="69" type="method" name="output" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="71" type="stmt" count="2"/>
+      <line num="74" type="method" name="b64" visibility="public" complexity="3" crap="12" count="0"/>
+      <line num="76" type="stmt" count="0"/>
+      <line num="77" type="stmt" count="0"/>
+      <line num="78" type="stmt" count="0"/>
+      <line num="79" type="stmt" count="0"/>
+      <line num="81" type="stmt" count="0"/>
+      <line num="83" type="stmt" count="0"/>
+      <line num="87" type="stmt" count="0"/>
+      <line num="90" type="method" name="raw" visibility="public" complexity="4" crap="4.18" count="2"/>
+      <line num="92" type="stmt" count="2"/>
+      <line num="93" type="stmt" count="2"/>
+      <line num="94" type="stmt" count="2"/>
+      <line num="95" type="stmt" count="2"/>
+      <line num="97" type="stmt" count="2"/>
+      <line num="99" type="stmt" count="2"/>
+      <line num="101" type="stmt" count="0"/>
+      <line num="103" type="stmt" count="0"/>
+      <line num="106" type="stmt" count="2"/>
+      <line num="109" type="method" name="store" visibility="public" complexity="4" crap="4.13" count="2"/>
+      <line num="111" type="stmt" count="2"/>
+      <line num="112" type="stmt" count="2"/>
+      <line num="113" type="stmt" count="2"/>
+      <line num="115" type="stmt" count="2"/>
+      <line num="117" type="stmt" count="2"/>
+      <line num="118" type="stmt" count="2"/>
+      <line num="122" type="stmt" count="0"/>
+      <line num="125" type="stmt" count="2"/>
+      <line num="126" type="stmt" count="2"/>
+      <line num="128" type="stmt" count="0"/>
+      <metrics loc="131" ncloc="131" classes="1" methods="7" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="54" coveredstatements="38" elements="61" coveredelements="39"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/Plugins/Plugin.php">
+      <class name="LaravelNeuro\LaravelNeuro\Plugins\Plugin" namespace="global">
+        <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+      </class>
+      <metrics loc="8" ncloc="8" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/Plugins/Resources/SpiderWikipediaSearch.php">
+      <class name="LaravelNeuro\LaravelNeuro\Plugins\Resources\SpiderWikipediaSearch" namespace="global">
+        <metrics complexity="13" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="45" coveredstatements="0" elements="46" coveredelements="0"/>
+      </class>
+      <line num="21" type="method" name="parse" visibility="public" complexity="13" crap="182" count="0"/>
+      <line num="23" type="stmt" count="0"/>
+      <line num="24" type="stmt" count="0"/>
+      <line num="25" type="stmt" count="0"/>
+      <line num="27" type="stmt" count="0"/>
+      <line num="28" type="stmt" count="0"/>
+      <line num="29" type="stmt" count="0"/>
+      <line num="31" type="stmt" count="0"/>
+      <line num="33" type="stmt" count="0"/>
+      <line num="37" type="stmt" count="0"/>
+      <line num="38" type="stmt" count="0"/>
+      <line num="39" type="stmt" count="0"/>
+      <line num="40" type="stmt" count="0"/>
+      <line num="42" type="stmt" count="0"/>
+      <line num="43" type="stmt" count="0"/>
+      <line num="45" type="stmt" count="0"/>
+      <line num="49" type="stmt" count="0"/>
+      <line num="52" type="stmt" count="0"/>
+      <line num="54" type="stmt" count="0"/>
+      <line num="56" type="stmt" count="0"/>
+      <line num="57" type="stmt" count="0"/>
+      <line num="58" type="stmt" count="0"/>
+      <line num="60" type="stmt" count="0"/>
+      <line num="61" type="stmt" count="0"/>
+      <line num="62" type="stmt" count="0"/>
+      <line num="64" type="stmt" count="0"/>
+      <line num="66" type="stmt" count="0"/>
+      <line num="68" type="stmt" count="0"/>
+      <line num="69" type="stmt" count="0"/>
+      <line num="70" type="stmt" count="0"/>
+      <line num="71" type="stmt" count="0"/>
+      <line num="72" type="stmt" count="0"/>
+      <line num="73" type="stmt" count="0"/>
+      <line num="74" type="stmt" count="0"/>
+      <line num="75" type="stmt" count="0"/>
+      <line num="76" type="stmt" count="0"/>
+      <line num="77" type="stmt" count="0"/>
+      <line num="78" type="stmt" count="0"/>
+      <line num="79" type="stmt" count="0"/>
+      <line num="81" type="stmt" count="0"/>
+      <line num="82" type="stmt" count="0"/>
+      <line num="85" type="stmt" count="0"/>
+      <line num="87" type="stmt" count="0"/>
+      <line num="89" type="stmt" count="0"/>
+      <line num="90" type="stmt" count="0"/>
+      <line num="92" type="stmt" count="0"/>
+      <metrics loc="96" ncloc="93" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="45" coveredstatements="0" elements="46" coveredelements="0"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/Plugins/WikipediaSearch.php">
+      <class name="LaravelNeuro\LaravelNeuro\Plugins\WikipediaSearch" namespace="global">
+        <metrics complexity="5" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="31" coveredstatements="0" elements="33" coveredelements="0"/>
+      </class>
+      <line num="16" type="method" name="__construct" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="18" type="stmt" count="0"/>
+      <line num="22" type="method" name="query" visibility="public" complexity="4" crap="20" count="0"/>
+      <line num="25" type="stmt" count="0"/>
+      <line num="26" type="stmt" count="0"/>
+      <line num="27" type="stmt" count="0"/>
+      <line num="28" type="stmt" count="0"/>
+      <line num="30" type="stmt" count="0"/>
+      <line num="31" type="stmt" count="0"/>
+      <line num="33" type="stmt" count="0"/>
+      <line num="35" type="stmt" count="0"/>
+      <line num="36" type="stmt" count="0"/>
+      <line num="37" type="stmt" count="0"/>
+      <line num="38" type="stmt" count="0"/>
+      <line num="39" type="stmt" count="0"/>
+      <line num="41" type="stmt" count="0"/>
+      <line num="43" type="stmt" count="0"/>
+      <line num="45" type="stmt" count="0"/>
+      <line num="46" type="stmt" count="0"/>
+      <line num="47" type="stmt" count="0"/>
+      <line num="48" type="stmt" count="0"/>
+      <line num="49" type="stmt" count="0"/>
+      <line num="50" type="stmt" count="0"/>
+      <line num="52" type="stmt" count="0"/>
+      <line num="54" type="stmt" count="0"/>
+      <line num="55" type="stmt" count="0"/>
+      <line num="57" type="stmt" count="0"/>
+      <line num="58" type="stmt" count="0"/>
+      <line num="59" type="stmt" count="0"/>
+      <line num="61" type="stmt" count="0"/>
+      <line num="62" type="stmt" count="0"/>
+      <line num="65" type="stmt" count="0"/>
+      <line num="67" type="stmt" count="0"/>
+      <metrics loc="70" ncloc="70" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="31" coveredstatements="0" elements="33" coveredelements="0"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/Prompts/BasicPrompt.php">
+      <class name="LaravelNeuro\LaravelNeuro\Prompts\BasicPrompt" namespace="global">
+        <metrics complexity="6" methods="5" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="5" elements="15" coveredelements="7"/>
+      </class>
+      <line num="8" type="method" name="promptEncode" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="10" type="stmt" count="1"/>
+      <line num="11" type="stmt" count="1"/>
+      <line num="14" type="method" name="promptDecode" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="16" type="stmt" count="1"/>
+      <line num="17" type="stmt" count="1"/>
+      <line num="18" type="stmt" count="1"/>
+      <line num="21" type="method" name="setPrompt" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="23" type="stmt" count="0"/>
+      <line num="24" type="stmt" count="0"/>
+      <line num="27" type="method" name="encoder" visibility="protected" complexity="2" crap="6" count="0"/>
+      <line num="29" type="stmt" count="0"/>
+      <line num="30" type="stmt" count="0"/>
+      <line num="33" type="method" name="decoder" visibility="protected" complexity="1" crap="2" count="0"/>
+      <line num="35" type="stmt" count="0"/>
+      <metrics loc="38" ncloc="38" classes="1" methods="5" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="5" elements="15" coveredelements="7"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/Prompts/IVFSprompt.php">
+      <class name="LaravelNeuro\LaravelNeuro\Prompts\IVFSprompt" namespace="global">
+        <metrics complexity="16" methods="11" coveredmethods="11" conditionals="0" coveredconditionals="0" statements="47" coveredstatements="47" elements="58" coveredelements="58"/>
+      </class>
+      <line num="8" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="10" type="stmt" count="2"/>
+      <line num="11" type="stmt" count="2"/>
+      <line num="12" type="stmt" count="2"/>
+      <line num="13" type="stmt" count="2"/>
+      <line num="16" type="method" name="setInput" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="18" type="stmt" count="2"/>
+      <line num="20" type="stmt" count="2"/>
+      <line num="22" type="method" name="setVoice" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="24" type="stmt" count="2"/>
+      <line num="26" type="stmt" count="2"/>
+      <line num="28" type="method" name="setFormat" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="30" type="stmt" count="2"/>
+      <line num="32" type="stmt" count="2"/>
+      <line num="35" type="method" name="settings" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="37" type="stmt" count="2"/>
+      <line num="39" type="stmt" count="2"/>
+      <line num="42" type="method" name="getInput" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="44" type="stmt" count="2"/>
+      <line num="47" type="method" name="getVoice" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="49" type="stmt" count="2"/>
+      <line num="52" type="method" name="getFormat" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="54" type="stmt" count="2"/>
+      <line num="57" type="method" name="getSettings" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="59" type="stmt" count="2"/>
+      <line num="62" type="method" name="encoder" visibility="protected" complexity="3" crap="3" count="1"/>
+      <line num="64" type="stmt" count="1"/>
+      <line num="65" type="stmt" count="1"/>
+      <line num="66" type="stmt" count="1"/>
+      <line num="67" type="stmt" count="1"/>
+      <line num="68" type="stmt" count="1"/>
+      <line num="70" type="stmt" count="1"/>
+      <line num="72" type="stmt" count="1"/>
+      <line num="75" type="stmt" count="1"/>
+      <line num="77" type="stmt" count="1"/>
+      <line num="79" type="stmt" count="1"/>
+      <line num="81" type="stmt" count="1"/>
+      <line num="84" type="method" name="decoder" visibility="protected" complexity="4" crap="4" count="1"/>
+      <line num="86" type="stmt" count="1"/>
+      <line num="88" type="stmt" count="1"/>
+      <line num="90" type="stmt" count="1"/>
+      <line num="91" type="stmt" count="1"/>
+      <line num="92" type="stmt" count="1"/>
+      <line num="93" type="stmt" count="1"/>
+      <line num="95" type="stmt" count="1"/>
+      <line num="97" type="stmt" count="1"/>
+      <line num="98" type="stmt" count="1"/>
+      <line num="99" type="stmt" count="1"/>
+      <line num="100" type="stmt" count="1"/>
+      <line num="101" type="stmt" count="1"/>
+      <line num="102" type="stmt" count="1"/>
+      <line num="104" type="stmt" count="1"/>
+      <line num="106" type="stmt" count="1"/>
+      <line num="107" type="stmt" count="1"/>
+      <line num="112" type="stmt" count="1"/>
+      <line num="113" type="stmt" count="1"/>
+      <line num="114" type="stmt" count="1"/>
+      <line num="115" type="stmt" count="1"/>
+      <metrics loc="118" ncloc="118" classes="1" methods="11" coveredmethods="11" conditionals="0" coveredconditionals="0" statements="47" coveredstatements="47" elements="58" coveredelements="58"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/Prompts/PNSQFprompt.php">
+      <class name="LaravelNeuro\LaravelNeuro\Prompts\PNSQFprompt" namespace="global">
+        <metrics complexity="15" methods="13" coveredmethods="13" conditionals="0" coveredconditionals="0" statements="50" coveredstatements="50" elements="63" coveredelements="63"/>
+      </class>
+      <line num="10" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="12" type="stmt" count="2"/>
+      <line num="13" type="stmt" count="2"/>
+      <line num="14" type="stmt" count="2"/>
+      <line num="15" type="stmt" count="2"/>
+      <line num="16" type="stmt" count="2"/>
+      <line num="19" type="method" name="setPrompt" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="21" type="stmt" count="2"/>
+      <line num="23" type="stmt" count="2"/>
+      <line num="25" type="method" name="setNumber" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="27" type="stmt" count="2"/>
+      <line num="29" type="stmt" count="2"/>
+      <line num="31" type="method" name="setSize" visibility="public" complexity="2" crap="2" count="2"/>
+      <line num="33" type="stmt" count="2"/>
+      <line num="35" type="stmt" count="2"/>
+      <line num="37" type="stmt" count="2"/>
+      <line num="39" type="method" name="setQuality" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="41" type="stmt" count="2"/>
+      <line num="43" type="stmt" count="2"/>
+      <line num="45" type="method" name="setFormat" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="47" type="stmt" count="2"/>
+      <line num="49" type="stmt" count="2"/>
+      <line num="52" type="method" name="getPrompt" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="54" type="stmt" count="2"/>
+      <line num="57" type="method" name="getNumber" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="59" type="stmt" count="2"/>
+      <line num="62" type="method" name="getSize" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="64" type="stmt" count="2"/>
+      <line num="67" type="method" name="getQuality" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="69" type="stmt" count="2"/>
+      <line num="72" type="method" name="getFormat" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="74" type="stmt" count="2"/>
+      <line num="77" type="method" name="encoder" visibility="protected" complexity="1" crap="1" count="1"/>
+      <line num="79" type="stmt" count="1"/>
+      <line num="80" type="stmt" count="1"/>
+      <line num="81" type="stmt" count="1"/>
+      <line num="82" type="stmt" count="1"/>
+      <line num="83" type="stmt" count="1"/>
+      <line num="85" type="stmt" count="1"/>
+      <line num="87" type="stmt" count="1"/>
+      <line num="89" type="stmt" count="1"/>
+      <line num="91" type="stmt" count="1"/>
+      <line num="94" type="method" name="decoder" visibility="protected" complexity="2" crap="2" count="1"/>
+      <line num="96" type="stmt" count="1"/>
+      <line num="98" type="stmt" count="1"/>
+      <line num="100" type="stmt" count="1"/>
+      <line num="101" type="stmt" count="1"/>
+      <line num="102" type="stmt" count="1"/>
+      <line num="103" type="stmt" count="1"/>
+      <line num="104" type="stmt" count="1"/>
+      <line num="106" type="stmt" count="1"/>
+      <line num="108" type="stmt" count="1"/>
+      <line num="110" type="stmt" count="1"/>
+      <line num="111" type="stmt" count="1"/>
+      <line num="112" type="stmt" count="1"/>
+      <line num="113" type="stmt" count="1"/>
+      <line num="114" type="stmt" count="1"/>
+      <line num="115" type="stmt" count="1"/>
+      <line num="118" type="stmt" count="1"/>
+      <line num="119" type="stmt" count="1"/>
+      <line num="120" type="stmt" count="1"/>
+      <line num="121" type="stmt" count="1"/>
+      <line num="122" type="stmt" count="1"/>
+      <metrics loc="125" ncloc="125" classes="1" methods="13" coveredmethods="13" conditionals="0" coveredconditionals="0" statements="50" coveredstatements="50" elements="63" coveredelements="63"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/Prompts/SUAprompt.php">
+      <class name="LaravelNeuro\LaravelNeuro\Prompts\SUAprompt" namespace="global">
+        <metrics complexity="13" methods="5" coveredmethods="5" conditionals="0" coveredconditionals="0" statements="32" coveredstatements="32" elements="37" coveredelements="37"/>
+      </class>
+      <line num="8" type="method" name="pushSystem" visibility="public" complexity="1" crap="1" count="3"/>
+      <line num="10" type="stmt" count="3"/>
+      <line num="11" type="stmt" count="3"/>
+      <line num="13" type="stmt" count="3"/>
+      <line num="15" type="method" name="pushAgent" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="17" type="stmt" count="2"/>
+      <line num="18" type="stmt" count="2"/>
+      <line num="20" type="stmt" count="2"/>
+      <line num="22" type="method" name="pushUser" visibility="public" complexity="1" crap="1" count="3"/>
+      <line num="24" type="stmt" count="3"/>
+      <line num="25" type="stmt" count="3"/>
+      <line num="27" type="stmt" count="3"/>
+      <line num="30" type="method" name="encoder" visibility="protected" complexity="3" crap="3" count="1"/>
+      <line num="32" type="stmt" count="1"/>
+      <line num="34" type="stmt" count="1"/>
+      <line num="35" type="stmt" count="1"/>
+      <line num="36" type="stmt" count="1"/>
+      <line num="38" type="stmt" count="1"/>
+      <line num="39" type="stmt" count="1"/>
+      <line num="41" type="stmt" count="1"/>
+      <line num="43" type="stmt" count="1"/>
+      <line num="45" type="stmt" count="1"/>
+      <line num="49" type="stmt" count="1"/>
+      <line num="52" type="stmt" count="1"/>
+      <line num="53" type="stmt" count="1"/>
+      <line num="55" type="stmt" count="1"/>
+      <line num="58" type="method" name="decoder" visibility="protected" complexity="7" crap="7" count="1"/>
+      <line num="60" type="stmt" count="1"/>
+      <line num="62" type="stmt" count="1"/>
+      <line num="64" type="stmt" count="1"/>
+      <line num="67" type="stmt" count="1"/>
+      <line num="69" type="stmt" count="1"/>
+      <line num="71" type="stmt" count="1"/>
+      <line num="73" type="stmt" count="1"/>
+      <line num="77" type="stmt" count="1"/>
+      <line num="82" type="stmt" count="1"/>
+      <line num="84" type="stmt" count="1"/>
+      <metrics loc="88" ncloc="88" classes="1" methods="5" coveredmethods="5" conditionals="0" coveredconditionals="0" statements="32" coveredstatements="32" elements="37" coveredelements="37"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/Providers/LaravelNeuroServiceProvider.php">
+      <class name="LaravelNeuro\LaravelNeuro\Providers\LaravelNeuroServiceProvider" namespace="global">
+        <metrics complexity="5" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="33" coveredstatements="33" elements="36" coveredelements="36"/>
+      </class>
+      <line num="12" type="method" name="boot" visibility="public" complexity="2" crap="2" count="17"/>
+      <line num="14" type="stmt" count="17"/>
+      <line num="15" type="stmt" count="17"/>
+      <line num="16" type="stmt" count="17"/>
+      <line num="18" type="stmt" count="17"/>
+      <line num="19" type="stmt" count="17"/>
+      <line num="21" type="stmt" count="17"/>
+      <line num="22" type="stmt" count="17"/>
+      <line num="23" type="stmt" count="17"/>
+      <line num="24" type="stmt" count="17"/>
+      <line num="25" type="stmt" count="17"/>
+      <line num="26" type="stmt" count="17"/>
+      <line num="27" type="stmt" count="17"/>
+      <line num="28" type="stmt" count="17"/>
+      <line num="29" type="stmt" count="17"/>
+      <line num="32" type="stmt" count="17"/>
+      <line num="34" type="stmt" count="17"/>
+      <line num="36" type="stmt" count="17"/>
+      <line num="37" type="stmt" count="17"/>
+      <line num="38" type="stmt" count="17"/>
+      <line num="40" type="stmt" count="17"/>
+      <line num="41" type="stmt" count="17"/>
+      <line num="42" type="stmt" count="17"/>
+      <line num="46" type="method" name="register" visibility="public" complexity="1" crap="1" count="17"/>
+      <line num="48" type="stmt" count="17"/>
+      <line num="49" type="stmt" count="17"/>
+      <line num="50" type="stmt" count="17"/>
+      <line num="52" type="stmt" count="17"/>
+      <line num="53" type="stmt" count="17"/>
+      <line num="54" type="stmt" count="17"/>
+      <line num="56" type="stmt" count="17"/>
+      <line num="57" type="stmt" count="17"/>
+      <line num="58" type="stmt" count="17"/>
+      <line num="61" type="method" name="createDirectoryIfNotExists" visibility="protected" complexity="2" crap="2" count="17"/>
+      <line num="63" type="stmt" count="17"/>
+      <line num="64" type="stmt" count="17"/>
+      <metrics loc="68" ncloc="67" classes="1" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="33" coveredstatements="33" elements="36" coveredelements="36"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/config/database.php">
+      <line num="3" type="stmt" count="17"/>
+      <line num="5" type="stmt" count="17"/>
+      <line num="6" type="stmt" count="17"/>
+      <line num="7" type="stmt" count="17"/>
+      <line num="8" type="stmt" count="17"/>
+      <line num="9" type="stmt" count="17"/>
+      <line num="11" type="stmt" count="17"/>
+      <metrics loc="11" ncloc="11" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="7" elements="7" coveredelements="7"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/config/filesystems.php">
+      <line num="3" type="stmt" count="17"/>
+      <line num="4" type="stmt" count="17"/>
+      <line num="5" type="stmt" count="17"/>
+      <line num="6" type="stmt" count="17"/>
+      <line num="7" type="stmt" count="17"/>
+      <line num="8" type="stmt" count="17"/>
+      <line num="9" type="stmt" count="17"/>
+      <line num="10" type="stmt" count="17"/>
+      <line num="11" type="stmt" count="17"/>
+      <line num="12" type="stmt" count="17"/>
+      <line num="13" type="stmt" count="17"/>
+      <line num="14" type="stmt" count="17"/>
+      <metrics loc="15" ncloc="15" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="12" coveredstatements="12" elements="12" coveredelements="12"/>
+    </file>
+    <file name="/var/www/html/LaravelAI/src/config/laravelneuro.php">
+      <line num="3" type="stmt" count="17"/>
+      <line num="4" type="stmt" count="17"/>
+      <line num="5" type="stmt" count="17"/>
+      <line num="6" type="stmt" count="17"/>
+      <line num="7" type="stmt" count="17"/>
+      <line num="8" type="stmt" count="17"/>
+      <line num="9" type="stmt" count="17"/>
+      <line num="10" type="stmt" count="17"/>
+      <line num="11" type="stmt" count="17"/>
+      <line num="12" type="stmt" count="17"/>
+      <line num="13" type="stmt" count="17"/>
+      <line num="14" type="stmt" count="17"/>
+      <line num="15" type="stmt" count="17"/>
+      <line num="16" type="stmt" count="17"/>
+      <line num="17" type="stmt" count="17"/>
+      <line num="18" type="stmt" count="17"/>
+      <line num="19" type="stmt" count="17"/>
+      <line num="20" type="stmt" count="17"/>
+      <line num="21" type="stmt" count="17"/>
+      <line num="22" type="stmt" count="17"/>
+      <line num="23" type="stmt" count="17"/>
+      <line num="24" type="stmt" count="17"/>
+      <line num="25" type="stmt" count="17"/>
+      <line num="26" type="stmt" count="17"/>
+      <line num="27" type="stmt" count="17"/>
+      <line num="28" type="stmt" count="17"/>
+      <line num="29" type="stmt" count="17"/>
+      <line num="30" type="stmt" count="17"/>
+      <line num="31" type="stmt" count="17"/>
+      <line num="32" type="stmt" count="17"/>
+      <line num="33" type="stmt" count="17"/>
+      <line num="34" type="stmt" count="17"/>
+      <line num="35" type="stmt" count="17"/>
+      <line num="36" type="stmt" count="17"/>
+      <line num="37" type="stmt" count="17"/>
+      <line num="38" type="stmt" count="17"/>
+      <metrics loc="38" ncloc="37" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="36" coveredstatements="36" elements="36" coveredelements="36"/>
+    </file>
+    <metrics files="59" loc="4495" ncloc="4339" classes="36" methods="201" coveredmethods="110" conditionals="0" coveredconditionals="0" statements="1795" coveredstatements="1312" elements="1996" coveredelements="1422"/>
+  </project>
+</coverage>

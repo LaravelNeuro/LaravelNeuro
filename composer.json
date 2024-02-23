@@ -1,20 +1,37 @@
 {
-    "name": "kbirenheide/laravel-ai",
-    "description": "A laravel framework for connecting to OpenAI and Ollama API, sent prompts, collect responses, create agents and agent networks, and put them to work.",
+    "name": "laravel-neuro/core",
+    "description": "A powerful laravel framework for connecting to AI APIs such as OpenAI, Gemini, and Ollama, send prompts, collect responses, create agents and agent networks, and put them to work using easy to setup and highly customizable state machines.",
     "type": "library",
     "require": {
+        "php": "^8.0",
         "guzzlehttp/guzzle": "^7.8"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^8.0",
+        "fakerphp/faker": "^1.9.1",
+        "laravel/pint": "^1.0",
+        "laravel/sail": "^1.18",
+        "mockery/mockery": "^1.4.4",
+        "nunomaduro/collision": "^7.0",
+        "phpunit/phpunit": "^10.1",
+        "spatie/laravel-ignition": "^2.0"
     },
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Kbirenheide\\LaravelNeuro\\": "src/"
+            "LaravelNeuro\\LaravelNeuro\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/",
+            "App\\": "vendor/orchestra/testbench-core/laravel/app/"
         }
     },
     "extra": {
         "laravel": {
           "providers": [
-            "Kbirenheide\\LaravelNeuro\\Providers\\LaravelNeuroServiceProvider"
+            "LaravelNeuro\\LaravelNeuro\\Providers\\LaravelNeuroServiceProvider"
           ]
         }
     },      

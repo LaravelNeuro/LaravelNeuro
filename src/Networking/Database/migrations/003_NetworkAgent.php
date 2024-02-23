@@ -14,16 +14,19 @@ return new class extends Migration
         Schema::create('laravel_neuro_network_agents', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->int('unit');
+            $table->unsignedBigInteger('unit_id');
+                $table->foreign('unit_id')->references('id')->on('laravel_neuro_network_units');
             $table->string('name');
-            $table->string('model');
-            $table->string('api');
-            $table->text('role');
-            $table->boolean('validateOutput');
-            $table->string('outputModel');
-            $table->string('pipeReceiverType');
-            $table->string('pipeRetrieverType');
-            $table->string('pipeRetriever');
+            $table->string('model')->nullable();
+            $table->string('api')->nullable();
+            $table->enum('apiType', ['CHATCOMPLETION', 'IMAGE', 'BASIC', 'TTS', 'STT', 'VIDEO'])->default('CHATCOMPLETION');
+            $table->enum('apiProvider', ['OPENAI', 'OLLAMA', 'ELEVENLABS', 'GENERIC']);
+            $table->string('pipeline');
+            $table->text('role')->nullable();
+            $table->text('prompt')->nullable();
+            $table->string('promptClass');
+            $table->boolean('validateOutput')->default(false);
+            $table->string('outputModel')->default(false);
         });
     }
 

@@ -14,11 +14,12 @@ return new class extends Migration
         Schema::create('laravel_neuro_network_units', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->int('corporation');
+            $table->unsignedBigInteger('corporation_id');
+                $table->foreign('corporation_id')->references('id')->on('laravel_neuro_network_corporations');
             $table->string('name');
             $table->string('description');
             $table->string('defaultReceiver');
-            $table->string('defaultReceiverType');
+            $table->enum('defaultReceiverType', ['AGENT', 'PLUGIN']); 
         });
     }
 

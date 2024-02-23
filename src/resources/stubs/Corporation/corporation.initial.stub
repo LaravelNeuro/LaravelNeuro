@@ -1,0 +1,12 @@
+protected function initial(TuringStrip $head) : TuringStrip
+    {
+        NetworkHistory::create([
+            'project_id' => $this->project->id, 
+            'entryType' => TuringHistory::PROMPT,
+            'content' => $this->task
+            ]);
+        
+        $transition = new {{FirstTransition}}($this->project->id, $head, $this->models);
+
+        return $transition->handle();
+    }

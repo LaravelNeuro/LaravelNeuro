@@ -15,10 +15,9 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('name');
+            $table->string('nameSpace');
             $table->string('description');
             $table->text('charta');
-            $table->string('initial_unit');
-            $table->string('initial_agent');
         });
     }
 

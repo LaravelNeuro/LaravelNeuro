@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Dashboard for /var/www/html/LaravelAI/src</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="_css/bootstrap.min.css?v=10.1.11" rel="stylesheet" type="text/css">
+  <link href="_css/nv.d3.min.css?v=10.1.11" rel="stylesheet" type="text/css">
+  <link href="_css/style.css?v=10.1.11" rel="stylesheet" type="text/css">
+  <link href="_css/custom.css" rel="stylesheet" type="text/css">
+ </head>
+ <body>
+  <header>
+   <div class="container-fluid">
+    <div class="row">
+     <div class="col-md-12">
+      <nav aria-label="breadcrumb">
+       <ol class="breadcrumb">
+         <li class="breadcrumb-item"><a href="index.html">/var/www/html/LaravelAI/src</a></li>
+         <li class="breadcrumb-item active">(Dashboard)</li>
+
+       </ol>
+      </nav>
+     </div>
+    </div>
+   </div>
+  </header>
+  <div class="container-fluid">
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Classes</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="classCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="classComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Console/Commands/MakeLLMpipeline.php.html#7">LaravelNeuro\LaravelNeuro\Console\Commands\MakeLLMpipeline</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Console/Commands/PackageSetup.php.html#7">LaravelNeuro\LaravelNeuro\Console\Commands\PackageSetup</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Networking/Database/Models/NetworkDataSet.php.html#10">LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkDataSet</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Networking/Database/Models/NetworkProject.php.html#13">LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkProject</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Networking/Database/Models/NetworkUnitModels.php.html#17">LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkUnit</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Pipelines/Ollama/DeepSeekCoder.php.html#7">LaravelNeuro\LaravelNeuro\Pipelines\Ollama\DeepSeekCoder</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Pipelines/Ollama/Zephyr.php.html#7">LaravelNeuro\LaravelNeuro\Pipelines\Ollama\Zephyr</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Plugins/Resources/SpiderWikipediaSearch.php.html#11">LaravelNeuro\LaravelNeuro\Plugins\Resources\SpiderWikipediaSearch</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Plugins/WikipediaSearch.php.html#14">LaravelNeuro\LaravelNeuro\Plugins\WikipediaSearch</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Console/Commands/IncorporateInstall.php.html#10">LaravelNeuro\LaravelNeuro\Console\Commands\IncorporateInstall</a></td><td class="text-right">40%</td></tr>
+       <tr><td><a href="Networking/Database/Models/NetworkCorporation.php.html#10">LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkCorporation</a></td><td class="text-right">50%</td></tr>
+       <tr><td><a href="Networking/Database/Models/NetworkDataSetTemplate.php.html#10">LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkDataSetTemplate</a></td><td class="text-right">50%</td></tr>
+       <tr><td><a href="Prompts/BasicPrompt.php.html#6">LaravelNeuro\LaravelNeuro\Prompts\BasicPrompt</a></td><td class="text-right">50%</td></tr>
+       <tr><td><a href="Console/Commands/CorporationRun.php.html#9">LaravelNeuro\LaravelNeuro\Console\Commands\CorporationRun</a></td><td class="text-right">57%</td></tr>
+       <tr><td><a href="Networking/Database/Models/NetworkHistory.php.html#15">LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkHistory</a></td><td class="text-right">57%</td></tr>
+       <tr><td><a href="Networking/Transition.php.html#27">LaravelNeuro\LaravelNeuro\Networking\Transition</a></td><td class="text-right">64%</td></tr>
+       <tr><td><a href="Pipelines/OpenAI/ChatCompletion.php.html#8">LaravelNeuro\LaravelNeuro\Pipelines\OpenAI\ChatCompletion</a></td><td class="text-right">67%</td></tr>
+       <tr><td><a href="Pipelines/OpenAI/DallE.php.html#9">LaravelNeuro\LaravelNeuro\Pipelines\OpenAI\DallE</a></td><td class="text-right">70%</td></tr>
+       <tr><td><a href="Networking/Corporation.php.html#21">LaravelNeuro\LaravelNeuro\Networking\Corporation</a></td><td class="text-right">73%</td></tr>
+       <tr><td><a href="Networking/TuringStrip.php.html#7">LaravelNeuro\LaravelNeuro\Networking\TuringStrip</a></td><td class="text-right">76%</td></tr>
+       <tr><td><a href="Pipelines/ElevenLabs/AudioTTS.php.html#10">LaravelNeuro\LaravelNeuro\Pipelines\ElevenLabs\AudioTTS</a></td><td class="text-right">77%</td></tr>
+       <tr><td><a href="Console/Commands/CorporationMakeMigration.php.html#10">LaravelNeuro\LaravelNeuro\Console\Commands\CorporationMakeMigration</a></td><td class="text-right">78%</td></tr>
+       <tr><td><a href="Networking/Database/Models/NetworkState.php.html#12">LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkState</a></td><td class="text-right">80%</td></tr>
+       <tr><td><a href="Pipelines/OpenAI/AudioTTS.php.html#8">LaravelNeuro\LaravelNeuro\Pipelines\OpenAI\AudioTTS</a></td><td class="text-right">80%</td></tr>
+       <tr><td><a href="Console/Commands/IncorporateSetup.php.html#9">LaravelNeuro\LaravelNeuro\Console\Commands\IncorporateSetup</a></td><td class="text-right">83%</td></tr>
+       <tr><td><a href="Networking/Incorporate.php.html#16">LaravelNeuro\LaravelNeuro\Networking\Incorporate</a></td><td class="text-right">83%</td></tr>
+       <tr><td><a href="Networking/Database/Models/NetworkAgent.php.html#13">LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkAgent</a></td><td class="text-right">88%</td></tr>
+       <tr><td><a href="Networking/Unit.php.html#10">LaravelNeuro\LaravelNeuro\Networking\Unit</a></td><td class="text-right">89%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Networking/Transition.php.html#27">LaravelNeuro\LaravelNeuro\Networking\Transition</a></td><td class="text-right">304</td></tr>
+       <tr><td><a href="Pipelines/Ollama/Zephyr.php.html#7">LaravelNeuro\LaravelNeuro\Pipelines\Ollama\Zephyr</a></td><td class="text-right">240</td></tr>
+       <tr><td><a href="Pipelines/Ollama/DeepSeekCoder.php.html#7">LaravelNeuro\LaravelNeuro\Pipelines\Ollama\DeepSeekCoder</a></td><td class="text-right">210</td></tr>
+       <tr><td><a href="Plugins/Resources/SpiderWikipediaSearch.php.html#11">LaravelNeuro\LaravelNeuro\Plugins\Resources\SpiderWikipediaSearch</a></td><td class="text-right">182</td></tr>
+       <tr><td><a href="Networking/Incorporate.php.html#16">LaravelNeuro\LaravelNeuro\Networking\Incorporate</a></td><td class="text-right">131</td></tr>
+       <tr><td><a href="Networking/Corporation.php.html#21">LaravelNeuro\LaravelNeuro\Networking\Corporation</a></td><td class="text-right">91</td></tr>
+       <tr><td><a href="Pipelines/OpenAI/ChatCompletion.php.html#8">LaravelNeuro\LaravelNeuro\Pipelines\OpenAI\ChatCompletion</a></td><td class="text-right">39</td></tr>
+       <tr><td><a href="Console/Commands/PackageSetup.php.html#7">LaravelNeuro\LaravelNeuro\Console\Commands\PackageSetup</a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="Plugins/WikipediaSearch.php.html#14">LaravelNeuro\LaravelNeuro\Plugins\WikipediaSearch</a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="Pipelines/OpenAI/DallE.php.html#9">LaravelNeuro\LaravelNeuro\Pipelines\OpenAI\DallE</a></td><td class="text-right">28</td></tr>
+       <tr><td><a href="Console/Commands/IncorporateInstall.php.html#10">LaravelNeuro\LaravelNeuro\Console\Commands\IncorporateInstall</a></td><td class="text-right">21</td></tr>
+       <tr><td><a href="Console/Commands/MakeLLMpipeline.php.html#7">LaravelNeuro\LaravelNeuro\Console\Commands\MakeLLMpipeline</a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Pipelines/ElevenLabs/AudioTTS.php.html#10">LaravelNeuro\LaravelNeuro\Pipelines\ElevenLabs\AudioTTS</a></td><td class="text-right">19</td></tr>
+       <tr><td><a href="Networking/Unit.php.html#10">LaravelNeuro\LaravelNeuro\Networking\Unit</a></td><td class="text-right">15</td></tr>
+       <tr><td><a href="Pipelines/OpenAI/AudioTTS.php.html#8">LaravelNeuro\LaravelNeuro\Pipelines\OpenAI\AudioTTS</a></td><td class="text-right">11</td></tr>
+       <tr><td><a href="Networking/TuringStrip.php.html#7">LaravelNeuro\LaravelNeuro\Networking\TuringStrip</a></td><td class="text-right">11</td></tr>
+       <tr><td><a href="Prompts/BasicPrompt.php.html#6">LaravelNeuro\LaravelNeuro\Prompts\BasicPrompt</a></td><td class="text-right">10</td></tr>
+       <tr><td><a href="Console/Commands/CorporationRun.php.html#9">LaravelNeuro\LaravelNeuro\Console\Commands\CorporationRun</a></td><td class="text-right">8</td></tr>
+       <tr><td><a href="Console/Commands/CorporationMakeMigration.php.html#10">LaravelNeuro\LaravelNeuro\Console\Commands\CorporationMakeMigration</a></td><td class="text-right">5</td></tr>
+       <tr><td><a href="Console/Commands/IncorporateSetup.php.html#9">LaravelNeuro\LaravelNeuro\Console\Commands\IncorporateSetup</a></td><td class="text-right">3</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Methods</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="methodCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="methodComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Console/Commands/MakeLLMpipeline.php.html#27"><abbr title="LaravelNeuro\LaravelNeuro\Console\Commands\MakeLLMpipeline::handle">handle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Console/Commands/MakeLLMpipeline.php.html#54"><abbr title="LaravelNeuro\LaravelNeuro\Console\Commands\MakeLLMpipeline::getStub">getStub</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Console/Commands/PackageSetup.php.html#13"><abbr title="LaravelNeuro\LaravelNeuro\Console\Commands\PackageSetup::handle">handle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Console/Commands/PackageSetup.php.html#26"><abbr title="LaravelNeuro\LaravelNeuro\Console\Commands\PackageSetup::runMigrations">runMigrations</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Console/Commands/PackageSetup.php.html#31"><abbr title="LaravelNeuro\LaravelNeuro\Console\Commands\PackageSetup::rollbackMigrations">rollbackMigrations</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Networking/Agent.php.html#101"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Agent::getName">getName</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Networking/Agent.php.html#106"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Agent::getRole">getRole</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Networking/Corporation.php.html#156"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Corporation::initial">initial</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Networking/Corporation.php.html#169"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Corporation::continue">continue</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Networking/Corporation.php.html#176"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Corporation::final">final</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Networking/Database/Models/NetworkAgent.php.html#21"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkAgent::unit">unit</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Networking/Database/Models/NetworkCorporation.php.html#14"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkCorporation::projects">projects</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Networking/Database/Models/NetworkDataSet.php.html#15"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkDataSet::project">project</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Networking/Database/Models/NetworkDataSet.php.html#20"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkDataSet::template">template</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Networking/Database/Models/NetworkDataSetTemplate.php.html#15"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkDataSetTemplate::unit">unit</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Networking/Database/Models/NetworkHistory.php.html#20"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkHistory::project">project</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Networking/Database/Models/NetworkHistory.php.html#25"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkHistory::unit">unit</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Networking/Database/Models/NetworkHistory.php.html#30"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkHistory::agent">agent</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Networking/Database/Models/NetworkProject.php.html#17"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkProject::corporation">corporation</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Networking/Database/Models/NetworkProject.php.html#22"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkProject::states">states</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Networking/Database/Models/NetworkProject.php.html#27"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkProject::dataSets">dataSets</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Networking/Database/Models/NetworkProject.php.html#32"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkProject::history">history</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Networking/Database/Models/NetworkState.php.html#17"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkState::project">project</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Networking/Database/Models/NetworkUnitModels.php.html#21"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkUnit::corporation">corporation</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Networking/Database/Models/NetworkUnitModels.php.html#26"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkUnit::agents">agents</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Networking/Database/Models/NetworkUnitModels.php.html#31"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkUnit::dataSets">dataSets</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Networking/Database/Models/NetworkUnitModels.php.html#36"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkUnit::dataSetTemplates">dataSetTemplates</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Networking/Database/Models/NetworkUnitModels.php.html#41"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkUnit::defaultReceiverType">defaultReceiverType</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Networking/Incorporate.php.html#85"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Incorporate::getName">getName</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Networking/Incorporate.php.html#95"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Incorporate::getDescription">getDescription</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Networking/Incorporate.php.html#100"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Incorporate::getCharta">getCharta</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Networking/Transition.php.html#63"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Transition::preProcessPrompt">preProcessPrompt</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Networking/Transition.php.html#68"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Transition::preProcessInput">preProcessInput</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Networking/Transition.php.html#73"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Transition::postProcessPrompt">postProcessPrompt</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Networking/Transition.php.html#83"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Transition::modifyPipeline">modifyPipeline</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Networking/Transition.php.html#413"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Transition::setUnitByName">setUnitByName</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Networking/Transition.php.html#465"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Transition::setAgentByName">setAgentByName</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Networking/TuringStrip.php.html#21"><abbr title="LaravelNeuro\LaravelNeuro\Networking\TuringStrip::setNext">setNext</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Networking/Unit.php.html#64"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Unit::getName">getName</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Networking/Unit.php.html#69"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Unit::getDescription">getDescription</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Networking/Unit.php.html#74"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Unit::getDataSet">getDataSet</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Networking/Unit.php.html#79"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Unit::getDefaultReceiver">getDefaultReceiver</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Pipelines/Ollama/DeepSeekCoder.php.html#14"><abbr title="LaravelNeuro\LaravelNeuro\Pipelines\Ollama\DeepSeekCoder::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Pipelines/Ollama/DeepSeekCoder.php.html#29"><abbr title="LaravelNeuro\LaravelNeuro\Pipelines\Ollama\DeepSeekCoder::stream">stream</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Pipelines/Ollama/DeepSeekCoder.php.html#37"><abbr title="LaravelNeuro\LaravelNeuro\Pipelines\Ollama\DeepSeekCoder::setPrompt">setPrompt</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Pipelines/Ollama/Zephyr.php.html#14"><abbr title="LaravelNeuro\LaravelNeuro\Pipelines\Ollama\Zephyr::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Pipelines/Ollama/Zephyr.php.html#29"><abbr title="LaravelNeuro\LaravelNeuro\Pipelines\Ollama\Zephyr::stream">stream</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Pipelines/Ollama/Zephyr.php.html#37"><abbr title="LaravelNeuro\LaravelNeuro\Pipelines\Ollama\Zephyr::setPrompt">setPrompt</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Pipelines/OpenAI/AudioTTS.php.html#79"><abbr title="LaravelNeuro\LaravelNeuro\Pipelines\OpenAI\AudioTTS::raw">raw</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Pipelines/OpenAI/ChatCompletion.php.html#102"><abbr title="LaravelNeuro\LaravelNeuro\Pipelines\OpenAI\ChatCompletion::streamText">streamText</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Pipelines/OpenAI/ChatCompletion.php.html#114"><abbr title="LaravelNeuro\LaravelNeuro\Pipelines\OpenAI\ChatCompletion::streamJson">streamJson</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Pipelines/OpenAI/ChatCompletion.php.html#125"><abbr title="LaravelNeuro\LaravelNeuro\Pipelines\OpenAI\ChatCompletion::streamArray">streamArray</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Pipelines/OpenAI/DallE.php.html#63"><abbr title="LaravelNeuro\LaravelNeuro\Pipelines\OpenAI\DallE::setFileType">setFileType</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Pipelines/OpenAI/DallE.php.html#74"><abbr title="LaravelNeuro\LaravelNeuro\Pipelines\OpenAI\DallE::b64">b64</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Plugins/Resources/SpiderWikipediaSearch.php.html#21"><abbr title="LaravelNeuro\LaravelNeuro\Plugins\Resources\SpiderWikipediaSearch::parse">parse</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Plugins/WikipediaSearch.php.html#16"><abbr title="LaravelNeuro\LaravelNeuro\Plugins\WikipediaSearch::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Plugins/WikipediaSearch.php.html#22"><abbr title="LaravelNeuro\LaravelNeuro\Plugins\WikipediaSearch::query">query</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Prompts/BasicPrompt.php.html#21"><abbr title="LaravelNeuro\LaravelNeuro\Prompts\BasicPrompt::setPrompt">setPrompt</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Prompts/BasicPrompt.php.html#27"><abbr title="LaravelNeuro\LaravelNeuro\Prompts\BasicPrompt::encoder">encoder</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Prompts/BasicPrompt.php.html#33"><abbr title="LaravelNeuro\LaravelNeuro\Prompts\BasicPrompt::decoder">decoder</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Console/Commands/IncorporateInstall.php.html#31"><abbr title="LaravelNeuro\LaravelNeuro\Console\Commands\IncorporateInstall::handle">handle</abbr></a></td><td class="text-right">40%</td></tr>
+       <tr><td><a href="Console/Commands/CorporationRun.php.html#33"><abbr title="LaravelNeuro\LaravelNeuro\Console\Commands\CorporationRun::handle">handle</abbr></a></td><td class="text-right">57%</td></tr>
+       <tr><td><a href="Networking/Incorporate.php.html#123"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Incorporate::prebuild">prebuild</abbr></a></td><td class="text-right">60%</td></tr>
+       <tr><td><a href="Networking/Corporation.php.html#195"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Corporation::goTo">goTo</abbr></a></td><td class="text-right">61%</td></tr>
+       <tr><td><a href="Networking/Transition.php.html#355"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Transition::handle">handle</abbr></a></td><td class="text-right">63%</td></tr>
+       <tr><td><a href="Pipelines/ElevenLabs/AudioTTS.php.html#56"><abbr title="LaravelNeuro\LaravelNeuro\Pipelines\ElevenLabs\AudioTTS::setPrompt">setPrompt</abbr></a></td><td class="text-right">65%</td></tr>
+       <tr><td><a href="Networking/Transition.php.html#88"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Transition::applyData">applyData</abbr></a></td><td class="text-right">65%</td></tr>
+       <tr><td><a href="Networking/Transition.php.html#162"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Transition::callAgent">callAgent</abbr></a></td><td class="text-right">71%</td></tr>
+       <tr><td><a href="Networking/Corporation.php.html#272"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Corporation::run">run</abbr></a></td><td class="text-right">72%</td></tr>
+       <tr><td><a href="Console/Commands/CorporationMakeMigration.php.html#35"><abbr title="LaravelNeuro\LaravelNeuro\Console\Commands\CorporationMakeMigration::writeMigration">writeMigration</abbr></a></td><td class="text-right">77%</td></tr>
+       <tr><td><a href="Pipelines/OpenAI/DallE.php.html#90"><abbr title="LaravelNeuro\LaravelNeuro\Pipelines\OpenAI\DallE::raw">raw</abbr></a></td><td class="text-right">77%</td></tr>
+       <tr><td><a href="Networking/Incorporate.php.html#35"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Incorporate::validateProperty">validateProperty</abbr></a></td><td class="text-right">80%</td></tr>
+       <tr><td><a href="Pipelines/OpenAI/AudioTTS.php.html#43"><abbr title="LaravelNeuro\LaravelNeuro\Pipelines\OpenAI\AudioTTS::setPrompt">setPrompt</abbr></a></td><td class="text-right">80%</td></tr>
+       <tr><td><a href="Pipelines/OpenAI/DallE.php.html#109"><abbr title="LaravelNeuro\LaravelNeuro\Pipelines\OpenAI\DallE::store">store</abbr></a></td><td class="text-right">80%</td></tr>
+       <tr><td><a href="Pipelines/ElevenLabs/AudioTTS.php.html#18"><abbr title="LaravelNeuro\LaravelNeuro\Pipelines\ElevenLabs\AudioTTS::__construct">__construct</abbr></a></td><td class="text-right">81%</td></tr>
+       <tr><td><a href="Networking/Transition.php.html#436"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Transition::setAgentById">setAgentById</abbr></a></td><td class="text-right">81%</td></tr>
+       <tr><td><a href="Console/Commands/IncorporateSetup.php.html#31"><abbr title="LaravelNeuro\LaravelNeuro\Console\Commands\IncorporateSetup::handle">handle</abbr></a></td><td class="text-right">83%</td></tr>
+       <tr><td><a href="Networking/Transition.php.html#37"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Transition::__construct">__construct</abbr></a></td><td class="text-right">83%</td></tr>
+       <tr><td><a href="Pipelines/ElevenLabs/AudioTTS.php.html#105"><abbr title="LaravelNeuro\LaravelNeuro\Pipelines\ElevenLabs\AudioTTS::store">store</abbr></a></td><td class="text-right">83%</td></tr>
+       <tr><td><a href="Pipelines/OpenAI/AudioTTS.php.html#68"><abbr title="LaravelNeuro\LaravelNeuro\Pipelines\OpenAI\AudioTTS::store">store</abbr></a></td><td class="text-right">83%</td></tr>
+       <tr><td><a href="Networking/Incorporate.php.html#269"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Incorporate::install">install</abbr></a></td><td class="text-right">83%</td></tr>
+       <tr><td><a href="Networking/Transition.php.html#380"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Transition::setUnitById">setUnitById</abbr></a></td><td class="text-right">84%</td></tr>
+       <tr><td><a href="Pipelines/OpenAI/AudioTTS.php.html#15"><abbr title="LaravelNeuro\LaravelNeuro\Pipelines\OpenAI\AudioTTS::__construct">__construct</abbr></a></td><td class="text-right">87%</td></tr>
+       <tr><td><a href="Pipelines/OpenAI/ChatCompletion.php.html#14"><abbr title="LaravelNeuro\LaravelNeuro\Pipelines\OpenAI\ChatCompletion::__construct">__construct</abbr></a></td><td class="text-right">87%</td></tr>
+       <tr><td><a href="Pipelines/OpenAI/DallE.php.html#16"><abbr title="LaravelNeuro\LaravelNeuro\Pipelines\OpenAI\DallE::__construct">__construct</abbr></a></td><td class="text-right">87%</td></tr>
+       <tr><td><a href="Pipelines/OpenAI/DallE.php.html#44"><abbr title="LaravelNeuro\LaravelNeuro\Pipelines\OpenAI\DallE::setPrompt">setPrompt</abbr></a></td><td class="text-right">88%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Plugins/Resources/SpiderWikipediaSearch.php.html#21"><abbr title="LaravelNeuro\LaravelNeuro\Plugins\Resources\SpiderWikipediaSearch::parse">parse</abbr></a></td><td class="text-right">182</td></tr>
+       <tr><td><a href="Pipelines/Ollama/Zephyr.php.html#37"><abbr title="LaravelNeuro\LaravelNeuro\Pipelines\Ollama\Zephyr::setPrompt">setPrompt</abbr></a></td><td class="text-right">132</td></tr>
+       <tr><td><a href="Pipelines/Ollama/DeepSeekCoder.php.html#37"><abbr title="LaravelNeuro\LaravelNeuro\Pipelines\Ollama\DeepSeekCoder::setPrompt">setPrompt</abbr></a></td><td class="text-right">110</td></tr>
+       <tr><td><a href="Networking/Incorporate.php.html#269"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Incorporate::install">install</abbr></a></td><td class="text-right">49</td></tr>
+       <tr><td><a href="Networking/Transition.php.html#162"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Transition::callAgent">callAgent</abbr></a></td><td class="text-right">38</td></tr>
+       <tr><td><a href="Networking/Transition.php.html#465"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Transition::setAgentByName">setAgentByName</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="Networking/Corporation.php.html#272"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Corporation::run">run</abbr></a></td><td class="text-right">25</td></tr>
+       <tr><td><a href="Networking/Transition.php.html#88"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Transition::applyData">applyData</abbr></a></td><td class="text-right">23</td></tr>
+       <tr><td><a href="Console/Commands/IncorporateInstall.php.html#31"><abbr title="LaravelNeuro\LaravelNeuro\Console\Commands\IncorporateInstall::handle">handle</abbr></a></td><td class="text-right">21</td></tr>
+       <tr><td><a href="Plugins/WikipediaSearch.php.html#22"><abbr title="LaravelNeuro\LaravelNeuro\Plugins\WikipediaSearch::query">query</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Networking/Incorporate.php.html#123"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Incorporate::prebuild">prebuild</abbr></a></td><td class="text-right">16</td></tr>
+       <tr><td><a href="Console/Commands/MakeLLMpipeline.php.html#27"><abbr title="LaravelNeuro\LaravelNeuro\Console\Commands\MakeLLMpipeline::handle">handle</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Console/Commands/PackageSetup.php.html#13"><abbr title="LaravelNeuro\LaravelNeuro\Console\Commands\PackageSetup::handle">handle</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Networking/Transition.php.html#413"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Transition::setUnitByName">setUnitByName</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Networking/TuringStrip.php.html#21"><abbr title="LaravelNeuro\LaravelNeuro\Networking\TuringStrip::setNext">setNext</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Pipelines/Ollama/DeepSeekCoder.php.html#14"><abbr title="LaravelNeuro\LaravelNeuro\Pipelines\Ollama\DeepSeekCoder::__construct">__construct</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Pipelines/Ollama/Zephyr.php.html#14"><abbr title="LaravelNeuro\LaravelNeuro\Pipelines\Ollama\Zephyr::__construct">__construct</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Pipelines/OpenAI/ChatCompletion.php.html#102"><abbr title="LaravelNeuro\LaravelNeuro\Pipelines\OpenAI\ChatCompletion::streamText">streamText</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Pipelines/OpenAI/DallE.php.html#74"><abbr title="LaravelNeuro\LaravelNeuro\Pipelines\OpenAI\DallE::b64">b64</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Networking/Corporation.php.html#195"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Corporation::goTo">goTo</abbr></a></td><td class="text-right">9</td></tr>
+       <tr><td><a href="Pipelines/ElevenLabs/AudioTTS.php.html#56"><abbr title="LaravelNeuro\LaravelNeuro\Pipelines\ElevenLabs\AudioTTS::setPrompt">setPrompt</abbr></a></td><td class="text-right">9</td></tr>
+       <tr><td><a href="Console/Commands/CorporationRun.php.html#33"><abbr title="LaravelNeuro\LaravelNeuro\Console\Commands\CorporationRun::handle">handle</abbr></a></td><td class="text-right">8</td></tr>
+       <tr><td><a href="Networking/Incorporate.php.html#35"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Incorporate::validateProperty">validateProperty</abbr></a></td><td class="text-right">8</td></tr>
+       <tr><td><a href="Networking/Transition.php.html#355"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Transition::handle">handle</abbr></a></td><td class="text-right">7</td></tr>
+       <tr><td><a href="Networking/Transition.php.html#380"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Transition::setUnitById">setUnitById</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Pipelines/OpenAI/ChatCompletion.php.html#114"><abbr title="LaravelNeuro\LaravelNeuro\Pipelines\OpenAI\ChatCompletion::streamJson">streamJson</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Pipelines/OpenAI/ChatCompletion.php.html#125"><abbr title="LaravelNeuro\LaravelNeuro\Pipelines\OpenAI\ChatCompletion::streamArray">streamArray</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Prompts/BasicPrompt.php.html#27"><abbr title="LaravelNeuro\LaravelNeuro\Prompts\BasicPrompt::encoder">encoder</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Networking/Transition.php.html#436"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Transition::setAgentById">setAgentById</abbr></a></td><td class="text-right">5</td></tr>
+       <tr><td><a href="Console/Commands/CorporationMakeMigration.php.html#35"><abbr title="LaravelNeuro\LaravelNeuro\Console\Commands\CorporationMakeMigration::writeMigration">writeMigration</abbr></a></td><td class="text-right">4</td></tr>
+       <tr><td><a href="Pipelines/OpenAI/DallE.php.html#90"><abbr title="LaravelNeuro\LaravelNeuro\Pipelines\OpenAI\DallE::raw">raw</abbr></a></td><td class="text-right">4</td></tr>
+       <tr><td><a href="Pipelines/OpenAI/DallE.php.html#109"><abbr title="LaravelNeuro\LaravelNeuro\Pipelines\OpenAI\DallE::store">store</abbr></a></td><td class="text-right">4</td></tr>
+       <tr><td><a href="Pipelines/ElevenLabs/AudioTTS.php.html#18"><abbr title="LaravelNeuro\LaravelNeuro\Pipelines\ElevenLabs\AudioTTS::__construct">__construct</abbr></a></td><td class="text-right">4</td></tr>
+       <tr><td><a href="Pipelines/OpenAI/AudioTTS.php.html#15"><abbr title="LaravelNeuro\LaravelNeuro\Pipelines\OpenAI\AudioTTS::__construct">__construct</abbr></a></td><td class="text-right">4</td></tr>
+       <tr><td><a href="Pipelines/OpenAI/ChatCompletion.php.html#14"><abbr title="LaravelNeuro\LaravelNeuro\Pipelines\OpenAI\ChatCompletion::__construct">__construct</abbr></a></td><td class="text-right">4</td></tr>
+       <tr><td><a href="Pipelines/OpenAI/DallE.php.html#16"><abbr title="LaravelNeuro\LaravelNeuro\Pipelines\OpenAI\DallE::__construct">__construct</abbr></a></td><td class="text-right">4</td></tr>
+       <tr><td><a href="Pipelines/OpenAI/AudioTTS.php.html#43"><abbr title="LaravelNeuro\LaravelNeuro\Pipelines\OpenAI\AudioTTS::setPrompt">setPrompt</abbr></a></td><td class="text-right">3</td></tr>
+       <tr><td><a href="Console/Commands/IncorporateSetup.php.html#31"><abbr title="LaravelNeuro\LaravelNeuro\Console\Commands\IncorporateSetup::handle">handle</abbr></a></td><td class="text-right">3</td></tr>
+       <tr><td><a href="Networking/Transition.php.html#37"><abbr title="LaravelNeuro\LaravelNeuro\Networking\Transition::__construct">__construct</abbr></a></td><td class="text-right">3</td></tr>
+       <tr><td><a href="Pipelines/ElevenLabs/AudioTTS.php.html#105"><abbr title="LaravelNeuro\LaravelNeuro\Pipelines\ElevenLabs\AudioTTS::store">store</abbr></a></td><td class="text-right">2</td></tr>
+       <tr><td><a href="Pipelines/OpenAI/AudioTTS.php.html#68"><abbr title="LaravelNeuro\LaravelNeuro\Pipelines\OpenAI\AudioTTS::store">store</abbr></a></td><td class="text-right">2</td></tr>
+       <tr><td><a href="Pipelines/OpenAI/DallE.php.html#44"><abbr title="LaravelNeuro\LaravelNeuro\Pipelines\OpenAI\DallE::setPrompt">setPrompt</abbr></a></td><td class="text-right">2</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <footer>
+    <hr/>
+    <p>
+     <small>Generated by <a href="https://github.com/sebastianbergmann/php-code-coverage" target="_top">php-code-coverage 10.1.11</a> using <a href="https://www.php.net/" target="_top">PHP 8.2.13</a> and <a href="https://phpunit.de/">PHPUnit 10.5.5</a> at Mon Jan 29 11:19:35 UTC 2024.</small>
+    </p>
+   </footer>
+  </div>
+  <script src="_js/jquery.min.js?v=10.1.11" type="text/javascript"></script>
+  <script src="_js/d3.min.js?v=10.1.11" type="text/javascript"></script>
+  <script src="_js/nv.d3.min.js?v=10.1.11" type="text/javascript"></script>
+  <script type="text/javascript">
+$(document).ready(function() {
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#classCoverageDistribution svg')
+      .datum(getCoverageDistributionData([9,0,0,0,0,1,5,2,5,6,1,7], "Class Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#methodCoverageDistribution svg')
+      .datum(getCoverageDistributionData([60,0,0,0,0,1,1,5,4,15,3,107], "Method Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getCoverageDistributionData(data, label) {
+    var labels = [
+      '0%',
+      '0-10%',
+      '10-20%',
+      '20-30%',
+      '30-40%',
+      '40-50%',
+      '50-60%',
+      '60-70%',
+      '70-80%',
+      '80-90%',
+      '90-100%',
+      '100%'
+    ];
+    var values = [];
+    $.each(labels, function(key) {
+      values.push({x: labels[key], y: data[key]});
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Cyclomatic Complexity');
+
+    d3.select('#classComplexity svg')
+      .datum(getComplexityData([[100,21,"<a href=\"ApiAdapter.php.html#9\">LaravelNeuro\\LaravelNeuro\\ApiAdapter<\/a>"],[78.94736842105263,5,"<a href=\"Console\/Commands\/CorporationMakeMigration.php.html#10\">LaravelNeuro\\LaravelNeuro\\Console\\Commands\\CorporationMakeMigration<\/a>"],[57.14285714285714,6,"<a href=\"Console\/Commands\/CorporationRun.php.html#9\">LaravelNeuro\\LaravelNeuro\\Console\\Commands\\CorporationRun<\/a>"],[40.625,8,"<a href=\"Console\/Commands\/IncorporateInstall.php.html#10\">LaravelNeuro\\LaravelNeuro\\Console\\Commands\\IncorporateInstall<\/a>"],[83.33333333333334,3,"<a href=\"Console\/Commands\/IncorporateSetup.php.html#9\">LaravelNeuro\\LaravelNeuro\\Console\\Commands\\IncorporateSetup<\/a>"],[0,4,"<a href=\"Console\/Commands\/MakeLLMpipeline.php.html#7\">LaravelNeuro\\LaravelNeuro\\Console\\Commands\\MakeLLMpipeline<\/a>"],[0,5,"<a href=\"Console\/Commands\/PackageSetup.php.html#7\">LaravelNeuro\\LaravelNeuro\\Console\\Commands\\PackageSetup<\/a>"],[96.29629629629629,16,"<a href=\"Networking\/Agent.php.html#11\">LaravelNeuro\\LaravelNeuro\\Networking\\Agent<\/a>"],[73.42995169082126,48,"<a href=\"Networking\/Corporation.php.html#21\">LaravelNeuro\\LaravelNeuro\\Networking\\Corporation<\/a>"],[88.88888888888889,3,"<a href=\"Networking\/Database\/Models\/NetworkAgent.php.html#13\">LaravelNeuro\\LaravelNeuro\\Networking\\Database\\Models\\NetworkAgent<\/a>"],[50,2,"<a href=\"Networking\/Database\/Models\/NetworkCorporation.php.html#10\">LaravelNeuro\\LaravelNeuro\\Networking\\Database\\Models\\NetworkCorporation<\/a>"],[0,2,"<a href=\"Networking\/Database\/Models\/NetworkDataSet.php.html#10\">LaravelNeuro\\LaravelNeuro\\Networking\\Database\\Models\\NetworkDataSet<\/a>"],[50,2,"<a href=\"Networking\/Database\/Models\/NetworkDataSetTemplate.php.html#10\">LaravelNeuro\\LaravelNeuro\\Networking\\Database\\Models\\NetworkDataSetTemplate<\/a>"],[57.14285714285714,4,"<a href=\"Networking\/Database\/Models\/NetworkHistory.php.html#15\">LaravelNeuro\\LaravelNeuro\\Networking\\Database\\Models\\NetworkHistory<\/a>"],[0,4,"<a href=\"Networking\/Database\/Models\/NetworkProject.php.html#13\">LaravelNeuro\\LaravelNeuro\\Networking\\Database\\Models\\NetworkProject<\/a>"],[80,2,"<a href=\"Networking\/Database\/Models\/NetworkState.php.html#12\">LaravelNeuro\\LaravelNeuro\\Networking\\Database\\Models\\NetworkState<\/a>"],[0,5,"<a href=\"Networking\/Database\/Models\/NetworkUnitModels.php.html#17\">LaravelNeuro\\LaravelNeuro\\Networking\\Database\\Models\\NetworkUnit<\/a>"],[83.33333333333334,92,"<a href=\"Networking\/Incorporate.php.html#16\">LaravelNeuro\\LaravelNeuro\\Networking\\Incorporate<\/a>"],[64.84018264840182,73,"<a href=\"Networking\/Transition.php.html#27\">LaravelNeuro\\LaravelNeuro\\Networking\\Transition<\/a>"],[76.92307692307693,10,"<a href=\"Networking\/TuringStrip.php.html#7\">LaravelNeuro\\LaravelNeuro\\Networking\\TuringStrip<\/a>"],[89.47368421052632,15,"<a href=\"Networking\/Unit.php.html#10\">LaravelNeuro\\LaravelNeuro\\Networking\\Unit<\/a>"],[100,12,"<a href=\"Pipeline.php.html#7\">LaravelNeuro\\LaravelNeuro\\Pipeline<\/a>"],[77.08333333333334,16,"<a href=\"Pipelines\/ElevenLabs\/AudioTTS.php.html#10\">LaravelNeuro\\LaravelNeuro\\Pipelines\\ElevenLabs\\AudioTTS<\/a>"],[0,14,"<a href=\"Pipelines\/Ollama\/DeepSeekCoder.php.html#7\">LaravelNeuro\\LaravelNeuro\\Pipelines\\Ollama\\DeepSeekCoder<\/a>"],[0,15,"<a href=\"Pipelines\/Ollama\/Zephyr.php.html#7\">LaravelNeuro\\LaravelNeuro\\Pipelines\\Ollama\\Zephyr<\/a>"],[80,11,"<a href=\"Pipelines\/OpenAI\/AudioTTS.php.html#8\">LaravelNeuro\\LaravelNeuro\\Pipelines\\OpenAI\\AudioTTS<\/a>"],[67.24137931034483,22,"<a href=\"Pipelines\/OpenAI\/ChatCompletion.php.html#8\">LaravelNeuro\\LaravelNeuro\\Pipelines\\OpenAI\\ChatCompletion<\/a>"],[70.37037037037037,19,"<a href=\"Pipelines\/OpenAI\/DallE.php.html#9\">LaravelNeuro\\LaravelNeuro\\Pipelines\\OpenAI\\DallE<\/a>"],[100,0,"<a href=\"Plugins\/Plugin.php.html#4\">LaravelNeuro\\LaravelNeuro\\Plugins\\Plugin<\/a>"],[0,13,"<a href=\"Plugins\/Resources\/SpiderWikipediaSearch.php.html#11\">LaravelNeuro\\LaravelNeuro\\Plugins\\Resources\\SpiderWikipediaSearch<\/a>"],[0,5,"<a href=\"Plugins\/WikipediaSearch.php.html#14\">LaravelNeuro\\LaravelNeuro\\Plugins\\WikipediaSearch<\/a>"],[50,6,"<a href=\"Prompts\/BasicPrompt.php.html#6\">LaravelNeuro\\LaravelNeuro\\Prompts\\BasicPrompt<\/a>"],[100,16,"<a href=\"Prompts\/IVFSprompt.php.html#6\">LaravelNeuro\\LaravelNeuro\\Prompts\\IVFSprompt<\/a>"],[100,15,"<a href=\"Prompts\/PNSQFprompt.php.html#8\">LaravelNeuro\\LaravelNeuro\\Prompts\\PNSQFprompt<\/a>"],[100,13,"<a href=\"Prompts\/SUAprompt.php.html#6\">LaravelNeuro\\LaravelNeuro\\Prompts\\SUAprompt<\/a>"],[100,5,"<a href=\"Providers\/LaravelNeuroServiceProvider.php.html#10\">LaravelNeuro\\LaravelNeuro\\Providers\\LaravelNeuroServiceProvider<\/a>"]], 'Class Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Method Complexity');
+
+    d3.select('#methodComplexity svg')
+      .datum(getComplexityData([[100,1,"<a href=\"ApiAdapter.php.html#21\">LaravelNeuro\\LaravelNeuro\\ApiAdapter::debug<\/a>"],[100,1,"<a href=\"ApiAdapter.php.html#27\">LaravelNeuro\\LaravelNeuro\\ApiAdapter::setHeaderEntry<\/a>"],[100,1,"<a href=\"ApiAdapter.php.html#32\">LaravelNeuro\\LaravelNeuro\\ApiAdapter::unsetHeaderEntry<\/a>"],[100,1,"<a href=\"ApiAdapter.php.html#37\">LaravelNeuro\\LaravelNeuro\\ApiAdapter::getHeaders<\/a>"],[100,1,"<a href=\"ApiAdapter.php.html#42\">LaravelNeuro\\LaravelNeuro\\ApiAdapter::setApi<\/a>"],[100,1,"<a href=\"ApiAdapter.php.html#49\">LaravelNeuro\\LaravelNeuro\\ApiAdapter::getApi<\/a>"],[100,1,"<a href=\"ApiAdapter.php.html#54\">LaravelNeuro\\LaravelNeuro\\ApiAdapter::setClient<\/a>"],[100,1,"<a href=\"ApiAdapter.php.html#60\">LaravelNeuro\\LaravelNeuro\\ApiAdapter::getClient<\/a>"],[100,5,"<a href=\"ApiAdapter.php.html#65\">LaravelNeuro\\LaravelNeuro\\ApiAdapter::connect<\/a>"],[100,1,"<a href=\"ApiAdapter.php.html#95\">LaravelNeuro\\LaravelNeuro\\ApiAdapter::fileMake<\/a>"],[100,1,"<a href=\"ApiAdapter.php.html#135\">LaravelNeuro\\LaravelNeuro\\ApiAdapter::output<\/a>"],[100,6,"<a href=\"ApiAdapter.php.html#143\">LaravelNeuro\\LaravelNeuro\\ApiAdapter::stream<\/a>"],[100,1,"<a href=\"Console\/Commands\/CorporationMakeMigration.php.html#30\">LaravelNeuro\\LaravelNeuro\\Console\\Commands\\CorporationMakeMigration::__construct<\/a>"],[77.77777777777779,4,"<a href=\"Console\/Commands\/CorporationMakeMigration.php.html#35\">LaravelNeuro\\LaravelNeuro\\Console\\Commands\\CorporationMakeMigration::writeMigration<\/a>"],[57.14285714285714,6,"<a href=\"Console\/Commands\/CorporationRun.php.html#33\">LaravelNeuro\\LaravelNeuro\\Console\\Commands\\CorporationRun::handle<\/a>"],[40.625,8,"<a href=\"Console\/Commands\/IncorporateInstall.php.html#31\">LaravelNeuro\\LaravelNeuro\\Console\\Commands\\IncorporateInstall::handle<\/a>"],[83.33333333333334,3,"<a href=\"Console\/Commands\/IncorporateSetup.php.html#31\">LaravelNeuro\\LaravelNeuro\\Console\\Commands\\IncorporateSetup::handle<\/a>"],[0,3,"<a href=\"Console\/Commands\/MakeLLMpipeline.php.html#27\">LaravelNeuro\\LaravelNeuro\\Console\\Commands\\MakeLLMpipeline::handle<\/a>"],[0,1,"<a href=\"Console\/Commands\/MakeLLMpipeline.php.html#54\">LaravelNeuro\\LaravelNeuro\\Console\\Commands\\MakeLLMpipeline::getStub<\/a>"],[0,3,"<a href=\"Console\/Commands\/PackageSetup.php.html#13\">LaravelNeuro\\LaravelNeuro\\Console\\Commands\\PackageSetup::handle<\/a>"],[0,1,"<a href=\"Console\/Commands\/PackageSetup.php.html#26\">LaravelNeuro\\LaravelNeuro\\Console\\Commands\\PackageSetup::runMigrations<\/a>"],[0,1,"<a href=\"Console\/Commands\/PackageSetup.php.html#31\">LaravelNeuro\\LaravelNeuro\\Console\\Commands\\PackageSetup::rollbackMigrations<\/a>"],[100,3,"<a href=\"Networking\/Agent.php.html#24\">LaravelNeuro\\LaravelNeuro\\Networking\\Agent::init<\/a>"],[100,1,"<a href=\"Networking\/Agent.php.html#51\">LaravelNeuro\\LaravelNeuro\\Networking\\Agent::setRole<\/a>"],[100,1,"<a href=\"Networking\/Agent.php.html#59\">LaravelNeuro\\LaravelNeuro\\Networking\\Agent::setName<\/a>"],[100,1,"<a href=\"Networking\/Agent.php.html#65\">LaravelNeuro\\LaravelNeuro\\Networking\\Agent::setApiType<\/a>"],[100,1,"<a href=\"Networking\/Agent.php.html#71\">LaravelNeuro\\LaravelNeuro\\Networking\\Agent::setApiProvider<\/a>"],[100,1,"<a href=\"Networking\/Agent.php.html#77\">LaravelNeuro\\LaravelNeuro\\Networking\\Agent::setPipelineClass<\/a>"],[100,1,"<a href=\"Networking\/Agent.php.html#83\">LaravelNeuro\\LaravelNeuro\\Networking\\Agent::setPromptClass<\/a>"],[100,1,"<a href=\"Networking\/Agent.php.html#89\">LaravelNeuro\\LaravelNeuro\\Networking\\Agent::setOutputModel<\/a>"],[100,1,"<a href=\"Networking\/Agent.php.html#95\">LaravelNeuro\\LaravelNeuro\\Networking\\Agent::validateOutput<\/a>"],[0,1,"<a href=\"Networking\/Agent.php.html#101\">LaravelNeuro\\LaravelNeuro\\Networking\\Agent::getName<\/a>"],[0,1,"<a href=\"Networking\/Agent.php.html#106\">LaravelNeuro\\LaravelNeuro\\Networking\\Agent::getRole<\/a>"],[100,3,"<a href=\"Networking\/Agent.php.html#111\">LaravelNeuro\\LaravelNeuro\\Networking\\Agent::install<\/a>"],[91.93548387096774,9,"<a href=\"Networking\/Corporation.php.html#39\">LaravelNeuro\\LaravelNeuro\\Networking\\Corporation::__construct<\/a>"],[100,3,"<a href=\"Networking\/Corporation.php.html#139\">LaravelNeuro\\LaravelNeuro\\Networking\\Corporation::debug<\/a>"],[100,4,"<a href=\"Networking\/Corporation.php.html#145\">LaravelNeuro\\LaravelNeuro\\Networking\\Corporation::scrubDataSet<\/a>"],[0,1,"<a href=\"Networking\/Corporation.php.html#156\">LaravelNeuro\\LaravelNeuro\\Networking\\Corporation::initial<\/a>"],[0,1,"<a href=\"Networking\/Corporation.php.html#169\">LaravelNeuro\\LaravelNeuro\\Networking\\Corporation::continue<\/a>"],[0,1,"<a href=\"Networking\/Corporation.php.html#176\">LaravelNeuro\\LaravelNeuro\\Networking\\Corporation::final<\/a>"],[100,1,"<a href=\"Networking\/Corporation.php.html#183\">LaravelNeuro\\LaravelNeuro\\Networking\\Corporation::getHeadPosition<\/a>"],[100,3,"<a href=\"Networking\/Corporation.php.html#188\">LaravelNeuro\\LaravelNeuro\\Networking\\Corporation::setHeadPosition<\/a>"],[61.36363636363637,7,"<a href=\"Networking\/Corporation.php.html#195\">LaravelNeuro\\LaravelNeuro\\Networking\\Corporation::goTo<\/a>"],[72.15189873417721,18,"<a href=\"Networking\/Corporation.php.html#272\">LaravelNeuro\\LaravelNeuro\\Networking\\Corporation::run<\/a>"],[0,1,"<a href=\"Networking\/Database\/Models\/NetworkAgent.php.html#21\">LaravelNeuro\\LaravelNeuro\\Networking\\Database\\Models\\NetworkAgent::unit<\/a>"],[100,1,"<a href=\"Networking\/Database\/Models\/NetworkAgent.php.html#26\">LaravelNeuro\\LaravelNeuro\\Networking\\Database\\Models\\NetworkAgent::apiType<\/a>"],[100,1,"<a href=\"Networking\/Database\/Models\/NetworkAgent.php.html#34\">LaravelNeuro\\LaravelNeuro\\Networking\\Database\\Models\\NetworkAgent::apiProvider<\/a>"],[0,1,"<a href=\"Networking\/Database\/Models\/NetworkCorporation.php.html#14\">LaravelNeuro\\LaravelNeuro\\Networking\\Database\\Models\\NetworkCorporation::projects<\/a>"],[100,1,"<a href=\"Networking\/Database\/Models\/NetworkCorporation.php.html#19\">LaravelNeuro\\LaravelNeuro\\Networking\\Database\\Models\\NetworkCorporation::units<\/a>"],[0,1,"<a href=\"Networking\/Database\/Models\/NetworkDataSet.php.html#15\">LaravelNeuro\\LaravelNeuro\\Networking\\Database\\Models\\NetworkDataSet::project<\/a>"],[0,1,"<a href=\"Networking\/Database\/Models\/NetworkDataSet.php.html#20\">LaravelNeuro\\LaravelNeuro\\Networking\\Database\\Models\\NetworkDataSet::template<\/a>"],[0,1,"<a href=\"Networking\/Database\/Models\/NetworkDataSetTemplate.php.html#15\">LaravelNeuro\\LaravelNeuro\\Networking\\Database\\Models\\NetworkDataSetTemplate::unit<\/a>"],[100,1,"<a href=\"Networking\/Database\/Models\/NetworkDataSetTemplate.php.html#20\">LaravelNeuro\\LaravelNeuro\\Networking\\Database\\Models\\NetworkDataSetTemplate::dataSets<\/a>"],[0,1,"<a href=\"Networking\/Database\/Models\/NetworkHistory.php.html#20\">LaravelNeuro\\LaravelNeuro\\Networking\\Database\\Models\\NetworkHistory::project<\/a>"],[0,1,"<a href=\"Networking\/Database\/Models\/NetworkHistory.php.html#25\">LaravelNeuro\\LaravelNeuro\\Networking\\Database\\Models\\NetworkHistory::unit<\/a>"],[0,1,"<a href=\"Networking\/Database\/Models\/NetworkHistory.php.html#30\">LaravelNeuro\\LaravelNeuro\\Networking\\Database\\Models\\NetworkHistory::agent<\/a>"],[100,1,"<a href=\"Networking\/Database\/Models\/NetworkHistory.php.html#35\">LaravelNeuro\\LaravelNeuro\\Networking\\Database\\Models\\NetworkHistory::entryType<\/a>"],[0,1,"<a href=\"Networking\/Database\/Models\/NetworkProject.php.html#17\">LaravelNeuro\\LaravelNeuro\\Networking\\Database\\Models\\NetworkProject::corporation<\/a>"],[0,1,"<a href=\"Networking\/Database\/Models\/NetworkProject.php.html#22\">LaravelNeuro\\LaravelNeuro\\Networking\\Database\\Models\\NetworkProject::states<\/a>"],[0,1,"<a href=\"Networking\/Database\/Models\/NetworkProject.php.html#27\">LaravelNeuro\\LaravelNeuro\\Networking\\Database\\Models\\NetworkProject::dataSets<\/a>"],[0,1,"<a href=\"Networking\/Database\/Models\/NetworkProject.php.html#32\">LaravelNeuro\\LaravelNeuro\\Networking\\Database\\Models\\NetworkProject::history<\/a>"],[0,1,"<a href=\"Networking\/Database\/Models\/NetworkState.php.html#17\">LaravelNeuro\\LaravelNeuro\\Networking\\Database\\Models\\NetworkState::project<\/a>"],[100,1,"<a href=\"Networking\/Database\/Models\/NetworkState.php.html#22\">LaravelNeuro\\LaravelNeuro\\Networking\\Database\\Models\\NetworkState::type<\/a>"],[0,1,"<a href=\"Networking\/Database\/Models\/NetworkUnitModels.php.html#21\">LaravelNeuro\\LaravelNeuro\\Networking\\Database\\Models\\NetworkUnit::corporation<\/a>"],[0,1,"<a href=\"Networking\/Database\/Models\/NetworkUnitModels.php.html#26\">LaravelNeuro\\LaravelNeuro\\Networking\\Database\\Models\\NetworkUnit::agents<\/a>"],[0,1,"<a href=\"Networking\/Database\/Models\/NetworkUnitModels.php.html#31\">LaravelNeuro\\LaravelNeuro\\Networking\\Database\\Models\\NetworkUnit::dataSets<\/a>"],[0,1,"<a href=\"Networking\/Database\/Models\/NetworkUnitModels.php.html#36\">LaravelNeuro\\LaravelNeuro\\Networking\\Database\\Models\\NetworkUnit::dataSetTemplates<\/a>"],[0,1,"<a href=\"Networking\/Database\/Models\/NetworkUnitModels.php.html#41\">LaravelNeuro\\LaravelNeuro\\Networking\\Database\\Models\\NetworkUnit::defaultReceiverType<\/a>"],[100,1,"<a href=\"Networking\/Incorporate.php.html#27\">LaravelNeuro\\LaravelNeuro\\Networking\\Incorporate::__construct<\/a>"],[80,8,"<a href=\"Networking\/Incorporate.php.html#35\">LaravelNeuro\\LaravelNeuro\\Networking\\Incorporate::validateProperty<\/a>"],[100,1,"<a href=\"Networking\/Incorporate.php.html#61\">LaravelNeuro\\LaravelNeuro\\Networking\\Incorporate::setName<\/a>"],[100,1,"<a href=\"Networking\/Incorporate.php.html#67\">LaravelNeuro\\LaravelNeuro\\Networking\\Incorporate::setNameSpace<\/a>"],[100,1,"<a href=\"Networking\/Incorporate.php.html#73\">LaravelNeuro\\LaravelNeuro\\Networking\\Incorporate::setDescription<\/a>"],[100,1,"<a href=\"Networking\/Incorporate.php.html#79\">LaravelNeuro\\LaravelNeuro\\Networking\\Incorporate::setCharta<\/a>"],[0,1,"<a href=\"Networking\/Incorporate.php.html#85\">LaravelNeuro\\LaravelNeuro\\Networking\\Incorporate::getName<\/a>"],[100,1,"<a href=\"Networking\/Incorporate.php.html#90\">LaravelNeuro\\LaravelNeuro\\Networking\\Incorporate::getNameSpace<\/a>"],[0,1,"<a href=\"Networking\/Incorporate.php.html#95\">LaravelNeuro\\LaravelNeuro\\Networking\\Incorporate::getDescription<\/a>"],[0,1,"<a href=\"Networking\/Incorporate.php.html#100\">LaravelNeuro\\LaravelNeuro\\Networking\\Incorporate::getCharta<\/a>"],[100,1,"<a href=\"Networking\/Incorporate.php.html#105\">LaravelNeuro\\LaravelNeuro\\Networking\\Incorporate::pushUnit<\/a>"],[100,1,"<a href=\"Networking\/Incorporate.php.html#111\">LaravelNeuro\\LaravelNeuro\\Networking\\Incorporate::pushModel<\/a>"],[100,1,"<a href=\"Networking\/Incorporate.php.html#117\">LaravelNeuro\\LaravelNeuro\\Networking\\Incorporate::pushTransition<\/a>"],[60,10,"<a href=\"Networking\/Incorporate.php.html#123\">LaravelNeuro\\LaravelNeuro\\Networking\\Incorporate::prebuild<\/a>"],[96,19,"<a href=\"Networking\/Incorporate.php.html#182\">LaravelNeuro\\LaravelNeuro\\Networking\\Incorporate::installFromJSON<\/a>"],[83.50515463917526,42,"<a href=\"Networking\/Incorporate.php.html#269\">LaravelNeuro\\LaravelNeuro\\Networking\\Incorporate::install<\/a>"],[100,1,"<a href=\"Networking\/Incorporate.php.html#598\">LaravelNeuro\\LaravelNeuro\\Networking\\Incorporate::getStub<\/a>"],[83.33333333333334,3,"<a href=\"Networking\/Transition.php.html#37\">LaravelNeuro\\LaravelNeuro\\Networking\\Transition::__construct<\/a>"],[0,1,"<a href=\"Networking\/Transition.php.html#63\">LaravelNeuro\\LaravelNeuro\\Networking\\Transition::preProcessPrompt<\/a>"],[0,1,"<a href=\"Networking\/Transition.php.html#68\">LaravelNeuro\\LaravelNeuro\\Networking\\Transition::preProcessInput<\/a>"],[0,1,"<a href=\"Networking\/Transition.php.html#73\">LaravelNeuro\\LaravelNeuro\\Networking\\Transition::postProcessPrompt<\/a>"],[100,1,"<a href=\"Networking\/Transition.php.html#78\">LaravelNeuro\\LaravelNeuro\\Networking\\Transition::postProcessOutput<\/a>"],[0,1,"<a href=\"Networking\/Transition.php.html#83\">LaravelNeuro\\LaravelNeuro\\Networking\\Transition::modifyPipeline<\/a>"],[65.85365853658537,15,"<a href=\"Networking\/Transition.php.html#88\">LaravelNeuro\\LaravelNeuro\\Networking\\Transition::applyData<\/a>"],[71.96261682242991,25,"<a href=\"Networking\/Transition.php.html#162\">LaravelNeuro\\LaravelNeuro\\Networking\\Transition::callAgent<\/a>"],[63.63636363636363,6,"<a href=\"Networking\/Transition.php.html#355\">LaravelNeuro\\LaravelNeuro\\Networking\\Transition::handle<\/a>"],[84.61538461538461,6,"<a href=\"Networking\/Transition.php.html#380\">LaravelNeuro\\LaravelNeuro\\Networking\\Transition::setUnitById<\/a>"],[0,3,"<a href=\"Networking\/Transition.php.html#413\">LaravelNeuro\\LaravelNeuro\\Networking\\Transition::setUnitByName<\/a>"],[81.81818181818183,5,"<a href=\"Networking\/Transition.php.html#436\">LaravelNeuro\\LaravelNeuro\\Networking\\Transition::setAgentById<\/a>"],[0,5,"<a href=\"Networking\/Transition.php.html#465\">LaravelNeuro\\LaravelNeuro\\Networking\\Transition::setAgentByName<\/a>"],[100,1,"<a href=\"Networking\/TuringStrip.php.html#15\">LaravelNeuro\\LaravelNeuro\\Networking\\TuringStrip::setMode<\/a>"],[0,3,"<a href=\"Networking\/TuringStrip.php.html#21\">LaravelNeuro\\LaravelNeuro\\Networking\\TuringStrip::setNext<\/a>"],[100,1,"<a href=\"Networking\/TuringStrip.php.html#28\">LaravelNeuro\\LaravelNeuro\\Networking\\TuringStrip::setData<\/a>"],[100,1,"<a href=\"Networking\/TuringStrip.php.html#34\">LaravelNeuro\\LaravelNeuro\\Networking\\TuringStrip::setPosition<\/a>"],[100,1,"<a href=\"Networking\/TuringStrip.php.html#41\">LaravelNeuro\\LaravelNeuro\\Networking\\TuringStrip::getPosition<\/a>"],[100,1,"<a href=\"Networking\/TuringStrip.php.html#46\">LaravelNeuro\\LaravelNeuro\\Networking\\TuringStrip::getMode<\/a>"],[100,1,"<a href=\"Networking\/TuringStrip.php.html#51\">LaravelNeuro\\LaravelNeuro\\Networking\\TuringStrip::getNext<\/a>"],[100,1,"<a href=\"Networking\/TuringStrip.php.html#56\">LaravelNeuro\\LaravelNeuro\\Networking\\TuringStrip::getData<\/a>"],[100,2,"<a href=\"Networking\/Unit.php.html#19\">LaravelNeuro\\LaravelNeuro\\Networking\\Unit::__construct<\/a>"],[100,1,"<a href=\"Networking\/Unit.php.html#32\">LaravelNeuro\\LaravelNeuro\\Networking\\Unit::setName<\/a>"],[100,1,"<a href=\"Networking\/Unit.php.html#38\">LaravelNeuro\\LaravelNeuro\\Networking\\Unit::setDescription<\/a>"],[100,2,"<a href=\"Networking\/Unit.php.html#44\">LaravelNeuro\\LaravelNeuro\\Networking\\Unit::configureDataSet<\/a>"],[100,1,"<a href=\"Networking\/Unit.php.html#52\">LaravelNeuro\\LaravelNeuro\\Networking\\Unit::pushAgent<\/a>"],[100,1,"<a href=\"Networking\/Unit.php.html#58\">LaravelNeuro\\LaravelNeuro\\Networking\\Unit::setDefaultReceiver<\/a>"],[0,1,"<a href=\"Networking\/Unit.php.html#64\">LaravelNeuro\\LaravelNeuro\\Networking\\Unit::getName<\/a>"],[0,1,"<a href=\"Networking\/Unit.php.html#69\">LaravelNeuro\\LaravelNeuro\\Networking\\Unit::getDescription<\/a>"],[0,1,"<a href=\"Networking\/Unit.php.html#74\">LaravelNeuro\\LaravelNeuro\\Networking\\Unit::getDataSet<\/a>"],[0,1,"<a href=\"Networking\/Unit.php.html#79\">LaravelNeuro\\LaravelNeuro\\Networking\\Unit::getDefaultReceiver<\/a>"],[100,3,"<a href=\"Networking\/Unit.php.html#84\">LaravelNeuro\\LaravelNeuro\\Networking\\Unit::install<\/a>"],[100,1,"<a href=\"Pipeline.php.html#14\">LaravelNeuro\\LaravelNeuro\\Pipeline::setModel<\/a>"],[100,6,"<a href=\"Pipeline.php.html#22\">LaravelNeuro\\LaravelNeuro\\Pipeline::setPrompt<\/a>"],[100,1,"<a href=\"Pipeline.php.html#57\">LaravelNeuro\\LaravelNeuro\\Pipeline::getModel<\/a>"],[100,1,"<a href=\"Pipeline.php.html#62\">LaravelNeuro\\LaravelNeuro\\Pipeline::getPrompt<\/a>"],[100,1,"<a href=\"Pipeline.php.html#67\">LaravelNeuro\\LaravelNeuro\\Pipeline::output<\/a>"],[100,2,"<a href=\"Pipeline.php.html#73\">LaravelNeuro\\LaravelNeuro\\Pipeline::stream<\/a>"],[81.25,4,"<a href=\"Pipelines\/ElevenLabs\/AudioTTS.php.html#18\">LaravelNeuro\\LaravelNeuro\\Pipelines\\ElevenLabs\\AudioTTS::__construct<\/a>"],[100,1,"<a href=\"Pipelines\/ElevenLabs\/AudioTTS.php.html#48\">LaravelNeuro\\LaravelNeuro\\Pipelines\\ElevenLabs\\AudioTTS::setModel<\/a>"],[65,7,"<a href=\"Pipelines\/ElevenLabs\/AudioTTS.php.html#56\">LaravelNeuro\\LaravelNeuro\\Pipelines\\ElevenLabs\\AudioTTS::setPrompt<\/a>"],[100,1,"<a href=\"Pipelines\/ElevenLabs\/AudioTTS.php.html#93\">LaravelNeuro\\LaravelNeuro\\Pipelines\\ElevenLabs\\AudioTTS::output<\/a>"],[100,1,"<a href=\"Pipelines\/ElevenLabs\/AudioTTS.php.html#98\">LaravelNeuro\\LaravelNeuro\\Pipelines\\ElevenLabs\\AudioTTS::raw<\/a>"],[83.33333333333334,2,"<a href=\"Pipelines\/ElevenLabs\/AudioTTS.php.html#105\">LaravelNeuro\\LaravelNeuro\\Pipelines\\ElevenLabs\\AudioTTS::store<\/a>"],[0,3,"<a href=\"Pipelines\/Ollama\/DeepSeekCoder.php.html#14\">LaravelNeuro\\LaravelNeuro\\Pipelines\\Ollama\\DeepSeekCoder::__construct<\/a>"],[0,1,"<a href=\"Pipelines\/Ollama\/DeepSeekCoder.php.html#29\">LaravelNeuro\\LaravelNeuro\\Pipelines\\Ollama\\DeepSeekCoder::stream<\/a>"],[0,10,"<a href=\"Pipelines\/Ollama\/DeepSeekCoder.php.html#37\">LaravelNeuro\\LaravelNeuro\\Pipelines\\Ollama\\DeepSeekCoder::setPrompt<\/a>"],[0,3,"<a href=\"Pipelines\/Ollama\/Zephyr.php.html#14\">LaravelNeuro\\LaravelNeuro\\Pipelines\\Ollama\\Zephyr::__construct<\/a>"],[0,1,"<a href=\"Pipelines\/Ollama\/Zephyr.php.html#29\">LaravelNeuro\\LaravelNeuro\\Pipelines\\Ollama\\Zephyr::stream<\/a>"],[0,11,"<a href=\"Pipelines\/Ollama\/Zephyr.php.html#37\">LaravelNeuro\\LaravelNeuro\\Pipelines\\Ollama\\Zephyr::setPrompt<\/a>"],[87.5,4,"<a href=\"Pipelines\/OpenAI\/AudioTTS.php.html#15\">LaravelNeuro\\LaravelNeuro\\Pipelines\\OpenAI\\AudioTTS::__construct<\/a>"],[80,3,"<a href=\"Pipelines\/OpenAI\/AudioTTS.php.html#43\">LaravelNeuro\\LaravelNeuro\\Pipelines\\OpenAI\\AudioTTS::setPrompt<\/a>"],[100,1,"<a href=\"Pipelines\/OpenAI\/AudioTTS.php.html#63\">LaravelNeuro\\LaravelNeuro\\Pipelines\\OpenAI\\AudioTTS::output<\/a>"],[83.33333333333334,2,"<a href=\"Pipelines\/OpenAI\/AudioTTS.php.html#68\">LaravelNeuro\\LaravelNeuro\\Pipelines\\OpenAI\\AudioTTS::store<\/a>"],[0,1,"<a href=\"Pipelines\/OpenAI\/AudioTTS.php.html#79\">LaravelNeuro\\LaravelNeuro\\Pipelines\\OpenAI\\AudioTTS::raw<\/a>"],[87.5,4,"<a href=\"Pipelines\/OpenAI\/ChatCompletion.php.html#14\">LaravelNeuro\\LaravelNeuro\\Pipelines\\OpenAI\\ChatCompletion::__construct<\/a>"],[94.73684210526315,7,"<a href=\"Pipelines\/OpenAI\/ChatCompletion.php.html#42\">LaravelNeuro\\LaravelNeuro\\Pipelines\\OpenAI\\ChatCompletion::setPrompt<\/a>"],[100,1,"<a href=\"Pipelines\/OpenAI\/ChatCompletion.php.html#79\">LaravelNeuro\\LaravelNeuro\\Pipelines\\OpenAI\\ChatCompletion::output<\/a>"],[100,1,"<a href=\"Pipelines\/OpenAI\/ChatCompletion.php.html#84\">LaravelNeuro\\LaravelNeuro\\Pipelines\\OpenAI\\ChatCompletion::text<\/a>"],[100,1,"<a href=\"Pipelines\/OpenAI\/ChatCompletion.php.html#90\">LaravelNeuro\\LaravelNeuro\\Pipelines\\OpenAI\\ChatCompletion::json<\/a>"],[100,1,"<a href=\"Pipelines\/OpenAI\/ChatCompletion.php.html#96\">LaravelNeuro\\LaravelNeuro\\Pipelines\\OpenAI\\ChatCompletion::array<\/a>"],[0,3,"<a href=\"Pipelines\/OpenAI\/ChatCompletion.php.html#102\">LaravelNeuro\\LaravelNeuro\\Pipelines\\OpenAI\\ChatCompletion::streamText<\/a>"],[0,2,"<a href=\"Pipelines\/OpenAI\/ChatCompletion.php.html#114\">LaravelNeuro\\LaravelNeuro\\Pipelines\\OpenAI\\ChatCompletion::streamJson<\/a>"],[0,2,"<a href=\"Pipelines\/OpenAI\/ChatCompletion.php.html#125\">LaravelNeuro\\LaravelNeuro\\Pipelines\\OpenAI\\ChatCompletion::streamArray<\/a>"],[87.5,4,"<a href=\"Pipelines\/OpenAI\/DallE.php.html#16\">LaravelNeuro\\LaravelNeuro\\Pipelines\\OpenAI\\DallE::__construct<\/a>"],[88.88888888888889,2,"<a href=\"Pipelines\/OpenAI\/DallE.php.html#44\">LaravelNeuro\\LaravelNeuro\\Pipelines\\OpenAI\\DallE::setPrompt<\/a>"],[0,1,"<a href=\"Pipelines\/OpenAI\/DallE.php.html#63\">LaravelNeuro\\LaravelNeuro\\Pipelines\\OpenAI\\DallE::setFileType<\/a>"],[100,1,"<a href=\"Pipelines\/OpenAI\/DallE.php.html#69\">LaravelNeuro\\LaravelNeuro\\Pipelines\\OpenAI\\DallE::output<\/a>"],[0,3,"<a href=\"Pipelines\/OpenAI\/DallE.php.html#74\">LaravelNeuro\\LaravelNeuro\\Pipelines\\OpenAI\\DallE::b64<\/a>"],[77.77777777777779,4,"<a href=\"Pipelines\/OpenAI\/DallE.php.html#90\">LaravelNeuro\\LaravelNeuro\\Pipelines\\OpenAI\\DallE::raw<\/a>"],[80,4,"<a href=\"Pipelines\/OpenAI\/DallE.php.html#109\">LaravelNeuro\\LaravelNeuro\\Pipelines\\OpenAI\\DallE::store<\/a>"],[0,13,"<a href=\"Plugins\/Resources\/SpiderWikipediaSearch.php.html#21\">LaravelNeuro\\LaravelNeuro\\Plugins\\Resources\\SpiderWikipediaSearch::parse<\/a>"],[0,1,"<a href=\"Plugins\/WikipediaSearch.php.html#16\">LaravelNeuro\\LaravelNeuro\\Plugins\\WikipediaSearch::__construct<\/a>"],[0,4,"<a href=\"Plugins\/WikipediaSearch.php.html#22\">LaravelNeuro\\LaravelNeuro\\Plugins\\WikipediaSearch::query<\/a>"],[100,1,"<a href=\"Prompts\/BasicPrompt.php.html#8\">LaravelNeuro\\LaravelNeuro\\Prompts\\BasicPrompt::promptEncode<\/a>"],[100,1,"<a href=\"Prompts\/BasicPrompt.php.html#14\">LaravelNeuro\\LaravelNeuro\\Prompts\\BasicPrompt::promptDecode<\/a>"],[0,1,"<a href=\"Prompts\/BasicPrompt.php.html#21\">LaravelNeuro\\LaravelNeuro\\Prompts\\BasicPrompt::setPrompt<\/a>"],[0,2,"<a href=\"Prompts\/BasicPrompt.php.html#27\">LaravelNeuro\\LaravelNeuro\\Prompts\\BasicPrompt::encoder<\/a>"],[0,1,"<a href=\"Prompts\/BasicPrompt.php.html#33\">LaravelNeuro\\LaravelNeuro\\Prompts\\BasicPrompt::decoder<\/a>"],[100,1,"<a href=\"Prompts\/IVFSprompt.php.html#8\">LaravelNeuro\\LaravelNeuro\\Prompts\\IVFSprompt::__construct<\/a>"],[100,1,"<a href=\"Prompts\/IVFSprompt.php.html#16\">LaravelNeuro\\LaravelNeuro\\Prompts\\IVFSprompt::setInput<\/a>"],[100,1,"<a href=\"Prompts\/IVFSprompt.php.html#22\">LaravelNeuro\\LaravelNeuro\\Prompts\\IVFSprompt::setVoice<\/a>"],[100,1,"<a href=\"Prompts\/IVFSprompt.php.html#28\">LaravelNeuro\\LaravelNeuro\\Prompts\\IVFSprompt::setFormat<\/a>"],[100,1,"<a href=\"Prompts\/IVFSprompt.php.html#35\">LaravelNeuro\\LaravelNeuro\\Prompts\\IVFSprompt::settings<\/a>"],[100,1,"<a href=\"Prompts\/IVFSprompt.php.html#42\">LaravelNeuro\\LaravelNeuro\\Prompts\\IVFSprompt::getInput<\/a>"],[100,1,"<a href=\"Prompts\/IVFSprompt.php.html#47\">LaravelNeuro\\LaravelNeuro\\Prompts\\IVFSprompt::getVoice<\/a>"],[100,1,"<a href=\"Prompts\/IVFSprompt.php.html#52\">LaravelNeuro\\LaravelNeuro\\Prompts\\IVFSprompt::getFormat<\/a>"],[100,1,"<a href=\"Prompts\/IVFSprompt.php.html#57\">LaravelNeuro\\LaravelNeuro\\Prompts\\IVFSprompt::getSettings<\/a>"],[100,3,"<a href=\"Prompts\/IVFSprompt.php.html#62\">LaravelNeuro\\LaravelNeuro\\Prompts\\IVFSprompt::encoder<\/a>"],[100,4,"<a href=\"Prompts\/IVFSprompt.php.html#84\">LaravelNeuro\\LaravelNeuro\\Prompts\\IVFSprompt::decoder<\/a>"],[100,1,"<a href=\"Prompts\/PNSQFprompt.php.html#10\">LaravelNeuro\\LaravelNeuro\\Prompts\\PNSQFprompt::__construct<\/a>"],[100,1,"<a href=\"Prompts\/PNSQFprompt.php.html#19\">LaravelNeuro\\LaravelNeuro\\Prompts\\PNSQFprompt::setPrompt<\/a>"],[100,1,"<a href=\"Prompts\/PNSQFprompt.php.html#25\">LaravelNeuro\\LaravelNeuro\\Prompts\\PNSQFprompt::setNumber<\/a>"],[100,2,"<a href=\"Prompts\/PNSQFprompt.php.html#31\">LaravelNeuro\\LaravelNeuro\\Prompts\\PNSQFprompt::setSize<\/a>"],[100,1,"<a href=\"Prompts\/PNSQFprompt.php.html#39\">LaravelNeuro\\LaravelNeuro\\Prompts\\PNSQFprompt::setQuality<\/a>"],[100,1,"<a href=\"Prompts\/PNSQFprompt.php.html#45\">LaravelNeuro\\LaravelNeuro\\Prompts\\PNSQFprompt::setFormat<\/a>"],[100,1,"<a href=\"Prompts\/PNSQFprompt.php.html#52\">LaravelNeuro\\LaravelNeuro\\Prompts\\PNSQFprompt::getPrompt<\/a>"],[100,1,"<a href=\"Prompts\/PNSQFprompt.php.html#57\">LaravelNeuro\\LaravelNeuro\\Prompts\\PNSQFprompt::getNumber<\/a>"],[100,1,"<a href=\"Prompts\/PNSQFprompt.php.html#62\">LaravelNeuro\\LaravelNeuro\\Prompts\\PNSQFprompt::getSize<\/a>"],[100,1,"<a href=\"Prompts\/PNSQFprompt.php.html#67\">LaravelNeuro\\LaravelNeuro\\Prompts\\PNSQFprompt::getQuality<\/a>"],[100,1,"<a href=\"Prompts\/PNSQFprompt.php.html#72\">LaravelNeuro\\LaravelNeuro\\Prompts\\PNSQFprompt::getFormat<\/a>"],[100,1,"<a href=\"Prompts\/PNSQFprompt.php.html#77\">LaravelNeuro\\LaravelNeuro\\Prompts\\PNSQFprompt::encoder<\/a>"],[100,2,"<a href=\"Prompts\/PNSQFprompt.php.html#94\">LaravelNeuro\\LaravelNeuro\\Prompts\\PNSQFprompt::decoder<\/a>"],[100,1,"<a href=\"Prompts\/SUAprompt.php.html#8\">LaravelNeuro\\LaravelNeuro\\Prompts\\SUAprompt::pushSystem<\/a>"],[100,1,"<a href=\"Prompts\/SUAprompt.php.html#15\">LaravelNeuro\\LaravelNeuro\\Prompts\\SUAprompt::pushAgent<\/a>"],[100,1,"<a href=\"Prompts\/SUAprompt.php.html#22\">LaravelNeuro\\LaravelNeuro\\Prompts\\SUAprompt::pushUser<\/a>"],[100,3,"<a href=\"Prompts\/SUAprompt.php.html#30\">LaravelNeuro\\LaravelNeuro\\Prompts\\SUAprompt::encoder<\/a>"],[100,7,"<a href=\"Prompts\/SUAprompt.php.html#58\">LaravelNeuro\\LaravelNeuro\\Prompts\\SUAprompt::decoder<\/a>"],[100,2,"<a href=\"Providers\/LaravelNeuroServiceProvider.php.html#12\">LaravelNeuro\\LaravelNeuro\\Providers\\LaravelNeuroServiceProvider::boot<\/a>"],[100,1,"<a href=\"Providers\/LaravelNeuroServiceProvider.php.html#46\">LaravelNeuro\\LaravelNeuro\\Providers\\LaravelNeuroServiceProvider::register<\/a>"],[100,2,"<a href=\"Providers\/LaravelNeuroServiceProvider.php.html#61\">LaravelNeuro\\LaravelNeuro\\Providers\\LaravelNeuroServiceProvider::createDirectoryIfNotExists<\/a>"]], 'Method Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getComplexityData(data, label) {
+    var values = [];
+    $.each(data, function(key) {
+      var value = Math.round(data[key][0]*100) / 100;
+      values.push({
+        x: value,
+        y: data[key][1],
+        class: data[key][2],
+        size: 0.05,
+        shape: 'diamond'
+      });
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+});
+  </script>
+ </body>
+</html>

@@ -1,0 +1,7 @@
+protected function continue(TuringStrip $head) : TuringStrip
+    {
+        
+        {{IntermediateTransitions}}
+
+        return $transition->handle();
+    }

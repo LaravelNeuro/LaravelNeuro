@@ -1,0 +1,34 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+/**
+ * Copyright (c) 2021 Kai Sassnowski
+ *
+ * For the full copyright and license information, please view
+ * the LICENSE file that was distributed with this source code.
+ *
+ * @see https://github.com/ksassnowski/roach
+ */
+
+foreach ([__DIR__ . '/../../autoload.php', __DIR__ . '/../autoload.php', __DIR__ . '/vendor/autoload.php'] as $file) {
+    if (file_exists($file)) {
+        require $file;
+
+        break;
+    }
+}
+
+use RoachPHP\Core\Version;
+use RoachPHP\Shell\Commands\RunSpiderCommand;
+use RoachPHP\Shell\Repl;
+use Symfony\Component\Console\Application;
+
+$application = new Application();
+$application->setName(Version::getVersionString());
+
+$application->add(new Repl());
+$application->add(new RunSpiderCommand());
+
+$application->run();

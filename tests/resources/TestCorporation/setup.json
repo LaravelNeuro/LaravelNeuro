@@ -1,0 +1,76 @@
+{
+    "name": "Test Corporation",
+    "nameSpace": "TestCorporation",
+    "description": "Corporation Description",
+    "charta": "Prompt segment defining which tasks the corporation is designed to process, intended to allow for the screening of requests.",
+    "units": [
+      {
+        "name": "TestUnitOne",
+        "description": "Unit Description",
+        "dataSets": [
+          {
+            "name": "TestDataSetOne",
+            "completion": "An example input prompt to elicit the dataset response structure.",
+            "structure": {
+              "testParameter": "Test Value"
+            }
+          }
+        ],
+        "agents": [
+          {
+            "name": "ChatCompletion",
+            "apiProvider": "OPENAI",
+            "pipeline": "LaravelNeuro\\LaravelNeuro\\Pipelines\\OpenAI\\ChatCompletion",     
+            "role": "You are a helpful assistant.",
+            "outputModel": "internal.TestDataSetOne",
+            "validateOutput": true
+          },
+          {
+            "name": "AudioTTS",
+            "apiProvider": "ELEVENLABS",
+            "apiType": "TTS",
+            "model": "eleven_multilingual_v2",
+            "pipeline": "LaravelNeuro\\LaravelNeuro\\Pipelines\\ElevenLabs\\AudioTTS",
+            "promptClass": "LaravelNeuro\\LaravelNeuro\\Prompts\\IVFSprompt",    
+            "prompt": "{{FromDataSet:internal.TestDataSetOne.testParameter}}{{VFS:21m00Tcm4TlvDq8ikWAM,mp3,stability|0.7,similarity_boost|0.7}}"
+          },
+          {
+            "name": "DallE",    
+            "apiProvider": "OPENAI",
+            "apiType": "IMAGE",
+            "pipeline": "LaravelNeuro\\LaravelNeuro\\Pipelines\\OpenAI\\DallE",
+            "promptClass": "LaravelNeuro\\LaravelNeuro\\Prompts\\PNSQFprompt",    
+            "prompt": "A colorful image of AI consciousness emerging.{{NSQF:1,1024x1024,standard,b64_json}}"
+          }
+        ],
+        "defaultReceiver": {
+          "type": "AGENT",
+          "name": "ChatCompletion"
+        }
+      }
+    ],
+    "models": [
+      {
+        "name": "TestModel",
+        "migration": true
+      }
+    ],
+    "transitions": [
+      {
+        "type": "UNIT",
+        "transitionName": "ChatCompletionTest",
+        "transitionHandle": "TestUnitOne"
+      },
+      {
+        "type": "AGENT",
+        "transitionName": "AudioTTStest",
+        "transitionHandle": "TestUnitOne.AudioTTS"
+      },
+      {
+        "type": "AGENT",
+        "transitionName": "ImageGenerationTest",
+        "transitionHandle": "TestUnitOne.DallE"
+      }
+    ]
+}
+  

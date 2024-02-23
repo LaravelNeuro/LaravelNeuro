@@ -1,14 +1,15 @@
 <?php
-namespace Kbirenheide\LaravelNeuro;
+namespace LaravelNeuro\LaravelNeuro;
 
-use Kbirenheide\LaravelNeuro\ApiAdapter;
-use Kbirenheide\LaravelNeuro\Prompts\Ollama\Prompt;
+use LaravelNeuro\LaravelNeuro\ApiAdapter;
+use LaravelNeuro\LaravelNeuro\Prompts\SUAPrompt;
 
 class Pipeline extends ApiAdapter {
 
     protected $model;
     protected $prompt;
     protected $system;
+    public $request;
 
     public function setModel($model)
     {
@@ -20,12 +21,11 @@ class Pipeline extends ApiAdapter {
 
     public function setPrompt($prompt)
     {
-        
         if(is_string($prompt))
         {
             $this->prompt = $prompt;
         }
-        elseif($prompt instanceof Prompt)
+        elseif($prompt instanceof SUAprompt)
         {
             $this->prompt = '';
 
@@ -46,7 +46,7 @@ class Pipeline extends ApiAdapter {
         }
         else
         {
-                throw new \InvalidArgumentException("For this pipeline, the paramater passed to setPrompt should be a string or an array.");
+                throw new \InvalidArgumentException("For this pipeline, the paramater passed to setPrompt should be a string or an instance of SUAprompt.");
         }
 
         $this->request["prompt"] = $this->prompt;
@@ -62,5 +62,21 @@ class Pipeline extends ApiAdapter {
     public function getPrompt()
     {
         return $this->prompt;
+    }
+
+    public function output()
+    {
+        $output = parent::output();
+        return $output;
+    }
+
+    public function stream()
+    {
+        $stream = parent::stream();
+
+        foreach($stream as $output)
+        {
+            yield $output;
+        }
     }
 }

@@ -1,14 +1,29 @@
 <?php
 
-namespace Kbirenheide\LaravelNeuro\Console\Commands;
+namespace LaravelNeuro\LaravelNeuro\Console\Commands;
 
 use Illuminate\Console\Command;
 
 class MakeLLMpipeline extends Command
 {
-    protected $signature = 'make:llmpipe {name}';
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'lneuro:pipeline {name}';
+
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
     protected $description = 'Create a new AI model pipeline class';
 
+    /**
+     * Execute the command.
+     *
+     */
     public function handle()
     {
         $name = $this->argument('name');
@@ -32,7 +47,11 @@ class MakeLLMpipeline extends Command
         }
     }
 
-    protected function getStub()
+    /**
+     * Retrieves the llm-pipeline stub.
+     *
+     */
+    protected function getStub() : string
     {
         return file_get_contents(__DIR__.'/../../resources/stubs/llm-pipeline.stub');
     }

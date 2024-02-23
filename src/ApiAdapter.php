@@ -1,17 +1,43 @@
 <?php
-namespace Kbirenheide\LaravelNeuro;
+namespace LaravelNeuro\LaravelNeuro;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Exception\RequestException;
+use Illuminate\Support\Facades\Storage;
 
 class ApiAdapter {
 
-    protected $client;
+    protected $client = false;
     protected $api;
-    protected $request = [];
+    protected $request;
     protected $response;
+    protected $fileType;
     protected $stream = false;
     protected $error = false;
+    protected $headers = [];
+    protected $debug = false;
+
+    public function debug()
+    {
+        $this->debug = true;
+        return $this;
+    }
+
+    public function setHeaderEntry(string $key, string $value)
+    {
+        $this->headers[$key] = $value;
+    }
+
+    public function unsetHeaderEntry(string $key)
+    {
+        unset($this->headers[$key]);
+    }
+
+    public function getHeaders()
+    {
+        return $this->headers;
+    }
 
     public function setApi($address)
     {
@@ -20,136 +46,125 @@ class ApiAdapter {
         return $this;
     }
 
-    public function stream()
+    public function getApi()
     {
-        $this->stream = true;
-        $this->request["stream"] = true;
+        return $this->api;
+    }
 
+    public function setClient(array $options = [])
+    {
+        $this->client = new Client($options);
         return $this;
+    }    
+
+    public function getClient()
+    {
+        return $this->client;
     }
 
     private function connect($method)
     {
+        if($this->client === false) $this->client = new Client();
         $response = false;
         try {
 
-            $client = new Client();
-            $this->request["prompt"] = trim($this->request["prompt"], " \n\r\t\v\x00");
-            $response = $client->request($method, $this->api, ["json" => $this->request, "stream" => $this->stream]);
+            $client = $this->client;
+            if($this->debug)
+            {
+                echo "#API-Adapter\n";
+                echo "\tHeaders: \n";
+                print_r($this->headers);
+                echo "\nRequest: \n";
+                print_r($this->request);
+            }
+            $response = $client->request($method, $this->api, ["json" => $this->request, "stream" => $this->stream, "headers" => $this->headers]);
             
             return $response;
 
-        } catch (GuzzleException $e) {
-
+        } catch (RequestException $e) {
+            $this->error = $e->getResponse()->getBody() . $e;
+            throw $e;
+        } catch (\Exception $e) {
+            // Handle broader range of exceptions
             $this->error = $e;
-            return $e;
+            throw $e;
         }
 
+    }   
+
+    public function fileMake($fileName, $data)
+    {
+        $determineMimeType = function ($fileName)
+        {
+            $extensionToMimeType = [
+                'jpg' => 'image/jpeg',
+                'jpeg' => 'image/jpeg',
+                'png' => 'image/png',
+                'gif' => 'image/gif',
+                'pdf' => 'application/pdf',
+                'mp3' => 'audio/mpeg',
+                'wav' => 'audio/wav',
+                'opus' => 'audio/opus',
+                'aac' => 'audio/aac',
+                'flac' => 'audio/flac',
+                'webp' => 'image/webp',
+                'txt' => 'text/plain',
+                'csv' => 'text/csv',
+                'json' => 'application/json',
+                // Add more mappings as needed
+            ];
+        
+            $extension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+        
+            return $extensionToMimeType[$extension] ?? 'application/octet-stream';
+        };
+
+        $diskName = 'lneuro';
+        Storage::disk($diskName)->put($fileName, $data);
+    
+        $fileMetaData = [
+            "fileName" => $fileName,
+            "diskName" => $diskName,
+            "fileSize" => Storage::disk($diskName)->size($fileName),
+            "mimeType" => $determineMimeType($fileName),
+        ];
+    
+        return $fileMetaData;
     }
 
-    public function json($method = 'POST')
+    public function output()
     {
-        if($this->error !== false) return $this->error;
-        $response = $this->connect($method);
-        if ($this->stream) {
-            return $this->yield($response, "json");
-        } else {
-            return $this->return($response, "json");
-        }
-    }
-
-    public function array($method = 'POST')
-    {
-        if($this->error !== false) return $this->error;
-        $response = $this->connect($method);
-        if ($this->stream) {
-            return $this->yield($response, "array");
-        } else {
-            return $this->return($response, "array");
-        }
-    }
-
-    public function responseOnly($method = 'POST')
-    {
-        if($this->error !== false) return $this->error;
-        $response = $this->connect($method);
-        if ($this->stream) {
-            return $this->yield($response, "text");
-        } else {
-            return $this->return($response, "text");
-        }
-    }    
-
-    private function return($response, $type)
-    {
-        try {
-
+        $response = $this->connect("POST");
         $body = $response->getBody();
         
-        switch($type)
-            {
-                case "text":
-                    return json_decode($body)->response;
-                    break;
-                case "array":
-                    return json_decode($body);
-                    break;
-                case "json":
-                    return $body;
-                    break;
-                default:
-                    return $body;
-                    break;
-            } 
-
-        } catch (GuzzleException $e) {
-
-            $this->error = $e;
-            return $e;
-        }    
+        return $body; 
     }  
 
-    private function yield($response, $type)
+    public function stream()
     {
+        $this->stream = true;
+        $response = $this->connect("POST");
         $buffer = '';
 
-        try {
-            
-        $body = $response->getBody();
+            $body = $response->getBody();
 
-        while (!$body->eof()) {
-            $buffer .= $body->read(10);
+            $firstPackage = true;
 
-            while (($breakPosition = strpos($buffer, "\n")) !== false) {
-                $jsonString = substr($buffer, 0, $breakPosition);
-                $buffer = substr($buffer, $breakPosition + 1);
+            while (!$body->eof() || $firstPackage) {
+                $firstPackage = false;
+                $buffer .= $body->read(10);
 
-                $jsonObject = json_decode($jsonString, true);
-                if ($jsonObject) {
-                    $jsonObject = (object) $jsonObject;
-                    switch($type)
-                        {
-                            case "text":
-                                yield $jsonObject->response;
-                                break;
-                            case "array":
-                                yield $jsonObject;
-                                break;
-                            case "json":
-                                yield json_encode($jsonObject, JSON_PRETTY_PRINT);
-                                break;
-                            default:
-                                yield $jsonObject;
-                                break;
-                        } 
+                while (($breakPosition = strpos($buffer, "\n")) !== false) {
+                    $jsonString = substr($buffer, 0, $breakPosition);
+                    $buffer = substr($buffer, $breakPosition + 1);
+
+                    if (strpos($jsonString, 'data: ') === 0) $jsonString = substr($jsonString, 6);
+
+                    $jsonObject = json_decode($jsonString);
+                    if ($jsonObject) {
+                        yield json_encode($jsonObject, JSON_PRETTY_PRINT);
+                    }
                 }
             }
-        }
-
-        } catch (GuzzleException $e) {
-
-            $this->error = $e;
-            return $e;
-        }   
     }
 }

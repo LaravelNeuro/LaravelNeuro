@@ -1,0 +1,10 @@
+<?php
+namespace {{CorporationNameSpace}};
+
+class Config
+{
+    
+    const STATES = {{ConstStates}};
+    const CORPORATION = {{ConstCorporation}};
+{{TransitionConstants}}
+}

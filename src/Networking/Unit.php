@@ -1,9 +1,11 @@
 <?php
-namespace Kbirenheide\LaravelNeuro\Networking;
+namespace LaravelNeuro\LaravelNeuro\Networking;
 
-use Kbirenheide\LaravelNeuro\Networking\Agent;
-use Kbirenheide\LaravelNeuro\Networking\Database\Models\NetworkDataSet;
-use Kbirenheide\LaravelNeuro\Networking\Database\Models\NetworkUnit;
+use LaravelNeuro\LaravelNeuro\Networking\Agent;
+use LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkDataSetTemplate;
+use LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkUnit;
+
+use LaravelNeuro\LaravelNeuro\Enums\UnitReceiver;
 
 class Unit {
 
@@ -12,7 +14,7 @@ class Unit {
     public $dataSets;
     public $agents;
     public $defaultReceiver;
-    public $defaultReceiverType;
+    public UnitReceiver $defaultReceiverType;
 
     function __construct($load = false)
     {
@@ -39,10 +41,11 @@ class Unit {
         return $this;          
     }  
     
-    public function configureDataSet(string $name, string $data)   
+    public function configureDataSet(string $name, string $completion, object $data)   
     { 
-        if(!json_validate($data)) throw new \InvalidArgumentException("The second configureDataSet parameter needs to be a valid json string.");
-        $this->dataSets->push([$name => $data]);
+        $structure = json_encode($data, JSON_PRETTY_PRINT);
+        if(!json_validate($structure)) throw new \InvalidArgumentException("The second configureDataSet parameter needs to be a valid json string.");
+        $this->dataSets->push((object) ["name" => $name, "completion" => $completion, "structure" => $structure]);
         return $this;         
     }   
     
@@ -52,7 +55,7 @@ class Unit {
         return $this;
     }   
     
-    public function setDefaultReceiver(string $type, string $name)   
+    public function setDefaultReceiver(UnitReceiver $type, string $name)   
     {
         $this->defaultReceiver = $name;
         $this->defaultReceiverType = $type;
@@ -85,17 +88,19 @@ class Unit {
         $unit->name = $this->name;
         $unit->description = $this->description;
         $unit->defaultReceiver = $this->defaultReceiver;
-        $unit->defaultRetrieverType = $this->defaultReceiverType;
-        $unit->corporation = $corporation;
+        $unit->defaultReceiverType = $this->defaultReceiverType;
+        $unit->corporation_id = $corporation;
 
         $unit->save();
 
-        foreach($this->dataSets as $name => $dataSet)
+        foreach($this->dataSets as $dataSet)
         {
-            $buildDataSet = new NetworkDataSet;
-            $buildDataSet->unit = $unit->id;
-            $buildDataSet->name = $name;
-            $buildDataSet->data = $dataSet;
+            $buildDataSet = new NetworkDataSetTemplate;         
+            $buildDataSet->unit_id = $unit->id;
+            $buildDataSet->name = $dataSet->name;
+            $buildDataSet->completionPrompt = $dataSet->completion;
+            $buildDataSet->completionResponse = $dataSet->structure;
+            $buildDataSet->save();
         }
 
         $agents = [];

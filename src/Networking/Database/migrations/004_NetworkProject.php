@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('laravel_neuro_network_projects', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->int('corporation');   
+            $table->unsignedBigInteger('corporation_id');
+                $table->foreign('corporation_id')->references('id')->on('laravel_neuro_network_corporations');   
             $table->text('task');
-            $table->longText('resolution')->nullable();
+            $table->mediumText('resolution')->nullable();
         });
     }
 
