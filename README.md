@@ -11,6 +11,12 @@ This Laravel package enhances your PHP Laravel application by introducing two po
 1. **Integrating AI APIs** into your application code using Pipeline and Prompt Classes.
 2. **Setting up and running complex state machines** that network any number of generative AI agents and functions to automate tasks and content generation.
 
+## Installation
+
+```bash
+composer require laravel-neuro/core
+```
+
 ## Features
 
 ### Prebuilt Pipelines
