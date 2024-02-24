@@ -5,6 +5,8 @@
 ![Packagist Version](https://img.shields.io/packagist/v/laravel-neuro/core.svg)
 ![Packagist Downloads](https://img.shields.io/packagist/dt/laravel-neuro/core.svg)
 
+Join the [LaravelNeuro Discord Server](https://discord.gg/pNhSHbBk3Z) for updates and discussion! 
+
 This Laravel package enhances your PHP Laravel application by introducing two powerful features:
 1. **Integrating AI APIs** into your application code using Pipeline and Prompt Classes.
 2. **Setting up and running complex state machines** that network any number of generative AI agents and functions to automate tasks and content generation.
