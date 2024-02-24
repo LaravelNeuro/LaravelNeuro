@@ -4,8 +4,7 @@
 ![Coveralls](https://coveralls.io/repos/github/LaravelNeuro/LaravelNeuro/badge.svg?branch=main)
 ![Packagist Version](https://img.shields.io/packagist/v/laravel-neuro/core.svg)
 ![Packagist Downloads](https://img.shields.io/packagist/dt/laravel-neuro/core.svg)
-
-Join the [LaravelNeuro Discord Server](https://discord.gg/pNhSHbBk3Z) for updates and discussion! 
+_Join the discussion on the [LaravelNeuro Discord Server](https://discord.gg/pNhSHbBk3Z)!_
 
 This Laravel package enhances your PHP Laravel application by introducing two powerful features:
 1. **Integrating AI APIs** into your application code using Pipeline and Prompt Classes.
