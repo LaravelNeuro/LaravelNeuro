@@ -12,12 +12,26 @@ class {{modelName}} extends Pipeline
     public function setPrompt($prompt)
     {
         //**  Implement your prompt-building logic here   **//
-        //      remember to set $this->prompt and           //
-        //      $this->request["prompt"]                    //
-        //                                                  //
+        //   remember to pass your request parameters to    //
+        //      $this->request                              //
         //**************************************************//  
     
         return $this;
+    }
+
+    public function output()
+    {
+        return parent::output();
+    }
+
+    public function stream() : Generator
+    {
+        $stream = parent::stream();
+
+        foreach($stream as $output)
+        {
+            yield $output;
+        }
     }
 
 }

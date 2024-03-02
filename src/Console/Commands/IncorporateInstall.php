@@ -50,6 +50,11 @@ class IncorporateInstall extends Command
         }
         
         $folder = app_path($destination);
+        $migrations = $folder.'/Database/migrations';
+
+        $this->info('Running Corporation migrations to ensure all required tables exist.');
+
+        $this->call('migrate', ['--path' => $migrations]);
 
         if (file_exists($folder.'/setup.json')) 
         {

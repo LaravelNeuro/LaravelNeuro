@@ -1,6 +1,7 @@
 <?php
 namespace LaravelNeuro\LaravelNeuro;
 
+use Generator;
 use LaravelNeuro\LaravelNeuro\ApiAdapter;
 use LaravelNeuro\LaravelNeuro\Prompts\SUAPrompt;
 
@@ -62,21 +63,5 @@ class Pipeline extends ApiAdapter {
     public function getPrompt()
     {
         return $this->prompt;
-    }
-
-    public function output()
-    {
-        $output = parent::output();
-        return $output;
-    }
-
-    public function stream()
-    {
-        $stream = parent::stream();
-
-        foreach($stream as $output)
-        {
-            yield $output;
-        }
     }
 }

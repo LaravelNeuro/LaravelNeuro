@@ -1,42 +1,82 @@
 <?php
 namespace LaravelNeuro\LaravelNeuro;
 
+use Generator;
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Support\Facades\Storage;
 use LaravelNeuro\LaravelNeuro\Enums\RequestType;
 
+/**
+ * Handles API requests using GuzzleHttp client.
+ * This class provides functionality to send requests to various AI APIs,
+ * process the responses, and handle different request types and errors.
+ */
 class ApiAdapter {
 
+    /**
+     * @var Client|bool The GuzzleHttp client instance or false if not initialized.
+     */
     protected $client = false;
-    protected $api;
+
+    /**
+     * @var string The API endpoint or service being requested.
+     */
+    protected string $api;
+
+    /**
+     * @var mixed The request payload or parameters.
+     */
     protected $request;
+
+    /**
+     * @var RequestType The type of request being made. JSON is the default case, MULTIPART is required for file streams, which can become relevant for speech-to-text, image-to-image, image-to-text, and similar models that require a file input.
+     */
     protected RequestType $requestType = RequestType::JSON;
+
     protected $response;
-    protected $fileType;
+
+    /**
+     * @var bool Determines whether the response should be a streaming response.
+     */
     protected $stream = false;
+
     protected $error = false;
-    protected $headers = [];
+
+    /**
+     * @var array Any headers that should be passed to the request. Headers should be entered as key-value pairs, ideally using the setHeaderEntry method.
+     */
+    protected array $headers = [];
+
+    /**
+     * @var bool when set to true the request and headers will be printed out when the connect method is called. This can be helpful when building custom pipelines but having trouble setting the curl parameters to comply with the target API.
+     */
     protected $debug = false;
 
-    public function debug()
+    /**
+     * @param bool $set Is true by default and does not usually need to be set.
+     * @return self This chainable method enables or disables the $debug member.
+     */
+    public function debug(bool $set = true) : self
     {
-        $this->debug = true;
+        $this->debug = $set;
         return $this;
     }
 
-    public function setHeaderEntry(string $key, string $value)
+    public function setHeaderEntry(string $key, string $value) : self
     {
         $this->headers[$key] = $value;
+        return $this;
     }
 
-    public function unsetHeaderEntry(string $key)
+    public function unsetHeaderEntry(string $key) : self
     {
-        unset($this->headers[$key]);
+        if(isset($this->headers[$key]))
+            unset($this->headers[$key]);
+        return $this;
     }
 
-    public function getHeaders()
+    public function getHeaders() : array
     {
         return $this->headers;
     }
@@ -64,6 +104,12 @@ class ApiAdapter {
         return $this;
     }
 
+    /**
+     * Set a custom Guzzle Client. Not usually necessary since the connect method creates a fresh Client instance when non has been set before.
+     * 
+     * @param array $options the Guzzle Client object's constructor options.
+     * @return self Chainable method.
+     */
     public function setClient(array $options = [])
     {
         $this->client = new Client($options);
@@ -75,6 +121,12 @@ class ApiAdapter {
         return $this->client;
     }
 
+    /**
+     * Contains the request execution logic for the API request using the Guzzle Client's request method.
+     * 
+     * @param mixed $method This will almost always be 'POST'.
+     * @return \Psr\Http\Message\ResponseInterface
+     */
     private function connect($method)
     {
         if($this->client === false) $this->client = new Client();
@@ -116,7 +168,17 @@ class ApiAdapter {
 
     }   
 
-    public function fileMake($fileName, $data)
+    /**
+     * Some models return files, such as image generation models. This method will use the Laravel Storage facade to save incoming data to the lneuro disk, defined in ./config/filesystems.php
+     * 
+     * @param mixed $method This will almost always be 'POST'.
+     * @return array Returns an array with the following meta data of the saved file:
+     *    => "fileName"
+     *    => "diskName"
+     *    => "fileSize"
+     *    => "mimeType"
+     */
+    public function fileMake(string $fileName, $data)
     {
         $determineMimeType = function ($fileName)
         {
@@ -164,7 +226,7 @@ class ApiAdapter {
         return $body; 
     }  
 
-    public function stream()
+    public function stream() : Generator
     {
         $this->stream = true;
         $response = $this->connect("POST");
