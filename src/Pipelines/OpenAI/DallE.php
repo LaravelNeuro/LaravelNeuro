@@ -8,10 +8,10 @@ use PHPUnit\Framework\Constraint\ObjectHasProperty;
 
 class DallE extends Pipeline {
 
-    protected $model;
-    protected $api;
-    protected $accessToken;
-    protected $fileType = "png";
+    protected string $model;
+    protected string $api;
+    protected string $accessToken;
+    protected string $fileType = "png";
 
     public function __construct()
     {

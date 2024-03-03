@@ -35,7 +35,7 @@ class CorporationRun extends Command
         $class = $this->argument('namespace');
         $defaultNamespace = config('laravelneuro.default_namespace', 'Corporations');
         $classDefault = 'App\\'.$defaultNamespace.'\\'.$class.'\\'.$class;
-        $migrations = 'app/'.str_replace('\\', '/', $defaultNamespace).'/'.$class.'/Database/migrations';
+        
         $task = $this->argument('task');
 
         if(Str::contains($class, '\\'))
@@ -55,9 +55,6 @@ class CorporationRun extends Command
             return Command::FAILURE;
         }
 
-        $this->info('Running Corporation migrations to ensure all required tables exist.');
-
-        $this->call('migrate', ['--path' => $migrations]);
         try{
             $init = new $classNameSpace($task, $this->option('debug'));
             $this->info('Corporation successfully initiated. Passing task to new Project, please wait.');
