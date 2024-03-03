@@ -7,9 +7,8 @@ use LaravelNeuro\LaravelNeuro\Pipeline;
 
 class ChatCompletion extends Pipeline {
 
-    protected string $model;
-    protected string $api;
-    protected string $accessToken;
+    protected $model;
+    protected $accessToken;
 
     public function __construct()
     {

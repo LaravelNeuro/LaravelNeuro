@@ -7,10 +7,9 @@ use Illuminate\Support\Str;
 
 class AudioTTS extends Pipeline {
 
-    protected string $model;
-    protected string $api;
-    protected string $fileType;
-    protected string $accessToken;
+    protected $model;
+    protected $fileType;
+    protected $accessToken;
 
     public function __construct()
     {

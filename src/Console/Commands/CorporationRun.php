@@ -17,6 +17,7 @@ class CorporationRun extends Command
                                         {namespace : The namespace of the to-be-run Corporation} 
                                         {task : The task your corporation should perform}
                                         {--debug : Get the full runtime output of your Corporation as it resolves this run.}
+                                        {--with-migrations : Execute corporation-specific migrations before run}
                                         ';
 
     /**
@@ -35,7 +36,7 @@ class CorporationRun extends Command
         $class = $this->argument('namespace');
         $defaultNamespace = config('laravelneuro.default_namespace', 'Corporations');
         $classDefault = 'App\\'.$defaultNamespace.'\\'.$class.'\\'.$class;
-        
+        $migrations = 'app/'.str_replace('\\', '/', $defaultNamespace).'/'.$class.'/Database/migrations';
         $task = $this->argument('task');
 
         if(Str::contains($class, '\\'))
@@ -54,6 +55,12 @@ class CorporationRun extends Command
             $this->error('The namespace you have passed does not point to a legal Corporation class. Is your Corporation properly installed and set up? If your Corporation is not in the default namespace of '.$classDefault.', you should pass the full Namespace to this command.');
             return Command::FAILURE;
         }
+        
+        if($this->option('with-migrations'))
+        {
+            $this->info('Running Corporation migrations to ensure all required tables exist.');
+            $this->call('migrate', ['--path' => $migrations]);
+        }  
 
         try{
             $init = new $classNameSpace($task, $this->option('debug'));

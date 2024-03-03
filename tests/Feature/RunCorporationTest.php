@@ -67,12 +67,17 @@ class RunCorporationTest extends PackageTestCase {
       Config::set('laravelneuro.keychain.elevenlabs', 'fake-api-key');
       Storage::fake('lneuro');
 
-      $this->artisan('lneuro:run', ['namespace' => 'TestCorporation', 'task' => 'Translate "This is a TTS test." into German.', '--debug' => true])
+      $this->artisan('lneuro:run', ['namespace' => 'TestCorporation', 'task' => 'Translate "This is a TTS test." into German.', '--debug' => true, '--with-migrations' => true])
       ->doesntExpectOutputToContain('The namespace you have passed does not point to a legal Corporation class.')
-      ->expectsOutput('Running Corporation migrations to ensure all required tables exist.')
       ->doesntExpectOutputToContain('Failed to instantiate Corporation:')
+      ->expectsOutput('Running Corporation migrations to ensure all required tables exist.')
       ->expectsOutput('Corporation successfully initiated. Passing task to new Project, please wait.')
       ->expectsOutput('Run complete. NetworkProject instance:');
+
+      foreach(NetworkHistory::all() as $history)
+      {
+        echo $history->content . "\n";
+      }
 
       $testModel = DB::table('test_models')->get()->last();
 

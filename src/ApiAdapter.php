@@ -22,7 +22,7 @@ class ApiAdapter {
     /**
      * @var string The API endpoint or service being requested.
      */
-    protected string $api;
+    protected $api;
 
     /**
      * @var mixed The request payload or parameters.

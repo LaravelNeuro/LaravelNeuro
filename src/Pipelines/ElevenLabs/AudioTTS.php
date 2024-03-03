@@ -9,11 +9,10 @@ use Illuminate\Support\Str;
 
 class AudioTTS extends Pipeline {
 
-    protected string $model;
-    protected string $voice;
-    protected string $api;
-    protected string $fileType = "mp3";
-    protected string $accessToken;
+    protected $model;
+    protected $voice;
+    protected $fileType = "mp3";
+    protected $accessToken;
 
     public function __construct()
     {

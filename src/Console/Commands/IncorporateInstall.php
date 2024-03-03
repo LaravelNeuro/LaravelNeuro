@@ -50,16 +50,12 @@ class IncorporateInstall extends Command
         }
         
         $folder = app_path($destination);
-        $migrations = $folder.'/Database/migrations';
-
-        $this->info('Running Corporation migrations to ensure all required tables exist.');
-
-        $this->call('migrate', ['--path' => $migrations]);
 
         if (file_exists($folder.'/setup.json')) 
         {
             $corporation = Incorporate::installFromJSON(file_get_contents($folder.'/setup.json'));       
             $this->info(json_encode($corporation, true));
+
             $this->info("Your Corporation has been installed successfully.");
             return Command::SUCCESS;
         }

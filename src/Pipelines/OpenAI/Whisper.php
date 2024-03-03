@@ -8,9 +8,8 @@ use GuzzleHttp\Psr7;
 
 class Whisper extends Pipeline {
 
-    protected string $model;
-    protected string $api;
-    protected string $accessToken;
+    protected $model;
+    protected $accessToken;
 
     public function __construct()
     {
