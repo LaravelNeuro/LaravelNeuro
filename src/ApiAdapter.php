@@ -158,8 +158,8 @@ class ApiAdapter {
             return $response;
 
         } catch (RequestException $e) {
-            $this->error = $e->getResponse()->getBody() . $e;
-            throw new \Exception($e->getResponse()->getBody());
+            $this->error = ($e->getResponse()->getBody() ?? '') . $e;
+            throw new \Exception($this->error);
         } catch (\Exception $e) {
             // Handle broader range of exceptions
             $this->error = $e;

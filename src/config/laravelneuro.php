@@ -7,6 +7,7 @@ return [
     'keychain' => [
         'openai' => env('OPENAI_API_KEY', ''),
         'elevenlabs' => env('ELEVENLABS_API_KEY', ''),
+        'google' => env('GOOGLE_AI_API_KEY', ''),
     ],
     'models' => [
         'DeepSeekCoder' => [
@@ -38,5 +39,9 @@ return [
             'voice' => '21m00Tcm4TlvDq8ikWAM', //Default: Rachel
             'api' => 'https://api.elevenlabs.io/v1/text-to-speech/{voice}',
         ],
+        'gemini-pro-1-5' => [
+            'model' => 'gemini-1.5-pro', 
+            'api' => 'https://generativelanguage.googleapis.com/v1beta/models',
+        ]
     ],
 ];
