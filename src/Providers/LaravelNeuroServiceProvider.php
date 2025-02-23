@@ -25,6 +25,7 @@ Class LaravelNeuroServiceProvider extends ServiceProvider {
                 \LaravelNeuro\LaravelNeuro\Console\Commands\IncorporateInstall::class,
                 \LaravelNeuro\LaravelNeuro\Console\Commands\CorporationRun::class,
                 \LaravelNeuro\LaravelNeuro\Console\Commands\PackageSetup::class,
+                \LaravelNeuro\LaravelNeuro\Console\Commands\CleanUp::class,
                 'command.lneuro.make-network-migration',
             ]);
         }
