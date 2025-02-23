@@ -1,17 +1,55 @@
 <?php
 namespace LaravelNeuro\LaravelNeuro;
 
-use Generator;
 use LaravelNeuro\LaravelNeuro\ApiAdapter;
 use LaravelNeuro\LaravelNeuro\Prompts\SUAPrompt;
 
+/**
+ * Class Pipeline
+ *
+ * Extends the ApiAdapter to provide a builder-pattern interface for constructing API requests.
+ * The Pipeline class adds structure by incorporating a model and a prompt to the request.
+ *
+ * @package LaravelNeuro\LaravelNeuro
+ */
 class Pipeline extends ApiAdapter {
 
+    /**
+     * The model identifier used in the API request.
+     *
+     * @var mixed
+     */
     protected $model;
-    protected $prompt;
-    protected $system;
-    public $request;
 
+    /**
+     * The prompt text to be used in the API request.
+     *
+     * @var string
+     */
+    protected $prompt;
+
+    /**
+     * The system message or instruction, if applicable.
+     *
+     * @var mixed
+     */
+    protected $system;
+
+    /**
+     * The complete request payload.
+     *
+     * @var array
+     */
+    public $request;
+    
+    /**
+     * Sets the model for the pipeline.
+     *
+     * This method assigns the given model to the pipeline and updates the request payload accordingly.
+     *
+     * @param mixed $model The model identifier to be used.
+     * @return self
+     */
     public function setModel($model)
     {
         $this->model = $model;
@@ -20,6 +58,16 @@ class Pipeline extends ApiAdapter {
         return $this;
     }
 
+    /**
+     * Sets the prompt for the pipeline.
+     *
+     * This method accepts either a string or an instance of SUAPrompt. If a SUAPrompt instance is provided,
+     * it iterates over the prompt elements to build the complete prompt and system message.
+     *
+     * @param string|SUAPrompt $prompt The prompt text or SUAPrompt instance.
+     * @return self
+     * @throws \InvalidArgumentException If the provided prompt is neither a string nor an instance of SUAPrompt.
+     */
     public function setPrompt($prompt)
     {
         if(is_string($prompt))
@@ -55,11 +103,21 @@ class Pipeline extends ApiAdapter {
         return $this;
     }
 
+    /**
+     * Retrieves the current model.
+     *
+     * @return mixed The current model identifier.
+     */
     public function getModel()
     {
         return $this->model;
     }
 
+    /**
+     * Retrieves the current prompt.
+     *
+     * @return string The current prompt text.
+     */
     public function getPrompt()
     {
         return $this->prompt;
