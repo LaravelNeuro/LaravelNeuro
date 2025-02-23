@@ -8,54 +8,91 @@ use Illuminate\Support\Facades\Storage;
 use LaravelNeuro\LaravelNeuro\Enums\RequestType;
 
 /**
- * Handles API requests using GuzzleHttp client.
- * This class provides functionality to send requests to various AI APIs,
- * process the responses, and handle different request types and errors.
+ * Class ApiAdapter
+ *
+ * Handles API requests using the GuzzleHttp client.
+ * Provides functionality to send requests to various AI APIs,
+ * process responses, handle streaming responses, and save files.
+ *
+ * @package LaravelNeuro\LaravelNeuro
  */
 class ApiAdapter {
 
     /**
-     * @var Client|bool The GuzzleHttp client instance or false if not initialized.
+     * The GuzzleHttp client instance.
+     *
+     * @var Client|bool False if not yet initialized.
      */
     protected $client = false;
 
     /**
-     * @var string The API endpoint or service being requested.
+     * The API endpoint URL.
+     *
+     * @var string
      */
     protected $api;
 
     /**
-     * @var mixed The request payload or parameters.
+     * The request payload or parameters.
+     *
+     * @var mixed
      */
     protected $request;
 
     /**
-     * @var RequestType The type of request being made. JSON is the default case, MULTIPART is required for file streams, which can become relevant for speech-to-text, image-to-image, image-to-text, and similar models that require a file input.
+     * The type of request being made. JSON is the default case, MULTIPART is required 
+     * for file streams, which can become relevant for speech-to-text, image-to-image, 
+     * image-to-text, and similar models that require a file input.
+     * 
+     * @var RequestType 
      */
     protected RequestType $requestType = RequestType::JSON;
 
+    /**
+     * The API response.
+     *
+     * @var mixed
+     */
     protected $response;
 
     /**
-     * @var bool Determines whether the response should be a streaming response.
+     * Indicates whether the response should be streamed.
+     *
+     * @var bool
      */
     protected $stream = false;
 
+    /**
+     * Stores any error encountered during the API request.
+     *
+     * @var mixed
+     */
     protected $error = false;
 
+
     /**
-     * @var array Any headers that should be passed to the request. Headers should be entered as key-value pairs, ideally using the setHeaderEntry method.
+     * An associative array of headers to send with the request.
+     *
+     * @var array
      */
     protected array $headers = [];
 
     /**
-     * @var bool when set to true the request and headers will be printed out when the connect method is called. This can be helpful when building custom pipelines but having trouble setting the curl parameters to comply with the target API.
+     * When true, debug information is printed during the request.
+     *
+     * @var bool
      */
     protected $debug = false;
 
+
     /**
-     * @param bool $set Is true by default and does not usually need to be set.
-     * @return self This chainable method enables or disables the $debug member.
+     * Enables or disables debug mode.
+     *
+     * When enabled, the request data and headers are printed
+     * to aid in debugging.
+     *
+     * @param bool $set True to enable debug mode; false to disable.
+     * @return self
      */
     public function debug(bool $set = true) : self
     {
@@ -63,12 +100,25 @@ class ApiAdapter {
         return $this;
     }
 
+    /**
+     * Sets a header entry to be sent with the API request.
+     *
+     * @param string $key   The header name.
+     * @param string $value The header value.
+     * @return self
+     */
     public function setHeaderEntry(string $key, string $value) : self
     {
         $this->headers[$key] = $value;
         return $this;
     }
 
+    /**
+     * Removes a header entry.
+     *
+     * @param string $key The header name to remove.
+     * @return self
+     */
     public function unsetHeaderEntry(string $key) : self
     {
         if(isset($this->headers[$key]))
@@ -76,11 +126,22 @@ class ApiAdapter {
         return $this;
     }
 
+    /**
+     * Retrieves the current header array.
+     *
+     * @return array An associative array of header entries.
+     */
     public function getHeaders() : array
     {
         return $this->headers;
     }
 
+    /**
+     * Sets the API endpoint URL.
+     *
+     * @param string $address The API endpoint.
+     * @return self
+     */
     public function setApi($address)
     {
         $this->api = $address;
@@ -88,16 +149,32 @@ class ApiAdapter {
         return $this;
     }
 
+    /**
+     * Retrieves the API endpoint URL.
+     *
+     * @return string The API endpoint.
+     */
     public function getApi()
     {
         return $this->api;
     }
 
+    /**
+     * Retrieves the current request type.
+     *
+     * @return RequestType The current request type.
+     */
     public function getRequestType()
     {
         return $this->requestType;
     }
 
+    /**
+     * Sets the request type.
+     *
+     * @param RequestType $requestType The request type to set.
+     * @return self
+     */
     public function setRequestType(RequestType $requestType)
     {
         $this->requestType = $requestType;
@@ -105,10 +182,12 @@ class ApiAdapter {
     }
 
     /**
-     * Set a custom Guzzle Client. Not usually necessary since the connect method creates a fresh Client instance when non has been set before.
-     * 
-     * @param array $options the Guzzle Client object's constructor options.
-     * @return self Chainable method.
+     * Sets a custom Guzzle client.
+     *
+     * Typically not required as a new Client is created if none is set.
+     *
+     * @param array $options The options for the Guzzle client constructor.
+     * @return self
      */
     public function setClient(array $options = [])
     {
@@ -116,16 +195,25 @@ class ApiAdapter {
         return $this;
     }    
 
+    /**
+     * Retrieves the current Guzzle client instance.
+     *
+     * @return Client|bool The Guzzle client or false if not initialized.
+     */
     public function getClient()
     {
         return $this->client;
     }
 
     /**
-     * Contains the request execution logic for the API request using the Guzzle Client's request method.
-     * 
-     * @param mixed $method This will almost always be 'POST'.
-     * @return \Psr\Http\Message\ResponseInterface
+     * Executes the API request using the Guzzle client.
+     *
+     * Builds the request based on the current request type (JSON or MULTIPART)
+     * and handles streaming if enabled. Debug information is printed if debug mode is active.
+     *
+     * @param string $method The HTTP method to use (typically 'POST').
+     * @return \Psr\Http\Message\ResponseInterface The API response.
+     * @throws \Exception If the request fails.
      */
     private function connect($method)
     {
@@ -169,14 +257,18 @@ class ApiAdapter {
     }   
 
     /**
-     * Some models return files, such as image generation models. This method will use the Laravel Storage facade to save incoming data to the lneuro disk, defined in ./config/filesystems.php
-     * 
-     * @param mixed $method This will almost always be 'POST'.
-     * @return array Returns an array with the following meta data of the saved file:
-     *    => "fileName"
-     *    => "diskName"
-     *    => "fileSize"
-     *    => "mimeType"
+     * Saves file data to a designated disk using Laravel's Storage facade.
+     *
+     * This method is useful for handling file responses (e.g., images or audio)
+     * by storing the data on a configured disk.
+     *
+     * @param string $fileName The name to save the file as.
+     * @param mixed $data The file data to be saved.
+     * @return array An associative array of file metadata:
+     *               - "fileName": The saved file name.
+     *               - "diskName": The disk where the file is stored.
+     *               - "fileSize": The file size in bytes.
+     *               - "mimeType": The MIME type of the file.
      */
     public function fileMake(string $fileName, $data)
     {
@@ -218,6 +310,13 @@ class ApiAdapter {
         return $fileMetaData;
     }
 
+    /**
+     * Executes the API request and returns the response body.
+     *
+     * This method leverages the connect() method and retrieves the response body.
+     *
+     * @return mixed The response body.
+     */
     public function output()
     {
         $response = $this->connect("POST");
@@ -226,6 +325,15 @@ class ApiAdapter {
         return $body; 
     }  
 
+    /**
+     * Executes a streaming API request.
+     *
+     * Enables streaming mode and returns a generator that yields JSON-encoded
+     * data chunks from the API response. Useful for handling responses that
+     * include large or streaming payloads.
+     *
+     * @return Generator Yields JSON-encoded data chunks.
+     */
     public function stream() : Generator
     {
         $this->stream = true;
