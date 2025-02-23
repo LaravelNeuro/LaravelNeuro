@@ -1,15 +1,15 @@
 <?php
 
-namespace LaravelNeuro\LaravelNeuro\Console\Commands;
+namespace LaravelNeuro\Console\Commands;
 
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
-use LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkCorporation;
-use LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkDataSet;
-use LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkHistory;
-use LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkProject;
-use LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkState;
+use LaravelNeuro\Networking\Database\Models\NetworkCorporation;
+use LaravelNeuro\Networking\Database\Models\NetworkDataSet;
+use LaravelNeuro\Networking\Database\Models\NetworkHistory;
+use LaravelNeuro\Networking\Database\Models\NetworkProject;
+use LaravelNeuro\Networking\Database\Models\NetworkState;
 
 class CleanUp extends Command
 {

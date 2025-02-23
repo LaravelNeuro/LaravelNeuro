@@ -1,9 +1,9 @@
 <?php
-namespace LaravelNeuro\LaravelNeuro\Prompts;
+namespace LaravelNeuro\Prompts;
 
-use LaravelNeuro\LaravelNeuro\Prompts\BasicPrompt;
+use LaravelNeuro\Prompts\BasicPrompt;
 
-use LaravelNeuro\LaravelNeuro\Enums\PNSQFquality;
+use LaravelNeuro\Enums\PNSQFquality;
 
 class PNSQFprompt extends BasicPrompt {
 
@@ -74,7 +74,7 @@ class PNSQFprompt extends BasicPrompt {
         return $this->get('response_format');
     }
 
-    protected function encoder() : string
+    public function encoder() : string
     {
         $promptText = $this->getPrompt();
         $number = $this->getNumber();
@@ -91,7 +91,7 @@ class PNSQFprompt extends BasicPrompt {
         return json_encode($encodedPrompt, JSON_PRETTY_PRINT);
     }
 
-    protected function decoder(string $prompt)
+    public function decoder(string $prompt)
     {
         $promptData = json_decode($prompt);
 

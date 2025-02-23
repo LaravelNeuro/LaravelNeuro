@@ -9,7 +9,7 @@ use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
 
-use LaravelNeuro\LaravelNeuro\ApiAdapter;
+use LaravelNeuro\ApiAdapter;
 
 use Tests\PackageTestCase;
 

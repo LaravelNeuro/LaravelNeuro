@@ -1,22 +1,22 @@
 <?php
-namespace LaravelNeuro\LaravelNeuro\Networking;
+namespace LaravelNeuro\Networking;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
-use LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkCorporation;
-use LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkDataSet;
-use LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkHistory;
-use LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkProject;
-use LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkState;
+use LaravelNeuro\Networking\Database\Models\NetworkCorporation;
+use LaravelNeuro\Networking\Database\Models\NetworkDataSet;
+use LaravelNeuro\Networking\Database\Models\NetworkHistory;
+use LaravelNeuro\Networking\Database\Models\NetworkProject;
+use LaravelNeuro\Networking\Database\Models\NetworkState;
 
-use LaravelNeuro\LaravelNeuro\Networking\TuringStrip;
+use LaravelNeuro\Networking\TuringStrip;
 
-use LaravelNeuro\LaravelNeuro\Enums\TuringMove;
-use LaravelNeuro\LaravelNeuro\Enums\TuringMode;
-use LaravelNeuro\LaravelNeuro\Enums\TuringState;
-use LaravelNeuro\LaravelNeuro\Enums\TuringHistory;
-use LaravelNeuro\LaravelNeuro\Enums\StuckHandler;
+use LaravelNeuro\Enums\TuringMove;
+use LaravelNeuro\Enums\TuringMode;
+use LaravelNeuro\Enums\TuringState;
+use LaravelNeuro\Enums\TuringHistory;
+use LaravelNeuro\Enums\StuckHandler;
 
 class Corporation {
 

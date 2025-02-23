@@ -1,10 +1,10 @@
 <?php
-namespace LaravelNeuro\LaravelNeuro\Pipelines\ElevenLabs;
+namespace LaravelNeuro\Pipelines\ElevenLabs;
 
-use LaravelNeuro\LaravelNeuro\Pipeline;
+use LaravelNeuro\Pipeline;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\RequestException;
-use LaravelNeuro\LaravelNeuro\Prompts\IVFSprompt;
+use LaravelNeuro\Prompts\IVFSprompt;
 use Illuminate\Support\Str;
 
 class AudioTTS extends Pipeline {

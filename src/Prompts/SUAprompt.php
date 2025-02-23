@@ -1,7 +1,7 @@
 <?php
-namespace LaravelNeuro\LaravelNeuro\Prompts;
+namespace LaravelNeuro\Prompts;
 
-use LaravelNeuro\LaravelNeuro\Prompts\BasicPrompt;
+use LaravelNeuro\Prompts\BasicPrompt;
 
 class SUAprompt extends BasicPrompt {
 
@@ -27,7 +27,7 @@ class SUAprompt extends BasicPrompt {
         return $this;
     }
 
-    protected function encoder()
+    public function encoder()
     {
         $encodedPrompt = [];
 
@@ -55,7 +55,7 @@ class SUAprompt extends BasicPrompt {
         return json_encode($encodedPrompt, JSON_PRETTY_PRINT);
     }
 
-    protected function decoder(string $prompt)
+    public function decoder(string $prompt)
     {
         $promptData = json_decode($prompt);
 

@@ -2,7 +2,7 @@
 
 namespace App\Pipelines\LLM;
 
-use LaravelNeuro\LaravelNeuro\Pipeline;
+use LaravelNeuro\Pipeline;
 
 class {{modelName}} extends Pipeline
 {

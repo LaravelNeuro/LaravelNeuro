@@ -1,12 +1,12 @@
 <?php
 namespace App\Corporations\TestCorporation\Transitions;
 
-use LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkCorporation;
-use LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkProject;
-use LaravelNeuro\LaravelNeuro\Networking\Transition;
-use LaravelNeuro\LaravelNeuro\Networking\TuringStrip;
-use LaravelNeuro\LaravelNeuro\Prompts\SUAprompt;
-use LaravelNeuro\LaravelNeuro\Pipeline;
+use LaravelNeuro\Networking\Database\Models\NetworkCorporation;
+use LaravelNeuro\Networking\Database\Models\NetworkProject;
+use LaravelNeuro\Networking\Transition;
+use LaravelNeuro\Networking\TuringStrip;
+use LaravelNeuro\Prompts\SUAprompt;
+use LaravelNeuro\Pipeline;
 
 use App\Corporations\TestCorporation\Config;
 

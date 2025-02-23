@@ -1,11 +1,11 @@
 <?php
 namespace {{CorporationNameSpace}}\Transitions;
 
-use LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkCorporation;
-use LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkProject;
-use LaravelNeuro\LaravelNeuro\Networking\TuringStrip;
-use LaravelNeuro\LaravelNeuro\Networking\Transition;
-use LaravelNeuro\LaravelNeuro\Pipeline;
+use LaravelNeuro\Networking\Database\Models\NetworkCorporation;
+use LaravelNeuro\Networking\Database\Models\NetworkProject;
+use LaravelNeuro\Networking\TuringStrip;
+use LaravelNeuro\Networking\Transition;
+use LaravelNeuro\Pipeline;
 
 use {{CorporationNameSpace}}\Config;
 

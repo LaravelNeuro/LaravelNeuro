@@ -7,9 +7,9 @@ use Illuminate\Foundation\Testing\WithFaker;
 use GuzzleHttp\Psr7\Stream;
 use GuzzleHttp\Psr7\Utils;
 
-use LaravelNeuro\LaravelNeuro\Pipeline;
+use LaravelNeuro\Pipeline;
 
-use LaravelNeuro\LaravelNeuro\Prompts\SUAprompt;
+use LaravelNeuro\Prompts\SUAprompt;
 
 use Tests\PackageTestCase;
 use Tests\Helpers\ApiSimulator;

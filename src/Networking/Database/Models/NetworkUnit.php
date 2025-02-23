@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelNeuro\LaravelNeuro\Networking\Database\Models;
+namespace LaravelNeuro\Networking\Database\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -8,11 +8,11 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-use LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkCorporation;
-use LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkDataSet;
-use LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkAgent;
+use LaravelNeuro\Networking\Database\Models\NetworkCorporation;
+use LaravelNeuro\Networking\Database\Models\NetworkDataSet;
+use LaravelNeuro\Networking\Database\Models\NetworkAgent;
 
-use LaravelNeuro\LaravelNeuro\Enums\UnitReceiver;
+use LaravelNeuro\Enums\UnitReceiver;
 
 class NetworkUnit extends Model
 {

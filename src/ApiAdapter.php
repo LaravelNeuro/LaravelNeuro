@@ -1,11 +1,11 @@
 <?php
-namespace LaravelNeuro\LaravelNeuro;
+namespace LaravelNeuro;
 
 use Generator;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Support\Facades\Storage;
-use LaravelNeuro\LaravelNeuro\Enums\RequestType;
+use LaravelNeuro\Enums\RequestType;
 
 /**
  * Class ApiAdapter
@@ -14,7 +14,7 @@ use LaravelNeuro\LaravelNeuro\Enums\RequestType;
  * Provides functionality to send requests to various AI APIs,
  * process responses, handle streaming responses, and save files.
  *
- * @package LaravelNeuro\LaravelNeuro
+ * @package LaravelNeuro
  */
 class ApiAdapter {
 

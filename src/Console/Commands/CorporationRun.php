@@ -1,10 +1,10 @@
 <?php
 
-namespace LaravelNeuro\LaravelNeuro\Console\Commands;
+namespace LaravelNeuro\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
-use LaravelNeuro\LaravelNeuro\Networking\Corporation;
+use LaravelNeuro\Networking\Corporation;
 
 class CorporationRun extends Command
 {

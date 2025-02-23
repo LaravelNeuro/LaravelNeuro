@@ -1,9 +1,9 @@
 <?php
-namespace LaravelNeuro\LaravelNeuro\Pipelines\OpenAI;
+namespace LaravelNeuro\Pipelines\OpenAI;
 
 use Illuminate\Support\Str;
-use LaravelNeuro\LaravelNeuro\Pipeline;
-use LaravelNeuro\LaravelNeuro\Prompts\PNSQFprompt;
+use LaravelNeuro\Pipeline;
+use LaravelNeuro\Prompts\PNSQFprompt;
 use PHPUnit\Framework\Constraint\ObjectHasProperty;
 
 class DallE extends Pipeline {

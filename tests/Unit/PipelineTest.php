@@ -1,6 +1,6 @@
 <?php
 
-use LaravelNeuro\LaravelNeuro\Pipeline;
+use LaravelNeuro\Pipeline;
 use PHPUnit\Framework\TestCase;
 
 class PipelineTest extends TestCase

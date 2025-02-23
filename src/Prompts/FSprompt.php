@@ -1,7 +1,7 @@
 <?php
-namespace LaravelNeuro\LaravelNeuro\Prompts;
+namespace LaravelNeuro\Prompts;
 
-use LaravelNeuro\LaravelNeuro\Prompts\BasicPrompt;
+use LaravelNeuro\Prompts\BasicPrompt;
 
 class FSprompt extends BasicPrompt {
 
@@ -29,7 +29,7 @@ class FSprompt extends BasicPrompt {
         return $this->get('settings');
     }
 
-    protected function encoder() : string
+    public function encoder() : string
     {
         $file = $this->getFile();
         $settings = $this->getSettings();
@@ -49,7 +49,7 @@ class FSprompt extends BasicPrompt {
         return json_encode($encodedPrompt, JSON_PRETTY_PRINT);
     }
 
-    protected function decoder(string $prompt)
+    public function decoder(string $prompt)
     {
         $promptData = json_decode($prompt);
 

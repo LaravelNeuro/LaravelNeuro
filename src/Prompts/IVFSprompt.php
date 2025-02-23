@@ -1,7 +1,7 @@
 <?php
-namespace LaravelNeuro\LaravelNeuro\Prompts;
+namespace LaravelNeuro\Prompts;
 
-use LaravelNeuro\LaravelNeuro\Prompts\BasicPrompt;
+use LaravelNeuro\Prompts\BasicPrompt;
 
 class IVFSprompt extends BasicPrompt {
 
@@ -59,7 +59,7 @@ class IVFSprompt extends BasicPrompt {
         return $this->get('settings');
     }
 
-    protected function encoder() : string
+    public function encoder() : string
     {
         $input = $this->getInput();
         $voice = $this->getVoice();
@@ -81,7 +81,7 @@ class IVFSprompt extends BasicPrompt {
         return json_encode($encodedPrompt, JSON_PRETTY_PRINT);
     }
 
-    protected function decoder(string $prompt)
+    public function decoder(string $prompt)
     {
         $promptData = json_decode($prompt);
 

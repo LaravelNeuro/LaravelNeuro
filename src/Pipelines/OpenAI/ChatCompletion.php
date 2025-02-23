@@ -1,9 +1,9 @@
 <?php
-namespace LaravelNeuro\LaravelNeuro\Pipelines\OpenAI;
+namespace LaravelNeuro\Pipelines\OpenAI;
 
-use LaravelNeuro\LaravelNeuro\Prompts\SUAprompt;
+use LaravelNeuro\Prompts\SUAprompt;
 use GuzzleHttp\Exception\GuzzleException;
-use LaravelNeuro\LaravelNeuro\Pipeline;
+use LaravelNeuro\Pipeline;
 
 class ChatCompletion extends Pipeline {
 

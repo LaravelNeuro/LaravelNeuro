@@ -1,8 +1,8 @@
 <?php
-namespace LaravelNeuro\LaravelNeuro\Pipelines\OpenAI;
+namespace LaravelNeuro\Pipelines\OpenAI;
 
-use LaravelNeuro\LaravelNeuro\Pipeline;
-use LaravelNeuro\LaravelNeuro\Prompts\IVFSprompt;
+use LaravelNeuro\Pipeline;
+use LaravelNeuro\Prompts\IVFSprompt;
 use Illuminate\Support\Str;
 
 class AudioTTS extends Pipeline {

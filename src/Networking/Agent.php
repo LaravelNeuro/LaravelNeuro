@@ -1,11 +1,11 @@
 <?php
-namespace LaravelNeuro\LaravelNeuro\Networking;
+namespace LaravelNeuro\Networking;
 
-use LaravelNeuro\LaravelNeuro\Pipeline;
-use LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkAgent;
-use LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkUnit;
+use LaravelNeuro\Pipeline;
+use LaravelNeuro\Networking\Database\Models\NetworkAgent;
+use LaravelNeuro\Networking\Database\Models\NetworkUnit;
 
-use LaravelNeuro\LaravelNeuro\Enums\APItype;
+use LaravelNeuro\Enums\APItype;
 
 class Agent extends Pipeline {
 

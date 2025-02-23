@@ -3,18 +3,18 @@ namespace App\Corporations\TestCorporation;
 
 use Illuminate\Support\Collection;
 
-use LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkCorporation;
-use LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkProject;
-use LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkHistory;
-use LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkState;
-use LaravelNeuro\LaravelNeuro\Networking\Corporation;
-use LaravelNeuro\LaravelNeuro\Networking\TuringStrip;
+use LaravelNeuro\Networking\Database\Models\NetworkCorporation;
+use LaravelNeuro\Networking\Database\Models\NetworkProject;
+use LaravelNeuro\Networking\Database\Models\NetworkHistory;
+use LaravelNeuro\Networking\Database\Models\NetworkState;
+use LaravelNeuro\Networking\Corporation;
+use LaravelNeuro\Networking\TuringStrip;
 
-use LaravelNeuro\LaravelNeuro\Enums\StuckHandler;
-use LaravelNeuro\LaravelNeuro\Enums\TuringState;
-use LaravelNeuro\LaravelNeuro\Enums\TuringMove;
-use LaravelNeuro\LaravelNeuro\Enums\TuringMode;
-use LaravelNeuro\LaravelNeuro\Enums\TuringHistory;
+use LaravelNeuro\Enums\StuckHandler;
+use LaravelNeuro\Enums\TuringState;
+use LaravelNeuro\Enums\TuringMove;
+use LaravelNeuro\Enums\TuringMode;
+use LaravelNeuro\Enums\TuringHistory;
 
 use App\Corporations\TestCorporation\Config;
 use App\Corporations\TestCorporation\Bootstrap;
@@ -22,7 +22,7 @@ use App\Corporations\TestCorporation\Bootstrap;
 use App\Corporations\TestCorporation\Transitions\ChatCompletionTest;
 use App\Corporations\TestCorporation\Transitions\ImageGenerationTest;
 use App\Corporations\TestCorporation\Transitions\AudioTTStest;
-use LaravelNeuro\LaravelNeuro\Networking\Transition;
+use LaravelNeuro\Networking\Transition;
 
 /**
 * When creating an instance of TestCorporation, be sure to pass the $task parameter to its constructor: 

@@ -1,8 +1,8 @@
 <?php
-namespace LaravelNeuro\LaravelNeuro\Pipelines\Google;
+namespace LaravelNeuro\Pipelines\Google;
 
-use LaravelNeuro\LaravelNeuro\Prompts\SUAprompt;
-use LaravelNeuro\LaravelNeuro\Pipeline;
+use LaravelNeuro\Prompts\SUAprompt;
+use LaravelNeuro\Pipeline;
 
 class Multimodal extends Pipeline {
 

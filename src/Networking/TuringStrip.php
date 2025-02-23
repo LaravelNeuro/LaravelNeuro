@@ -1,8 +1,8 @@
 <?php
-namespace LaravelNeuro\LaravelNeuro\Networking;
+namespace LaravelNeuro\Networking;
 
-use LaravelNeuro\LaravelNeuro\Enums\TuringMode;
-use LaravelNeuro\LaravelNeuro\Enums\TuringMove;
+use LaravelNeuro\Enums\TuringMode;
+use LaravelNeuro\Enums\TuringMove;
 
 class TuringStrip {
 

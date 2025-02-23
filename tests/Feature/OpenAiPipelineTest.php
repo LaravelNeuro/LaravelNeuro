@@ -7,16 +7,16 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Storage;
 
-use LaravelNeuro\LaravelNeuro\Pipeline;
-use LaravelNeuro\LaravelNeuro\Pipelines\OpenAI\ChatCompletion;
-use LaravelNeuro\LaravelNeuro\Pipelines\OpenAI\AudioTTS;
-use LaravelNeuro\LaravelNeuro\Pipelines\OpenAI\DallE;
+use LaravelNeuro\Pipeline;
+use LaravelNeuro\Pipelines\OpenAI\ChatCompletion;
+use LaravelNeuro\Pipelines\OpenAI\AudioTTS;
+use LaravelNeuro\Pipelines\OpenAI\DallE;
 
-use LaravelNeuro\LaravelNeuro\Prompts\SUAprompt;
-use LaravelNeuro\LaravelNeuro\Prompts\PNSQFprompt;
-use LaravelNeuro\LaravelNeuro\Prompts\IVFSprompt;
+use LaravelNeuro\Prompts\SUAprompt;
+use LaravelNeuro\Prompts\PNSQFprompt;
+use LaravelNeuro\Prompts\IVFSprompt;
 
-use LaravelNeuro\LaravelNeuro\Enums\PNSQFquality;
+use LaravelNeuro\Enums\PNSQFquality;
 
 use Tests\PackageTestCase;
 use Tests\Helpers\ApiSimulator;

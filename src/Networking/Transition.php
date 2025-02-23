@@ -1,25 +1,25 @@
 <?php
-namespace LaravelNeuro\LaravelNeuro\Networking;
+namespace LaravelNeuro\Networking;
 
 use Illuminate\Support\Collection;
 
-use LaravelNeuro\LaravelNeuro\Pipeline;
+use LaravelNeuro\Pipeline;
 
-use LaravelNeuro\LaravelNeuro\Networking\TuringStrip;
-use LaravelNeuro\LaravelNeuro\Networking\Agent;
+use LaravelNeuro\Networking\TuringStrip;
+use LaravelNeuro\Networking\Agent;
 
-use LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkCorporation;
-use LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkProject;
-use LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkHistory;
-use LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkState;
-use LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkAgent;
-use LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkUnit;
+use LaravelNeuro\Networking\Database\Models\NetworkCorporation;
+use LaravelNeuro\Networking\Database\Models\NetworkProject;
+use LaravelNeuro\Networking\Database\Models\NetworkHistory;
+use LaravelNeuro\Networking\Database\Models\NetworkState;
+use LaravelNeuro\Networking\Database\Models\NetworkAgent;
+use LaravelNeuro\Networking\Database\Models\NetworkUnit;
 
-use LaravelNeuro\LaravelNeuro\Prompts\BasicPrompt;
+use LaravelNeuro\Contracts\Prompts\CorporatePrompt;
 
-use LaravelNeuro\LaravelNeuro\Enums\UnitReceiver;
-use LaravelNeuro\LaravelNeuro\Enums\TuringMode;
-use LaravelNeuro\LaravelNeuro\Enums\TuringHistory;
+use LaravelNeuro\Enums\UnitReceiver;
+use LaravelNeuro\Enums\TuringMode;
+use LaravelNeuro\Enums\TuringHistory;
 
 class Transition {
 
@@ -230,7 +230,7 @@ class Transition {
 
         try {
             $prompt = $this->postProcessPrompt($prompt);
-            if(!($prompt instanceof BasicPrompt)) throw new \Exception("Your transition does not return a prompt that is an instance of BasicPrompt (or a child thereof). While pipelines do not necessarily need BasicPrompt prompts to work, Transitions do, so it is recommended to extend BasicPrompt and setup a decoder and encoder method for your prompt class.");
+            if(!($prompt instanceof CorporatePrompt)) throw new \Exception("Your transition does not return a prompt with the CorporatePrompt Contract. While pipelines do not necessarily need to implement this interface, Transitions do, so it is recommended to extend BasicPrompt, which implements CorporatePrompt, or use the interface on your custom prompt.");
             }
             catch(\Exception $e)
             {

@@ -1,5 +1,5 @@
 <?php
-namespace LaravelNeuro\LaravelNeuro\Networking;
+namespace LaravelNeuro\Networking;
 
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Collection;
@@ -7,11 +7,11 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
 
-use LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkCorporation;
-use LaravelNeuro\LaravelNeuro\Networking\Unit;
+use LaravelNeuro\Networking\Database\Models\NetworkCorporation;
+use LaravelNeuro\Networking\Unit;
 
-use LaravelNeuro\LaravelNeuro\Enums\TransitionType;
-use LaravelNeuro\LaravelNeuro\Enums\IncorporatePrebuild;
+use LaravelNeuro\Enums\TransitionType;
+use LaravelNeuro\Enums\IncorporatePrebuild;
 
 class Incorporate {
 
@@ -37,10 +37,10 @@ class Incorporate {
             throw new \Exception("Property '{$propertyName}' is missing.");
         }
         // Check if the expected type is an enum
-        if (enum_exists('LaravelNeuro\\LaravelNeuro\\Enums\\'.$expectedType)) {
+        if (enum_exists('LaravelNeuro\\Enums\\'.$expectedType)) {
             // Validate if the property value is a valid case of the enum
             $isValidEnumValue = false;
-            $enum = 'LaravelNeuro\\LaravelNeuro\\Enums\\'.$expectedType;
+            $enum = 'LaravelNeuro\\Enums\\'.$expectedType;
             foreach ($enum::cases() as $case) {
                 if ($object->$propertyName === $case->value) {
                     $isValidEnumValue = true;
@@ -573,7 +573,7 @@ class Incorporate {
 
                 if($autoloadBasicTransition)
                 {
-                    $autoloadTransitions .= "use LaravelNeuro\\LaravelNeuro\\Networking\\Transition;\n";
+                    $autoloadTransitions .= "use LaravelNeuro\\Networking\\Transition;\n";
                 }
 
                 $corporationFile = str_replace('{{AutoloadTransitions}}', $autoloadTransitions, $corporationFile);

@@ -1,5 +1,5 @@
 <?php
-namespace LaravelNeuro\LaravelNeuro\Plugins;
+namespace LaravelNeuro\Plugins;
 
 class Plugin{
 

@@ -24,20 +24,20 @@ composer require laravel-neuro/core
 LaravelNeuro ships with a pre-configured set of Pipelines for fast implementation, including:
 
 - **ElevenLabs Text to Speech**
-    - **Namespace**: `LaravelNeuro\LaravelNeuro\Pipelines\ElevenLabs\AudioTTS`
-    - **Prompt Class**: `LaravelNeuro\LaravelNeuro\Prompts\IVFSprompt`
+    - **Namespace**: `LaravelNeuro\Pipelines\ElevenLabs\AudioTTS`
+    - **Prompt Class**: `LaravelNeuro\Prompts\IVFSprompt`
 - **OpenAI**
     - **ChatCompletion**
-        - **Namespace**: `LaravelNeuro\LaravelNeuro\Pipelines\OpenAI\ChatCompletion`
-        - **Prompt Class**: `LaravelNeuro\LaravelNeuro\Prompts\SUAprompt`
+        - **Namespace**: `LaravelNeuro\Pipelines\OpenAI\ChatCompletion`
+        - **Prompt Class**: `LaravelNeuro\Prompts\SUAprompt`
     - **DallE**
-        - **Namespace**: `LaravelNeuro\LaravelNeuro\Pipelines\OpenAI\DallE`
-        - **Prompt Class**: `LaravelNeuro\LaravelNeuro\Prompts\PNSQFprompt`
+        - **Namespace**: `LaravelNeuro\Pipelines\OpenAI\DallE`
+        - **Prompt Class**: `LaravelNeuro\Prompts\PNSQFprompt`
     - **AudioTTS**
-        - **Namespace**: `LaravelNeuro\LaravelNeuro\Pipelines\OpenAI\AudioTTS`
-        - **Prompt Class**: `LaravelNeuro\LaravelNeuro\Prompts\IVFSprompt`
+        - **Namespace**: `LaravelNeuro\Pipelines\OpenAI\AudioTTS`
+        - **Prompt Class**: `LaravelNeuro\Prompts\IVFSprompt`
 
-All pipelines extend the basic `LaravelNeuro\LaravelNeuro\Pipeline`, which itself extends the `ApiAdapter` Class, facilitating the transmission of prompts and reception of responses via Guzzle.
+All pipelines extend the basic `LaravelNeuro\Pipeline`, which itself extends the `ApiAdapter` Class, facilitating the transmission of prompts and reception of responses via Guzzle.
 
 #### Enabling Pipelines
 
@@ -56,7 +56,7 @@ php artisan vendor:publish --tag=laravelneuro-config
 
 This is not strictly necessary. Even when using one of the prebuilt Pipelines, you can switch from the default model to any compatible model simply by calling the `setModel` method on your `Pipeline` object, passing the name of the model as a string parameter. Example:
 ```php
-use LaravelNeuro\LaravelNeuro\Pipelines\OpenAI\ChatCompletion;
+use LaravelNeuro\Pipelines\OpenAI\ChatCompletion;
 
 $pipeline = new ChatCompletion();
 $pipeline->setModel('gpt-4-turbo-preview'); //this changes the model from the default gpt-3.5-turbo-0125
@@ -67,8 +67,8 @@ $pipeline->setModel('gpt-4-turbo-preview'); //this changes the model from the de
 Here's an example of using OpenAI's ChatCompletion in a Laravel script with a streaming response:
 
 ```php
-use LaravelNeuro\LaravelNeuro\Pipelines\OpenAI\ChatCompletion;
-use LaravelNeuro\LaravelNeuro\Prompts\SUAprompt;
+use LaravelNeuro\Pipelines\OpenAI\ChatCompletion;
+use LaravelNeuro\Prompts\SUAprompt;
 
 $prompt = new SUAprompt();
 $pipeline = new ChatCompletion();
@@ -137,8 +137,8 @@ php artisan lneuro:prebuild VoiceAssistant
           {
             "name": "Transcriber",
             "model": "whisper-1",
-            "pipeline": "LaravelNeuro\\LaravelNeuro\\Pipelines\\OpenAI\\Whisper",   
-            "promptClass": "LaravelNeuro\\LaravelNeuro\\Prompts\\FSprompt",   
+            "pipeline": "LaravelNeuro\\Pipelines\\OpenAI\\Whisper",   
+            "promptClass": "LaravelNeuro\\Prompts\\FSprompt",   
             "validateOutput": false
           }
         ],
@@ -154,7 +154,7 @@ php artisan lneuro:prebuild VoiceAssistant
           {
             "name": "Chatbot",
             "model": "gpt-3.5-turbo-1106",
-            "pipeline": "LaravelNeuro\\LaravelNeuro\\Pipelines\\OpenAI\\ChatCompletion",     
+            "pipeline": "LaravelNeuro\\Pipelines\\OpenAI\\ChatCompletion",     
             "role": "You are a helpful assistant.",   
             "validateOutput": false
           }
@@ -172,8 +172,8 @@ php artisan lneuro:prebuild VoiceAssistant
             "name": "Speaker",
             "model": "tts-1",
             "apiType": "TTS",
-            "pipeline": "LaravelNeuro\\LaravelNeuro\\Pipelines\\OpenAI\\AudioTTS",
-            "promptClass": "LaravelNeuro\\LaravelNeuro\\Prompts\\IVFSprompt",    
+            "pipeline": "LaravelNeuro\\Pipelines\\OpenAI\\AudioTTS",
+            "promptClass": "LaravelNeuro\\Prompts\\IVFSprompt",    
             "prompt": "{{Head:data}}{{VFS:nova}}",
             "validateOutput": false
           }

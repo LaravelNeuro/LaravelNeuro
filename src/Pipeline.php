@@ -1,8 +1,8 @@
 <?php
-namespace LaravelNeuro\LaravelNeuro;
+namespace LaravelNeuro;
 
-use LaravelNeuro\LaravelNeuro\ApiAdapter;
-use LaravelNeuro\LaravelNeuro\Prompts\SUAPrompt;
+use LaravelNeuro\ApiAdapter;
+use LaravelNeuro\Prompts\SUAPrompt;
 
 /**
  * Class Pipeline
@@ -10,7 +10,7 @@ use LaravelNeuro\LaravelNeuro\Prompts\SUAPrompt;
  * Extends the ApiAdapter to provide a builder-pattern interface for constructing API requests.
  * The Pipeline class adds structure by incorporating a model and a prompt to the request.
  *
- * @package LaravelNeuro\LaravelNeuro
+ * @package LaravelNeuro
  */
 class Pipeline extends ApiAdapter {
 
@@ -24,7 +24,7 @@ class Pipeline extends ApiAdapter {
     /**
      * The prompt text to be used in the API request.
      *
-     * @var string
+     * @var mixed
      */
     protected $prompt;
 

@@ -1,9 +1,9 @@
 <?php
-namespace LaravelNeuro\LaravelNeuro\Pipelines\OpenAI;
+namespace LaravelNeuro\Pipelines\OpenAI;
 
-use LaravelNeuro\LaravelNeuro\Pipeline;
-use LaravelNeuro\LaravelNeuro\Prompts\FSprompt;
-use LaravelNeuro\LaravelNeuro\Enums\RequestType;
+use LaravelNeuro\Pipeline;
+use LaravelNeuro\Prompts\FSprompt;
+use LaravelNeuro\Enums\RequestType;
 use GuzzleHttp\Psr7;
 
 class Whisper extends Pipeline {

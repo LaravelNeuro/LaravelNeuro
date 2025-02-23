@@ -20,7 +20,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "LaravelNeuro\\LaravelNeuro\\": "src/"
+            "LaravelNeuro\\": "src/"
         }
     },
     "autoload-dev": {
@@ -32,7 +32,7 @@
     "extra": {
         "laravel": {
           "providers": [
-            "LaravelNeuro\\LaravelNeuro\\Providers\\LaravelNeuroServiceProvider"
+            "LaravelNeuro\\Providers\\LaravelNeuroServiceProvider"
           ]
         }
     },      

@@ -1,9 +1,10 @@
 <?php
-namespace LaravelNeuro\LaravelNeuro\Prompts;
+namespace LaravelNeuro\Prompts;
 
 use Illuminate\Support\Collection;
+use LaravelNeuro\Contracts\Prompts\CorporatePrompt;
 
-class BasicPrompt extends Collection {
+class BasicPrompt extends Collection implements CorporatePrompt {
 
     public function promptEncode()
     {
@@ -24,13 +25,13 @@ class BasicPrompt extends Collection {
         return $this;
     }
 
-    protected function encoder()
+    public function encoder()
     {
         if(!$this->has('prompt')) $this->set('prompt', '');
         return $this->get('prompt');
     }
 
-    protected function decoder(string $promptString)
+    public function decoder(string $promptString)
     {
         $this->set('prompt', $promptString);
     }

@@ -1,11 +1,11 @@
 <?php
-namespace LaravelNeuro\LaravelNeuro\Networking;
+namespace LaravelNeuro\Networking;
 
-use LaravelNeuro\LaravelNeuro\Networking\Agent;
-use LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkDataSetTemplate;
-use LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkUnit;
+use LaravelNeuro\Networking\Agent;
+use LaravelNeuro\Networking\Database\Models\NetworkDataSetTemplate;
+use LaravelNeuro\Networking\Database\Models\NetworkUnit;
 
-use LaravelNeuro\LaravelNeuro\Enums\UnitReceiver;
+use LaravelNeuro\Enums\UnitReceiver;
 
 class Unit {
 
