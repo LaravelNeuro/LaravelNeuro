@@ -1,28 +1,34 @@
 <?php
 namespace LaravelNeuro\Pipelines\OpenAI;
 
+use Generator;
 use LaravelNeuro\Prompts\SUAprompt;
-use GuzzleHttp\Exception\GuzzleException;
-use LaravelNeuro\Pipeline;
+use LaravelNeuro\Contracts\AiModel\Driver;
+use LaravelNeuro\Contracts\AiModel\Pipeline;
+use LaravelNeuro\Drivers\WebRequests\GuzzleDriver;
 
-class ChatCompletion extends Pipeline {
+class ChatCompletion implements Pipeline {
 
     protected $model;
+    protected GuzzleDriver $driver;
+    protected $prompt;
     protected $accessToken;
 
     public function __construct()
     {
+        $this->driver = new GuzzleDriver;
+        
         $this->prompt = [];
         $this->setModel(
                         config('laravelneuro.models.gpt-3-5-turbo.model')
                         );
-        $this->setApi(
+        $this->driver->setApi(
                     config('laravelneuro.models.gpt-3-5-turbo.api')
                     );
         $this->accessToken = config('laravelneuro.keychain.openai');
 
-        $this->setHeaderEntry("Authorization", "Bearer " . $this->accessToken);
-        $this->setHeaderEntry("Content-Type", "application/json");
+        $this->driver->setHeaderEntry("Authorization", "Bearer " . $this->accessToken);
+        $this->driver->setHeaderEntry("Content-Type", "application/json");
 
         if(empty($this->model))
         {
@@ -36,6 +42,23 @@ class ChatCompletion extends Pipeline {
         {
             throw new \InvalidArgumentException("No OpenAI access token has been set for this pipeline in the LaravelNeuro config file (app/config/laravelneuro.php).");
         }
+    }
+
+    public function getDriver() : Driver
+    {
+        return $this->driver;
+    }
+
+    public function setModel($model) : self
+    {
+        $this->model = $model;
+        $this->driver->setModel($model);
+        return $this;
+    }
+
+    public function getModel()
+    {
+        return $this->model;
     }
 
     public function setPrompt($prompt) : self
@@ -64,7 +87,7 @@ class ChatCompletion extends Pipeline {
                 }   
             }
 
-            $this->request["messages"] = array_merge($role, $this->prompt);
+            $this->driver->modifyRequest("messages", array_merge($role, $this->prompt));
 
         }
         else
@@ -75,6 +98,11 @@ class ChatCompletion extends Pipeline {
         return $this;
     }
 
+    public function getPrompt()
+    {
+        return $this->prompt;
+    }
+
     public function output()
     {
         return $this->text();
@@ -82,27 +110,31 @@ class ChatCompletion extends Pipeline {
 
     public function text()
     {
-        $body = parent::output();
+        $body = $this->driver->output();
         return json_decode((string) $body)->choices[0]->message->content;
     }
 
     public function json()
     {
-        $body = parent::output();
+        $body = $this->driver->output();
         return json_encode(json_decode($body), JSON_PRETTY_PRINT);
     }
 
     public function array()
     {
-        $body = parent::output();
+        $body = $this->driver->output();
         return json_decode($body, true);
     }
 
-    public function streamText()
+    public function stream() : Generator
     {
-        $this->request["stream"] = true;
-        $body = parent::stream();
-        foreach($body as $output)
+        $this->driver->modifyRequest("stream", true);
+        yield $this->driver->stream();
+    }
+
+    public function streamText() : Generator
+    {
+        foreach($this->stream() as $output)
         {
             $output = (object) json_decode($output);
             if(property_exists($output->choices[0]->delta, "content")) 
@@ -110,22 +142,18 @@ class ChatCompletion extends Pipeline {
         }
     }
 
-    public function streamJson()
+    public function streamJson() : Generator
     {
-        $this->request["stream"] = true;
-        $body = parent::stream();
-        foreach($body as $output)
+        foreach($this->stream() as $output)
         {
             $output = json_decode($output);
             yield json_encode($output, JSON_PRETTY_PRINT);
         }
     }
 
-    public function streamArray()
+    public function streamArray() : Generator
     {
-        $this->request["stream"] = true;
-        $body = parent::stream();
-        foreach($body as $output)
+        foreach($this->stream() as $output)
         {
             $output = json_decode($output);
             yield $output;

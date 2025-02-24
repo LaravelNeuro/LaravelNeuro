@@ -1,29 +1,35 @@
 <?php
 namespace LaravelNeuro\Pipelines\OpenAI;
 
-use LaravelNeuro\Pipeline;
-use LaravelNeuro\Prompts\IVFSprompt;
+use Generator;
 use Illuminate\Support\Str;
+use LaravelNeuro\Prompts\IVFSprompt;
+use LaravelNeuro\Contracts\AiModel\Pipeline;
+use LaravelNeuro\Contracts\AiModel\Driver;
+use LaravelNeuro\Drivers\WebRequests\GuzzleDriver;
 
-class AudioTTS extends Pipeline {
+class AudioTTS implements Pipeline {
 
     protected $model;
+    protected GuzzleDriver $driver;
+    protected $prompt;
     protected $fileType;
     protected $accessToken;
 
     public function __construct()
     {
+        $api = config('laravelneuro.models.tts-1.api');
+        $model = config('laravelneuro.models.tts-1.model');
+
+        $this->driver = new GuzzleDriver;
+        
         $this->prompt = [];
-        $this->setModel(
-                        config('laravelneuro.models.tts-1.model')
-                        );
-        $this->setApi(
-                    config('laravelneuro.models.tts-1.api')
-                    );
+        $this->setModel($model);
+        $this->driver->setApi($api);
         $this->accessToken = config('laravelneuro.keychain.openai');
 
-        $this->setHeaderEntry("Authorization", "Bearer " . $this->accessToken);
-        $this->setHeaderEntry("Content-Type", "application/json");
+        $this->driver->setHeaderEntry("Authorization", "Bearer " . $this->accessToken);
+        $this->driver->setHeaderEntry("Content-Type", "application/json");
 
         if(empty($this->model))
         {
@@ -39,17 +45,34 @@ class AudioTTS extends Pipeline {
         }
     }
 
+    public function getDriver() : Driver
+    {
+        return $this->driver;
+    }
+
+    public function setModel($model) : self
+    {
+        $this->model = $model;
+        return $this;
+    }
+
+    public function getModel()
+    {
+        return $this->model;
+    }
+
     public function setPrompt($prompt) : self
     {
         if($prompt instanceof IVFSprompt)
         {
             $this->prompt = $prompt->getInput();  
-            $this->request["input"] = $this->prompt;
-            $this->request["voice"] = $prompt->getVoice();
-            $this->request["response_format"] = $prompt->getFormat();
+            $this->driver->modifyRequest("input", $this->prompt);
+            $this->driver->modifyRequest("voice", $prompt->getVoice());
+            $this->driver->modifyRequest("response_format", $prompt->getFormat());
+
             $this->fileType = $prompt->getFormat();
             if(isset($prompt->getSettings()["speed"]))
-                $this->request["speed"] = $prompt->getQuality();
+                $this->driver->modifyRequest("speed", $prompt->getQuality());
         }
         else
         {
@@ -59,6 +82,11 @@ class AudioTTS extends Pipeline {
         return $this;
     }
 
+    public function getPrompt()
+    {
+        return $this->prompt;
+    }
+
     public function output($json = true)
     {
         return $this->store($json);
@@ -66,9 +94,9 @@ class AudioTTS extends Pipeline {
 
     public function store($json = false)
     {
-        $audio = parent::output();
+        $audio = $this->driver->output();
         $file = (string) Str::uuid() . '.' . $this->fileType;
-        $fileMetaData = $this->fileMake($file, $audio);
+        $fileMetaData = $this->driver->fileMake($file, $audio);
         if($json)
             return json_encode($fileMetaData);
         else
@@ -77,8 +105,13 @@ class AudioTTS extends Pipeline {
 
     public function raw()
     {
-        $audio = parent::output();
+        $audio = $this->driver->output();
         return $audio;
+    }
+
+    public function stream() : Generator
+    {
+        throw new \Exception("Stream mode is not supported for this pipeline.");
     }
 
 }

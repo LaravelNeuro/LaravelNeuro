@@ -1,17 +1,24 @@
 <?php
 namespace LaravelNeuro\Pipelines\Google;
 
+use Generator;
 use LaravelNeuro\Prompts\SUAprompt;
-use LaravelNeuro\Pipeline;
+use LaravelNeuro\Drivers\WebRequests\GuzzleDriver;
+use LaravelNeuro\Contracts\AiModel\Pipeline;
+use LaravelNeuro\Contracts\AiModel\Driver;
 
-class Multimodal extends Pipeline {
+class Multimodal implements Pipeline {
 
     protected $model;
+    protected GuzzleDriver $driver;
+    protected $prompt;
     protected $accessToken;
     protected $baseApi;
 
     public function __construct()
     {
+        $this->driver = new GuzzleDriver;
+        
         $this->prompt = [];
 
         $this->accessToken = config('laravelneuro.keychain.google');
@@ -20,7 +27,7 @@ class Multimodal extends Pipeline {
 
         $this->setModel( config('laravelneuro.models.gemini-pro-1-5.model') );
 
-        $this->setHeaderEntry("Content-Type", "application/json");
+        $this->driver->setHeaderEntry("Content-Type", "application/json");
 
         if(empty($this->model))
         {
@@ -34,6 +41,11 @@ class Multimodal extends Pipeline {
         {
             throw new \InvalidArgumentException("No Google Gemini API access token has been set for this pipeline in the LaravelNeuro config file (app/config/laravelneuro.php).");
         }
+    }
+
+    public function getDriver() : Driver
+    {
+        return $this->driver;
     }
 
     public function setApi($address, $stream = false) : self
@@ -53,7 +65,7 @@ class Multimodal extends Pipeline {
         else
             $generate = ':streamGenerateContent?alt=sse&key=';
 
-        $this->api = $address . '/' . $model . $generate . $key;
+        $this->driver->setApi($address . '/' . $model . $generate . $key);
         $this->baseApi = $address;
 
         return $this;
@@ -65,6 +77,11 @@ class Multimodal extends Pipeline {
         $this->setApi($this->baseApi);
 
         return $this;
+    }
+
+    public function getModel()
+    {
+        return $this->model;
     }
 
     public function setPrompt($prompt) : self
@@ -113,24 +130,15 @@ class Multimodal extends Pipeline {
 
             if(isset($role))
             {
-                $promptMask = [
-                    "contents" => 
-                            $this->prompt
-                    ,
-                    "system_instruction" => [
-                        "parts" => $role
-                    ]
-                    ];
+                $this->driver->modifyRequest("contents", $this->prompt);
+                $this->driver->modifyRequest("system_instruction", [
+                    "parts" => $role
+                ]);
             }
             else
             {
-                $promptMask = [
-                        "contents" => 
-                            $this->prompt                       
-                    ];
-            }
-
-            $this->request = $promptMask;
+                $this->driver->modifyRequest("contents", $this->prompt);
+            }   
 
         }
         else
@@ -141,33 +149,49 @@ class Multimodal extends Pipeline {
         return $this;
     }
 
-    public function output()
+    public function getPrompt()
+    {
+        return $this->prompt;
+    }
+
+    public function output() : string
     {
         return $this->text();
     }
 
-    public function text()
+    public function text() : string
     {
-        $body = parent::output();
+        $body = $this->driver->output();
         return json_decode((string) $body)->candidates[0]->content->parts[0]->text;
     }
 
-    public function json()
+    public function json() : string
     {
-        $body = parent::output();
+        $body = $this->driver->output();
         return json_encode(json_decode($body), JSON_PRETTY_PRINT);
     }
 
-    public function array()
+    public function array() : array
     {
-        $body = parent::output();
+        $body = $this->driver->output();
         return json_decode($body, true);
     }
 
-    public function streamText()
+    public function stream() : Generator
     {
         $this->setApi($this->baseApi, true);
-        $body = parent::stream();
+        $body = $this->driver->stream();
+        foreach($body as $output)
+        {
+            $output = json_decode($output);
+            yield json_encode($output, JSON_PRETTY_PRINT);
+        }
+    }
+
+    public function streamText() : Generator
+    {
+        $this->setApi($this->baseApi, true);
+        $body = $this->driver->stream();
         foreach($body as $output)
         {
             $output = (object) json_decode($output);
@@ -176,21 +200,10 @@ class Multimodal extends Pipeline {
         }
     }
 
-    public function streamJson()
+    public function streamArray() : Generator
     {
         $this->setApi($this->baseApi, true);
-        $body = parent::stream();
-        foreach($body as $output)
-        {
-            $output = json_decode($output);
-            yield json_encode($output, JSON_PRETTY_PRINT);
-        }
-    }
-
-    public function streamArray()
-    {
-        $this->setApi($this->baseApi, true);
-        $body = parent::stream();
+        $body = $this->driver->stream();
         foreach($body as $output)
         {
             $output = json_decode($output);

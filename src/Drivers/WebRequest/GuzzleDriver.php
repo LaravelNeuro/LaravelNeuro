@@ -1,12 +1,12 @@
 <?php
-namespace LaravelNeuro;
+namespace LaravelNeuro\Drivers\WebRequests;
 
 use Generator;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Support\Facades\Storage;
 use LaravelNeuro\Enums\RequestType;
-use LaravelNeuro\Contracts\ApiAdapterContract;
+use LaravelNeuro\Contracts\AiModel\Driver;
 
 /**
  * Class ApiAdapter
@@ -17,7 +17,7 @@ use LaravelNeuro\Contracts\ApiAdapterContract;
  *
  * @package LaravelNeuro
  */
-class ApiAdapter implements ApiAdapterContract{
+class GuzzleDriver implements Driver {
 
     /**
      * The GuzzleHttp client instance.
@@ -158,6 +158,52 @@ class ApiAdapter implements ApiAdapterContract{
     public function getApi()
     {
         return $this->api;
+    }
+
+    public function modifyRequest($key_or_array, $value=null) : self
+    {
+        if(is_array($key_or_array))
+            $this->request[] = $key_or_array;
+        else
+            $this->request[$key_or_array] = $value;
+
+        return $this;
+    }
+
+    public function setModel($model) : self
+    {
+        $this->modifyRequest("model", $model);
+
+        return $this;
+    }
+
+    public function getModel()
+    {
+        return $this->request["model"];
+    }
+
+    public function setSystemPrompt($system) : self
+    {
+        $this->modifyRequest("system", $system);
+        
+        return $this;
+    }
+
+    public function getSystemPrompt()
+    {
+        return $this->request["system"];
+    }
+
+    public function setPrompt($prompt) : self
+    {
+        $this->modifyRequest("prompt", $prompt);
+        
+        return $this;
+    }
+
+    public function getPrompt()
+    {
+        return $this->request["prompt"];
     }
 
     /**

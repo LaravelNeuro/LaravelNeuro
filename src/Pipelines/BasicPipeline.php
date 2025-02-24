@@ -1,29 +1,40 @@
 <?php
-namespace LaravelNeuro;
+namespace LaravelNeuro\Pipelines;
 
-use LaravelNeuro\ApiAdapter;
+use Generator;
 use LaravelNeuro\Prompts\SUAPrompt;
-use LaravelNeuro\Contracts\PipelineContract;
+use LaravelNeuro\Prompts\BasicPrompt;
+use LaravelNeuro\Contracts\AiModel\Pipeline;
+use LaravelNeuro\Contracts\AiModel\Driver;
+use LaravelNeuro\Drivers\WebRequests\GuzzleDriver;
 
 /**
- * Class Pipeline
+ * Class BasicPipeline
  *
- * Extends the ApiAdapter to provide a builder-pattern interface for constructing API requests.
+ * Injects an Ai Model Driver to provide a builder-pattern interface for constructing API requests.
  * The Pipeline class adds structure by incorporating a model and a prompt to the request.
  *
  * @package LaravelNeuro
  */
-class Pipeline extends ApiAdapter implements PipelineContract{
+class BasicPipeline implements Pipeline {
 
     /**
-     * The model identifier used in the API request.
+     * The pipeline's ai model driver.
+     * Should implement the Driver Contract. 
+     *
+     * @var Driver
+     */
+    protected Driver $driver;
+
+    /**
+     * The model identifier used in the Driver request.
      *
      * @var mixed
      */
     protected $model;
 
     /**
-     * The prompt text to be used in the API request.
+     * The prompt text to be used in the Driver request.
      *
      * @var mixed
      */
@@ -36,12 +47,9 @@ class Pipeline extends ApiAdapter implements PipelineContract{
      */
     protected $system;
 
-    /**
-     * The complete request payload.
-     *
-     * @var array
-     */
-    public $request;
+    public function __construct(Driver $driver=new GuzzleDriver) {
+        $this->driver = $driver;
+    }
     
     /**
      * Sets the model for the pipeline.
@@ -54,7 +62,7 @@ class Pipeline extends ApiAdapter implements PipelineContract{
     public function setModel($model) : self
     {
         $this->model = $model;
-        $this->request["model"] = $model;
+        $this->driver->setModel($model);
 
         return $this;
     }
@@ -69,7 +77,7 @@ class Pipeline extends ApiAdapter implements PipelineContract{
      * @return self
      * @throws \InvalidArgumentException If the provided prompt is neither a string nor an instance of SUAPrompt.
      */
-    public function setPrompt($prompt) : self
+    public function setPrompt(string|BasicPrompt $prompt) : self
     {
         if(is_string($prompt))
         {
@@ -84,7 +92,7 @@ class Pipeline extends ApiAdapter implements PipelineContract{
                 switch($element->type)
                 {
                     case "role":
-                        $this->request["system"] = $element->block;
+                        $this->driver->setSystemPrompt($element->block);
                         break;
                     default:
                         $this->prompt .= $element->block."\n";
@@ -98,10 +106,14 @@ class Pipeline extends ApiAdapter implements PipelineContract{
         {
                 throw new \InvalidArgumentException("For this pipeline, the paramater passed to setPrompt should be a string or an instance of SUAprompt.");
         }
-
-        $this->request["prompt"] = $this->prompt;
+        $this->driver->setPrompt($this->prompt);
 
         return $this;
+    }
+
+    public function getDriver() : Driver
+    {
+        return $this->driver;
     }
 
     /**
@@ -122,5 +134,24 @@ class Pipeline extends ApiAdapter implements PipelineContract{
     public function getPrompt()
     {
         return $this->prompt;
+    }
+
+    public function output()
+    {
+        return $this->driver->output();
+    }
+
+    /**
+     * Executes a streaming Driver request.
+     *
+     * Enables streaming mode and returns a generator that yields JSON-encoded
+     * data chunks from the API response. Useful for handling responses that
+     * include large or streaming payloads.
+     *
+     * @return Generator Yields JSON-encoded data chunks.
+     */
+    public function stream() : Generator
+    {
+        return $this->driver->stream();
     }
 }

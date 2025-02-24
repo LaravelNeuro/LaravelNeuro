@@ -2,12 +2,26 @@
 
 namespace App\Pipelines\LLM;
 
-use LaravelNeuro\Pipeline;
+use Generator;
+use LaravelNeuro\Contracts\AiModel\Pipeline;
+use LaravelNeuro\Contracts\AiModel\Driver;
+use LaravelNeuro\Drivers\WebRequest\GuzzleDriver;
 
-class {{modelName}} extends Pipeline
-{
+class {{modelName}} implements Pipeline
+{model
+    protected Driver $driver;
+    protected $prompt;
     protected $model = "";  // set the name of the default model this Pipeline should use
     protected $api = "";    // set the default url of the API serving your model
+
+    /**
+     * Each pipeline should be instantiated with a valid Driver injection.
+     *
+     * Default Driver: \LaravelNeuro\Contracts\WebRequest\GuzzleDriver
+     */
+    public function __construct(Driver $driver = new GuzzleDriver) {
+        $this->driver = $driver;
+    }
 
     public function setPrompt($prompt)
     {
@@ -18,6 +32,68 @@ class {{modelName}} extends Pipeline
     
         return $this;
     }
+
+    /**
+     * Retrieves the active Ai Model Driver for this pipeline.
+     *
+     * @return Driver The current pipeline Driver. 
+     */
+    public function getDriver() : driver
+    {
+        return $this->driver;
+    }
+
+    /**
+     * Sets the model for the pipeline.
+     *
+     * This method assigns the given model to the pipeline and updates the request payload accordingly.
+     *
+     * @param mixed $model The model identifier to be used.
+     * @return self
+     */
+    public function setModel($model): self
+    {
+        $this->model = $model;
+        return $this;
+    }
+
+    /**
+     * Sets the prompt for the pipeline.
+     *
+     * This method accepts either a string or an instance of SUAPrompt. If a SUAPrompt instance is provided,
+     * it iterates over the prompt elements to build the complete prompt and system message.
+     *
+     * @param string|BasicPrompt $prompt The prompt text or a prompt-class that is validated against the Pipeline 
+     * inside setPrompt instance.
+     * @return self
+     * @throws \InvalidArgumentException If the provided prompt is neither a string nor an instance of SUAPrompt.
+     */
+    public function setPrompt(string|BasicPrompt $prompt): self
+    {
+        if ($prompt instanceof BasicPrompt) {
+            $this->prompt = $prompt;
+            $this->driver->setPrompt($this->prompt->getPrompt());
+        } elseif (is_string($prompt)) {
+            $this->prompt = $prompt;
+            $this->driver->setPrompt($prompt);
+        } else {
+            throw new \InvalidArgumentException('Invalid prompt type. Expected string or BasicPrompt instance.');
+        }
+    }
+
+    /**
+     * Retrieves the current model.
+     *
+     * @return mixed The current model identifier.
+     */
+    public function getModel();
+
+    /**
+     * Retrieves the current prompt.
+     *
+     * @return string The current prompt text.
+     */
+    public function getPrompt();
 
     public function output()
     {

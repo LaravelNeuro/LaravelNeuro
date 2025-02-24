@@ -1,28 +1,35 @@
 <?php
 namespace LaravelNeuro\Pipelines\OpenAI;
 
-use LaravelNeuro\Pipeline;
+use Generator;
+use GuzzleHttp\Psr7;
 use LaravelNeuro\Prompts\FSprompt;
 use LaravelNeuro\Enums\RequestType;
-use GuzzleHttp\Psr7;
+use LaravelNeuro\Contracts\AiModel\Driver;
+use LaravelNeuro\Contracts\AiModel\Pipeline;
+use LaravelNeuro\Drivers\WebRequests\GuzzleDriver;
 
-class Whisper extends Pipeline {
+class Whisper implements Pipeline {
 
     protected $model;
+    protected GuzzleDriver $driver;
+    protected $prompt;
     protected $accessToken;
 
     public function __construct()
     {
+        $this->driver = new GuzzleDriver;
+        
         $this->prompt = [];
         $this->setModel(
                         config('laravelneuro.models.whisper-1.model')
                         );
-        $this->setApi(
+        $this->driver->setApi(
                     config('laravelneuro.models.whisper-1.api')
                     );
         $this->accessToken = config('laravelneuro.keychain.openai');
 
-        $this->setHeaderEntry("Authorization", "Bearer " . $this->accessToken);
+        $this->driver->setHeaderEntry("Authorization", "Bearer " . $this->accessToken);
 
         if(empty($this->model))
         {
@@ -38,21 +45,36 @@ class Whisper extends Pipeline {
         }
     }
 
+    public function getDriver() : Driver
+    {
+        return $this->driver;
+    }
+
+    public function setModel($model) : self
+    {
+        $this->model = $model;
+        $this->driver->setModel($model);
+        return $this;
+    }
+
+    public function getModel()
+    {
+        return $this->model;
+    }
+
     public function setPrompt($prompt) : self
     {
         if($prompt instanceof FSprompt)
         {
-            $this->setRequestType(RequestType::MULTIPART);
-            $this->request = [
-                [
-                    'name'     => 'file',
-                    'contents' => Psr7\Utils::tryFopen($prompt->getFile(), "r")
-                ],
-                [
-                    'name'     => 'model',
-                    'contents' => $this->getModel()
-                ],
-            ];
+            $this->driver->setRequestType(RequestType::MULTIPART);
+            $this->driver->modifyRequest("messages", [
+                                'name'     => 'file',
+                                'contents' => Psr7\Utils::tryFopen($prompt->getFile(), "r")
+                            ]);
+            $this->driver->modifyRequest("messages", [
+                                'name'     => 'model',
+                                'contents' => $this->getModel()
+                            ]);
         }
         else
         {
@@ -62,10 +84,20 @@ class Whisper extends Pipeline {
         return $this;
     }
 
+    public function getPrompt()
+    {
+        return $this->prompt;
+    }
+
     public function output()
     {
-        $output = parent::output();
+        $output = $this->driver->output();
         return json_decode($output)->text;
+    }
+
+    public function stream() : Generator
+    {
+        throw new \Exception("Stream mode is not supported for this pipeline.");
     }
 
 }

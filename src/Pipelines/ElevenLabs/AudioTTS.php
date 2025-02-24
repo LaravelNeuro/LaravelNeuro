@@ -1,21 +1,26 @@
 <?php
 namespace LaravelNeuro\Pipelines\ElevenLabs;
 
-use LaravelNeuro\Pipeline;
-use GuzzleHttp\Exception\GuzzleException;
-use GuzzleHttp\Exception\RequestException;
-use LaravelNeuro\Prompts\IVFSprompt;
+use Generator;
 use Illuminate\Support\Str;
+use LaravelNeuro\Prompts\IVFSprompt;
+use LaravelNeuro\Drivers\WebRequests\GuzzleDriver;
+use LaravelNeuro\Contracts\AiModel\Pipeline;
+use LaravelNeuro\Contracts\AiModel\Driver;
 
-class AudioTTS extends Pipeline {
+class AudioTTS implements Pipeline {
 
     protected $model;
+    protected GuzzleDriver $driver;
+    protected $prompt;
     protected $voice;
     protected $fileType = "mp3";
     protected $accessToken;
-
+ 
     public function __construct()
     {
+        $this->driver = new GuzzleDriver;
+        
         $this->prompt = [];
         
         $this->voice = config('laravelneuro.models.eleven-monolingual-v1.voice');
@@ -24,11 +29,11 @@ class AudioTTS extends Pipeline {
         $this->accessToken = config('laravelneuro.keychain.elevenlabs');
 
         $this->setModel($model);
-        $this->setApi($api);
+        $this->driver->setApi($api);
 
-        $this->setHeaderEntry("xi-api-key", $this->accessToken);
-        $this->setHeaderEntry("Content-Type", "application/json");
-        $this->setHeaderEntry("Accept", "audio/mpeg");
+        $this->driver->setHeaderEntry("xi-api-key", $this->accessToken);
+        $this->driver->setHeaderEntry("Content-Type", "application/json");
+        $this->driver->setHeaderEntry("Accept", "audio/mpeg");
 
         if(empty($this->model))
         {
@@ -44,12 +49,22 @@ class AudioTTS extends Pipeline {
         }
     }
 
+    public function getDriver() : Driver
+    {
+        return $this->driver;
+    }
+
     public function setModel($model) : self
     {
         $this->model = $model;
-        $this->request["model_id"] = $model;
+        $this->driver->modifyRequest("model_id", $model);
 
         return $this;
+    }
+
+    public function getModel()
+    {
+        return $this->model;
     }
 
     public function setPrompt($prompt) : self
@@ -64,22 +79,20 @@ class AudioTTS extends Pipeline {
                 ]);
             }
             $this->prompt = $prompt->getInput();  
-            $this->request["text"] = $this->prompt;
-            $this->setApi(str_replace("{voice}", ($prompt->getVoice() ?? $this->voice), $this->api));
+            $this->driver->modifyRequest("text", $this->prompt);
+            $this->driver->setApi(str_replace("{voice}", ($prompt->getVoice() ?? $this->voice), $this->driver->getApi()));
 
-            $this->request["voice_settings"] = json_decode(json_encode($prompt->getSettings()));
-
+            $voice_settings = json_decode(json_encode($prompt->getSettings()));
             if(isset($prompt->getSettings()["stability"]))
-            $this->request["voice_settings"]->stability = $prompt->getSettings()["stability"];
-
+                $voice_settings->stability = $prompt->getSettings()["stability"];
             if(isset($prompt->getSettings()["similarity_boost"]))
-                $this->request["voice_settings"]->similarity_boost = $prompt->getSettings()["similarity_boost"];
-            
+                $voice_settings->similarity_boost = $prompt->getSettings()["similarity_boost"];
             if(isset($prompt->getSettings()["style"]))
-                $this->request["voice_settings"]->style = $prompt->getSettings()["style"];
-            
+                $voice_settings->style = $prompt->getSettings()["style"];
             if(isset($prompt->getSettings()["use_speaker_boost"]))
-                $this->request["voice_settings"]->use_speaker_boost = $prompt->getSettings()["use_speaker_boost"];
+                $voice_settings->use_speaker_boost = $prompt->getSettings()["use_speaker_boost"];
+
+            $this->driver->modifyRequest("voice_settings", $voice_settings);
         }
         else
         {
@@ -89,6 +102,11 @@ class AudioTTS extends Pipeline {
         return $this;
     }
 
+    public function getPrompt()
+    {
+        return $this->prompt;
+    }
+
     public function output($json = true)
     {
         return $this->store($json);
@@ -96,7 +114,7 @@ class AudioTTS extends Pipeline {
 
     public function raw()
     {
-        $body = parent::output();
+        $body = $this->driver->output();
 
         return $body;
     }
@@ -105,11 +123,16 @@ class AudioTTS extends Pipeline {
     {
         $audio = $this->raw();
         $file = (string) Str::uuid() . '.' . $this->fileType;
-        $fileMetaData = $this->fileMake($file, $audio);
+        $fileMetaData = $this->driver->fileMake($file, $audio);
         if($json)
             return json_encode($fileMetaData);
         else
             return $fileMetaData;
+    }
+
+    public function stream() : Generator
+    {
+        throw new \Exception("Stream mode is not supported for this pipeline.");
     }
 
 }

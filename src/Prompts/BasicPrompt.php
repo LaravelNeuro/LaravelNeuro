@@ -2,9 +2,9 @@
 namespace LaravelNeuro\Prompts;
 
 use Illuminate\Support\Collection;
-use LaravelNeuro\Contracts\CorporatePromptContract;
+use LaravelNeuro\Contracts\Networking\CorporatePrompt;
 
-class BasicPrompt extends Collection implements CorporatePromptContract {
+class BasicPrompt extends Collection implements CorporatePrompt {
 
     public function promptEncode()
     {

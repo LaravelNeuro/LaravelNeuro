@@ -1,15 +1,23 @@
 <?php
 namespace LaravelNeuro\Networking;
 
-use LaravelNeuro\Pipeline;
+use Generator;
 use LaravelNeuro\Networking\Database\Models\NetworkAgent;
 use LaravelNeuro\Networking\Database\Models\NetworkUnit;
+use LaravelNeuro\Drivers\WebRequests\GuzzleDriver;
+use LaravelNeuro\Contracts\AiModel\Pipeline;
+use LaravelNeuro\Contracts\AiModel\Driver;
+
 
 use LaravelNeuro\Enums\APItype;
 
-class Agent extends Pipeline {
+class Agent {
 
     public string $name;
+    protected $model;
+    protected $prompt;
+    protected $api;
+    public Driver $driver;
     public APItype $apiType;
     public string $promptClass;
     public string $pipelineClass;
@@ -48,7 +56,7 @@ class Agent extends Pipeline {
     public function setRole(string $set)
     {
         $this->role = $set;
-        $this->request["system"] = $set;
+        $this->driver->setSystemPrompt($set);
 
         return $this;
     }
@@ -91,12 +99,48 @@ class Agent extends Pipeline {
 
     public function getName()
     {
-        return $this->role;
+        return $this->name;
     }
 
     public function getRole()
     {
         return $this->role;
+    }
+
+    public function setModel($model) : self
+    {
+        $this->model = $model;
+
+        return $this;
+    }
+
+    public function getModel()
+    {
+        return $this->model;
+    }
+
+    public function setPrompt($prompt) : self
+    {
+        $this->prompt = $prompt;
+
+        return $this;
+    }
+
+    public function getPrompt()
+    {
+        return $this->prompt;
+    }
+
+    public function setApi($api) : self
+    {
+        $this->api = $api;
+
+        return $this;
+    }
+
+    public function getApi()
+    {
+        return $this->api;
     }
 
     public function install(int $unitId)

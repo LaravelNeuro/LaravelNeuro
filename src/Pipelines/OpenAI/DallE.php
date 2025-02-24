@@ -1,30 +1,36 @@
 <?php
 namespace LaravelNeuro\Pipelines\OpenAI;
 
+use Generator;
 use Illuminate\Support\Str;
-use LaravelNeuro\Pipeline;
+use LaravelNeuro\Contracts\AiModel\Driver;
+use LaravelNeuro\Contracts\AiModel\Pipeline;
+use LaravelNeuro\Drivers\WebRequests\GuzzleDriver;
 use LaravelNeuro\Prompts\PNSQFprompt;
-use PHPUnit\Framework\Constraint\ObjectHasProperty;
 
-class DallE extends Pipeline {
+class DallE implements Pipeline {
 
     protected $model;
+    protected GuzzleDriver $driver;
+    protected $prompt;
     protected $accessToken;
     protected $fileType = "png";
 
     public function __construct()
     {
+        $this->driver = new GuzzleDriver;
+        
         $this->prompt = [];
         $this->setModel(
                         config('laravelneuro.models.dall-e-2.model')
                         );
-        $this->setApi(
+        $this->driver->setApi(
                     config('laravelneuro.models.dall-e-2.api')
                     );
         $this->accessToken = config('laravelneuro.keychain.openai');
 
-        $this->setHeaderEntry("Authorization", "Bearer " . $this->accessToken);
-        $this->setHeaderEntry("Content-Type", "application/json");
+        $this->driver->setHeaderEntry("Authorization", "Bearer " . $this->accessToken);
+        $this->driver->setHeaderEntry("Content-Type", "application/json");
 
         if(empty($this->model))
         {
@@ -40,16 +46,33 @@ class DallE extends Pipeline {
         }
     }
 
+    public function getDriver() : Driver
+    {
+        return $this->driver;
+    }
+
+    public function setModel($model) : self
+    {
+        $this->model = $model;
+        $this->driver->setModel($model);
+        return $this;
+    }
+
+    public function getModel()
+    {
+        return $this->model;
+    }
+
     public function setPrompt($prompt) : self
     {
         if($prompt instanceof PNSQFprompt)
         {
             $this->prompt = $prompt->getPrompt();  
-            $this->request["prompt"] = $this->prompt;
-            $this->request["n"] = $prompt->getNumber();
-            $this->request["size"] = $prompt->getSize();
-            $this->request["quality"] = $prompt->getQuality();
-            $this->request["response_format"] = $prompt->getFormat();
+            $this->driver->modifyRequest("prompt", $this->prompt);
+            $this->driver->modifyRequest("n", $prompt->getNumber());
+            $this->driver->modifyRequest("size", $prompt->getSize());
+            $this->driver->modifyRequest("quality", $prompt->getQuality());
+            $this->driver->modifyRequest("response_format", $prompt->getFormat());
         }
         else
         {
@@ -57,6 +80,11 @@ class DallE extends Pipeline {
         }
     
         return $this;
+    }
+
+    public function getPrompt()
+    {
+        return $this->prompt;
     }
 
     public function setFileType(string $type)
@@ -72,7 +100,7 @@ class DallE extends Pipeline {
 
     public function b64()
     {
-        $body = parent::output();
+        $body = $this->driver->output();
         $images = json_decode($body)->data;
         $images = [];
         foreach($images as $data)
@@ -88,7 +116,7 @@ class DallE extends Pipeline {
 
     public function raw()
     {
-        $body = parent::output();
+        $body = $this->driver->output();
         $imagedata = json_decode($body)->data;
         $images = [];
         foreach($imagedata as $data)
@@ -114,7 +142,7 @@ class DallE extends Pipeline {
             if(!filter_var($image, FILTER_VALIDATE_URL))
             {
                 $file = (string) Str::uuid() . '.' . $this->fileType;
-                $fileMetaData[] = $this->fileMake($file, $image);
+                $fileMetaData[] = $this->driver->fileMake($file, $image);
             }
             else
             {
@@ -125,6 +153,11 @@ class DallE extends Pipeline {
             return json_encode($fileMetaData);
         else
             return $fileMetaData;
+    }
+
+    public function stream() : Generator
+    {
+        throw new \Exception("Stream mode is not supported for this pipeline.");
     }
 
 }

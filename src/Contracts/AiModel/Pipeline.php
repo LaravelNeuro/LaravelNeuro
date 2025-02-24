@@ -1,9 +1,28 @@
 <?php
 
-namespace LaravelNeuro\Contracts;
+namespace LaravelNeuro\Contracts\AiModel;
 
-interface PipelineContract 
+use Generator;
+use LaravelNeuro\Contracts\AiModel\Driver;
+use LaravelNeuro\Prompts\BasicPrompt;
+
+interface Pipeline
 {
+
+    /**
+     * Each pipeline should be instantiated with a valid Driver injection.
+     *
+     * Default Driver: \LaravelNeuro\Contracts\WebRequest\GuzzleDriver
+     */
+    public function __construct(Driver $driver);
+
+    /**
+     * Retrieves the active Ai Model Driver for this pipeline.
+     *
+     * @return Driver The current pipeline Driver. 
+     */
+    public function getDriver() : Driver;
+
     /**
      * Sets the model for the pipeline.
      *
@@ -20,11 +39,12 @@ interface PipelineContract
      * This method accepts either a string or an instance of SUAPrompt. If a SUAPrompt instance is provided,
      * it iterates over the prompt elements to build the complete prompt and system message.
      *
-     * @param string|SUAPrompt $prompt The prompt text or SUAPrompt instance.
+     * @param string|BasicPrompt $prompt The prompt text or a prompt-class that is validated against the Pipeline 
+     * inside setPrompt instance.
      * @return self
      * @throws \InvalidArgumentException If the provided prompt is neither a string nor an instance of SUAPrompt.
      */
-    public function setPrompt($prompt): self;
+    public function setPrompt(string|BasicPrompt $prompt): self;
 
     /**
      * Retrieves the current model.
@@ -58,5 +78,5 @@ interface PipelineContract
      *
      * @return Generator Yields JSON-encoded data chunks.
      */
-    public function stream(): \Generator;
+    public function stream(): Generator;
 }
