@@ -1,8 +1,8 @@
 <?php
 
-namespace LaravelNeuro\Contracts\Prompts;
+namespace LaravelNeuro\Contracts;
 
-Interface CorporatePrompt
+Interface CorporatePromptContract
 {
     public function promptEncode();
 

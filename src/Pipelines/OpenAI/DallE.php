@@ -40,7 +40,7 @@ class DallE extends Pipeline {
         }
     }
 
-    public function setPrompt($prompt)
+    public function setPrompt($prompt) : self
     {
         if($prompt instanceof PNSQFprompt)
         {

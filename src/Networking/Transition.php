@@ -15,7 +15,7 @@ use LaravelNeuro\Networking\Database\Models\NetworkState;
 use LaravelNeuro\Networking\Database\Models\NetworkAgent;
 use LaravelNeuro\Networking\Database\Models\NetworkUnit;
 
-use LaravelNeuro\Contracts\Prompts\CorporatePrompt;
+use LaravelNeuro\Contracts\CorporatePromptContract;
 
 use LaravelNeuro\Enums\UnitReceiver;
 use LaravelNeuro\Enums\TuringMode;
@@ -226,11 +226,12 @@ class Transition {
 
         $encodedPrompt = json_encode($decodedPrompt);
 
-        $prompt = $agent->promptClass::promptDecode($encodedPrompt);
-
         try {
+            if(!($agent->promptClass instanceof CorporatePromptContract)) throw new \Exception("Your transition does not return a prompt with the CorporatePromptContract. While pipelines do not necessarily need to implement this interface, Transitions do, so it is recommended to extend BasicPrompt, which implements CorporatePromptContract, or use the interface on your custom prompt.");
+            
+            $prompt = $agent->promptClass::promptDecode($encodedPrompt);
+
             $prompt = $this->postProcessPrompt($prompt);
-            if(!($prompt instanceof CorporatePrompt)) throw new \Exception("Your transition does not return a prompt with the CorporatePrompt Contract. While pipelines do not necessarily need to implement this interface, Transitions do, so it is recommended to extend BasicPrompt, which implements CorporatePrompt, or use the interface on your custom prompt.");
             }
             catch(\Exception $e)
             {

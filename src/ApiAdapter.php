@@ -6,6 +6,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Support\Facades\Storage;
 use LaravelNeuro\Enums\RequestType;
+use LaravelNeuro\Contracts\ApiAdapterContract;
 
 /**
  * Class ApiAdapter
@@ -16,7 +17,7 @@ use LaravelNeuro\Enums\RequestType;
  *
  * @package LaravelNeuro
  */
-class ApiAdapter {
+class ApiAdapter implements ApiAdapterContract{
 
     /**
      * The GuzzleHttp client instance.
@@ -142,7 +143,7 @@ class ApiAdapter {
      * @param string $address The API endpoint.
      * @return self
      */
-    public function setApi($address)
+    public function setApi(string $address) : self
     {
         $this->api = $address;
 
@@ -175,7 +176,7 @@ class ApiAdapter {
      * @param RequestType $requestType The request type to set.
      * @return self
      */
-    public function setRequestType(RequestType $requestType)
+    public function setRequestType(RequestType $requestType) : self
     {
         $this->requestType = $requestType;
         return $this;

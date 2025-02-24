@@ -44,7 +44,7 @@ class AudioTTS extends Pipeline {
         }
     }
 
-    public function setModel($model)
+    public function setModel($model) : self
     {
         $this->model = $model;
         $this->request["model_id"] = $model;
@@ -52,7 +52,7 @@ class AudioTTS extends Pipeline {
         return $this;
     }
 
-    public function setPrompt($prompt)
+    public function setPrompt($prompt) : self
     {
         if($prompt instanceof IVFSprompt)
         {

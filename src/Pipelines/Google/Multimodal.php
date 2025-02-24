@@ -36,7 +36,7 @@ class Multimodal extends Pipeline {
         }
     }
 
-    public function setApi($address, $stream = false)
+    public function setApi($address, $stream = false) : self
     {
         if(!empty($this->getModel()))
             $model = $this->getModel();
@@ -59,7 +59,7 @@ class Multimodal extends Pipeline {
         return $this;
     }
 
-    public function setModel($model)
+    public function setModel($model) : self
     {
         $this->model = $model;
         $this->setApi($this->baseApi);
@@ -67,7 +67,7 @@ class Multimodal extends Pipeline {
         return $this;
     }
 
-    public function setPrompt($prompt)
+    public function setPrompt($prompt) : self
     {
         if($prompt instanceof SUAprompt)
         {

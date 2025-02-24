@@ -3,6 +3,7 @@ namespace LaravelNeuro;
 
 use LaravelNeuro\ApiAdapter;
 use LaravelNeuro\Prompts\SUAPrompt;
+use LaravelNeuro\Contracts\PipelineContract;
 
 /**
  * Class Pipeline
@@ -12,7 +13,7 @@ use LaravelNeuro\Prompts\SUAPrompt;
  *
  * @package LaravelNeuro
  */
-class Pipeline extends ApiAdapter {
+class Pipeline extends ApiAdapter implements PipelineContract{
 
     /**
      * The model identifier used in the API request.
@@ -50,7 +51,7 @@ class Pipeline extends ApiAdapter {
      * @param mixed $model The model identifier to be used.
      * @return self
      */
-    public function setModel($model)
+    public function setModel($model) : self
     {
         $this->model = $model;
         $this->request["model"] = $model;
@@ -68,7 +69,7 @@ class Pipeline extends ApiAdapter {
      * @return self
      * @throws \InvalidArgumentException If the provided prompt is neither a string nor an instance of SUAPrompt.
      */
-    public function setPrompt($prompt)
+    public function setPrompt($prompt) : self
     {
         if(is_string($prompt))
         {

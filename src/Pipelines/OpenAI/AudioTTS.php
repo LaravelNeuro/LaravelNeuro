@@ -39,7 +39,7 @@ class AudioTTS extends Pipeline {
         }
     }
 
-    public function setPrompt($prompt)
+    public function setPrompt($prompt) : self
     {
         if($prompt instanceof IVFSprompt)
         {
