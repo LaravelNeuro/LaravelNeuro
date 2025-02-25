@@ -13,7 +13,7 @@ use LaravelNeuro\Drivers\WebRequest\GuzzleDriver;
 
 use Tests\PackageTestCase;
 
-class ApiAdapterTest extends PackageTestCase
+class GuzzleDriverTest extends PackageTestCase
 {
     public function testSetApi()
     {
