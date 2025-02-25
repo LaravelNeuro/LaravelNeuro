@@ -128,7 +128,14 @@ class Corporation {
     public StuckHandler $stuckSetting = StuckHandler::REPEAT;
 
     /**
-     * Flag indicating whether debugging output is enabled.
+     * Flag indicating whether history entries should be saved to the database.
+     *
+     * @var bool
+     */
+    public bool $saveHistory = true;
+
+    /**
+     * Flag indicating whether debugging output is enabled (posts history to console among other information).
      *
      * @var bool
      */
@@ -146,8 +153,9 @@ class Corporation {
      * @param bool $debug Whether debugging output should be enabled.
      * @param bool $integrityCheck If true, performs only an integrity check and returns immediately.
      * @param array $new Default values for creating a new corporation (name and description).
+     * @param bool $saveHistory Whether history entries should be saved to the database. Defaults to true.
      */
-    public function __construct(string $task, bool $debug = false, bool $integrityCheck = false, array $new = ["name" => "DummyCorp", "description" => "DummyDesc"])
+    public function __construct(string $task, bool $debug = false, bool $integrityCheck = false, array $new = ["name" => "DummyCorp", "description" => "DummyDesc"], bool $saveHistory = true)
     {
         if ($integrityCheck) return;
         $this->debug = $debug;
@@ -157,6 +165,7 @@ class Corporation {
         $this->task = $task;
         $this->head = new TuringHead;
         $this->head->setData($this->task);
+        $this->saveHistory = $saveHistory;
 
         if($this->corporationNameSpace !== false)
         {
@@ -235,16 +244,9 @@ class Corporation {
             ]);
 
         $this->stateMap = NetworkState::where('project_id', $this->project->id)->orderBy('id', 'asc')->get();
-        
-        $this->debug("Corporation Initiated.");
 
-        $history = NetworkHistory::create([
-            'entryType' => TuringHistory::OTHER, 
-            'project_id' => $this->project->id, 
-            'content' => 'Corporation has been initiated successfully.'
-            ]);
-        
-        $this->history = $history->id;
+        $this->history(TuringHistory::OTHER, 'Corporation has been initiated successfully.');
+        $this->debug('New history entry ('.TuringHistory::OTHER.'): ' . 'Corporation has been initiated successfully.');
     }
 
     /**
@@ -259,6 +261,26 @@ class Corporation {
             $dateObj = \DateTime::createFromFormat('0.u00 U', microtime());
             echo '[' . $dateObj->format('H:i:s.u') . ']: ' . $info . "\n";
         }
+    }
+
+    /**
+     * Saves history entries to the database.
+     *
+     * @param string $info The debug message.
+     * @return void
+     */
+    protected function history(TuringHistory $entryType, $content) 
+    {
+        if($this->saveHistory)
+        {
+            $history = NetworkHistory::create([
+                'entryType' => $entryType, 
+                'project_id' => $this->project->id, 
+                'content' => $content
+                ]);
+            return $history;
+        }
+        return null;
     }
 
     /**
@@ -288,13 +310,11 @@ class Corporation {
      */
     protected function initial(TuringHead $head) : TuringHead
     {
-        NetworkHistory::create([
-            'project_id' => $this->project->id, 
-            'entryType' => TuringHistory::PROMPT,
-            'content' => $this->task
-            ]);
-        
-        $transition = new Transition($this->project->id, $head, $this->models);
+        $this->history(TuringHistory::PROMPT, $this->task);
+        $this->debug('New history entry ('.TuringHistory::PROMPT.'): ' . $this->task);
+
+        $transition = new Transition($this->project->id, $head, $this->models, $this->saveHistory);
+        $transition->saveHistory = $this->saveHistory;
 
         return $transition->handle();
     }
@@ -309,7 +329,8 @@ class Corporation {
      */
     protected function continue(TuringHead $head) : TuringHead
     {
-        $transition = new Transition($this->project->id, $head, $this->models);
+        $transition = new Transition($this->project->id, $head, $this->models, $this->saveHistory);
+        $transition->saveHistory = $this->saveHistory;
 
         return $transition->handle();
     }
@@ -324,7 +345,8 @@ class Corporation {
      */
     protected function final(TuringHead $head) : TuringHead
     {
-        $transition = new Transition($this->project->id, $head, $this->models);
+        $transition = new Transition($this->project->id, $head, $this->models, $this->saveHistory);
+        $transition->saveHistory = $this->saveHistory;
 
         return $transition->handle();
     }
@@ -541,26 +563,6 @@ class Corporation {
                         $exit = true;
                         break;    
                 } 
-
-            if($this->debug)
-            {
-                $newHistoryEntries = NetworkHistory::where('project_id', $this->project->id)
-                                                   ->where('id', '>', $this->history);
-                if($newHistoryEntries->count() > 0)
-                {
-                    try{
-                    foreach($newHistoryEntries->get() as $entry)
-                    {
-                        $this->debug('New history entry ('.$entry->entryType->value.'): ' . $entry->content);
-                    }
-                    $this->history = $newHistoryEntries->last()->id;
-                    }
-                    catch(\Exception $e)
-                    {
-                        $this->debug('No new history entries.');
-                    }
-                }
-            }
 
             if($exit) break; 
             $this->corporation = $this->corporation->fresh(['units.agents', 'units.dataSetTemplates.dataSets']);

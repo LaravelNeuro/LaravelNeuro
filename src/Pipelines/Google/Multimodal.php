@@ -100,6 +100,16 @@ class Multimodal implements Pipeline {
     }
 
     /**
+     * Accesses the injected Driver instance.
+     *
+     * @return Driver the Driver instance stored in this instance of the class.
+     */
+    public function driver() : Driver
+    {
+        return $this->driver;
+    }
+
+    /**
      * Sets the API endpoint for the driver.
      *
      * Builds the full API URL by appending the model identifier, generate endpoint (or stream endpoint),

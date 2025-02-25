@@ -92,6 +92,16 @@ class ChatCompletion implements Pipeline {
     }
 
     /**
+     * Accesses the injected Driver instance.
+     *
+     * @return Driver the Driver instance stored in this instance of the class.
+     */
+    public function driver() : Driver
+    {
+        return $this->driver;
+    }
+
+    /**
      * Sets the model for the pipeline.
      *
      * Updates both the pipeline and the underlying driver's model.

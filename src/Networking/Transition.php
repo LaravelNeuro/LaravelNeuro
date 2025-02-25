@@ -78,6 +78,13 @@ class Transition {
     protected Collection $models;
 
     /**
+     * Flag indicating whether history entries should be saved to the database.
+     *
+     * @var bool
+     */
+    public bool $saveHistory = true;
+
+    /**
      * Transition constructor.
      *
      * Initializes the Transition instance using a project ID, the TuringHead (state machine tape),
@@ -109,6 +116,26 @@ class Transition {
         } else {
             throw new \Exception("Call to non-existent project with the id '$projectId'.");
         }
+    }
+
+    /**
+     * Saves history entries to the database.
+     *
+     * @param string $info The debug message.
+     * @return void
+     */
+    protected function history(TuringHistory $entryType, $content) 
+    {
+        if($this->saveHistory)
+        {
+            $history = NetworkHistory::create([
+                'entryType' => $entryType, 
+                'project_id' => $this->project->id, 
+                'content' => $content
+                ]);
+            return $history;
+        }
+        return null;
     }
 
     /**
@@ -330,13 +357,7 @@ class Transition {
         } catch(\Exception $e) {
             throw new \Exception("There appears to be a problem with your prompt/head post-processing during one of your Transitions:\n".$e);
         }
-
-        NetworkHistory::create([
-            'project_id' => $this->project->id, 
-            'agent_id' => $this->agent->id,
-            'entryType' => TuringHistory::PROMPT,
-            'content' => $prompt->promptEncode()
-        ]); 
+        $this->history(TuringHistory::PROMPT, $prompt->promptEncode());
 
         $agent->pipeline->setPrompt($prompt); 
 
@@ -396,34 +417,18 @@ class Transition {
             }
 
             if ($validated) {
-                $this->head->setData($data);
-                NetworkHistory::create([
-                    'project_id' => $this->project->id, 
-                    'agent_id' => $this->agent->id,
-                    'entryType' => TuringHistory::RESPONSE,
-                    'content' => $this->head->getData()
-                ]);
+                $this->history(TuringHistory::RESPONSE, $this->head->getData());
                 if ($agent->outputModel != false) {
                     $dataSet = $validationTemplate->dataSets->where('project_id', $this->project->id)->first();
                     $dataSet->data = $this->head->getData();
                     $dataSet->save();
                 }
             } else {
-                NetworkHistory::create([
-                    'project_id' => $this->project->id, 
-                    'agent_id' => $this->agent->id,
-                    'entryType' => TuringHistory::ERROR,
-                    'content' => "OutputModel validation error. Setting head mode to TuringMode::STUCK!\n\nTemplate: " . $validationTemplate->completionResponse . "\nResponse: " . $data . "\n\n"
-                ]);
+                $this->history(TuringHistory::ERROR, "OutputModel validation error. Setting head mode to TuringMode::STUCK!\n\nTemplate: " . $validationTemplate->completionResponse . "\nResponse: " . $data . "\n\n");
                 $this->head->setMode(TuringMode::STUCK);
             }       
         } catch (\Exception $e) {
-            NetworkHistory::create([
-                'project_id' => $this->project->id, 
-                'agent_id' => $this->agent->id,
-                'entryType' => TuringHistory::ERROR,
-                'content' => $e
-            ]);
+            $this->history(TuringHistory::ERROR, $e);
             $this->head->setMode(TuringMode::STUCK);
         }
     }

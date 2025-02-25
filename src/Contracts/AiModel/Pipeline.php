@@ -23,6 +23,13 @@ interface Pipeline
      */
     public function getDriver() : Driver;
 
+        /**
+     * Accesses the injected Driver instance.
+     *
+     * @return Driver the Driver instance stored in this instance of the class.
+     */
+    public function driver() : Driver;
+
     /**
      * Sets the model for the pipeline.
      *

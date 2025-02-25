@@ -1,10 +1,7 @@
 protected function initial(TuringHead $head) : TuringHead
     {
-        NetworkHistory::create([
-            'project_id' => $this->project->id, 
-            'entryType' => TuringHistory::PROMPT,
-            'content' => $this->task
-            ]);
+        $this->history(TuringHistory::PROMPT, $this->task);
+        $this->debug('New history entry ('.TuringHistory::PROMPT.'): ' . $this->task);
         
         $transition = new {{FirstTransition}}($this->project->id, $head, $this->models);
 

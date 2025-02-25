@@ -101,6 +101,16 @@ class DallE implements Pipeline {
     }
 
     /**
+     * Accesses the injected Driver instance.
+     *
+     * @return Driver the Driver instance stored in this instance of the class.
+     */
+    public function driver() : Driver
+    {
+        return $this->driver;
+    }
+
+    /**
      * Sets the model for the pipeline.
      *
      * Updates both the pipeline property and the driver's model.

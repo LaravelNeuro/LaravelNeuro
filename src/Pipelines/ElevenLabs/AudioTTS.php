@@ -113,6 +113,16 @@ class AudioTTS implements Pipeline {
     }
 
     /**
+     * Accesses the injected Driver instance.
+     *
+     * @return Driver the Driver instance stored in this instance of the class.
+     */
+    public function driver() : Driver
+    {
+        return $this->driver;
+    }
+
+    /**
      * Sets the model for the pipeline.
      *
      * Assigns the given model to the pipeline and updates the underlying driver's request payload.
