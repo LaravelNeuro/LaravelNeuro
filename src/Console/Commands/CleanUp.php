@@ -15,6 +15,7 @@ class CleanUp extends Command
 {
     protected $signature = 'lneuro:cleanup
     {--i|interactive : Present interactive command interface to set values and flags.}
+    {--mode=all : Can be set to "consolidateOnly" to skip the history cleanup and only consolidate [the] Corporation[s]. Not available in interactive.}
     {--d|daysOld=30 : Set cutoff date (in days) for history deletion.}
     {--c|corporation=0 : Select a corporation to apply cleanup to (ID). 0 => all.}
     {--C|consolidate : Consolidates in --corporation specified Corporation(s) by namespace.}
@@ -49,12 +50,14 @@ class CleanUp extends Command
         if ($this->option('interactive')) {
             $this->info("Starting interactive cleanup session.");
             [$daysOld, $corporation, $consolidate, $prune, $force] = $this->startInteractiveSession();
+            $mode        = "all";
         } else {
             $daysOld     = $this->option('daysOld') ?? 30;
             $corporation = NetworkCorporation::find($this->option('corporation'));
             $consolidate = $this->option('consolidate');
             $prune       = $this->option('prune');
             $force       = $this->option('force');
+            $mode        = $this->option('mode');
         }
 
         $daysOld    = (int)$daysOld ?: 30;
@@ -75,9 +78,10 @@ class CleanUp extends Command
             $stat = $this->showStats($cutoffDate, $corporation, $force);
         }
 
-        if($consolidate)
+        if($consolidate || $mode == "consolidateOnly")
         {
             $this->consolidateCorporations();
+            if($mode == "consolidateOnly") return;
         }
 
         // Begin deletion for NetworkHistory entries.
