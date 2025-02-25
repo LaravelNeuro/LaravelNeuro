@@ -144,4 +144,12 @@ class TuringHead {
     {
         return $this->data;
     }
+    
+}
+
+/**
+* Register TuringStrip as an alias for TuringHead for backwards compatibility
+*/
+if (!class_exists('LaravelNeuro\Networking\TuringStrip')) {
+    class_alias(__NAMESPACE__ . '\TuringHead', __NAMESPACE__ . '\TuringStrip');
 }
