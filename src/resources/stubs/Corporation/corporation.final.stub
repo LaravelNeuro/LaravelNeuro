@@ -1,6 +1,10 @@
-protected function final(TuringStrip $head) : TuringStrip
+protected function final(TuringHead $head) : TuringHead
     {
-        $transition = new {{FinalTransition}}($this->project->id, $head, $this->models);
+        $transition = new {{FinalTransition}}(projectId: $this->project->id, 
+                                          head: $head, 
+                                          models: $this->models, 
+                                          debug: $this->debug, 
+                                          saveHistory: $this->saveHistory);
 
         return $transition->handle();
     }

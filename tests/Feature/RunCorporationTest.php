@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Storage;
 use Tests\PackageTestCase;
 use Tests\Helpers\ApiSimulator;
 
-use LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkProject;
-use LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkHistory;
-use LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkState;
+use LaravelNeuro\Networking\Database\Models\NetworkProject;
+use LaravelNeuro\Networking\Database\Models\NetworkHistory;
+use LaravelNeuro\Networking\Database\Models\NetworkState;
 
 class RunCorporationTest extends PackageTestCase {
 

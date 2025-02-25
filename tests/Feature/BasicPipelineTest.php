@@ -7,9 +7,10 @@ use Illuminate\Foundation\Testing\WithFaker;
 use GuzzleHttp\Psr7\Stream;
 use GuzzleHttp\Psr7\Utils;
 
-use LaravelNeuro\LaravelNeuro\Pipeline;
+use LaravelNeuro\Drivers\WebRequest\GuzzleDriver;
+use LaravelNeuro\Pipelines\BasicPipeline;
 
-use LaravelNeuro\LaravelNeuro\Prompts\SUAprompt;
+use LaravelNeuro\Prompts\SUAprompt;
 
 use Tests\PackageTestCase;
 use Tests\Helpers\ApiSimulator;
@@ -18,7 +19,7 @@ class BasicPipelineTest extends PackageTestCase {
 
     public function testBasicPipeline(): void
     {
-        $pipeline = new Pipeline;
+        $pipeline = new BasicPipeline(new GuzzleDriver);
 
         $prompt = new SUAprompt;
 
@@ -44,10 +45,14 @@ class BasicPipelineTest extends PackageTestCase {
 
         $handlerStack = ['handler' => $mock->getHandler()];
 
+        $driver = $pipeline->driver();
+            if ($driver instanceof GuzzleDriver) {
+                $driver->setApi("mockAPI")
+                       ->setClient($handlerStack);
+            }
+
         $pipeline->setModel("testModel")
-                 ->setApi("mockAPI")
-                 ->setPrompt($prompt)
-                 ->setClient($handlerStack);
+                 ->setPrompt($prompt);
 
         try
         {
@@ -84,10 +89,14 @@ class BasicPipelineTest extends PackageTestCase {
 
         $handlerStack = ['handler' => $mock->getHandler()];
 
+        $driver = $pipeline->driver();
+            if ($driver instanceof GuzzleDriver) {
+                $driver->setApi("mockAPI")
+                       ->setClient($handlerStack);
+            }
+
         $pipeline->setModel("testModel")
-                 ->setApi("mockAPI")
-                 ->setPrompt($prompt)
-                 ->setClient($handlerStack);
+                 ->setPrompt($prompt);
 
         try
         { 
@@ -134,7 +143,10 @@ class BasicPipelineTest extends PackageTestCase {
         }
 
         ob_start();
-        $pipeline->debug();
+        if ($driver instanceof GuzzleDriver) {
+            $driver->debug();
+        }
+        
         try
         {
             $failingResponse2 = (json_decode($pipeline->output())->response !== 'mocked response');

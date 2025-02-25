@@ -7,16 +7,16 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Storage;
 
-use LaravelNeuro\LaravelNeuro\Pipeline;
-use LaravelNeuro\LaravelNeuro\Pipelines\OpenAI\ChatCompletion;
-use LaravelNeuro\LaravelNeuro\Pipelines\OpenAI\AudioTTS;
-use LaravelNeuro\LaravelNeuro\Pipelines\OpenAI\DallE;
+use LaravelNeuro\Drivers\WebRequest\GuzzleDriver;
+use LaravelNeuro\Pipelines\OpenAI\ChatCompletion;
+use LaravelNeuro\Pipelines\OpenAI\AudioTTS;
+use LaravelNeuro\Pipelines\OpenAI\DallE;
 
-use LaravelNeuro\LaravelNeuro\Prompts\SUAprompt;
-use LaravelNeuro\LaravelNeuro\Prompts\PNSQFprompt;
-use LaravelNeuro\LaravelNeuro\Prompts\IVFSprompt;
+use LaravelNeuro\Prompts\SUAprompt;
+use LaravelNeuro\Prompts\PNSQFprompt;
+use LaravelNeuro\Prompts\IVFSprompt;
 
-use LaravelNeuro\LaravelNeuro\Enums\PNSQFquality;
+use LaravelNeuro\Enums\PNSQFquality;
 
 use Tests\PackageTestCase;
 use Tests\Helpers\ApiSimulator;
@@ -50,7 +50,7 @@ class OpenAiPipelineTest extends PackageTestCase {
     {
         Config::set('laravelneuro.keychain.openai', 'fake-api-key');
 
-        $pipeline = new ChatCompletion;
+        $pipeline = new ChatCompletion(new GuzzleDriver);
 
         $this->assertTrue($pipeline instanceof Chatcompletion, 'OpenAI ChatCompletion Pipeline instantiation unsuccessful.');
 
@@ -98,8 +98,11 @@ class OpenAiPipelineTest extends PackageTestCase {
 
         $handlerStack = ['handler' => $mock->getHandler()];
 
-        $pipeline->setPrompt($prompt)
-                 ->setClient($handlerStack);
+        $driver = $pipeline->driver();
+        if ($driver instanceof GuzzleDriver) {
+            $driver->setClient($handlerStack);
+        }
+        $pipeline->setPrompt($prompt);
 
         try
         {
@@ -139,7 +142,7 @@ class OpenAiPipelineTest extends PackageTestCase {
     {
         Config::set('laravelneuro.keychain.openai', 'fake-api-key');
 
-        $pipeline = new AudioTTS;
+        $pipeline = new AudioTTS(new GuzzleDriver);
 
         $this->assertTrue($pipeline instanceof AudioTTS, 'OpenAI AudioTTS Pipeline could not be instantiated.');
 
@@ -175,8 +178,11 @@ class OpenAiPipelineTest extends PackageTestCase {
 
         $handlerStack = ['handler' => $mock->getHandler()];
 
-        $pipeline->setPrompt($prompt)
-                 ->setClient($handlerStack);
+        $driver = $pipeline->driver();
+        if ($driver instanceof GuzzleDriver) {
+            $driver->setClient($handlerStack);
+        }
+        $pipeline->setPrompt($prompt);
 
         $output = $pipeline->output();
 
@@ -193,7 +199,7 @@ class OpenAiPipelineTest extends PackageTestCase {
     {
         Config::set('laravelneuro.keychain.openai', 'fake-api-key');
 
-        $pipeline = new DallE;
+        $pipeline = new DallE(new GuzzleDriver);
 
         $this->assertTrue($pipeline instanceof DallE, 'DallE Pipeline could not be instantiated.');
 
@@ -237,8 +243,11 @@ class OpenAiPipelineTest extends PackageTestCase {
 
         $handlerStack = ['handler' => $mock->getHandler()];
 
-        $pipeline->setPrompt($prompt)
-                 ->setClient($handlerStack);
+        $driver = $pipeline->driver();
+        if ($driver instanceof GuzzleDriver) {
+            $driver->setClient($handlerStack);
+        }
+        $pipeline->setPrompt($prompt);
 
         $output = $pipeline->output();
 

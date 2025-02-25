@@ -21,7 +21,7 @@ jobs:
         tools: composer, phpunit # Tools to install
 
     - name: Install Dependencies
-      run: composer install --prefer-dist --no-progress --no-suggest
+      run: composer install --prefer-dist --no-progress
 
     - name: Add Testing Permissions
       run: chmod +x vendor/bin/phpunit

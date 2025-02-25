@@ -1,4 +1,4 @@
-protected function continue(TuringStrip $head) : TuringStrip
+protected function continue(TuringHead $head) : TuringHead
     {
         
         {{IntermediateTransitions}}

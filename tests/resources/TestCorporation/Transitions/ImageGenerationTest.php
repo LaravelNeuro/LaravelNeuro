@@ -1,11 +1,12 @@
 <?php
 namespace App\Corporations\TestCorporation\Transitions;
 
-use LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkCorporation;
-use LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkProject;
-use LaravelNeuro\LaravelNeuro\Networking\TuringStrip;
-use LaravelNeuro\LaravelNeuro\Networking\Transition;
-use LaravelNeuro\LaravelNeuro\Pipeline;
+use LaravelNeuro\Networking\Database\Models\NetworkCorporation;
+use LaravelNeuro\Networking\Database\Models\NetworkProject;
+use LaravelNeuro\Networking\TuringHead;
+use LaravelNeuro\Networking\Transition;
+use LaravelNeuro\Contracts\AiModel\Pipeline;
+use LaravelNeuro\Drivers\WebRequest\GuzzleDriver;
 
 use App\Corporations\TestCorporation\Config;
 use Tests\Helpers\ApiSimulator;
@@ -31,7 +32,7 @@ Class ImageGenerationTest extends Transition
     */
     protected NetworkCorporation $corporation;
 
-    public function __construct(int $projectId, TuringStrip $head, Collection $models)
+    public function __construct(int $projectId, TuringHead $head, Collection $models)
     {
         parent::__construct($projectId, $head, $models);
         
@@ -78,7 +79,10 @@ Class ImageGenerationTest extends Transition
 
         $handlerStack = ['handler' => $mock->getHandler()];
 
-        $pipeline->setClient($handlerStack);
+        $driver = $pipeline->driver();
+            if ($driver instanceof GuzzleDriver) {
+                $driver->setClient($handlerStack);
+            }
 
         return $pipeline;
     }

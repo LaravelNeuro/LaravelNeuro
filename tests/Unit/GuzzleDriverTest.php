@@ -9,15 +9,15 @@ use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
 
-use LaravelNeuro\LaravelNeuro\ApiAdapter;
+use LaravelNeuro\Drivers\WebRequest\GuzzleDriver;
 
 use Tests\PackageTestCase;
 
-class ApiAdapterTest extends PackageTestCase
+class GuzzleDriverTest extends PackageTestCase
 {
     public function testSetApi()
     {
-        $apiAdapter = new ApiAdapter();
+        $apiAdapter = new GuzzleDriver();
         $apiAdapter->setApi('http://example.com/api');
 
         $this->assertEquals('http://example.com/api', $apiAdapter->getApi());
@@ -25,7 +25,7 @@ class ApiAdapterTest extends PackageTestCase
 
     public function testSetClient()
     {
-        $apiAdapter = new ApiAdapter();
+        $apiAdapter = new GuzzleDriver();
         $apiAdapter->setClient();
 
         $this->assertTrue($apiAdapter->getClient() instanceof Client);
@@ -33,7 +33,7 @@ class ApiAdapterTest extends PackageTestCase
 
     public function testSetUnsetHeaderEntry()
     {
-        $apiAdapter = new ApiAdapter();
+        $apiAdapter = new GuzzleDriver();
         $apiAdapter->setHeaderEntry("Content-Type", "application/json");
         $apiAdapter->setHeaderEntry("Accept-Charset", "utf-8");
 
@@ -53,7 +53,7 @@ class ApiAdapterTest extends PackageTestCase
 
         $handlerStack = HandlerStack::create($mock);
 
-        $apiAdapter = new ApiAdapter();
+        $apiAdapter = new GuzzleDriver();
         $apiAdapter->setClient(['handler' => $handlerStack]);
 
         $apiAdapter->setApi('http://example.com/api');
@@ -68,7 +68,7 @@ class ApiAdapterTest extends PackageTestCase
             new Response(400, [], json_encode(['success' => false]))
         ]);
 
-        $apiAdapter = new ApiAdapter();
+        $apiAdapter = new GuzzleDriver();
         $handlerStack = HandlerStack::create($mock);
         $apiAdapter->setClient(['handler' => $handlerStack]);
 
@@ -84,7 +84,7 @@ class ApiAdapterTest extends PackageTestCase
             new ConnectException("Error Connecting", new Request('GET', 'test'))
         ]);
 
-        $apiAdapter = new ApiAdapter();
+        $apiAdapter = new GuzzleDriver();
         $handlerStack = HandlerStack::create($mock);
         $apiAdapter->setClient(['handler' => $handlerStack]);
 
@@ -97,7 +97,7 @@ class ApiAdapterTest extends PackageTestCase
     public function testFileMake()
     {
         Storage::fake('lneuro');
-        $apiAdapter = new ApiAdapter();
+        $apiAdapter = new GuzzleDriver();
         $testAudioPath = __DIR__ . '/../resources/testaudio1.mp3';
 
         $lneuro = Storage::disk('lneuro');

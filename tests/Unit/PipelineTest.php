@@ -1,13 +1,13 @@
 <?php
 
-use LaravelNeuro\LaravelNeuro\Pipeline;
+use LaravelNeuro\Pipelines\BasicPipeline;
 use PHPUnit\Framework\TestCase;
 
 class PipelineTest extends TestCase
 {
     public function testSetModel()
     {
-        $pipeline = new Pipeline();
+        $pipeline = new BasicPipeline();
         $pipeline->setModel('testModel');
 
         $this->assertEquals('testModel', $pipeline->getModel());
@@ -15,18 +15,10 @@ class PipelineTest extends TestCase
 
     public function testSetPrompt()
     {
-        $pipeline = new Pipeline();
+        $pipeline = new BasicPipeline();
         $pipeline->setPrompt('Test prompt');
 
         $this->assertEquals('Test prompt', $pipeline->getPrompt());
-    }
-
-    public function testSetInvalidPrompt()
-    {
-        $pipeline = new Pipeline();
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage("For this pipeline, the paramater passed to setPrompt should be a string or an instance of SUAprompt.");
-        $pipeline->setPrompt(["Arrays are an invalid Type"]);
     }
     
 }

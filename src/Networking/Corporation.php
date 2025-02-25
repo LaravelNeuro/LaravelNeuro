@@ -1,42 +1,149 @@
 <?php
-namespace LaravelNeuro\LaravelNeuro\Networking;
+namespace LaravelNeuro\Networking;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
-use LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkCorporation;
-use LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkDataSet;
-use LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkHistory;
-use LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkProject;
-use LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkState;
+use LaravelNeuro\Networking\Database\Models\NetworkCorporation;
+use LaravelNeuro\Networking\Database\Models\NetworkDataSet;
+use LaravelNeuro\Networking\Database\Models\NetworkHistory;
+use LaravelNeuro\Networking\Database\Models\NetworkProject;
+use LaravelNeuro\Networking\Database\Models\NetworkState;
 
-use LaravelNeuro\LaravelNeuro\Networking\TuringStrip;
+use LaravelNeuro\Networking\TuringHead;
 
-use LaravelNeuro\LaravelNeuro\Enums\TuringMove;
-use LaravelNeuro\LaravelNeuro\Enums\TuringMode;
-use LaravelNeuro\LaravelNeuro\Enums\TuringState;
-use LaravelNeuro\LaravelNeuro\Enums\TuringHistory;
-use LaravelNeuro\LaravelNeuro\Enums\StuckHandler;
+use LaravelNeuro\Enums\TuringMove;
+use LaravelNeuro\Enums\TuringMode;
+use LaravelNeuro\Enums\TuringState;
+use LaravelNeuro\Enums\TuringHistory;
+use LaravelNeuro\Enums\StuckHandler;
 
+/**
+ * Class Corporation
+ *
+ * Manages a Laravel Neuro Corporation's state machine. A Corporation represents a
+ * complete AI project execution environment, responsible for initializing the project,
+ * creating the initial, intermediary, and final states, and managing the Turing machine's head.
+ *
+ * The class:
+ * - Initializes a TuringHead with the provided task.
+ * - Loads or creates a NetworkCorporation record based on configuration.
+ * - Creates a new project and wipes any previous state or dataset entries.
+ * - Sets up an initial state using the task, followed by intermediary states and a final state.
+ * - Maintains a state map and logs history entries.
+ *
+ * @package LaravelNeuro
+ */
 class Corporation {
 
-    private TuringStrip $head;
+    use Tracable;
+
+    /**
+     * The TuringHead instance that acts as the "head" of the state machine.
+     *
+     * @var TuringHead
+     */
+    private TuringHead $head;
+
+    /**
+     * The active project for this corporation.
+     *
+     * @var \LaravelNeuro\Networking\Database\Models\NetworkProject
+     */
     public NetworkProject $project;
+
+    /**
+     * The namespace for the corporation. False if not set.
+     *
+     * @var string|bool
+     */
     public $corporationNameSpace = false;
     
+    /**
+     * The NetworkCorporation model instance representing the corporation.
+     *
+     * @var \LaravelNeuro\Networking\Database\Models\NetworkCorporation
+     */
     public NetworkCorporation $corporation;
+
+    /**
+     * The state machine (NetworkState model) for the corporation.
+     *
+     * @var \LaravelNeuro\Networking\Database\Models\NetworkState
+     */
     public NetworkState $stateMachine;
+
+    /**
+     * A collection of units associated with the corporation.
+     *
+     * @var Collection
+     */
     public Collection $units;
+
+    /**
+     * A collection of additional model configurations.
+     *
+     * @var Collection
+     */
     public Collection $models;
+
+    /**
+     * The corporation ID (if pre-existing).
+     *
+     * @var int
+     */
     public int $corporationId;
+
+    /**
+     * The total number of states in the state machine.
+     *
+     * @var int
+     */
     public int $states = 0;
+
+    /**
+     * The ID of the initial history entry.
+     *
+     * @var int
+     */
     public int $history;
+
+    /**
+     * The task or prompt assigned to this corporation.
+     *
+     * @var string
+     */
     public string $task;
+
+    /**
+     * A collection representing the state map (ordered states) for the project.
+     *
+     * @var Collection
+     */
     public Collection $stateMap;
+
+    /**
+     * The stuck handler setting, determining how to handle a stuck state.
+     *
+     * @var \LaravelNeuro\Enums\StuckHandler
+     */
     public StuckHandler $stuckSetting = StuckHandler::REPEAT;
-    public bool $debug = false;
     
-    public function __construct(string $task, bool $debug = false, bool $integrityCheck = false, array $new = ["name" => "DummyCorp", "description" => "DummyDesc"])
+    /**
+     * Corporation constructor.
+     *
+     * Initializes the corporation with a given task, debug flag, and optional integrity check.
+     * Sets up the TuringHead with the task, loads or creates a NetworkCorporation record,
+     * initializes a new project, cleans any pre-existing state or dataset entries,
+     * creates initial, intermediary, and final states, and logs the initiation in history.
+     *
+     * @param string $task The task to be processed by the corporation.
+     * @param bool $debug Whether debugging output should be enabled.
+     * @param bool $integrityCheck If true, performs only an integrity check and returns immediately.
+     * @param array $new Default values for creating a new corporation (name and description).
+     * @param bool $saveHistory Whether history entries should be saved to the database. Defaults to true.
+     */
+    public function __construct(string $task, bool $debug = false, bool $integrityCheck = false, array $new = ["name" => "DummyCorp", "description" => "DummyDesc"], bool $saveHistory = true)
     {
         if ($integrityCheck) return;
         $this->debug = $debug;
@@ -44,8 +151,9 @@ class Corporation {
         $this->debug("Initiating Corporation.");
 
         $this->task = $task;
-        $this->head = new TuringStrip;
+        $this->head = new TuringHead;
         $this->head->setData($this->task);
+        $this->saveHistory = $saveHistory;
 
         if($this->corporationNameSpace !== false)
         {
@@ -124,24 +232,17 @@ class Corporation {
             ]);
 
         $this->stateMap = NetworkState::where('project_id', $this->project->id)->orderBy('id', 'asc')->get();
-        
-        $this->debug("Corporation Initiated.");
 
-        $history = NetworkHistory::create([
-            'entryType' => TuringHistory::OTHER, 
-            'project_id' => $this->project->id, 
-            'content' => 'Corporation has been initiated successfully.'
-            ]);
-        
-        $this->history = $history->id;
+        $this->history(TuringHistory::OTHER, 'Corporation has been initiated successfully.');
+        $this->debug('New history entry ('.TuringHistory::OTHER->value.'): ' . 'Corporation has been initiated successfully.');
     }
 
-    protected function debug(string $info)
-    {
-        if($this->debug) $dateObj = \DateTime::createFromFormat('0.u00 U', microtime());
-        if($this->debug) echo '['.$dateObj->format('H:i:s.u').']: '. $info . "\n";
-    }
-
+    /**
+     * Recursively transforms dataset data by replacing non-array/object values with their types.
+     *
+     * @param mixed $data The dataset data to scrub.
+     * @return mixed The scrubbed dataset.
+     */
     function scrubDataSet($data) {
         if (is_array($data) || is_object($data)) {
             foreach ($data as &$value) {
@@ -153,38 +254,70 @@ class Corporation {
         return $data;
     }
 
-    protected function initial(TuringStrip $head) : TuringStrip
+    /**
+     * Processes the initial transition.
+     *
+     * Records the initial prompt in history and creates the first transition.
+     *
+     * @param TuringHead $head The current TuringHead instance.
+     * @return TuringHead The updated head after processing the initial transition.
+     */
+    protected function initial(TuringHead $head) : TuringHead
     {
-        NetworkHistory::create([
-            'project_id' => $this->project->id, 
-            'entryType' => TuringHistory::PROMPT,
-            'content' => $this->task
-            ]);
-        
-        $transition = new Transition($this->project->id, $head, $this->models);
+        $this->history(TuringHistory::PROMPT, $this->task);
+        $this->debug('New history entry ('.TuringHistory::PROMPT->value.'): ' . $this->task);
+
+        $transition = new Transition(projectId: $this->project->id, head: $head, models: $this->models, debug: $this->debug, saveHistory: $this->saveHistory);
 
         return $transition->handle();
     }
 
-    protected function continue(TuringStrip $head) : TuringStrip
+    /**
+     * Processes an intermediary transition.
+     *
+     * Creates a new Transition instance and returns the updated head after processing.
+     *
+     * @param TuringHead $head The current TuringHead instance.
+     * @return TuringHead The updated head.
+     */
+    protected function continue(TuringHead $head) : TuringHead
     {
-        $transition = new Transition($this->project->id, $head, $this->models);
+        $transition = new Transition(projectId: $this->project->id, head: $head, models: $this->models, debug: $this->debug, saveHistory: $this->saveHistory);
 
         return $transition->handle();
     }
 
-    protected function final(TuringStrip $head) : TuringStrip
+    /**
+     * Processes the final transition.
+     *
+     * Creates a new Transition instance, processes the final transition, and returns the updated head.
+     *
+     * @param TuringHead $head The current TuringHead instance.
+     * @return TuringHead The updated head.
+     */
+    protected function final(TuringHead $head) : TuringHead
     {
-        $transition = new Transition($this->project->id, $head, $this->models);
+        $transition = new Transition(projectId: $this->project->id, head: $head, models: $this->models, debug: $this->debug, saveHistory: $this->saveHistory);
 
         return $transition->handle();
     }
 
+    /**
+     * Retrieves the current position of the head.
+     *
+     * @return int The current head position.
+     */
     public function getHeadPosition()
     {
         return $this->head->getPosition();
     }
 
+    /**
+     * Sets the head position, ensuring it is within valid bounds.
+     *
+     * @param int $headPosition The desired head position.
+     * @return void
+     */
     public function setHeadPosition(int $headPosition)
     {
         if($headPosition > ($this->states + 1)) $headPosition = $this->states + 1;
@@ -192,6 +325,22 @@ class Corporation {
         $this->head->setPosition($headPosition);
     }
 
+    /**
+     * Moves the head to a target state based on a directive.
+     *
+     * Handles different move directives:
+     * - TuringMove::NEXT: Move to the next state (unless at FINAL).
+     * - TuringMove::OUTPUT: Move to the FINAL state.
+     * - TuringMove::REPEAT: Remain on the current state, updating its data.
+     * - Otherwise, move to a specific state ID.
+     *
+     * Updates the state map and head position accordingly.
+     *
+     * @param mixed $line The move directive or state ID.
+     * @param \LaravelNeuro\Networking\Database\Models\NetworkState $active The current active state.
+     * @return \LaravelNeuro\Networking\Database\Models\NetworkState The new active state.
+     * @throws \Exception if attempting to move past the FINAL state.
+     */
     private function goTo($line, NetworkState $active) : NetworkState
     {
         switch($line)
@@ -265,9 +414,19 @@ class Corporation {
     }
 
     /**
-     * The run() method creates the Corporation runtime, during which a task is forwared to the state machine, evaluated and processed at every step, and, finally, consolidated into an output on the final state, after which the state machine shuts down and that output is returned by the function.  
+     * Runs the corporation's state machine.
      *
-     * @method
+     * Enters an iterative loop to process state transitions until a termination condition is met.
+     * At each iteration, it:
+     * - Retrieves the current active state.
+     * - Processes the state based on its type (INITIAL, INTERMEDIARY, FINAL).
+     * - Applies transition logic based on the head's mode (CONTINUE, STUCK, COMPLETE).
+     * - Logs new history entries.
+     * - Updates the corporation data.
+     *
+     * Once the state machine terminates, it records the final output as the project's resolution.
+     *
+     * @return string The project's resolution output.
      */
     public function run() : string
     {
@@ -355,26 +514,6 @@ class Corporation {
                         $exit = true;
                         break;    
                 } 
-
-            if($this->debug)
-            {
-                $newHistoryEntries = NetworkHistory::where('project_id', $this->project->id)
-                                                   ->where('id', '>', $this->history);
-                if($newHistoryEntries->count() > 0)
-                {
-                    try{
-                    foreach($newHistoryEntries->get() as $entry)
-                    {
-                        $this->debug('New history entry ('.$entry->entryType->value.'): ' . $entry->content);
-                    }
-                    $this->history = $newHistoryEntries->last()->id;
-                    }
-                    catch(\Exception $e)
-                    {
-                        $this->debug('No new history entries.');
-                    }
-                }
-            }
 
             if($exit) break; 
             $this->corporation = $this->corporation->fresh(['units.agents', 'units.dataSetTemplates.dataSets']);
