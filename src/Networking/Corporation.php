@@ -36,7 +36,9 @@ use LaravelNeuro\Enums\StuckHandler;
  */
 class Corporation {
 
-/**
+    use Tracable;
+
+    /**
      * The TuringHead instance that acts as the "head" of the state machine.
      *
      * @var TuringHead
@@ -126,20 +128,6 @@ class Corporation {
      * @var \LaravelNeuro\Enums\StuckHandler
      */
     public StuckHandler $stuckSetting = StuckHandler::REPEAT;
-
-    /**
-     * Flag indicating whether history entries should be saved to the database.
-     *
-     * @var bool
-     */
-    public bool $saveHistory = true;
-
-    /**
-     * Flag indicating whether debugging output is enabled (posts history to console among other information).
-     *
-     * @var bool
-     */
-    public bool $debug = false;
     
     /**
      * Corporation constructor.
@@ -246,41 +234,7 @@ class Corporation {
         $this->stateMap = NetworkState::where('project_id', $this->project->id)->orderBy('id', 'asc')->get();
 
         $this->history(TuringHistory::OTHER, 'Corporation has been initiated successfully.');
-        $this->debug('New history entry ('.TuringHistory::OTHER.'): ' . 'Corporation has been initiated successfully.');
-    }
-
-    /**
-     * Outputs debug information if debugging is enabled.
-     *
-     * @param string $info The debug message.
-     * @return void
-     */
-    protected function debug(string $info)
-    {
-        if ($this->debug) {
-            $dateObj = \DateTime::createFromFormat('0.u00 U', microtime());
-            echo '[' . $dateObj->format('H:i:s.u') . ']: ' . $info . "\n";
-        }
-    }
-
-    /**
-     * Saves history entries to the database.
-     *
-     * @param string $info The debug message.
-     * @return void
-     */
-    protected function history(TuringHistory $entryType, $content) 
-    {
-        if($this->saveHistory)
-        {
-            $history = NetworkHistory::create([
-                'entryType' => $entryType, 
-                'project_id' => $this->project->id, 
-                'content' => $content
-                ]);
-            return $history;
-        }
-        return null;
+        $this->debug('New history entry ('.TuringHistory::OTHER->value.'): ' . 'Corporation has been initiated successfully.');
     }
 
     /**
@@ -311,10 +265,9 @@ class Corporation {
     protected function initial(TuringHead $head) : TuringHead
     {
         $this->history(TuringHistory::PROMPT, $this->task);
-        $this->debug('New history entry ('.TuringHistory::PROMPT.'): ' . $this->task);
+        $this->debug('New history entry ('.TuringHistory::PROMPT->value.'): ' . $this->task);
 
-        $transition = new Transition($this->project->id, $head, $this->models, $this->saveHistory);
-        $transition->saveHistory = $this->saveHistory;
+        $transition = new Transition(projectId: $this->project->id, head: $head, models: $this->models, debug: $this->debug, saveHistory: $this->saveHistory);
 
         return $transition->handle();
     }
@@ -329,8 +282,7 @@ class Corporation {
      */
     protected function continue(TuringHead $head) : TuringHead
     {
-        $transition = new Transition($this->project->id, $head, $this->models, $this->saveHistory);
-        $transition->saveHistory = $this->saveHistory;
+        $transition = new Transition(projectId: $this->project->id, head: $head, models: $this->models, debug: $this->debug, saveHistory: $this->saveHistory);
 
         return $transition->handle();
     }
@@ -345,8 +297,7 @@ class Corporation {
      */
     protected function final(TuringHead $head) : TuringHead
     {
-        $transition = new Transition($this->project->id, $head, $this->models, $this->saveHistory);
-        $transition->saveHistory = $this->saveHistory;
+        $transition = new Transition(projectId: $this->project->id, head: $head, models: $this->models, debug: $this->debug, saveHistory: $this->saveHistory);
 
         return $transition->handle();
     }

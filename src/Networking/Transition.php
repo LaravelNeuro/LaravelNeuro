@@ -4,6 +4,7 @@ namespace LaravelNeuro\Networking;
 use Illuminate\Support\Collection;
 use LaravelNeuro\Networking\TuringHead;
 use LaravelNeuro\Networking\Agent;
+use LaravelNeuro\Networking\Tracable;
 use LaravelNeuro\Networking\Database\Models\NetworkCorporation;
 use LaravelNeuro\Networking\Database\Models\NetworkProject;
 use LaravelNeuro\Networking\Database\Models\NetworkHistory;
@@ -27,6 +28,8 @@ use LaravelNeuro\Enums\TuringHistory;
  * @package LaravelNeuro
  */
 class Transition {
+
+    use Tracable;
 
     /**
      * The current project associated with this transition.
@@ -78,13 +81,6 @@ class Transition {
     protected Collection $models;
 
     /**
-     * Flag indicating whether history entries should be saved to the database.
-     *
-     * @var bool
-     */
-    public bool $saveHistory = true;
-
-    /**
      * Transition constructor.
      *
      * Initializes the Transition instance using a project ID, the TuringHead (state machine tape),
@@ -95,10 +91,12 @@ class Transition {
      * @param Collection $models A collection of model configurations.
      * @throws \Exception if the project does not exist or if no active state is found.
      */
-    public function __construct(int $projectId, TuringHead $head, Collection $models)
+    public function __construct(int $projectId, TuringHead $head, Collection $models, bool $debug=false, bool $saveHistory=true)
     {
         $this->head = $head;
         $this->models = $models;
+        $this->debug = $debug;
+        $this->saveHistory = $saveHistory;
         $project = NetworkProject::where('id', $projectId);
         
         if ($project->count() == 1) {
@@ -116,26 +114,6 @@ class Transition {
         } else {
             throw new \Exception("Call to non-existent project with the id '$projectId'.");
         }
-    }
-
-    /**
-     * Saves history entries to the database.
-     *
-     * @param string $info The debug message.
-     * @return void
-     */
-    protected function history(TuringHistory $entryType, $content) 
-    {
-        if($this->saveHistory)
-        {
-            $history = NetworkHistory::create([
-                'entryType' => $entryType, 
-                'project_id' => $this->project->id, 
-                'content' => $content
-                ]);
-            return $history;
-        }
-        return null;
     }
 
     /**
@@ -358,6 +336,7 @@ class Transition {
             throw new \Exception("There appears to be a problem with your prompt/head post-processing during one of your Transitions:\n".$e);
         }
         $this->history(TuringHistory::PROMPT, $prompt->promptEncode());
+        $this->debug('New history entry ('.TuringHistory::PROMPT->value.'): ' . $prompt->promptEncode());
 
         $agent->pipeline->setPrompt($prompt); 
 
@@ -416,19 +395,29 @@ class Transition {
                 );
             }
 
-            if ($validated) {
+            if ($validated) 
+            {
+                $this->head->setData($data);
+                    
                 $this->history(TuringHistory::RESPONSE, $this->head->getData());
-                if ($agent->outputModel != false) {
+                $this->debug('New history entry ('.TuringHistory::RESPONSE->value.'): ' . $this->head->getData());
+                
+                if ($agent->outputModel != false) 
+                {
                     $dataSet = $validationTemplate->dataSets->where('project_id', $this->project->id)->first();
                     $dataSet->data = $this->head->getData();
                     $dataSet->save();
                 }
             } else {
+                
                 $this->history(TuringHistory::ERROR, "OutputModel validation error. Setting head mode to TuringMode::STUCK!\n\nTemplate: " . $validationTemplate->completionResponse . "\nResponse: " . $data . "\n\n");
+                $this->debug('New history entry ('.TuringHistory::ERROR->value.'): ' . "OutputModel validation error. Setting head mode to TuringMode::STUCK!\n\nTemplate: " . $validationTemplate->completionResponse . "\nResponse: " . $data . "\n\n");
+                
                 $this->head->setMode(TuringMode::STUCK);
             }       
         } catch (\Exception $e) {
             $this->history(TuringHistory::ERROR, $e);
+            $this->debug('New history entry ('.TuringHistory::ERROR->value.'): ' . $e);
             $this->head->setMode(TuringMode::STUCK);
         }
     }

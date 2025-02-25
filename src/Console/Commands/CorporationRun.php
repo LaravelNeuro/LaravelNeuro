@@ -16,7 +16,7 @@ class CorporationRun extends Command
     protected $signature = 'lneuro:run 
                                         {namespace : The namespace of the to-be-run Corporation} 
                                         {task="" : The task your corporation should perform}
-                                        {--h|history : Save the history of the Corporation run to the database.}
+                                        {--s|save-history : Save the history of the Corporation run to the database.}
                                         {--d|debug : Get the full runtime output of your Corporation as it resolves this run.}
                                         {--m|with-migrations : Execute corporation-specific migrations before run}
                                         ';
@@ -64,7 +64,7 @@ class CorporationRun extends Command
         }  
 
         try{
-            $init = new $classNameSpace(task: $task, saveHistory: $this->option('history'), debug: $this->option('debug'));
+            $init = new $classNameSpace(task: $task, saveHistory: $this->option('save-history'), debug: $this->option('debug'));
             $this->info('Corporation successfully initiated. Passing task to new Project, please wait.');
         }
         catch(\Exception $e)

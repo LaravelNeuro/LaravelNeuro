@@ -13,7 +13,7 @@ use Illuminate\Support\Collection;
 
 Class {{TransitionName}} extends Transition
 {
-        /**
+    /**
     * An Eloquent Collection instance of the active project Model.
     * @var NetworkProject
     */

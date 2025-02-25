@@ -30,9 +30,13 @@ Class {{TransitionName}} extends Transition
     */
     protected NetworkCorporation $corporation;
 
-    public function __construct(int $projectId, TuringHead $head, Collection $models)
+    public function __construct(int $projectId, TuringHead $head, Collection $models, bool $debug=false, bool $saveHistory=true)
     {
-        parent::__construct($projectId, $head, $models);
+        parent::__construct(projectId: $projectId, 
+                            head: $head, 
+                            models: $models, 
+                            debug: $debug, 
+                            saveHistory: $saveHistory);
         
         /**
          * Agent Name: {{AgentName}}

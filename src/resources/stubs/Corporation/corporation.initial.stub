@@ -3,7 +3,11 @@ protected function initial(TuringHead $head) : TuringHead
         $this->history(TuringHistory::PROMPT, $this->task);
         $this->debug('New history entry ('.TuringHistory::PROMPT.'): ' . $this->task);
         
-        $transition = new {{FirstTransition}}($this->project->id, $head, $this->models);
+        $transition = new {{FirstTransition}}(projectId: $this->project->id, 
+                                          head: $head, 
+                                          models: $this->models, 
+                                          debug: $this->debug, 
+                                          saveHistory: $this->saveHistory);
 
         return $transition->handle();
     }
