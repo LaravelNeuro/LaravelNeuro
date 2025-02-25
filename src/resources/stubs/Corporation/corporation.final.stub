@@ -1,4 +1,4 @@
-protected function final(TuringStrip $head) : TuringStrip
+protected function final(TuringHead $head) : TuringHead
     {
         $transition = new {{FinalTransition}}($this->project->id, $head, $this->models);
 

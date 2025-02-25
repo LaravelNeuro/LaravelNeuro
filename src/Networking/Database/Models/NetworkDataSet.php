@@ -1,11 +1,11 @@
 <?php
 
-namespace LaravelNeuro\LaravelNeuro\Networking\Database\Models;
+namespace LaravelNeuro\Networking\Database\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkDataSetTemplate;
-use LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkProject;
+use LaravelNeuro\Networking\Database\Models\NetworkDataSetTemplate;
+use LaravelNeuro\Networking\Database\Models\NetworkProject;
 
 class NetworkDataSet extends Model
 {

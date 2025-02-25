@@ -1,15 +1,15 @@
 <?php
-namespace LaravelNeuro\LaravelNeuro\Plugins;
+namespace LaravelNeuro\Plugins;
 
-use LaravelNeuro\LaravelNeuro\Plugins\Plugin;
-use LaravelNeuro\LaravelNeuro\Pipeline;
-use LaravelNeuro\LaravelNeuro\Prompts\SUAprompt;
+use LaravelNeuro\Plugins\Plugin;
+use LaravelNeuro\Contracts\AiModel\Pipeline;
+use LaravelNeuro\Prompts\SUAprompt;
 
 use Mis3085\Tiktoken\Facades\Tiktoken;
 
 use RoachPHP\Roach;
 use RoachPHP\Spider\Configuration\Overrides;
-use LaravelNeuro\LaravelNeuro\Plugins\Resources\SpiderWikipediaSearch;
+use LaravelNeuro\Plugins\Resources\SpiderWikipediaSearch;
 
 class WikipediaSearch extends Plugin {
 

@@ -1,5 +1,5 @@
 <?php
-namespace LaravelNeuro\LaravelNeuro\Networking;
+namespace LaravelNeuro\Networking;
 
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Collection;
@@ -7,23 +7,87 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
 
-use LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkCorporation;
-use LaravelNeuro\LaravelNeuro\Networking\Unit;
+use LaravelNeuro\Networking\Database\Models\NetworkCorporation;
+use LaravelNeuro\Networking\Unit;
 
-use LaravelNeuro\LaravelNeuro\Enums\TransitionType;
-use LaravelNeuro\LaravelNeuro\Enums\IncorporatePrebuild;
+use LaravelNeuro\Enums\TransitionType;
+use LaravelNeuro\Enums\IncorporatePrebuild;
 
+/**
+ * Class Incorporate
+ *
+ * Handles the setup and installation process for a Laravel Neuro Corporation.
+ * This class is responsible for validating and processing a corporation's setup
+ * configuration (typically provided via a JSON setup file) and installing it by:
+ * - Creating the necessary directory structure and files.
+ * - Creating corresponding database models and migrations.
+ * - Registering units, transitions, and models defined in the setup.
+ *
+ * @package LaravelNeuro
+ */
 class Incorporate {
 
+    /**
+     * The name of the corporation.
+     *
+     * @var string
+     */
     protected string $name;
+
+    /**
+     * The namespace for the corporation.
+     *
+     * @var string
+     */
     protected string $nameSpace;
+
+    /**
+     * A short description of the corporation.
+     *
+     * @var string
+     */
     protected string $description;  
+
+    /**
+     * The charta or foundational document for the corporation.
+     *
+     * @var string
+     */
     protected string $charta;
+
+    /**
+     * A collection of errors encountered during setup.
+     *
+     * @var Collection
+     */
     protected Collection $errors;
+
+    /**
+     * A collection of Unit objects associated with the corporation.
+     *
+     * @var Collection
+     */
     protected Collection $units;
+
+    /**
+     * A collection of transition definitions for the corporation.
+     *
+     * @var Collection
+     */
     protected Collection $transitions;
+
+    /**
+     * A collection of additional model configurations.
+     *
+     * @var Collection
+     */
     protected Collection $models;
 
+    /**
+     * Incorporate constructor.
+     *
+     * Initializes empty collections for units, transitions, models, and errors.
+     */
     function __construct()
     {
         $this->units = collect([]);
@@ -32,15 +96,27 @@ class Incorporate {
         $this->errors = collect([]);
     }
 
-    private static function validateProperty($object, $propertyName, $expectedType) {
+    /**
+     * Validates that a property exists in an object and is of the expected type.
+     *
+     * For enum types, it validates that the property value matches one of the enum cases,
+     * and converts the value to the enum instance.
+     *
+     * @param object $object The object containing the property.
+     * @param string $propertyName The name of the property to validate.
+     * @param string $expectedType The expected type (or enum name) of the property.
+     * @return mixed The validated property value.
+     * @throws \Exception if the property is missing or not of the expected type.
+     */
+    private static function validateProperty($object, $propertyName, $expectedType)
+    {
         if (!isset($object->$propertyName)) {
             throw new \Exception("Property '{$propertyName}' is missing.");
         }
-        // Check if the expected type is an enum
-        if (enum_exists('LaravelNeuro\\LaravelNeuro\\Enums\\'.$expectedType)) {
-            // Validate if the property value is a valid case of the enum
+        // If expected type is an enum defined under LaravelNeuro\Enums
+        if (enum_exists('LaravelNeuro\\Enums\\' . $expectedType)) {
             $isValidEnumValue = false;
-            $enum = 'LaravelNeuro\\LaravelNeuro\\Enums\\'.$expectedType;
+            $enum = 'LaravelNeuro\\Enums\\' . $expectedType;
             foreach ($enum::cases() as $case) {
                 if ($object->$propertyName === $case->value) {
                     $isValidEnumValue = true;
@@ -48,7 +124,6 @@ class Incorporate {
                     break;
                 }
             }
-
             if (!$isValidEnumValue) {
                 throw new \Exception("Property '{$propertyName}' value of '{$object->$propertyName}' does not match any case of enum '{$expectedType}'.");
             }
@@ -58,68 +133,141 @@ class Incorporate {
         return $object->$propertyName;
     }
 
+    /**
+     * Sets the name of the corporation.
+     *
+     * @param string $set The corporation's name.
+     * @return self
+     */
     public function setName(string $set)
     {
         $this->name = $set;
         return $this;
     }
 
+    /**
+     * Sets the namespace for the corporation.
+     *
+     * @param string $set The namespace.
+     * @return self
+     */
     public function setNameSpace(string $set)
     {
         $this->nameSpace = $set;
         return $this;
     }
 
+    /**
+     * Sets the description for the corporation.
+     *
+     * @param string $set The description.
+     * @return self
+     */
     public function setDescription(string $set)
     {
         $this->description = $set;
         return $this;    
     }
 
+    /**
+     * Sets the charta for the corporation.
+     *
+     * @param string $set The charta.
+     * @return self
+     */
     public function setCharta(string $set)
     {
         $this->charta = $set;
         return $this;    
     }
 
+    /**
+     * Retrieves the corporation's name.
+     *
+     * @return string The name of the corporation.
+     */
     public function getName()
     {
         return $this->name;
     }
     
+    /**
+     * Retrieves the corporation's namespace.
+     *
+     * @return string The namespace.
+     */
     public function getNameSpace()
     {
         return $this->nameSpace;
     }
 
+    /**
+     * Retrieves the corporation's description.
+     *
+     * @return string The description.
+     */
     public function getDescription()
     {
         return $this->description;
     }
 
+    /**
+     * Retrieves the corporation's charta.
+     *
+     * @return string The charta.
+     */
     public function getCharta()
     {
         return $this->charta;
     }
 
+    /**
+     * Adds a Unit instance to the corporation.
+     *
+     * @param Unit $unit The Unit to add.
+     * @return self
+     */
     public function pushUnit(Unit $unit)
     {
         $this->units->push($unit); 
         return $this;  
     }
 
+    /**
+     * Adds a model configuration to the corporation.
+     *
+     * @param mixed $model The model configuration.
+     * @return self
+     */
     public function pushModel($model)
     {
         $this->models->push($model); 
         return $this;  
     }
 
+    /**
+     * Adds a transition definition to the corporation.
+     *
+     * @param mixed $transition The transition definition.
+     * @return self
+     */
     public function pushTransition($transition)
     {
         $this->transitions->push($transition); 
         return $this;  
     }
 
+    /**
+     * Prebuilds the corporation setup file based on the given namespace and type.
+     *
+     * Normalizes the provided namespace, selects the appropriate stub (JSON or PHP),
+     * and writes the setup file to the designated storage disk.
+     *
+     * @param string $nameSpace The desired namespace for the corporation.
+     * @param IncorporatePrebuild $type The type of setup file to create (JSON or PHP).
+     * @return bool True if the file was successfully created; false otherwise.
+     * @throws \InvalidArgumentException if the namespace does not start with "App\\" when required.
+     */
     public static function prebuild(string $nameSpace, IncorporatePrebuild $type = IncorporatePrebuild::JSON) : bool
     {
         $nameSpace = Str::replace(' ', '', $nameSpace);
@@ -179,6 +327,17 @@ class Incorporate {
         return true;
     }
 
+    /**
+     * Installs the corporation based on a JSON setup.
+     *
+     * Parses the provided JSON, validates required properties for the corporation,
+     * units, transitions, and models, and creates the necessary database models and
+     * files via Artisan commands. Returns an array with installation details.
+     *
+     * @param mixed $json The JSON string containing the corporation setup.
+     * @return mixed An array containing corporation ID, name, description, units, transitions, and errors.
+     * @throws \Exception if the JSON is invalid.
+     */
     public static function installFromJSON($json = false)
     {
 
@@ -265,6 +424,15 @@ class Incorporate {
 
     }
 
+    /**
+     * Installs the corporation by creating a NetworkCorporation record and generating necessary files.
+     *
+     * Creates a new NetworkCorporation record with the corporation's name, namespace,
+     * description, and charta. Then, it creates the required directories, models, migrations,
+     * and transition files based on the setup information. Returns an array of installation details.
+     *
+     * @return array An array containing the corporation ID, name, description, units, transitions, and any errors.
+     */
     public function install()
     {
             $corporation = new NetworkCorporation;
@@ -573,7 +741,7 @@ class Incorporate {
 
                 if($autoloadBasicTransition)
                 {
-                    $autoloadTransitions .= "use LaravelNeuro\\LaravelNeuro\\Networking\\Transition;\n";
+                    $autoloadTransitions .= "use LaravelNeuro\\Networking\\Transition;\n";
                 }
 
                 $corporationFile = str_replace('{{AutoloadTransitions}}', $autoloadTransitions, $corporationFile);
@@ -605,7 +773,15 @@ class Incorporate {
 
             return ["corporationId" => $corporation->id, "corporationName" => $corporation->name, "corporationDescription" => $corporation->description, "units" => $units, "transitions" => $this->transitions->toArray(), "errors" => $this->errors->toArray()];
     }
-
+    
+    /**
+     * Retrieves the content of a stub file for the corporation.
+     *
+     * Looks for a stub file in the /resources/stubs/Corporation/ directory relative to the current directory.
+     *
+     * @param string $stub The name of the stub file (without the .stub extension).
+     * @return string The contents of the stub file.
+     */
     public static function getStub(string $stub)
     {
         return file_get_contents(__DIR__."/../resources/stubs/Corporation/$stub.stub");

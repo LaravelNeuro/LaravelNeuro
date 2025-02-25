@@ -1,14 +1,14 @@
 <?php
 
-namespace LaravelNeuro\LaravelNeuro\Networking\Database\Models;
+namespace LaravelNeuro\Networking\Database\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkCorporation;
-use LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkDataSet;
-use LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkHistory;
-use LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkState;
+use LaravelNeuro\Networking\Database\Models\NetworkCorporation;
+use LaravelNeuro\Networking\Database\Models\NetworkDataSet;
+use LaravelNeuro\Networking\Database\Models\NetworkHistory;
+use LaravelNeuro\Networking\Database\Models\NetworkState;
 
 class NetworkProject extends Model
 {

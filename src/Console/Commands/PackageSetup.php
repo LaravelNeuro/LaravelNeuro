@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelNeuro\LaravelNeuro\Console\Commands;
+namespace LaravelNeuro\Console\Commands;
 
 use Illuminate\Console\Command;
 

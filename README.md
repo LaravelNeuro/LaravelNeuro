@@ -1,217 +1,180 @@
-# Welcome to LaravelNeuro
+# LaravelNeuro
 
 ![Build Status](https://github.com/LaravelNeuro/LaravelNeuro/actions/workflows/ci.yml/badge.svg)
 ![Coveralls](https://coveralls.io/repos/github/LaravelNeuro/LaravelNeuro/badge.svg?branch=main)
 ![Packagist Version](https://img.shields.io/packagist/v/laravel-neuro/core.svg)
 ![Packagist Downloads](https://img.shields.io/packagist/dt/laravel-neuro/core.svg)
 
-_Join the discussion on the [LaravelNeuro Discord Server](https://discord.gg/pNhSHbBk3Z)!_
+_Join the conversation on the [LaravelNeuro Discord Server](https://discord.gg/pNhSHbBk3Z)!_
 
-This Laravel package enhances your PHP Laravel application by introducing two powerful features:
-1. **Integrating AI APIs** into your application code using Pipeline and Prompt Classes.
-2. **Setting up and running complex state machines** that network any number of generative AI agents and functions to automate tasks and content generation.
+LaravelNeuro is a Laravel package that brings two major features to your application:
+1. **Pipelines:** Easily integrate AI models (such as OpenAI, ElevenLabs, and Google Gemini) using a builder-pattern approach. Pipelines abstract API communication via drivers and prompt classes.
+2. **Corporations:** Set up and run complex state machines that network AI agents and functions to automate tasks and content generation.
+
+---
 
 ## Installation
+
+Install via Composer:
 
 ```bash
 composer require laravel-neuro/core
 ```
 
-## Features
-
-### Prebuilt Pipelines
-
-LaravelNeuro ships with a pre-configured set of Pipelines for fast implementation, including:
-
-- **ElevenLabs Text to Speech**
-    - **Namespace**: `LaravelNeuro\LaravelNeuro\Pipelines\ElevenLabs\AudioTTS`
-    - **Prompt Class**: `LaravelNeuro\LaravelNeuro\Prompts\IVFSprompt`
-- **OpenAI**
-    - **ChatCompletion**
-        - **Namespace**: `LaravelNeuro\LaravelNeuro\Pipelines\OpenAI\ChatCompletion`
-        - **Prompt Class**: `LaravelNeuro\LaravelNeuro\Prompts\SUAprompt`
-    - **DallE**
-        - **Namespace**: `LaravelNeuro\LaravelNeuro\Pipelines\OpenAI\DallE`
-        - **Prompt Class**: `LaravelNeuro\LaravelNeuro\Prompts\PNSQFprompt`
-    - **AudioTTS**
-        - **Namespace**: `LaravelNeuro\LaravelNeuro\Pipelines\OpenAI\AudioTTS`
-        - **Prompt Class**: `LaravelNeuro\LaravelNeuro\Prompts\IVFSprompt`
-
-All pipelines extend the basic `LaravelNeuro\LaravelNeuro\Pipeline`, which itself extends the `ApiAdapter` Class, facilitating the transmission of prompts and reception of responses via Guzzle.
-
-#### Enabling Pipelines
-
-Enable the OpenAI and ElevenLabs pipelines by adding your API key to your Laravel application's `.env` file:
-
-```plaintext
-OPENAI_API_KEY="your_api_key"
-ELEVENLABS_API_KEY="your_api_key"
-```
-
-Change the default models for each Pipeline by publishing the `lneuro` configuration file if desired:
+Publish the configuration file if you want to override defaults:
 
 ```bash
 php artisan vendor:publish --tag=laravelneuro-config
 ```
 
-This is not strictly necessary. Even when using one of the prebuilt Pipelines, you can switch from the default model to any compatible model simply by calling the `setModel` method on your `Pipeline` object, passing the name of the model as a string parameter. Example:
-```php
-use LaravelNeuro\LaravelNeuro\Pipelines\OpenAI\ChatCompletion;
+---
 
-$pipeline = new ChatCompletion();
-$pipeline->setModel('gpt-4-turbo-preview'); //this changes the model from the default gpt-3.5-turbo-0125
-```
+## Pipelines
 
-#### Example Usage
+LaravelNeuro comes with a set of prebuilt Pipelines that let you quickly integrate AI models into your Laravel application.
 
-Here's an example of using OpenAI's ChatCompletion in a Laravel script with a streaming response:
+### Overview
 
-```php
-use LaravelNeuro\LaravelNeuro\Pipelines\OpenAI\ChatCompletion;
-use LaravelNeuro\LaravelNeuro\Prompts\SUAprompt;
+Each Pipeline provides a fluent interface for configuring:
+- **Model:** The AI model to be used.
+- **Prompt:** The input or conversation prompt for the model.
+- **Driver:** An underlying driver (by default, GuzzleDriver) that handles HTTP communication.
 
-$prompt = new SUAprompt();
-$pipeline = new ChatCompletion();
+By leveraging builder-pattern methods, you can chain configurations and call methods on the driver without directly modifying the Pipeline’s internal state.
 
-$prompt->pushSystem("You are a seasoned dungeonmaster and play Dungeons and Dragons 3.5th Edition with me.");
-$prompt->pushUser("I want to create a new D&D character.");
-$prompt->pushAgent("How can I help you with your character creation?");
-$prompt->pushUser("My character is a shadow kenku...");
+### Prebuilt Pipelines
 
-echo "response:\n";
-$pipeline->setPrompt($prompt);
+#### ElevenLabs Text-to-Speech  
+- **Namespace:** `LaravelNeuro\Pipelines\ElevenLabs\AudioTTS`  
+- **Prompt Class:** `LaravelNeuro\Prompts\IVFSprompt`  
+Use this pipeline to generate speech audio from text using the ElevenLabs API.
 
-$stream = $pipeline->streamText();
-foreach ($stream as $output) {
-    print_r($output);
-}
+#### OpenAI Pipelines
+- **ChatCompletion:**  
+  - **Namespace:** `LaravelNeuro\Pipelines\OpenAI\ChatCompletion`  
+  - **Prompt Class:** `LaravelNeuro\Prompts\SUAprompt`  
+  Leverage GPT-3.5-Turbo to generate conversational responses.
+  
+- **DallE (Image Generation):**  
+  - **Namespace:** `LaravelNeuro\Pipelines\OpenAI\DallE`  
+  - **Prompt Class:** `LaravelNeuro\Prompts\PNSQFprompt`  
+  Generate images using the Dall-E model. Supports base64, URL, and file storage outputs.
+  
+- **AudioTTS:**  
+  - **Namespace:** `LaravelNeuro\Pipelines\OpenAI\AudioTTS`  
+  - **Prompt Class:** `LaravelNeuro\Prompts\IVFSprompt`  
+  Convert text to speech via the OpenAI API.
 
-//sample response:
-/* 
-That sounds like an interesting character concept! The shadow kenku is a homebrew race that combines the traits of kenku and shadow creatures. Let's work on creating your shadow kenku character together. 
+#### Google Gemini Multimodal  
+- **Namespace:** `LaravelNeuro\Pipelines\Google\Multimodal`  
+- Integrates text and file inputs, providing multiple output formats including text, JSON, and array responses.
 
-First, let's determine your ability scores. As a shadow kenku, you might want to focus on Dexterity and Charisma for your abilities. What ability scores do you want to prioritize for your character? 
-*/
-```
+### Enabling and Configuring Pipelines
 
-#### Output Methods
+1. **Environment Variables:**  
+   Add your API keys to your `.env` file:
+   ```dotenv
+   OPENAI_API_KEY="your_openai_api_key"
+   ELEVENLABS_API_KEY="your_elevenlabs_api_key"
+   GOOGLE_API_KEY="your_google_api_key"
+   ```
 
-The OpenAi ChatCompletion Pipeline also allows for various output methods including `text`, `json`, `array`, `jsonStream`, and `arrayStream`, whereas the basic Pipeline class ships with the more generic `output` and `stream` methods.
+2. **Configuration:**  
+   Customize default models and API endpoints by editing the published configuration file (`config/laravelneuro.php`).
 
-### State Machines
+3. **Usage Example:**  
+   Here's how to use the ChatCompletion pipeline:
+   ```php
+   use LaravelNeuro\Pipelines\OpenAI\ChatCompletion;
+   use LaravelNeuro\Prompts\SUAprompt;
 
-LaravelNeuro State Machines, called Corporations, are simple to setup and can network AI APIs and scripts for complex tasks.
+   $prompt = new SUAprompt();
+   $prompt->pushSystem("You are a seasoned dungeonmaster for Dungeons and Dragons 3.5 Edition.");
+   $prompt->pushUser("I want to create a new character.");
+   $prompt->pushAgent("How can I help you?");
+   $prompt->pushUser("My character is a shadow kenku...");
 
-#### Setup
+   $pipeline = new ChatCompletion();
+   $pipeline->setModel('gpt-3.5-turbo'); // Change model if needed
+   $pipeline->setPrompt($prompt);
 
-For LaravelNeuro state machines to work, migrate its Eloquent models with:
+   // For streaming responses:
+   foreach ($pipeline->streamText() as $chunk) {
+       echo $chunk;
+   }
 
-```bash
-php artisan lneuro:migrate
-```
+   // For non-stream output:
+   echo $pipeline->output();
+   ```
+   
+Each Pipeline also supports various output methods such as `text()`, `json()`, `array()`, and their streaming counterparts.
 
-#### Creating a Voice Assistant
+---
 
-Example setup for a voice-to-voice chat assistant:
+## Corporations
 
-1. **Create the Corporation folder and example setup file:**
+Corporations in LaravelNeuro are state machines that orchestrate the execution of complex tasks by networking multiple AI agents. With Corporations, you can create sophisticated workflows that handle everything from data ingestion and processing to automated content generation.
 
-```bash
-php artisan lneuro:prebuild VoiceAssistant
-```
+### Overview
 
-2. **Fill out the `setup.json` file** with the necessary AI models (speech to text, text generation, text to speech).
+A Corporation is established via the **Incorporate** process:
+- **Prebuild:** Use the `lneuro:prebuild` Artisan command to scaffold a new Corporation. This command creates a namespace, folder structure, and a setup file (JSON or PHP) that outlines the corporation's units, agents, and transitions.
+- **Install:** Run `lneuro:install` to read the setup file and create all necessary database records, migrations, and files for your Corporation.
 
-//setup.json example
-```json
-{
-    "name": "Voice Assistant",
-    "nameSpace": "VoiceAssistant",
-    "description": "Ingest natural speech audio, query a chat-completion agent, then apply a TTS model to the output.",
-    "charta": "",
-    "units": [
-      {
-        "name": "Transcription",
-        "description": "This Unit ingests a file path and outputs transcribed text.",
-        "agents": [
-          {
-            "name": "Transcriber",
-            "model": "whisper-1",
-            "pipeline": "LaravelNeuro\\LaravelNeuro\\Pipelines\\OpenAI\\Whisper",   
-            "promptClass": "LaravelNeuro\\LaravelNeuro\\Prompts\\FSprompt",   
-            "validateOutput": false
-          }
-        ],
-        "defaultReceiver": {
-          "type": "AGENT",
-          "name": "Transcriber"
-        }
-      },
-      {
-        "name": "ChatCompletion",
-        "description": "This unit uses transcribed text as prompts to generate text responses.",
-        "agents": [
-          {
-            "name": "Chatbot",
-            "model": "gpt-3.5-turbo-1106",
-            "pipeline": "LaravelNeuro\\LaravelNeuro\\Pipelines\\OpenAI\\ChatCompletion",     
-            "role": "You are a helpful assistant.",   
-            "validateOutput": false
-          }
-        ],
-        "defaultReceiver": {
-          "type": "AGENT",
-          "name": "Chatbot"
-        }
-      },
-      {
-        "name": "Studio",
-        "description": "This unit takes generated text responses and outputs voice-over.",
-        "agents": [
-          {
-            "name": "Speaker",
-            "model": "tts-1",
-            "apiType": "TTS",
-            "pipeline": "LaravelNeuro\\LaravelNeuro\\Pipelines\\OpenAI\\AudioTTS",
-            "promptClass": "LaravelNeuro\\LaravelNeuro\\Prompts\\IVFSprompt",    
-            "prompt": "{{Head:data}}{{VFS:nova}}",
-            "validateOutput": false
-          }
-        ],
-        "defaultReceiver": {
-          "type": "AGENT",
-          "name": "Speaker"
-        }
-      }
-    ],
-    "transitions": [
-      {
-        "type": "UNIT",
-        "transitionName": "Transcription",
-        "transitionHandle": "Transcription"
-      },
-      {
-        "type": "UNIT",
-        "transitionName": "ChatCompletion",
-        "transitionHandle": "ChatCompletion"
-      },
-      {
-        "type": "UNIT",
-        "transitionName": "Studio",
-        "transitionHandle": "Studio"
-      }
-    ]
-}
-```
+### Key Concepts
 
-3. **Install and run your Corporation:**
+- **Units:**  
+  Represent functional groupings within a Corporation. Each Unit can have multiple Agents and dataset templates that define how data is processed.
+  
+- **Agents:**  
+  An Agent is a single AI component within a Unit. It includes configuration details such as the model, API endpoint, prompt, pipeline class, and role. Agents are responsible for performing specific tasks in the state machine.
+  
+- **Transitions:**  
+  Transitions represent the individual steps in the Corporation's state machine. They are generated from stubs during the installation process and guide the flow of execution across different units.
 
-```bash
-php artisan lneuro:install VoiceAssistant
-```
+### Example: Setting Up a Voice Assistant Corporation
 
-This setup does not require coding but offers hooks for custom logic injection.
+1. **Prebuild the Corporation:**  
+   ```bash
+   php artisan lneuro:prebuild VoiceAssistant
+   ```
+   This command creates the necessary folder structure and a `setup.json` file in your new Corporation folder.
 
-### Advanced Use-Cases
+2. **Edit the Setup File:**  
+   Customize `setup.json` to define:
+   - **Units:** E.g., Transcription, ChatCompletion, Studio.
+   - **Agents:** Specify details like model, pipeline, prompt class, and roles.
+   - **Transitions:** Outline the sequential steps for your state machine.
 
-More detailed use-cases and documentation will be available on the separate documentation website soon.
+3. **Install the Corporation:**  
+   ```bash
+   php artisan lneuro:install VoiceAssistant
+   ```
+   This command reads your setup file and creates the corresponding database records and files.
+
+4. **Run the Corporation:**  
+   The `lneuro:run [CORPORATION NAMESPACE] [Optional:TASK]` command executes the state machine, processing transitions and generating a final output based on your defined workflow. You can view the output in the console enabling the --debug flag and log run history by enabling the --history flag.
+   ```bash
+   php artisan lneuro:run VoiceAssistant "path/to/input.wav" --debug --history
+   ```
+
+### Consolidation and Cleanup
+
+To manage database clutter from multiple installations and Corporation runs, LaravelNeuro includes a cleanup command (`lneuro:cleanup`), which removes history entries and can consolidate old Corporation installations with their most current counterparts.
+
+---
+
+## Contributing
+
+Contributions, improvements, and bug fixes are welcome!  
+Please review our [CONTRIBUTING.md](CONTRIBUTING.md) file for details on our code of conduct and the process for submitting pull requests.
+
+---
+
+## License
+
+LaravelNeuro is open-sourced software licensed under the [MIT license](LICENSE).
+
+---
+
+This README now provides a structured and detailed overview of both Pipelines and Corporations, showcasing how users can integrate AI models and set up complex state machines in their Laravel applications. Feel free to adjust further based on your project's evolving features and documentation style preferences.

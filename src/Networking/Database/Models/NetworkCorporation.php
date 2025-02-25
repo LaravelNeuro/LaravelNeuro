@@ -1,11 +1,11 @@
 <?php
 
-namespace LaravelNeuro\LaravelNeuro\Networking\Database\Models;
+namespace LaravelNeuro\Networking\Database\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkProject;
-use LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkUnit;
+use LaravelNeuro\Networking\Database\Models\NetworkProject;
+use LaravelNeuro\Networking\Database\Models\NetworkUnit;
 
 class NetworkCorporation extends Model
 {

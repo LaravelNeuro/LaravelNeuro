@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelNeuro\LaravelNeuro\Enums;
+namespace LaravelNeuro\Enums;
 
 enum RequestType: string
 {

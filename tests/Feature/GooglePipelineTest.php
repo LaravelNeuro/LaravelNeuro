@@ -7,14 +7,14 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Storage;
 
-use LaravelNeuro\LaravelNeuro\Pipeline;
-use LaravelNeuro\LaravelNeuro\Pipelines\Google\Multimodal;
+use LaravelNeuro\Drivers\WebRequest\GuzzleDriver;
+use LaravelNeuro\Pipelines\Google\Multimodal;
 
-use LaravelNeuro\LaravelNeuro\Prompts\SUAprompt;
-use LaravelNeuro\LaravelNeuro\Prompts\PNSQFprompt;
-use LaravelNeuro\LaravelNeuro\Prompts\IVFSprompt;
+use LaravelNeuro\Prompts\SUAprompt;
+use LaravelNeuro\Prompts\PNSQFprompt;
+use LaravelNeuro\Prompts\IVFSprompt;
 
-use LaravelNeuro\LaravelNeuro\Enums\PNSQFquality;
+use LaravelNeuro\Enums\PNSQFquality;
 
 use Tests\PackageTestCase;
 use Tests\Helpers\ApiSimulator;
@@ -34,7 +34,7 @@ class GooglePipelineTest extends PackageTestCase {
     {
         Config::set('laravelneuro.keychain.google', 'fake-api-key');
 
-        $pipeline = new Multimodal;
+        $pipeline = new Multimodal(new GuzzleDriver);
 
         $this->assertTrue($pipeline instanceof Multimodal, 'Google Multimodal Pipeline instantiation unsuccessful.');
 
@@ -100,8 +100,12 @@ class GooglePipelineTest extends PackageTestCase {
 
         $handlerStack = ['handler' => $mock->getHandler()];
 
-        $pipeline->setPrompt($prompt)
-                 ->setClient($handlerStack);
+        $driver = $pipeline->driver();
+            if ($driver instanceof GuzzleDriver) {
+                $driver->setClient($handlerStack);
+            }
+
+        $pipeline->setPrompt($prompt);
 
         try
         {

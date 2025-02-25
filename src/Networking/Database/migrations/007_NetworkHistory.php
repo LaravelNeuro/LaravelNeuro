@@ -15,11 +15,17 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->unsignedBigInteger('project_id');
-                $table->foreign('project_id')->references('id')->on('laravel_neuro_network_projects');   
+                $table->foreign('project_id')
+                      ->references('id')->on('laravel_neuro_network_projects')
+                      ->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('unit_id')->nullable();  
-                $table->foreign('unit_id')->references('id')->on('laravel_neuro_network_units'); 
+                $table->foreign('unit_id')
+                      ->references('id')->on('laravel_neuro_network_units')
+                      ->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('agent_id')->nullable();
-                $table->foreign('agent_id')->references('id')->on('laravel_neuro_network_agents'); 
+                $table->foreign('agent_id')
+                      ->references('id')->on('laravel_neuro_network_agents')
+                      ->onUpdate('cascade')->onDelete('cascade'); 
             $table->enum('entryType', ['PROMPT', 'RESPONSE', 'PLUGIN', 'ERROR', 'OTHER']);  
             $table->mediumText('content')->nullable();
         });

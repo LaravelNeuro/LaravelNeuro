@@ -21,7 +21,7 @@
             "name": "Agent Name",
             "model": "Model Name //example: gpt-3-5-turbo",
             "apiLink": "//example: https://api.openai.com/v1/chat/completions",
-            "pipeline": "LaravelNeuro\\LaravelNeuro\\Pipelines\\LLM\\OpenAI\\ChatCompletion",     
+            "pipeline": "LaravelNeuro\\Pipelines\\LLM\\OpenAI\\ChatCompletion",     
             "role": "Explain, who the agent is and what their role in the network is. This will be set as the system prompt for the model. You can incorporate certain variables in here using double curly braces:\nCorporation values: {{corporation.Name}}, {{corporation.Charta}}, {{corporation.Description}}\nDataset values: {{internal.DataSetName.ParameterName}} will return the value of ParameterName from the current state of the DataSet within the project. 'internal' is a shorthand for the agent's unit. Instead, the name of any unit within the corporation can also be used to access DataSets from other units.",
             "outputModel": "internal.DatasetName //Comment: Can also be set to false to receive text output. This DataSet's default values, converted to JSON, will be appended to each prompt to this agent with the instructions to respond using its structure.",
             "validateOutput": true

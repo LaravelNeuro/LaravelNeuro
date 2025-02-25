@@ -15,7 +15,7 @@ class PackageTestCase extends TestCase
     protected function getPackageProviders($app)
     {
         return [
-            'LaravelNeuro\\LaravelNeuro\\Providers\\LaravelNeuroServiceProvider',
+            'LaravelNeuro\\Providers\\LaravelNeuroServiceProvider',
         ];
     }
 

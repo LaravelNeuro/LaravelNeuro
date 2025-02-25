@@ -1,20 +1,20 @@
 <?php
 
-namespace LaravelNeuro\LaravelNeuro\Networking\Database\Models;
+namespace LaravelNeuro\Networking\Database\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use LaravelNeuro\LaravelNeuro\Networking\Database\Models\NetworkUnit;
+use LaravelNeuro\Networking\Database\Models\NetworkUnit;
 
-use LaravelNeuro\LaravelNeuro\Enums\APItype;
+use LaravelNeuro\Enums\APItype;
 
 class NetworkAgent extends Model
 {
     protected $table = 'laravel_neuro_network_agents';
 
     protected $attributes = [
-        'promptClass' => 'LaravelNeuro\\LaravelNeuro\\Prompts\\SUAprompt',
+        'promptClass' => 'LaravelNeuro\\Prompts\\SUAprompt',
     ];
 
     public function unit() : BelongsTo

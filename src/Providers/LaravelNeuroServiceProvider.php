@@ -1,11 +1,11 @@
 <?php
 
-namespace LaravelNeuro\LaravelNeuro\Providers;
+namespace LaravelNeuro\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\File;
 
-use LaravelNeuro\LaravelNeuro\Console\Commands\CorporationMakeMigration;
+use LaravelNeuro\Console\Commands\CorporationMakeMigration;
 
 Class LaravelNeuroServiceProvider extends ServiceProvider {
 
@@ -20,12 +20,12 @@ Class LaravelNeuroServiceProvider extends ServiceProvider {
 
         if ($this->app->runningInConsole()) {
             $this->commands([
-                \LaravelNeuro\LaravelNeuro\Console\Commands\MakeLLMpipeline::class,
-                \LaravelNeuro\LaravelNeuro\Console\Commands\IncorporateSetup::class,
-                \LaravelNeuro\LaravelNeuro\Console\Commands\IncorporateInstall::class,
-                \LaravelNeuro\LaravelNeuro\Console\Commands\CorporationRun::class,
-                \LaravelNeuro\LaravelNeuro\Console\Commands\PackageSetup::class,
-                \LaravelNeuro\LaravelNeuro\Console\Commands\CleanUp::class,
+                \LaravelNeuro\Console\Commands\MakeLLMpipeline::class,
+                \LaravelNeuro\Console\Commands\IncorporateSetup::class,
+                \LaravelNeuro\Console\Commands\IncorporateInstall::class,
+                \LaravelNeuro\Console\Commands\CorporationRun::class,
+                \LaravelNeuro\Console\Commands\PackageSetup::class,
+                \LaravelNeuro\Console\Commands\CleanUp::class,
                 'command.lneuro.make-network-migration',
             ]);
         }

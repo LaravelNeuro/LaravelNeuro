@@ -15,9 +15,13 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->unsignedBigInteger('project_id');
-                $table->foreign('project_id')->references('id')->on('laravel_neuro_network_projects');            
+                $table->foreign('project_id')
+                      ->references('id')->on('laravel_neuro_network_projects')
+                      ->onUpdate('cascade')->onDelete('cascade');            
             $table->unsignedBigInteger('template_id');
-                $table->foreign('template_id')->references('id')->on('laravel_neuro_network_dataset_templates');
+                $table->foreign('template_id')
+                      ->references('id')->on('laravel_neuro_network_dataset_templates')
+                      ->onUpdate('cascade')->onDelete('cascade');
             $table->json('data');
         });
     }

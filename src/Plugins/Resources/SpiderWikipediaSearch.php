@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelNeuro\LaravelNeuro\Plugins\Resources;
+namespace LaravelNeuro\Plugins\Resources;
 
 use Generator;
 use RoachPHP\Http\Response;

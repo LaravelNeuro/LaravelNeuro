@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->timestamps();          
             $table->unsignedBigInteger('unit_id');
-                $table->foreign('unit_id')->references('id')->on('laravel_neuro_network_units');
+                $table->foreign('unit_id')
+                      ->references('id')->on('laravel_neuro_network_units')
+                      ->onUpdate('cascade')->onDelete('cascade');
             $table->string('name');
             $table->text('completionPrompt');
             $table->json('completionResponse');

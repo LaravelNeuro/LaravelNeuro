@@ -1,11 +1,11 @@
 <?php
 
-namespace LaravelNeuro\LaravelNeuro\Console\Commands;
+namespace LaravelNeuro\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
-use LaravelNeuro\LaravelNeuro\Networking\Incorporate;
-use LaravelNeuro\LaravelNeuro\Enums\IncorporatePrebuild;
+use LaravelNeuro\Networking\Incorporate;
+use LaravelNeuro\Enums\IncorporatePrebuild;
 
 class IncorporateInstall extends Command
 {
