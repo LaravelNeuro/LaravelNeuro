@@ -1,9 +1,9 @@
 # LaravelNeuro
 
-[![Build Status](https://github.com/LaravelNeuro/LaravelNeuro/actions/workflows/ci.yml/badge.svg)](https://github.com/LaravelNeuro/LaravelNeuro/actions/workflows/ci.yml)  
-[![Coveralls](https://coveralls.io/repos/github/LaravelNeuro/LaravelNeuro/badge.svg?branch=main)](https://coveralls.io/github/LaravelNeuro/LaravelNeuro?branch=main)  
-[![Packagist Version](https://img.shields.io/packagist/v/laravel-neuro/core.svg)](https://packagist.org/packages/laravel-neuro/core)  
-[![Packagist Downloads](https://img.shields.io/packagist/dt/laravel-neuro/core.svg)](https://packagist.org/packages/laravel-neuro/core)
+![Build Status](https://github.com/LaravelNeuro/LaravelNeuro/actions/workflows/ci.yml/badge.svg)
+![Coveralls](https://coveralls.io/repos/github/LaravelNeuro/LaravelNeuro/badge.svg?branch=main)
+![Packagist Version](https://img.shields.io/packagist/v/laravel-neuro/core.svg)
+![Packagist Downloads](https://img.shields.io/packagist/dt/laravel-neuro/core.svg)
 
 _Join the conversation on the [LaravelNeuro Discord Server](https://discord.gg/pNhSHbBk3Z)!_
 
