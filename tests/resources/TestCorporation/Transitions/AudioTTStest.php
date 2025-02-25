@@ -5,7 +5,8 @@ use LaravelNeuro\Networking\Database\Models\NetworkCorporation;
 use LaravelNeuro\Networking\Database\Models\NetworkProject;
 use LaravelNeuro\Networking\TuringHead;
 use LaravelNeuro\Networking\Transition;
-use LaravelNeuro\Pipeline;
+use LaravelNeuro\Contracts\AiModel\Pipeline;
+use LaravelNeuro\Drivers\WebRequest\GuzzleDriver;
 
 use App\Corporations\TestCorporation\Config;
 
@@ -69,7 +70,10 @@ Class AudioTTStest extends Transition
 
         $handlerStack = ['handler' => $mock->getHandler()];
 
-        $pipeline->setClient($handlerStack);
+        $driver = $pipeline->driver();
+            if ($driver instanceof GuzzleDriver) {
+                $driver->setClient($handlerStack);
+            }
         
         return $pipeline;
     }
