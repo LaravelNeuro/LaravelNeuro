@@ -13,16 +13,17 @@ use LaravelNeuro\Networking\Database\Models\NetworkState;
 
 class CleanUp extends Command
 {
-    protected $signature = 'lneuro:cleanup.history
+    protected $signature = 'lneuro:cleanup
     {--i|interactive : Present interactive command interface to set values and flags.}
     {--d|daysOld=30 : Set cutoff date (in days) for history deletion.}
     {--c|corporation=0 : Select a corporation to apply cleanup to (ID). 0 => all.}
+    {--C|consolidate : Consolidates in --corporation specified Corporation(s) by namespace.}
     {--p|prune : Delete related NetworkProject, NetworkState, and NetworkDataSet records.}
     {--f|force : Delete records even when Project has no definite resolution.}
     {--t|dry-run : Perform a dry run (no deletions).}
     {--s|stat : Show statistics of matching records instead of performing deletion.}';
 
-    protected $description = 'Remove old or unwanted NetworkHistory entries. Optionally prune entire projects if they are resolved using --prune, or even unresolved projects if --force is specified. Use --dry-run to simulate and --stat to display record counts and storage usage.';
+    protected $description = 'Remove old or unwanted NetworkHistory entries. Optionally consolidate corporations by namespace using --consolidate. Optionally prune entire projects if they are resolved using --prune, or even unresolved projects if --force is specified. Use --dry-run to simulate and --stat to display record counts and storage usage.';
 
     private function loadAdditionalStyles()
     {
@@ -47,10 +48,11 @@ class CleanUp extends Command
 
         if ($this->option('interactive')) {
             $this->info("Starting interactive cleanup session.");
-            [$daysOld, $corporation, $prune, $force] = $this->startInteractiveSession();
+            [$daysOld, $corporation, $consolidate, $prune, $force] = $this->startInteractiveSession();
         } else {
             $daysOld     = $this->option('daysOld') ?? 30;
             $corporation = NetworkCorporation::find($this->option('corporation'));
+            $consolidate = $this->option('consolidate');
             $prune       = $this->option('prune');
             $force       = $this->option('force');
         }
@@ -71,6 +73,11 @@ class CleanUp extends Command
         // Store stat information for later
         if ($verbose) {
             $stat = $this->showStats($cutoffDate, $corporation, $force);
+        }
+
+        if($consolidate)
+        {
+            $this->consolidateCorporations();
         }
 
         // Begin deletion for NetworkHistory entries.
@@ -151,13 +158,15 @@ class CleanUp extends Command
         $daysOld = $this->ask("How old should an entry be to be deleted? (number of days, default: 30)");
         $daysOld = $daysOld ?: 30;
         $corporation = $this->selectCorporation();
+        $consolidateInput = $this->ask("Consolidate Corporation[s] with older versions? [Yes/No]");
         $pruneInput = $this->ask("Prune projects, states, and datasets too? [Yes/No]");
         $forceInput = $this->ask("Clean history (and if prune, everything) for projects without a definitive outcome? [Yes/No]");
 
+        $consolidate = str_contains(strtolower($consolidateInput ?? ''), 'y');
         $prune = str_contains(strtolower($pruneInput ?? ''), 'y');
         $force = str_contains(strtolower($forceInput ?? ''), 'y');
 
-        return [$daysOld, $corporation, $prune, $force];
+        return [$daysOld, $corporation, $consolidate, $prune, $force];
     }
 
     /**
@@ -325,6 +334,94 @@ class CleanUp extends Command
                 $this->warn("Database driver [$driver] is outside the supported scope, can't stat table space use.");
                 return null;
         }
+    }
+
+    private function consolidateCorporations()
+    {
+        $consolidateOption = $this->option('corporation'); // Value provided in --corporation
+        if ($consolidateOption && $consolidateOption != 0) {
+            // Target corporation is explicitly specified.
+            $target = NetworkCorporation::with('units.agents')->find($consolidateOption);
+            if (!$target) {
+                $this->error("Target corporation with ID {$consolidateOption} not found.");
+                return;
+            }
+            // Get all corporations with the same namespace as the target.
+            $corporations = NetworkCorporation::where('nameSpace', $target->nameSpace)
+                                ->orderBy('created_at', 'desc')->get();
+        } else {
+            // No explicit target: for each namespace, select the newest corporation.
+            $namespaces = NetworkCorporation::distinct()->pluck('nameSpace')->toArray();
+            foreach ($namespaces as $namespace) {
+                $corporations = NetworkCorporation::where('nameSpace', $namespace)
+                                    ->orderBy('created_at', 'desc')->get();
+                if ($corporations->count() < 2) {
+                    // Nothing to consolidate for this namespace.
+                    continue;
+                }
+                // The first corporation (newest) is the target.
+                $target = $corporations->first();
+                // The rest are to be consolidated.
+                $this->consolidateGroup($target, $corporations->slice(1));
+            }
+            return;
+        }
+        // If we have a target from an explicit option, consolidate that group.
+        $this->consolidateGroup($target, $corporations->filter(function($corp) use ($target) {
+            return $corp->id !== $target->id;
+        }));
+    }
+
+    /**
+     * Consolidates a group of corporations by reassigning related projects
+     * to the target corporation and deleting the extra corporations.
+     *
+     * @param \LaravelNeuro\Networking\Database\Models\NetworkCorporation $target The principal corporation to keep.
+     * @param \Illuminate\Support\Collection $others The collection of extra corporations to consolidate.
+     * @return void
+     */
+    private function consolidateGroup($target, $others)
+    {
+        $dryRun = $this->option('dry-run');
+
+        if($dryRun)
+            $this->info("[Dry Run] Would consolidate the following corporations with the namespace {$target->nameSpace} to the ID {$target->id}.");
+
+        $targetAgents = collect([]);
+        foreach($target->units as $unit) {
+            $targetAgents = $targetAgents->merge($unit->agents);
+        }
+        foreach ($others as $corp) {
+            // Reassign projects.
+            if($dryRun)
+            {
+                $this->info("[Dry Run] Would consolidate corporation ID {$corp->id} from namespace {$corp->nameSpace}.");
+                continue;
+            }
+
+            DB::transaction(function () use ($target, $targetAgents, $corp) {
+                NetworkProject::where('corporation_id', $corp->id)
+                                    ->update(['corporation_id' => $target->id]);
+                
+                // Delete units and agents belonging to the extra corporation.
+                // Reassign Agents associated in NetworkHistory entries
+                foreach ($corp->units as $unit) {
+                    foreach ($unit->agents as $agent) {
+                        $agentTransfer = $targetAgents->where('name', $agent->name)->first();
+                        if($agentTransfer) 
+                            NetworkHistory::where('agent_id', $agent->id)->update(['agent_id' => $agentTransfer->id]);
+                        else
+                            NetworkHistory::where('agent_id', $agent->id)->update(['agent_id' => null]);
+                        $agent->delete();
+                    }
+                    $unit->delete();
+                }
+                // Finally, delete the extra corporation.
+                $corp->delete();
+                $this->info("Consolidated and removed corporation ID {$corp->id} from namespace {$corp->nameSpace}.");
+            });
+        }
+
     }
 
     /**

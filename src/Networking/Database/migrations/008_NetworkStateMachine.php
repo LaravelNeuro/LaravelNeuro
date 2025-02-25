@@ -17,7 +17,9 @@ return new class extends Migration
             $table->enum('type', ['INITIAL', 'FINAL', 'PROCESSING', 'INTERMEDIARY']);  
             $table->boolean('active');
             $table->unsignedBigInteger('project_id');
-                $table->foreign('project_id')->references('id')->on('laravel_neuro_network_projects');   
+                $table->foreign('project_id')
+                      ->references('id')->on('laravel_neuro_network_projects')
+                      ->onUpdate('cascade')->onDelete('cascade');   
             $table->text('data')->nullable();
         });
     }

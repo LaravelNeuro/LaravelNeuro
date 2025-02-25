@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->unsignedBigInteger('corporation_id');
-                $table->foreign('corporation_id')->references('id')->on('laravel_neuro_network_corporations');
+                $table->foreign('corporation_id')
+                      ->references('id')->on('laravel_neuro_network_corporations')
+                      ->onUpdate('cascade')->onDelete('cascade');
             $table->string('name');
             $table->string('description');
             $table->string('defaultReceiver');
