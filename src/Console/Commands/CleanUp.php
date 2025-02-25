@@ -13,7 +13,7 @@ use LaravelNeuro\Networking\Database\Models\NetworkState;
 
 class CleanUp extends Command
 {
-    protected $signature = 'lneuro:cleanup
+    protected $signature = 'lneuro:cleanup.history
     {--i|interactive : Present interactive command interface to set values and flags.}
     {--d|daysOld=30 : Set cutoff date (in days) for history deletion.}
     {--c|corporation=0 : Select a corporation to apply cleanup to (ID). 0 => all.}

@@ -3,7 +3,7 @@ namespace App\Corporations\TestCorporation\Transitions;
 
 use LaravelNeuro\Networking\Database\Models\NetworkCorporation;
 use LaravelNeuro\Networking\Database\Models\NetworkProject;
-use LaravelNeuro\Networking\TuringStrip;
+use LaravelNeuro\Networking\TuringHead;
 use LaravelNeuro\Networking\Transition;
 use LaravelNeuro\Pipeline;
 
@@ -32,7 +32,7 @@ Class AudioTTStest extends Transition
     */
     protected NetworkCorporation $corporation;
 
-    public function __construct(int $projectId, TuringStrip $head, Collection $models)
+    public function __construct(int $projectId, TuringHead $head, Collection $models)
     {
         parent::__construct($projectId, $head, $models);
         

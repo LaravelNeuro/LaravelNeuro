@@ -7,7 +7,7 @@ use LaravelNeuro\Prompts\FSprompt;
 use LaravelNeuro\Enums\RequestType;
 use LaravelNeuro\Contracts\AiModel\Driver;
 use LaravelNeuro\Contracts\AiModel\Pipeline;
-use LaravelNeuro\Drivers\WebRequests\GuzzleDriver;
+use LaravelNeuro\Drivers\WebRequest\GuzzleDriver;
 
 class Whisper implements Pipeline {
 
@@ -16,9 +16,9 @@ class Whisper implements Pipeline {
     protected $prompt;
     protected $accessToken;
 
-    public function __construct()
+    public function __construct(Driver $driver=new GuzzleDriver)
     {
-        $this->driver = new GuzzleDriver;
+        $this->driver = $driver;
         
         $this->prompt = [];
         $this->setModel(
@@ -35,7 +35,7 @@ class Whisper implements Pipeline {
         {
             throw new \InvalidArgumentException("No model name has been set for this pipeline in the LaravelNeuro config file (app/config/laravelneuro.php).");
         }
-        if(empty($this->api))
+        if(empty($this->driver->getApi()))
         {
             throw new \InvalidArgumentException("No api address has been set for this pipeline in the LaravelNeuro config file (app/config/laravelneuro.php).");
         }
@@ -67,11 +67,11 @@ class Whisper implements Pipeline {
         if($prompt instanceof FSprompt)
         {
             $this->driver->setRequestType(RequestType::MULTIPART);
-            $this->driver->modifyRequest("messages", [
+            $this->driver->modifyRequest([
                                 'name'     => 'file',
                                 'contents' => Psr7\Utils::tryFopen($prompt->getFile(), "r")
                             ]);
-            $this->driver->modifyRequest("messages", [
+            $this->driver->modifyRequest([
                                 'name'     => 'model',
                                 'contents' => $this->getModel()
                             ]);

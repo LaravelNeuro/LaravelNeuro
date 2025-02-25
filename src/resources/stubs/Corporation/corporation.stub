@@ -8,7 +8,7 @@ use LaravelNeuro\Networking\Database\Models\NetworkProject;
 use LaravelNeuro\Networking\Database\Models\NetworkHistory;
 use LaravelNeuro\Networking\Database\Models\NetworkState;
 use LaravelNeuro\Networking\Corporation;
-use LaravelNeuro\Networking\TuringStrip;
+use LaravelNeuro\Networking\TuringHead;
 
 use LaravelNeuro\Enums\StuckHandler;
 use LaravelNeuro\Enums\TuringState;
@@ -73,7 +73,7 @@ class {{CorporationName}} extends Corporation {
 
     /**
      * Can be set to REPEAT, CONTINUE, and TERMINATE
-     * This setting determines the state machine's behavior when a Transition returns a TuringStrip with a TuringMode mode of STUCK  
+     * This setting determines the state machine's behavior when a Transition returns a TuringHead with a TuringMode mode of STUCK  
      *
      * @var StuckHandler
      */

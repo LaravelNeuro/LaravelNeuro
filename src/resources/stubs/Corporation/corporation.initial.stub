@@ -1,4 +1,4 @@
-protected function initial(TuringStrip $head) : TuringStrip
+protected function initial(TuringHead $head) : TuringHead
     {
         NetworkHistory::create([
             'project_id' => $this->project->id, 

@@ -2,7 +2,7 @@
 namespace LaravelNeuro\Plugins;
 
 use LaravelNeuro\Plugins\Plugin;
-use LaravelNeuro\Pipeline;
+use LaravelNeuro\Contracts\AiModel\Pipeline;
 use LaravelNeuro\Prompts\SUAprompt;
 
 use Mis3085\Tiktoken\Facades\Tiktoken;

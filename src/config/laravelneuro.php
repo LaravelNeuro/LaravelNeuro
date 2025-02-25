@@ -29,6 +29,7 @@ return [
         'tts-1' => [
             'model' => 'tts-1',
             'api' => 'https://api.openai.com/v1/audio/speech',
+            'voice' => 'onyx',
         ],
         'whisper-1' => [
             'model' => 'whisper-1',

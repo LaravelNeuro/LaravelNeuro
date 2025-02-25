@@ -1,5 +1,5 @@
 <?php
-namespace LaravelNeuro\Drivers\WebRequests;
+namespace LaravelNeuro\Drivers\WebRequest;
 
 use Generator;
 use GuzzleHttp\Client;
@@ -9,11 +9,11 @@ use LaravelNeuro\Enums\RequestType;
 use LaravelNeuro\Contracts\AiModel\Driver;
 
 /**
- * Class ApiAdapter
+ * Class GuzzleDriver
  *
- * Handles API requests using the GuzzleHttp client.
- * Provides functionality to send requests to various AI APIs,
- * process responses, handle streaming responses, and save files.
+ * A concrete implementation of the Driver interface that uses GuzzleHttp
+ * to send API requests. This driver supports both standard and streaming
+ * requests, and can also handle file responses via Laravel's Storage facade.
  *
  * @package LaravelNeuro
  */
@@ -41,11 +41,10 @@ class GuzzleDriver implements Driver {
     protected $request;
 
     /**
-     * The type of request being made. JSON is the default case, MULTIPART is required 
-     * for file streams, which can become relevant for speech-to-text, image-to-image, 
-     * image-to-text, and similar models that require a file input.
-     * 
-     * @var RequestType 
+     * The type of request being made.
+     * Defaults to JSON. MULTIPART is used for file streams.
+     *
+     * @var RequestType
      */
     protected RequestType $requestType = RequestType::JSON;
 
@@ -70,7 +69,6 @@ class GuzzleDriver implements Driver {
      */
     protected $error = false;
 
-
     /**
      * An associative array of headers to send with the request.
      *
@@ -79,20 +77,25 @@ class GuzzleDriver implements Driver {
     protected array $headers = [];
 
     /**
+     * The key used in the request payload to store the prompt.
+     *
+     * @var string
+     */
+    protected $promptKey = "prompt";
+
+    /**
      * When true, debug information is printed during the request.
      *
      * @var bool
      */
     protected $debug = false;
 
-
     /**
      * Enables or disables debug mode.
      *
-     * When enabled, the request data and headers are printed
-     * to aid in debugging.
+     * When enabled, prints request data and headers for debugging purposes.
      *
-     * @param bool $set True to enable debug mode; false to disable.
+     * @param bool $set True to enable debug mode, false to disable.
      * @return self
      */
     public function debug(bool $set = true) : self
@@ -134,7 +137,7 @@ class GuzzleDriver implements Driver {
      */
     public function getHeaders() : array
     {
-        return $this->headers;
+        return $this->headers ?? null;
     }
 
     /**
@@ -157,9 +160,19 @@ class GuzzleDriver implements Driver {
      */
     public function getApi()
     {
-        return $this->api;
+        return $this->api ?? null;
     }
 
+    /**
+     * Modifies the request payload.
+     *
+     * If an array is provided, appends it to the request array.
+     * Otherwise, sets the given key to the provided value.
+     *
+     * @param mixed $key_or_array The key to set or an array to merge.
+     * @param mixed $value        The value to assign if a key is provided.
+     * @return self
+     */
     public function modifyRequest($key_or_array, $value=null) : self
     {
         if(is_array($key_or_array))
@@ -170,40 +183,87 @@ class GuzzleDriver implements Driver {
         return $this;
     }
 
+    /**
+     * Sets the model for the request.
+     *
+     * @param mixed $model The model identifier.
+     * @return self
+     */
     public function setModel($model) : self
     {
         $this->modifyRequest("model", $model);
-
         return $this;
     }
 
-    public function getModel()
+    /**
+     * Retrieves the model from the request payload.
+     *
+     * @return string|null The model identifier, or null if not set.
+     */
+    public function getModel() : string
     {
-        return $this->request["model"];
+        return $this->request["model"] ?? null;
     }
 
+    /**
+     * Sets the system prompt for the request.
+     *
+     * @param mixed $system The system prompt.
+     * @return self
+     */
     public function setSystemPrompt($system) : self
     {
         $this->modifyRequest("system", $system);
-        
         return $this;
     }
 
+    /**
+     * Retrieves the system prompt from the request payload.
+     *
+     * @return mixed The system prompt, or null if not set.
+     */
     public function getSystemPrompt()
     {
-        return $this->request["system"];
+        return $this->request["system"] ?? null;
     }
 
-    public function setPrompt($prompt) : self
+
+    /**
+     * Sets the prompt for the request.
+     *
+     * @param mixed  $prompt The prompt text.
+     * @param string $key    Optional key to use for the prompt (defaults to "prompt").
+     * @return self
+     */
+    public function setPrompt($prompt, $key = "prompt") : self
     {
-        $this->modifyRequest("prompt", $prompt);
-        
+        $this->promptKey = $key;
+        $this->modifyRequest($key, $prompt);
         return $this;
     }
 
+    /**
+     * Retrieves the prompt from the request payload.
+     *
+     * @return mixed The prompt, or null if not set.
+     */
     public function getPrompt()
     {
-        return $this->request["prompt"];
+        return $this->request[$this->promptKey] ?? null;
+    }
+
+    /**
+     * Retrieves the entire request payload or a specific key.
+     *
+     * @param string|null $key Optional key to retrieve from the request.
+     * @return mixed The entire request payload or the value at the specified key.
+     */
+    public function getRequest($key = null)
+    {
+        if ($key) {
+            return $this->request[$key] ?? null;
+        }
+        return $this->request ?? null;
     }
 
     /**
@@ -213,7 +273,7 @@ class GuzzleDriver implements Driver {
      */
     public function getRequestType()
     {
-        return $this->requestType;
+        return $this->requestType ?? null;
     }
 
     /**
@@ -249,7 +309,7 @@ class GuzzleDriver implements Driver {
      */
     public function getClient()
     {
-        return $this->client;
+        return $this->client ?? false;
     }
 
     /**

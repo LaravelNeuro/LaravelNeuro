@@ -4,7 +4,7 @@ namespace {{CorporationNameSpace}}\Transitions;
 use LaravelNeuro\Networking\Database\Models\NetworkCorporation;
 use LaravelNeuro\Networking\Database\Models\NetworkProject;
 use LaravelNeuro\Networking\Transition;
-use LaravelNeuro\Networking\TuringStrip;
+use LaravelNeuro\Networking\TuringHead;
 
 use LaravelNeuro\Enums\TuringMode;
 use LaravelNeuro\Enums\TuringMove;
@@ -33,10 +33,10 @@ Class {{TransitionName}} extends Transition
     /**
      *  Execute the Transition.
      */
-    public function handle() : TuringStrip
+    public function handle() : TuringHead
     {
         /**
-        * Retrieve the current data from your TuringStrip's head
+        * Retrieve the current data from your TuringHead's head
         * @var string
         */
         $data = $this->head->getData();
