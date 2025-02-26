@@ -6,6 +6,7 @@
 ![Packagist Downloads](https://img.shields.io/packagist/dt/laravel-neuro/core.svg)
 
 _Join the conversation on the [LaravelNeuro Discord Server](https://discord.gg/pNhSHbBk3Z)!_
+_See LaravelNeuro in action on [the Anomalous Blog](https://anomalous.laravelneuro.org/) a 100% automated bi-lingual blog with images and voice-over, turning real news articles into supernatural stories, which are then evaluated and classified by the fictional SCP-Foundation._
 
 LaravelNeuro is a Laravel package that brings two major features to your application:
 1. **Pipelines:** Easily integrate AI models (such as OpenAI, ElevenLabs, and Google Gemini) using a builder-pattern approach. Pipelines abstract API communication via drivers and prompt classes.
