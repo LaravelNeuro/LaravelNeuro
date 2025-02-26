@@ -11,7 +11,7 @@ LaravelNeuro is a Laravel package that brings two major features to your applica
 1. **Pipelines:** Easily integrate AI models (such as OpenAI, ElevenLabs, and Google Gemini) using a builder-pattern approach. Pipelines abstract API communication via drivers and prompt classes.
 2. **Corporations:** Set up and run complex state machines that network AI agents and functions to automate tasks and content generation.
 
-> _See LaravelNeuro in action on [the Anomalous Blog](https://anomalous.laravelneuro.org/) a 100% automated bi-lingual blog with images and voice-over, turning real news articles into supernatural stories, which are then evaluated and classified by the fictional SCP-Foundation._
+> _See LaravelNeuro in action on [the Anomalous Blog](https://anomalous.laravelneuro.org/), a 100% automated bi-lingual blog with images and voice-over, turning real news articles into supernatural stories, which are then evaluated and classified by the fictional SCP-Foundation._
 
 ---
 
