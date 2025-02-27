@@ -236,7 +236,10 @@ class ChatCompletion implements Pipeline {
     public function stream() : Generator
     {
         $this->driver->modifyRequest("stream", true);
-        yield $this->driver->stream();
+        foreach($this->driver->stream() as $output)
+        {
+            yield $output;
+        }
     }
 
     /**
