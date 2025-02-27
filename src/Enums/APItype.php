@@ -2,6 +2,11 @@
 
 namespace LaravelNeuro\Enums;
 
+/**
+ * Enum APItype
+ *
+ * @package LaravelNeuro
+ */
 enum APItype: string
 {
     case CHATCOMPLETION = 'CHATCOMPLETION';

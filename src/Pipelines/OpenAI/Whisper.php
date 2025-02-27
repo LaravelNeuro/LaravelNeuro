@@ -10,8 +10,6 @@ use LaravelNeuro\Contracts\AiModel\Pipeline;
 use LaravelNeuro\Drivers\WebRequest\GuzzleDriver;
 
 /**
- * Class Whisper
- *
  * Implements the OpenAI Whisper pipeline for audio transcription.
  * This pipeline uses an underlying driver (default: GuzzleDriver) to communicate with the OpenAI Whisper API.
  * It expects a prompt of type FSprompt containing file input, configures the driver to use multipart form data,

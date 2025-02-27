@@ -2,6 +2,11 @@
 
 namespace LaravelNeuro\Enums;
 
+/**
+ * Enum UnitReceiver
+ *
+ * @package LaravelNeuro
+ */
 enum UnitReceiver: string
 {
     case AGENT = 'AGENT';

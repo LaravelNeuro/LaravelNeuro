@@ -2,6 +2,11 @@
 
 namespace LaravelNeuro\Enums;
 
+/**
+ * Enum TuringMode
+ *
+ * @package LaravelNeuro
+ */
 enum TuringMode: string
 {
     case COMPLETE = 'COMPLETE';

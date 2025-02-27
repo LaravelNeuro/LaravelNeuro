@@ -5,8 +5,6 @@ namespace LaravelNeuro\Contracts\AiModel;
 use Generator;
 
 /**
- * Interface Driver
- *
  * Defines the required methods for Ai Model Drivers, which are attached to 
  * Pipelines via dependency injection. The default driver is the WebRequest GuzzleDriver
  * 

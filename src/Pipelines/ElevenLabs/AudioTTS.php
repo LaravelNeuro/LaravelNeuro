@@ -9,8 +9,6 @@ use LaravelNeuro\Contracts\AiModel\Pipeline;
 use LaravelNeuro\Contracts\AiModel\Driver;
 
 /**
- * Class AudioTTS
- *
  * Implements an ElevenLabs TTS pipeline for audio generation.
  * This pipeline uses an underlying driver (default: GuzzleDriver) to make HTTP requests to the ElevenLabs API,
  * setting the model, prompt, and voice parameters based on configuration and input IVFSprompt instances.

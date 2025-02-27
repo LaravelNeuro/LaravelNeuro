@@ -4,6 +4,12 @@ namespace LaravelNeuro\Console\Commands;
 
 use Illuminate\Console\Command;
 
+/**
+ * Signature: lneuro:migrate
+ * Migrates the LaravelNeuro Network migrations to enable the agent networking feature.
+ * 
+ * @package LaravelNeuro
+ */
 class PackageSetup extends Command
 {
     protected $signature = 'lneuro:migrate {--rollback : Rollback the package migrations} 

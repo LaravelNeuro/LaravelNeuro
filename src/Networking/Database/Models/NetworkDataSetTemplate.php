@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use LaravelNeuro\Networking\Database\Models\NetworkUnit;
 
+/**
+ * Holds the configuration for an installed LaravelNeuro Corporation's dataSets.
+ *
+ * @package LaravelNeuro
+ */
 class NetworkDataSetTemplate extends Model
 {
     protected $table = 'laravel_neuro_network_dataset_templates';

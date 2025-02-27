@@ -7,6 +7,12 @@ use Illuminate\Database\Migrations\MigrationCreator;
 use Illuminate\Support\Composer;
 use Illuminate\Console\Command;
 
+/**
+ * Signature: lneuro:make-network-migration
+ * Provides a command to create a migration file for a new network entity. 
+ * 
+ * @package LaravelNeuro
+ */
 class CorporationMakeMigration extends MigrateMakeCommand
 {
     /**

@@ -6,6 +6,12 @@ use Generator;
 use LaravelNeuro\Contracts\AiModel\Driver;
 use LaravelNeuro\Prompts\BasicPrompt;
 
+/**
+ * Defines the required methods for Ai Model Pipelines, which are required for compatibility with
+ * LaravelNeuro Agent Networking features.
+ * 
+ * @package LaravelNeuro
+ */
 interface Pipeline
 {
 

@@ -19,8 +19,6 @@ use LaravelNeuro\Enums\TuringHistory;
 use LaravelNeuro\Enums\StuckHandler;
 
 /**
- * Class Corporation
- *
  * Manages a Laravel Neuro Corporation's state machine. A Corporation represents a
  * complete AI project execution environment, responsible for initializing the project,
  * creating the initial, intermediary, and final states, and managing the Turing machine's head.
@@ -340,6 +338,8 @@ class Corporation {
      * @param \LaravelNeuro\Networking\Database\Models\NetworkState $active The current active state.
      * @return \LaravelNeuro\Networking\Database\Models\NetworkState The new active state.
      * @throws \Exception if attempting to move past the FINAL state.
+     * 
+     * @package LaravelNeuro
      */
     private function goTo($line, NetworkState $active) : NetworkState
     {

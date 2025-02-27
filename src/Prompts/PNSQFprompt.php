@@ -5,8 +5,6 @@ use LaravelNeuro\Prompts\BasicPrompt;
 use LaravelNeuro\Enums\PNSQFquality;
 
 /**
- * Class PNSQFprompt
- *
  * PNSQFprompt stands for "prompt, number, size, quality, format" and is specifically designed
  * for image generation pipelines. It extends BasicPrompt to provide methods for setting and
  * retrieving image generation parameters such as prompt text, the number of images, image size,

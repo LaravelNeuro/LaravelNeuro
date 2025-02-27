@@ -5,6 +5,12 @@ namespace LaravelNeuro\Networking;
 use LaravelNeuro\Networking\Database\Models\NetworkHistory;
 use LaravelNeuro\Enums\TuringHistory;
 
+/**
+ * Defines debug and help methods for use by Corporation and Transition class instances to log to the console
+ * and save NetworkHistory entries regarding the current Corporation lifecycle.
+ * 
+ * @package LaravelNeuro
+ */
 trait Tracable {
 
     /**

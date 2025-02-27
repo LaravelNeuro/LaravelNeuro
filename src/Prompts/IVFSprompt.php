@@ -4,8 +4,6 @@ namespace LaravelNeuro\Prompts;
 use LaravelNeuro\Prompts\BasicPrompt;
 
 /**
- * Class IVFSprompt
- *
  * IVFSprompt stands for "Input, Voice, Format, Settings" and is designed for TTS (Text-to-Speech)
  * pipelines. It handles the construction and deconstruction of prompt data for TTS operations,
  * allowing configuration of input text, voice selection, output format, and additional settings.

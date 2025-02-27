@@ -9,6 +9,11 @@ use LaravelNeuro\Networking\Database\Models\NetworkUnit;
 
 use LaravelNeuro\Enums\APItype;
 
+/**
+ * Holds the configuration for an installed LaravelNeuro agent.
+ *
+ * @package LaravelNeuro
+ */
 class NetworkAgent extends Model
 {
     protected $table = 'laravel_neuro_network_agents';
