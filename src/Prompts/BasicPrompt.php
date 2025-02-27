@@ -5,8 +5,6 @@ use Illuminate\Support\Collection;
 use LaravelNeuro\Contracts\Networking\CorporatePrompt;
 
 /**
- * Class BasicPrompt
- *
  * A basic implementation of a prompt that extends Laravel's Collection and 
  * implements the CorporatePrompt contract. This class provides methods to encode 
  * prompt data into JSON and decode JSON strings back into prompt data, as well as 

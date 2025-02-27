@@ -9,8 +9,6 @@ use LaravelNeuro\Contracts\AiModel\Driver;
 use LaravelNeuro\Drivers\WebRequest\GuzzleDriver;
 
 /**
- * Class BasicPipeline
- *
  * Provides a builder-pattern interface for constructing AI API requests by delegating
  * functionality to an injected Driver. The BasicPipeline allows you to set the model
  * and prompt which are then passed through to the driver. It supports both standard and streaming

@@ -8,8 +8,6 @@ use LaravelNeuro\Enums\UnitReceiver;
 use Illuminate\Support\Collection;
 
 /**
- * Class Unit
- *
  * Represents a unit within a Laravel Neuro Corporation. A unit can have multiple datasets and agents,
  * and defines a default receiver for handling communication. You can think of it as a company department. 
  * The Unit class is responsible for storing configuration data and installing itself into the database 

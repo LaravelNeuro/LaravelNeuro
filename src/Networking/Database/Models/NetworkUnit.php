@@ -14,6 +14,11 @@ use LaravelNeuro\Networking\Database\Models\NetworkAgent;
 
 use LaravelNeuro\Enums\UnitReceiver;
 
+/**
+ * Holds the configuration for an installed LaravelNeuro agent.
+ *
+ * @package LaravelNeuro
+ */
 class NetworkUnit extends Model
 {
     protected $table = 'laravel_neuro_network_units';

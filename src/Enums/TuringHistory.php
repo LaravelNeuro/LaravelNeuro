@@ -2,6 +2,11 @@
 
 namespace LaravelNeuro\Enums;
 
+/**
+ * Enum TuringHistory
+ *
+ * @package LaravelNeuro
+ */
 enum TuringHistory: string
 {
     case PROMPT = 'PROMPT';

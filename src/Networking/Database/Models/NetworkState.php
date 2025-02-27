@@ -9,6 +9,13 @@ use LaravelNeuro\Networking\Database\Models\NetworkProject;
 
 use LaravelNeuro\Enums\TuringState;
 
+/**
+ * A set of NetworkState models are created for a running Corporation to represent
+ * the Corporation's Transitions, effectively creating a "Turing Machine memory strip"
+ * for the state machine to move along.
+ *
+ * @package LaravelNeuro
+ */
 class NetworkState extends Model
 {
     protected $table = 'laravel_neuro_network_state_machines';

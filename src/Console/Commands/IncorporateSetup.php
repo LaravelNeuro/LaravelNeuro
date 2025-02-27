@@ -6,6 +6,14 @@ use Illuminate\Console\Command;
 use LaravelNeuro\Networking\Incorporate;
 use LaravelNeuro\Enums\IncorporatePrebuild;
 
+/**
+ * Signature: lneuro:prebuild
+ * Creates the necessary folder, folder structure, and setup file for a new Laravel Neuro Agent Network (called "Corporation"). 
+ * The setup file will be a JSON file by default, but a PHP file can also be created if the --php flag is passed. 
+ * The PHP file utilizes the Incorporate builder pattern directly to build your Corporation.
+ * 
+ * @package LaravelNeuro
+ */
 class IncorporateSetup extends Command
 {
     /**

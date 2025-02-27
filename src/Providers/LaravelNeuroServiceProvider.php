@@ -7,6 +7,11 @@ use Illuminate\Support\Facades\File;
 
 use LaravelNeuro\Console\Commands\CorporationMakeMigration;
 
+/**
+ * Class LaravelNeuroServiceProvider
+ *
+ * @package LaravelNeuro
+ */
 Class LaravelNeuroServiceProvider extends ServiceProvider {
 
     public function boot()

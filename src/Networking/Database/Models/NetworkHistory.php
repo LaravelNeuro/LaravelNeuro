@@ -12,6 +12,11 @@ use LaravelNeuro\Networking\Database\Models\NetworkProject;
 
 use LaravelNeuro\Enums\TuringHistory;
 
+/**
+ * Holds history entries for LaravelNeuro Corporation runs.
+ *
+ * @package LaravelNeuro
+ */
 class NetworkHistory extends Model
 {
     protected $table = 'laravel_neuro_network_history';

@@ -10,6 +10,11 @@ use LaravelNeuro\Networking\Database\Models\NetworkDataSet;
 use LaravelNeuro\Networking\Database\Models\NetworkHistory;
 use LaravelNeuro\Networking\Database\Models\NetworkState;
 
+/**
+ * Represents a given LaravelNeuro Corporation run.
+ *
+ * @package LaravelNeuro
+ */
 class NetworkProject extends Model
 {
     protected $table = 'laravel_neuro_network_projects';

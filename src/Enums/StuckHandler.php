@@ -2,6 +2,11 @@
 
 namespace LaravelNeuro\Enums;
 
+/**
+ * Enum StuckHandler
+ *
+ * @package LaravelNeuro
+ */
 enum StuckHandler: string
 {
     case REPEAT = 'REPEAT';

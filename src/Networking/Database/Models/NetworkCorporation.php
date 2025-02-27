@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use LaravelNeuro\Networking\Database\Models\NetworkProject;
 use LaravelNeuro\Networking\Database\Models\NetworkUnit;
 
+/**
+ * Holds the configuration for an installed LaravelNeuro Corporation.
+ *
+ * @package LaravelNeuro
+ */
 class NetworkCorporation extends Model
 {
     protected $table = 'laravel_neuro_network_corporations';

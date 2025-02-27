@@ -4,8 +4,6 @@ namespace LaravelNeuro\Prompts;
 use LaravelNeuro\Prompts\BasicPrompt;
 
 /**
- * Class FSprompt
- *
  * FSprompt stands for "File, Settings" and is designed for multimodal pipelines that require file inputs,
  * such as OpenAI's Whisper model. It extends BasicPrompt and provides methods to set and retrieve the file
  * and associated settings. The encoder method constructs a custom formatted string (FS block) that embeds

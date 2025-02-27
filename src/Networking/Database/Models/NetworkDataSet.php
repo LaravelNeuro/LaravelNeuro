@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use LaravelNeuro\Networking\Database\Models\NetworkDataSetTemplate;
 use LaravelNeuro\Networking\Database\Models\NetworkProject;
 
+/**
+ * Holds the generated dataSets, created during a Corporation run.
+ *
+ * @package LaravelNeuro
+ */
 class NetworkDataSet extends Model
 {
     protected $table = 'laravel_neuro_network_datasets';

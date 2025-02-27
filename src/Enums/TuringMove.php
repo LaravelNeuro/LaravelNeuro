@@ -2,6 +2,11 @@
 
 namespace LaravelNeuro\Enums;
 
+/**
+ * Enum TuringMove
+ *
+ * @package LaravelNeuro
+ */
 enum TuringMove: string
 {
     case OUTPUT = 'OUTPUT';

@@ -8,8 +8,6 @@ use LaravelNeuro\Contracts\AiModel\Pipeline;
 use LaravelNeuro\Contracts\AiModel\Driver;
 
 /**
- * Class Multimodal
- *
  * Implements a Google multimodal pipeline for AI models that accept both text and file inputs.
  * This pipeline retrieves configuration values for the Google Gemini model and API, sets up
  * required headers and parameters (including an access token), and processes SUAprompt instances

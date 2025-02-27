@@ -8,8 +8,6 @@ use LaravelNeuro\Contracts\AiModel\Pipeline;
 use LaravelNeuro\Drivers\WebRequest\GuzzleDriver;
 
 /**
- * Class ChatCompletion
- *
  * Implements an OpenAI ChatCompletion pipeline using the GPT-3.5-Turbo model as its default.
  * This pipeline uses an underlying driver (default: GuzzleDriver) to communicate with the OpenAI API.
  * It expects a SUAprompt instance to set the conversation messages, including system instructions,
@@ -238,7 +236,10 @@ class ChatCompletion implements Pipeline {
     public function stream() : Generator
     {
         $this->driver->modifyRequest("stream", true);
-        yield $this->driver->stream();
+        foreach($this->driver->stream() as $output)
+        {
+            yield $output;
+        }
     }
 
     /**

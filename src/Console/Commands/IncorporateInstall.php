@@ -7,6 +7,12 @@ use Illuminate\Support\Str;
 use LaravelNeuro\Networking\Incorporate;
 use LaravelNeuro\Enums\IncorporatePrebuild;
 
+/**
+ * Signature: lneuro:install
+ * Provides a console command to install a LaravelNeuro Corporation that has been setup with the lneuro:prebuild command.
+ * 
+ * @package LaravelNeuro
+ */
 class IncorporateInstall extends Command
 {
     /**

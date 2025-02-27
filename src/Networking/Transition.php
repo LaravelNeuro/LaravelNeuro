@@ -18,8 +18,6 @@ use LaravelNeuro\Enums\TuringMode;
 use LaravelNeuro\Enums\TuringHistory;
 
 /**
- * Class Transition
- *
  * Represents a single transition step within a LaravelNeuro Corporation's state machine.
  * A Transition encapsulates the logic for processing input from a TuringHead (the state machine tape),
  * invoking the appropriate agent, and handling prompt pre-/post-processing as well as output validation.

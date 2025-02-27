@@ -9,8 +9,6 @@ use LaravelNeuro\Drivers\WebRequest\GuzzleDriver;
 use LaravelNeuro\Prompts\PNSQFprompt;
 
 /**
- * Class DallE
- *
  * Implements the Dall-E image generation pipeline using OpenAI's API.
  * This pipeline requires a prompt of type PNSQFprompt to specify image generation
  * parameters such as prompt text, number of images, size, quality, and response format.

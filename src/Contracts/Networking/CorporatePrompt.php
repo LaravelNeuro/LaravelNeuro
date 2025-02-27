@@ -3,8 +3,6 @@
 namespace LaravelNeuro\Contracts\Networking;
 
 /**
- * Interface CorporatePrompt
- *
  * Defines the contract for prompts that are compatible with LaravelNeuro
  * Networking features. Implementers must provide methods to encode the prompt
  * into a JSON representation and decode a JSON string back into a prompt instance.

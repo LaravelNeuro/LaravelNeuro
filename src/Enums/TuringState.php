@@ -2,6 +2,11 @@
 
 namespace LaravelNeuro\Enums;
 
+/**
+ * Enum TuringState
+ *
+ * @package LaravelNeuro
+ */
 enum TuringState: string
 {
     case INITIAL = 'INITIAL';
