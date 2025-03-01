@@ -174,7 +174,7 @@ class GuzzleDriver implements Driver {
     public function modifyRequest($key_or_array, $value=null) : self
     {
         if(is_array($key_or_array))
-            $this->request[] = $key_or_array;
+            $this->request = $key_or_array;
         else
             $this->request[$key_or_array] = $value;
 
@@ -340,8 +340,8 @@ class GuzzleDriver implements Driver {
                 case RequestType::JSON:
                     $response = $client->request($method, $this->api, ["json" => $this->request, "stream" => $this->stream, "headers" => $this->headers]);
                     break;
-                case RequestType::MULTIPART:                
-                    $response = $client->post($this->api, ["headers" => $this->headers, "multipart" => $this->request]);
+                case RequestType::MULTIPART:      
+                    $response = $client->request("POST", $this->api, ["headers" => $this->headers, "multipart" => $this->request]);
                     break;
                 default:
                     $response = $client->request($method, $this->api, ["json" => $this->request, "stream" => $this->stream, "headers" => $this->headers]);
