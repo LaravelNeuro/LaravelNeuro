@@ -1,4 +1,7 @@
 coverage
 vendor
 .phpunit.result.cache
-src/.phpdoc
+.phpdoc
+phpdoc.xml
+phpDocumentor.phar
+document.sh

@@ -7,10 +7,12 @@ use LaravelNeuro\Contracts\AiModel\Driver;
 use LaravelNeuro\Enums\APItype;
 
 /**
- * Represents an AI agent within a LaravelNeuro Corporation. An Agent encapsulates
- * settings for connecting to an AI service, including model, API endpoint, prompt,
- * pipeline class, and role. This class provides methods for configuring these properties,
- * initializing an agent from the database, and installing the agent into the system.
+ * Represents an AI agent within a LaravelNeuro Corporation. 
+ * 
+ * An Agent encapsulates settings for connecting to an AI service, including 
+ * model, API endpoint, prompt, pipeline class, and role. This class provides 
+ * methods for configuring these properties, initializing an agent from the 
+ * database, and installing the agent into the system.
  *
  * @package LaravelNeuro
  */

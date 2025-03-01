@@ -5,9 +5,11 @@ use LaravelNeuro\Enums\TuringMode;
 use LaravelNeuro\Enums\TuringMove;
 
 /**
- * Represents the "head" of a Turing machine, which is responsible for reading
- * and writing data on the tape (stored via NetworkState entries) and controlling
- * the flow of execution by managing the current mode and head position.
+ * Represents the "head" of a Turing machine.
+ * 
+ * TuringHead is responsible for reading and writing data on the tape 
+ * (stored via NetworkState entries) and controlling the flow of execution 
+ * by managing the current mode and head position.
  *
  * @package LaravelNeuro
  */

@@ -4,8 +4,9 @@ namespace LaravelNeuro\Prompts;
 use LaravelNeuro\Prompts\BasicPrompt;
 
 /**
- * An extension of BasicPrompt designed for chat-completion pipelines.
- * SUAprompt (System, User, Agent) allows you to build prompts with distinct roles.
+ * Stands for "System, User, Agent". An extension of BasicPrompt designed for chat-completion pipelines.
+ * 
+ * SUAprompt allows you to build prompts with distinct roles.
  * It provides methods to push system, agent, and user messages onto the prompt stack.
  *
  * @package LaravelNeuro

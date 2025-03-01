@@ -13,6 +13,7 @@ use LaravelNeuro\Networking\Database\Models\NetworkState;
 
 /**
  * Signature: lneuro:cleanup
+ * 
  * Provides cleanup operations for old or unwanted NetworkHistory entries. Optionally consolidate corporations 
  * by namespace using --consolidate. Optionally prune entire projects if they are resolved using --prune, or 
  * even unresolved projects if --force is specified. Use --dry-run to simulate and --stat to display record counts 

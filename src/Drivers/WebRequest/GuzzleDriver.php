@@ -9,9 +9,10 @@ use LaravelNeuro\Enums\RequestType;
 use LaravelNeuro\Contracts\AiModel\Driver;
 
 /**
- * A concrete implementation of the Driver interface that uses GuzzleHttp
- * to send API requests. This driver supports both standard and streaming
- * requests, and can also handle file responses via Laravel's Storage facade.
+ * A concrete implementation of the Driver interface that uses GuzzleHttp to send API requests. 
+ * 
+ * This driver supports both standard and streaming requests, 
+ * and can also handle file responses via Laravel's Storage facade.
  *
  * @package LaravelNeuro
  */

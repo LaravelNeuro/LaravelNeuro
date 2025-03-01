@@ -10,6 +10,7 @@ use LaravelNeuro\Drivers\WebRequest\GuzzleDriver;
 
 /**
  * Implements an OpenAI TTS pipeline for audio generation.
+ * 
  * This pipeline uses an underlying driver (default: GuzzleDriver) to communicate
  * with the OpenAI API for text-to-speech generation. It sets the model and API endpoint
  * based on configuration, applies required HTTP headers including the access token, and

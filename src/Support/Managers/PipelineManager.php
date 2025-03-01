@@ -17,31 +17,107 @@ use LaravelNeuro\Prompts\PNSQFprompt;
 use LaravelNeuro\Prompts\FSprompt;
 use Illuminate\Support\Facades\Config;
 
+/**
+ * The PipelineManager class provides a structured way to instantiate and manage AI pipelines.
+ *
+ * This manager offers quick access to different AI functionalities such as chat completion,
+ * text-to-speech, image generation, and speech-to-text, ensuring modularity and ease of use.
+ *
+ * @package LaravelNeuro
+ */
 class PipelineManager implements PipelineManagerContract
 {
+    /**
+     * The currently active pipeline instance.
+     *
+     * @var Pipeline
+     */
     protected Pipeline $pipeline;
+
+    /**
+     * The associated prompt class instance.
+     *
+     * @var BasicPrompt
+     */
     protected BasicPrompt $prompt;
-    
+
+    /**
+     * Initializes a ChatCompletion pipeline.
+     *
+     * @param string|null $model The model name (e.g., "gpt-4-turbo-preview").
+     * @param Driver|null $driver The driver instance to use (defaults to GuzzleDriver).
+     * @return PipelineManagerContract Returns the current instance for method chaining.
+     */
     public function chatCompletion(?string $model = null, ?Driver $driver = null): PipelineManagerContract
     {
-        return $this->setPipeline(ChatCompletion::class, SUAprompt::class, $model ?? Config::get('laravelneuro.models.default.chat'), $driver);
+        return $this->setPipeline(
+            ChatCompletion::class,
+            SUAprompt::class,
+            $model ?? Config::get('laravelneuro.models.default.chat'),
+            $driver
+        );
     }
 
+    /**
+     * Initializes a Text-to-Speech (TTS) pipeline.
+     *
+     * @param string|null $model The model name (e.g., "tts-1", "eleven-monolingual-v1").
+     * @param Driver|null $driver The driver instance to use (defaults to GuzzleDriver).
+     * @return PipelineManagerContract Returns the current instance for method chaining.
+     */
     public function textToSpeech(?string $model = null, ?Driver $driver = null): PipelineManagerContract
     {
-        return $this->setPipeline(AudioTTS::class, IVFSprompt::class, $model ?? Config::get('laravelneuro.models.default.tts'), $driver);
+        return $this->setPipeline(
+            AudioTTS::class,
+            IVFSprompt::class,
+            $model ?? Config::get('laravelneuro.models.default.tts'),
+            $driver
+        );
     }
 
+    /**
+     * Initializes an AI Image Generation pipeline.
+     *
+     * @param string|null $model The model name (e.g., "dall-e-3").
+     * @param Driver|null $driver The driver instance to use (defaults to GuzzleDriver).
+     * @return PipelineManagerContract Returns the current instance for method chaining.
+     */
     public function generateImage(?string $model = null, ?Driver $driver = null): PipelineManagerContract
     {
-        return $this->setPipeline(DallE::class, PNSQFprompt::class, $model ?? Config::get('laravelneuro.models.default.image'), $driver);
+        return $this->setPipeline(
+            DallE::class,
+            PNSQFprompt::class,
+            $model ?? Config::get('laravelneuro.models.default.image'),
+            $driver
+        );
     }
 
+    /**
+     * Initializes a Speech-to-Text (STT) pipeline.
+     *
+     * @param string|null $model The model name (e.g., "whisper-1").
+     * @param Driver|null $driver The driver instance to use (defaults to GuzzleDriver).
+     * @return PipelineManagerContract Returns the current instance for method chaining.
+     */
     public function speechToText(?string $model = null, ?Driver $driver = null): PipelineManagerContract
     {
-        return $this->setPipeline(Whisper::class, FSprompt::class, $model ?? Config::get('laravelneuro.models.default.stt'), $driver);
+        return $this->setPipeline(
+            Whisper::class,
+            FSprompt::class,
+            $model ?? Config::get('laravelneuro.models.default.stt'),
+            $driver
+        );
     }
 
+    /**
+     * Configures a pipeline with a specified model and driver.
+     *
+     * @param string $pipelineClass The fully qualified class name of the pipeline.
+     * @param string $promptClass The fully qualified class name of the prompt.
+     * @param string $model The model to use within the pipeline.
+     * @param Driver|null $driver The driver instance (defaults to GuzzleDriver).
+     * @return PipelineManagerContract Returns the current instance for method chaining.
+     */
     protected function setPipeline(string $pipelineClass, string $promptClass, string $model, ?Driver $driver = null): PipelineManagerContract
     {
         $driver = $driver ?? new GuzzleDriver();
@@ -51,12 +127,28 @@ class PipelineManager implements PipelineManagerContract
         return $this;
     }
 
+    /**
+     * Retrieves the configured pipeline instance.
+     *
+     * Ensures that the associated prompt is injected into the pipeline before returning it.
+     *
+     * @return ChatCompletion|AudioTTS|DallE|Whisper The configured pipeline instance.
+     *
+     * @throws \Exception If no pipeline has been set before calling this method.
+     */
     public function connection(): Pipeline
     {
         $this->pipeline->setPrompt($this->prompt);
         return $this->pipeline;
     }
 
+    /**
+     * Retrieves the associated prompt instance for the active pipeline.
+     *
+     * @return BasicPrompt The prompt class instance.
+     *
+     * @throws \Exception If no pipeline has been set before calling this method.
+     */
     public function prompt(): BasicPrompt
     {
         return $this->prompt;
