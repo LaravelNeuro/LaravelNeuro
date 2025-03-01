@@ -40,7 +40,7 @@ class RunCorporationTest extends PackageTestCase {
 
       $this->assertTrue(json_validate(file_get_contents($destination . '/' . 'setup.json', 'State Machine installation script not valid json.')));
 
-      $this->artisan('lneuro:install', ['namespace' => 'TestCorporation'])
+      $this->artisan('lneuro:install', ['namespace' => 'TestCorporation', '--consolidate' => true])
              ->expectsOutput('Your Corporation has been installed successfully.')
              ->assertSuccessful();
 
