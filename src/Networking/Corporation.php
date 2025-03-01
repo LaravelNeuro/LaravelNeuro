@@ -150,7 +150,6 @@ class Corporation {
 
         $this->task = $task;
         $this->head = new TuringHead;
-        $this->head->setData($this->task);
         $this->saveHistory = $saveHistory;
 
         if($this->corporationNameSpace !== false)
@@ -202,34 +201,6 @@ class Corporation {
                 'data' => json_encode($emptySet, JSON_PRETTY_PRINT)]);
             }    
         }
-
-        $this->debug("Setting up INITIAL state.");
-        NetworkState::create([
-            'type' => TuringState::INITIAL, 
-            'active' => true, 
-            'project_id' => $this->project->id, 
-            'data' => $this->task
-            ]);
-            
-            $this->debug("Setting up INTERMEDIARY states. Count: ". ($this->states > 2 ? ($this->states - 2) : 0));
-
-            for($i = ($this->states - 1); $i > 0; $i--)
-            {
-                NetworkState::create([
-                    'type' => TuringState::INTERMEDIARY, 
-                    'active' => false, 
-                    'project_id' => $this->project->id, 
-                    ]);
-            }
-
-        $this->debug("Setting up FINAL state.");
-        NetworkState::create([
-            'type' => TuringState::FINAL, 
-            'active' => false, 
-            'project_id' => $this->project->id, 
-            ]);
-
-        $this->stateMap = NetworkState::where('project_id', $this->project->id)->orderBy('id', 'asc')->get();
 
         $this->history(TuringHistory::OTHER, 'Corporation has been initiated successfully.');
         $this->debug('New history entry ('.TuringHistory::OTHER->value.'): ' . 'Corporation has been initiated successfully.');
@@ -426,10 +397,39 @@ class Corporation {
      *
      * Once the state machine terminates, it records the final output as the project's resolution.
      *
-     * @return string The project's resolution output.
+     * @return NetworkProject The NetworkProject instance of the completed project.
      */
-    public function run() : string
+    public function run() : NetworkProject
     {
+        $this->debug("Setting up INITIAL state.");
+        $this->head->setData($this->task);
+        NetworkState::create([
+            'type' => TuringState::INITIAL, 
+            'active' => true, 
+            'project_id' => $this->project->id, 
+            'data' => $this->task
+            ]);
+            
+            $this->debug("Setting up INTERMEDIARY states. Count: ". ($this->states > 2 ? ($this->states - 2) : 0));
+
+            for($i = ($this->states - 1); $i > 0; $i--)
+            {
+                NetworkState::create([
+                    'type' => TuringState::INTERMEDIARY, 
+                    'active' => false, 
+                    'project_id' => $this->project->id, 
+                    ]);
+            }
+
+        $this->debug("Setting up FINAL state.");
+        NetworkState::create([
+            'type' => TuringState::FINAL, 
+            'active' => false, 
+            'project_id' => $this->project->id, 
+            ]);
+
+        $this->stateMap = NetworkState::where('project_id', $this->project->id)->orderBy('id', 'asc')->get();
+
         $this->debug("Starting state machine.");
         $iterations = 0;
         while(1)
