@@ -222,7 +222,7 @@ class Corporation {
                     ]);
             }
 
-    $this->debug("Setting up FINAL state.");
+        $this->debug("Setting up FINAL state.");
         NetworkState::create([
             'type' => TuringState::FINAL, 
             'active' => false, 
