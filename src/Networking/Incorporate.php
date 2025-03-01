@@ -15,7 +15,8 @@ use LaravelNeuro\Enums\IncorporatePrebuild;
 
 /**
  * Handles the setup and installation process for a Laravel Neuro Corporation.
- * This class is responsible for validating and processing a corporation's setup
+ * 
+ * Incorporate is responsible for validating and processing a corporation's setup
  * configuration (typically provided via a JSON setup file) and installing it by:
  * - Creating the necessary directory structure and files.
  * - Creating corresponding database models and migrations.

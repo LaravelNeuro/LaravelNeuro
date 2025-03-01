@@ -5,10 +5,10 @@ use Illuminate\Support\Collection;
 use LaravelNeuro\Contracts\Networking\CorporatePrompt;
 
 /**
- * A basic implementation of a prompt that extends Laravel's Collection and 
- * implements the CorporatePrompt contract. This class provides methods to encode 
- * prompt data into JSON and decode JSON strings back into prompt data, as well as 
- * a method to set the prompt text.
+ * A basic implementation of a prompt that extends Laravel's Collection and implements the CorporatePrompt Contract. 
+ * 
+ * This class provides methods to encode prompt data into JSON and decode JSON 
+ * strings back into prompt data, as well as a method to set the prompt text.
  *
  * @package LaravelNeuro
  */

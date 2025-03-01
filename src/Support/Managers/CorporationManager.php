@@ -8,9 +8,29 @@ use LaravelNeuro\Networking\Database\Models\NetworkProject;
 use Illuminate\Support\Str;
 use Exception;
 
+/**
+ * The CoporationManager provides the methods exposed by the Corporation Facade.
+ *
+ * Provides a mount method to mount a Corporation by its ID or namespace, configuring
+ * tasks, enabling/disabling debugging, toggling history logging, and executing the
+ * Corporation’s state machine.
+ *
+ * @package LaravelNeuro
+ */
 class CorporationManager implements CorporationManagerContract
 {
+    /**
+     * The injected Corporation instance available via the Corporation Facade.
+     * 
+     * @var LaravelNeuro\Networking\Corporation
+     */
     protected $corporationInstance;
+
+    /**
+     * The injected NetworkCorporation instance available via the Corporation Facade.
+     * 
+     * @var NetworkCorporation
+     */
     protected NetworkCorporation $corporationModel;
 
     /**

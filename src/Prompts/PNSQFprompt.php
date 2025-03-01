@@ -5,11 +5,12 @@ use LaravelNeuro\Prompts\BasicPrompt;
 use LaravelNeuro\Enums\PNSQFquality;
 
 /**
- * PNSQFprompt stands for "prompt, number, size, quality, format" and is specifically designed
- * for image generation pipelines. It extends BasicPrompt to provide methods for setting and
- * retrieving image generation parameters such as prompt text, the number of images, image size,
- * quality, and response format. The encoder method builds a custom NSQF block appended to the
- * prompt, and the decoder method extracts these parameters from a JSON-encoded string.
+ * PNSQFprompt stands for "prompt, number, size, quality, format" and is specifically designed for image generation pipelines. 
+ * 
+ * PNSQFprompt extends BasicPrompt to provide methods for setting and retrieving image generation
+ * parameters such as prompt text, the number of images, image size, quality, and response 
+ * format. The encoder method builds a custom NSQF block appended to the prompt, and the 
+ * decoder method extracts these parameters from a JSON-encoded string.
  *
  * @package LaravelNeuro
  */

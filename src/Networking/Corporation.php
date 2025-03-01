@@ -19,9 +19,11 @@ use LaravelNeuro\Enums\TuringHistory;
 use LaravelNeuro\Enums\StuckHandler;
 
 /**
- * Manages a Laravel Neuro Corporation's state machine. A Corporation represents a
- * complete AI project execution environment, responsible for initializing the project,
- * creating the initial, intermediary, and final states, and managing the Turing machine's head.
+ * Manages a Laravel Neuro Corporation's state machine. 
+ * 
+ * A Corporation represents a complete AI project execution environment, 
+ * responsible for initializing the project, creating the initial, 
+ * intermediary, and final states, and managing the Turing machine's head.
  *
  * The class:
  * - Initializes a TuringHead with the provided task.

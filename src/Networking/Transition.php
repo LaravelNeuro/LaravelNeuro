@@ -19,9 +19,11 @@ use LaravelNeuro\Enums\TuringHistory;
 
 /**
  * Represents a single transition step within a LaravelNeuro Corporation's state machine.
- * A Transition encapsulates the logic for processing input from a TuringHead (the state machine tape),
- * invoking the appropriate agent, and handling prompt pre-/post-processing as well as output validation.
- * It ties together the current project, corporation, unit, agent, and models, and records history of execution.
+ * 
+ * A Transition encapsulates the logic for processing input from a TuringHead 
+ * (the state machine tape), invoking the appropriate agent, and handling prompt 
+ * pre-/post-processing as well as output validation. It ties together the current project, 
+ * corporation, unit, agent, and models, and records history of execution.
  *
  * @package LaravelNeuro
  */

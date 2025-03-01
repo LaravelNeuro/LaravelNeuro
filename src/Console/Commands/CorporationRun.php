@@ -8,6 +8,7 @@ use LaravelNeuro\Networking\Corporation;
 
 /**
  * Signature: lneuro:run
+ * 
  * Provides a console command to start an installed LaravelNeuro Corporation.
  * 
  * @package LaravelNeuro

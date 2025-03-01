@@ -11,6 +11,7 @@ use LaravelNeuro\Networking\Database\Models\NetworkCorporation;
 
 /**
  * Signature: lneuro:install
+ * 
  * Provides a console command to install a LaravelNeuro Corporation that has been setup with the lneuro:prebuild command.
  * 
  * @package LaravelNeuro
@@ -83,7 +84,7 @@ class IncorporateInstall extends Command
                                                     "--consolidate" => true,
                                                     "--mode" => "consolidateOnly"]);
             }
-            
+
             return Command::SUCCESS;
         }
         elseif (file_exists($folder.'/setup.php')) 

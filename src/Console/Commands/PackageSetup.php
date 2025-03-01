@@ -6,6 +6,7 @@ use Illuminate\Console\Command;
 
 /**
  * Signature: lneuro:migrate
+ * 
  * Migrates the LaravelNeuro Network migrations to enable the agent networking feature.
  * 
  * @package LaravelNeuro

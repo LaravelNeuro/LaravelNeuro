@@ -9,6 +9,7 @@ use LaravelNeuro\Drivers\WebRequest\GuzzleDriver;
 
 /**
  * Implements an OpenAI ChatCompletion pipeline using the GPT-3.5-Turbo model as its default.
+ * 
  * This pipeline uses an underlying driver (default: GuzzleDriver) to communicate with the OpenAI API.
  * It expects a SUAprompt instance to set the conversation messages, including system instructions,
  * user inputs, and assistant responses. The output methods provide access to the response as text,

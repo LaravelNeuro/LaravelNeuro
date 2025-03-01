@@ -6,6 +6,7 @@ use Illuminate\Console\Command;
 
 /**
  * Signature: lneuro:pipeline
+ * 
  * Provides a console command to create a new LaravelNeuro Pipeline using a pre-built stub.
  * 
  * @package LaravelNeuro
