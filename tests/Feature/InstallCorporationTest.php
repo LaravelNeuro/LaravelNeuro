@@ -64,7 +64,7 @@ class InstallCorporationTest extends PackageTestCase {
         $this->assertFileExists($destination, 'State Machine folder could not be created successfully.');
         $this->assertFileExists($destination . '/' . 'setup.json', 'State Machine installation script missing.');
 
-        $this->artisan('lneuro:install', ['namespace' => 'TestCorporation'])
+        $this->artisan('lneuro:install', ['namespace' => 'TestCorporation', '--consolidate' => true])
              ->expectsOutput('Laravel Neuro state-machine migration created successfully.')
              ->expectsOutput('Your Corporation has been installed successfully.')
              ->assertSuccessful();
