@@ -109,7 +109,6 @@ class Whisper implements Pipeline {
     public function setModel($model) : self
     {
         $this->model = $model;
-        $this->driver->setModel($model);
         return $this;
     }
 
@@ -139,13 +138,15 @@ class Whisper implements Pipeline {
         if ($prompt instanceof FSprompt) {
             $this->driver->setRequestType(RequestType::MULTIPART);
             $this->driver->modifyRequest([
-                'name'     => 'file',
-                'contents' => Psr7\Utils::tryFopen($prompt->getFile(), "r")
-            ]);
-            $this->driver->modifyRequest([
-                'name'     => 'model',
-                'contents' => $this->getModel()
-            ]);
+                                            [
+                                            'name'     => 'file',
+                                            'contents' => Psr7\Utils::tryFopen($prompt->getFile(), "r")
+                                            ],
+                                            [
+                                                'name'     => 'model',
+                                                'contents' => $this->getModel()
+                                            ]
+                                        ]);
         } else {
             throw new \InvalidArgumentException("Non-IVFS prompts are unlikely to work with OpenAI's voice endpoint. If you have your own Prompt model, you can apply it by extending this VoiceTTS class and overriding the setPrompt method.");
         }

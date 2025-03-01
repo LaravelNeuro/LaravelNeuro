@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\File;
 
 use LaravelNeuro\Console\Commands\CorporationMakeMigration;
+use LaravelNeuro\Support\Managers\PipelineManager;
 
 /**
  * Class LaravelNeuroServiceProvider
@@ -21,6 +22,10 @@ Class LaravelNeuroServiceProvider extends ServiceProvider {
             $composer = $app['composer'];
         
             return new CorporationMakeMigration($creator, $composer);
+        });
+
+        $this->app->singleton('laravelneuro.pipeline', function () {
+            return new PipelineManager();
         });
 
         if ($this->app->runningInConsole()) {

@@ -10,6 +10,12 @@ return [
         'google' => env('GOOGLE_AI_API_KEY', ''),
     ],
     'models' => [
+        'default' => [
+            'chat' => 'gpt-3.5-turbo-0125',
+            'tts' => 'tts-1',
+            'image' => 'dall-e-2',
+            'stt' => 'whisper-1',
+        ],        
         'DeepSeekCoder' => [
             'model' => 'deepseek-coder',
             'api' => '',
