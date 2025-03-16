@@ -6,9 +6,10 @@ use Generator;
 use LaravelNeuro\Contracts\AiModel\Pipeline;
 use LaravelNeuro\Contracts\AiModel\Driver;
 use LaravelNeuro\Drivers\WebRequest\GuzzleDriver;
+use LaravelNeuro\Prompts\BasicPrompt;
 
 class {{modelName}} implements Pipeline
-{model
+{
     protected Driver $driver;
     protected $prompt;
     protected $model = "";  // set the name of the default model this Pipeline should use
@@ -23,14 +24,14 @@ class {{modelName}} implements Pipeline
         $this->driver = $driver;
     }
 
-    public function setPrompt($prompt)
+    /**
+     * Accesses the injected Driver instance.
+     *
+     * @return Driver the Driver instance stored in this instance of the class.
+     */
+    public function driver() : Driver
     {
-        //**  Implement your prompt-building logic here   **//
-        //   remember to pass your request parameters to    //
-        //      $this->request                              //
-        //**************************************************//  
-    
-        return $this;
+        return $this->driver;
     }
 
     /**
@@ -79,6 +80,8 @@ class {{modelName}} implements Pipeline
         } else {
             throw new \InvalidArgumentException('Invalid prompt type. Expected string or BasicPrompt instance.');
         }
+
+        return $this;
     }
 
     /**
@@ -86,23 +89,29 @@ class {{modelName}} implements Pipeline
      *
      * @return mixed The current model identifier.
      */
-    public function getModel();
+    public function getModel()
+    {
+        return $this->model;
+    }
 
     /**
      * Retrieves the current prompt.
      *
      * @return string The current prompt text.
      */
-    public function getPrompt();
+    public function getPrompt()
+    {
+        return $this->prompt;
+    }
 
     public function output()
     {
-        return parent::output();
+        return $this->driver->output();
     }
 
     public function stream() : Generator
     {
-        $stream = parent::stream();
+        $stream = $this->driver->stream();
 
         foreach($stream as $output)
         {

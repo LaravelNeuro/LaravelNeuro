@@ -2,8 +2,6 @@
 
 return [
     'default_namespace' => 'Corporations',
-    'default_model' => env('LARAVELAI_DEFAULT_MODEL', ''),
-    'default_api' => env('LARAVELAI_DEFAULT_API', ''),
     'keychain' => [
         'openai' => env('OPENAI_API_KEY', ''),
         'elevenlabs' => env('ELEVENLABS_API_KEY', ''),

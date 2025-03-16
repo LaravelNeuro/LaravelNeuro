@@ -78,13 +78,10 @@ class SUAprompt extends BasicPrompt {
         $encodedPrompt = [];
         $encodedPrompt["role"] = '';
         $encodedPrompt["completion"] = [];
-        $encodedPrompt["prompt"] = '';
 
         $this->each(function($item, $key) use (&$encodedPrompt) {
             // The final element is considered the final prompt
-            if ($key == ($this->count() - 1)) {
-                $encodedPrompt["prompt"] = $item->block;
-            } elseif ($item->type == "role") {
+            if ($item->type == "role") {
                 $encodedPrompt["role"] = $item->block;
             } else {
                 $encodedPrompt["completion"][] = $item->block;
