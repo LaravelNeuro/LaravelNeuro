@@ -27,7 +27,7 @@ class {{modelName}} implements Pipeline
     /**
      * Accesses the injected Driver instance.
      *
-     * @return Driver the Driver instance stored in this instance of the class.
+     * @return Driver|GuzzleDriver the Driver instance stored in this instance of the class.
      */
     public function driver() : Driver
     {
@@ -37,7 +37,7 @@ class {{modelName}} implements Pipeline
     /**
      * Retrieves the active Ai Model Driver for this pipeline.
      *
-     * @return Driver The current pipeline Driver. 
+     * @return Driver|GuzzleDriver The current pipeline Driver. 
      */
     public function getDriver() : driver
     {
