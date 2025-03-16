@@ -35,7 +35,7 @@ Class LaravelNeuroServiceProvider extends ServiceProvider {
 
         if ($this->app->runningInConsole()) {
             $this->commands([
-                \LaravelNeuro\Console\Commands\MakeLLMpipeline::class,
+                \LaravelNeuro\Console\Commands\MakePipeline::class,
                 \LaravelNeuro\Console\Commands\IncorporateSetup::class,
                 \LaravelNeuro\Console\Commands\IncorporateInstall::class,
                 \LaravelNeuro\Console\Commands\CorporationRun::class,

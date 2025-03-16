@@ -11,7 +11,7 @@ use Illuminate\Console\Command;
  * 
  * @package LaravelNeuro
  */
-class MakeLLMpipeline extends Command
+class MakePipeline extends Command
 {
     /**
      * The name and signature of the console command.
