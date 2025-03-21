@@ -53,7 +53,7 @@ class BasicPipeline implements Pipeline {
      *
      * Optionally accepts a Driver instance. If none is provided, a default GuzzleDriver is used.
      *
-     * @param Driver $driver An instance of a class implementing the Driver contract.
+     * @param Driver|GuzzleDriver $driver An instance of a class implementing the Driver contract.
      */
     public function __construct(Driver $driver = new GuzzleDriver)
     {
@@ -61,9 +61,25 @@ class BasicPipeline implements Pipeline {
     }
 
     /**
+     * Retrieves the class name of the default associated prompt.
+     */
+    public function promptClass() : string
+    {
+        return BasicPrompt::class;
+    }
+
+    /**
+     * Retrieves the class name of the default associated driver.
+     */
+    public function driverClass() : string
+    {
+        return GuzzleDriver::class;
+    }
+
+    /**
      * Accesses the injected Driver instance.
      *
-     * @return Driver the Driver instance stored in this instance of the class.
+     * @return Driver|GuzzleDriver the Driver instance stored in this instance of the class.
      */
     public function driver() : Driver
     {

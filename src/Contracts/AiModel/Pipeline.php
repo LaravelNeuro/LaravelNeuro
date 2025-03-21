@@ -23,6 +23,16 @@ interface Pipeline
     public function __construct(Driver $driver);
 
     /**
+     * Retrieves the class name of the default associated prompt.
+     */
+    public function promptClass() : string;
+
+    /**
+     * Retrieves the class name of the default associated driver.
+     */
+    public function driverClass() : string;
+
+    /**
      * Retrieves the active Ai Model Driver for this pipeline.
      *
      * @return Driver The current pipeline Driver. 

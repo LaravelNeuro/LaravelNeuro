@@ -89,6 +89,22 @@ class Multimodal implements Pipeline {
     }
 
     /**
+     * Retrieves the class name of the default associated prompt.
+     */
+    public function promptClass() : string
+    {
+        return SUAprompt::class;
+    }
+
+    /**
+     * Retrieves the class name of the default associated driver.
+     */
+    public function driverClass() : string
+    {
+        return GuzzleDriver::class;
+    }
+
+    /**
      * Retrieves the current driver.
      *
      * @return Driver The driver instance.

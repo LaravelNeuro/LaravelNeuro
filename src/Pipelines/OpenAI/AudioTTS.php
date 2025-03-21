@@ -7,6 +7,7 @@ use LaravelNeuro\Prompts\IVFSprompt;
 use LaravelNeuro\Contracts\AiModel\Pipeline;
 use LaravelNeuro\Contracts\AiModel\Driver;
 use LaravelNeuro\Drivers\WebRequest\GuzzleDriver;
+use LaravelNeuro\Prompts\PNSQFprompt;
 
 /**
  * Implements an OpenAI TTS pipeline for audio generation.
@@ -93,6 +94,22 @@ class AudioTTS implements Pipeline {
         if (empty($this->accessToken)) {
             throw new \InvalidArgumentException("No OpenAI access token has been set for this pipeline in the LaravelNeuro config file (app/config/laravelneuro.php).");
         }
+    }
+
+    /**
+     * Retrieves the class name of the default associated prompt.
+     */
+    public function promptClass() : string
+    {
+        return IVFSprompt::class;
+    }
+
+    /**
+     * Retrieves the class name of the default associated driver.
+     */
+    public function driverClass() : string
+    {
+        return GuzzleDriver::class;
     }
 
     /**

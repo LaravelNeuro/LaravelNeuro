@@ -54,8 +54,18 @@ class BasicPrompt extends Collection implements CorporatePrompt {
      */
     public function setPrompt(string $prompt)
     {
-        $this->set('prompt', $prompt);
+        $this->put('prompt', $prompt);
         return $this;
+    }
+
+    /**
+     * Gets the prompt text.
+     *
+     * @return string $this Returns the current prompt string.
+     */
+    public function getPrompt()
+    {
+        return $this->get('prompt');
     }
 
     /**
