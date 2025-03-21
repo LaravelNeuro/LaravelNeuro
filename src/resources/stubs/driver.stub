@@ -1,0 +1,101 @@
+<?php
+
+namespace App\Pipelines\Drivers;
+
+use Generator;
+use LaravelNeuro\Contracts\AiModel\Driver;
+
+class {{driverName}} implements Driver
+{
+    /**
+     * Sets the model identifier for the driver.
+     *
+     * @param mixed $model The model identifier.
+     * @return self
+     */
+    public function setModel($model) : self
+    {
+        return $this;
+    }
+
+    /**
+     * Retrieves the current model identifier.
+     *
+     * @return string The model identifier.
+     */
+    public function getModel() : string
+    {
+        return '';
+    }
+
+    /**
+     * Sets the system prompt.
+     *
+     * This can be used to provide context or instructions to the AI model.
+     *
+     * @param mixed $system The system prompt.
+     * @return self
+     */
+    public function setSystemPrompt($system) : self
+    {
+        return $this;
+    }
+
+    /**
+     * Retrieves the current system prompt.
+     *
+     * @return mixed The system prompt.
+     */
+    public function getSystemPrompt()
+    {
+        return;
+    }
+
+    /**
+     * Sets the prompt for the driver.
+     *
+     * @param mixed $prompt The prompt value.
+     * @return self
+     */
+    public function setPrompt($prompt) : self
+    {
+        return $this;
+    }
+
+    /**
+     * Retrieves the current prompt.
+     *
+     * @return mixed The current prompt value.
+     */
+    public function getPrompt()
+    {
+        return;
+    }
+
+    /**
+     * Executes the API request and returns the response body.
+     *
+     * This method should internally call the connect() method and handle
+     * any necessary request execution logic.
+     *
+     * @return mixed The response body.
+     */
+    public function output()
+    {
+        return;
+    }
+
+    /**
+     * Executes a streaming API request.
+     *
+     * Enables streaming mode and returns a generator that yields JSON-encoded
+     * data chunks from the API response. This is useful for handling responses
+     * that include large or streaming payloads.
+     *
+     * @return Generator Yields JSON-encoded data chunks.
+     */
+    public function stream() : Generator
+    {
+        yield;
+    }
+}

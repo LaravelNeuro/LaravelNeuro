@@ -1,0 +1,38 @@
+<?php
+
+namespace App\Pipelines\Prompts;
+
+use LaravelNeuro\Prompts\BasicPrompt;
+
+class {{promptName}} extends BasicPrompt
+{
+    /**
+     * Encodes the prompt stored in the collection into a JSON string.
+     *
+     * Ensures that a "prompt" key exists in the collection before encoding.
+     * This method is necessary to make the prompt and pipelines using it compatible with Corporations.
+     *
+     * @return string The JSON-encoded representation of the prompt.
+     */
+    protected function encoder() : string
+    {
+        if (!$this->has('prompt')) {
+            $this->set('prompt', '');
+        }
+        return json_encode($this->get('prompt'));
+    }
+
+    /**
+     * Decodes a JSON-encoded prompt string and stores the result in the collection.
+     *
+     * The decoded value is stored under the "prompt" key.
+     * This method is necessary to make the prompt and pipelines using it compatible with Corporations.
+     *
+     * @param string $promptString The JSON-encoded prompt string.
+     * @return void
+     */
+    protected function decoder(string $promptString)
+    {
+        $this->set('prompt', json_decode($promptString));
+    }
+}

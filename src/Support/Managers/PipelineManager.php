@@ -50,12 +50,7 @@ class PipelineManager implements PipelineManagerContract
      */
     public function chatCompletion(?string $model = null, ?Driver $driver = null): PipelineManagerContract
     {
-        return $this->setPipeline(
-            ChatCompletion::class,
-            SUAprompt::class,
-            $model ?? Config::get('laravelneuro.models.default.chat'),
-            $driver
-        );
+        return $this->make(ChatCompletion::class, $model, $driver);
     }
 
     /**
@@ -67,12 +62,7 @@ class PipelineManager implements PipelineManagerContract
      */
     public function textToSpeech(?string $model = null, ?Driver $driver = null): PipelineManagerContract
     {
-        return $this->setPipeline(
-            AudioTTS::class,
-            IVFSprompt::class,
-            $model ?? Config::get('laravelneuro.models.default.tts'),
-            $driver
-        );
+        return $this->make(AudioTTS::class, $model, $driver);
     }
 
     /**
@@ -84,12 +74,7 @@ class PipelineManager implements PipelineManagerContract
      */
     public function generateImage(?string $model = null, ?Driver $driver = null): PipelineManagerContract
     {
-        return $this->setPipeline(
-            DallE::class,
-            PNSQFprompt::class,
-            $model ?? Config::get('laravelneuro.models.default.image'),
-            $driver
-        );
+        return $this->make(DallE::class, $model, $driver);
     }
 
     /**
@@ -101,11 +86,25 @@ class PipelineManager implements PipelineManagerContract
      */
     public function speechToText(?string $model = null, ?Driver $driver = null): PipelineManagerContract
     {
+        return $this->make(Whisper::class, $model, $driver);
+    }
+
+    /**
+     * Initializes the provided pipeline.
+     *
+     * @param string $pipelineClass the fully qualified class name of the pipeline.
+     * @param string|null $model The model name (e.g., "gpt-4-turbo-preview", defaults to the pipeline's default model).
+     * @param Driver|null $driver The driver instance to use (defaults to the pipeline's default driver).
+     * @return PipelineManagerContract Returns the current instance for method chaining.
+     */
+    public function make(string $pipelineClass, ?string $model = null, ?Driver $driver = null): PipelineManagerContract
+    {
+        $pipeline = new $pipelineClass;
         return $this->setPipeline(
-            Whisper::class,
-            FSprompt::class,
-            $model ?? Config::get('laravelneuro.models.default.stt'),
-            $driver
+            $pipelineClass,
+            $pipeline->promptClass(),
+            $model ?? $pipeline->getModel(),
+            $driver ? new $driver : new ($pipeline->driverClass())
         );
     }
 

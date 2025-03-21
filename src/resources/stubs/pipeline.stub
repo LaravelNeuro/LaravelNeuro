@@ -1,14 +1,18 @@
 <?php
 
-namespace App\Pipelines\LLM;
+namespace App\Pipelines;
 
 use Generator;
 use LaravelNeuro\Contracts\AiModel\Pipeline;
 use LaravelNeuro\Contracts\AiModel\Driver;
-use LaravelNeuro\Drivers\WebRequest\GuzzleDriver;
-use LaravelNeuro\Prompts\BasicPrompt;
+use LaravelNeuro\Pipelines\BasicPipeline;
+use {{useDriver}};
+use {{usePrompt}};
 
-class {{modelName}} implements Pipeline
+/**
+* the BasicPipeline class offers some bare-bones implementations of the Pipeline Contract methods and is a good place to start building your own Pipeline.
+*/
+class {{modelName}} extends BasicPipeline
 {
     protected Driver $driver;
     protected $prompt;
@@ -20,14 +24,30 @@ class {{modelName}} implements Pipeline
      *
      * Default Driver: \LaravelNeuro\Contracts\WebRequest\GuzzleDriver
      */
-    public function __construct(Driver $driver = new GuzzleDriver) {
+    public function __construct(Driver $driver = new {{modelDriver}}) {
         $this->driver = $driver;
+    }
+
+    /**
+     * Retrieves the class name of the default associated prompt. Consumed by the Pipeline Facade.
+     */
+    public function promptClass() : string
+    {
+        return BasicPrompt::class;
+    }
+
+    /**
+     * Retrieves the class name of the default associated driver. Consumed by the Pipeline Facade.
+     */
+    public function driverClass() : string
+    {
+        return GuzzleDriver::class;
     }
 
     /**
      * Accesses the injected Driver instance.
      *
-     * @return Driver the Driver instance stored in this instance of the class.
+     * @return Driver|GuzzleDriver the Driver instance stored in this instance of the class.
      */
     public function driver() : Driver
     {
@@ -37,7 +57,7 @@ class {{modelName}} implements Pipeline
     /**
      * Retrieves the active Ai Model Driver for this pipeline.
      *
-     * @return Driver The current pipeline Driver. 
+     * @return Driver|GuzzleDriver The current pipeline Driver. 
      */
     public function getDriver() : driver
     {
@@ -64,21 +84,21 @@ class {{modelName}} implements Pipeline
      * This method accepts either a string or an instance of SUAPrompt. If a SUAPrompt instance is provided,
      * it iterates over the prompt elements to build the complete prompt and system message.
      *
-     * @param string|BasicPrompt $prompt The prompt text or a prompt-class that is validated against the Pipeline 
+     * @param string|{{modelPrompt}} $prompt The prompt text or a prompt-class that is validated against the Pipeline 
      * inside setPrompt instance.
      * @return self
      * @throws \InvalidArgumentException If the provided prompt is neither a string nor an instance of SUAPrompt.
      */
-    public function setPrompt(string|BasicPrompt $prompt): self
+    public function setPrompt($prompt): self
     {
-        if ($prompt instanceof BasicPrompt) {
+        if ($prompt instanceof {{modelPrompt}}) {
             $this->prompt = $prompt;
             $this->driver->setPrompt($this->prompt->getPrompt());
         } elseif (is_string($prompt)) {
             $this->prompt = $prompt;
             $this->driver->setPrompt($prompt);
         } else {
-            throw new \InvalidArgumentException('Invalid prompt type. Expected string or BasicPrompt instance.');
+            throw new \InvalidArgumentException('Invalid prompt type. Expected string or {{modelPrompt}} instance.');
         }
 
         return $this;
@@ -97,7 +117,7 @@ class {{modelName}} implements Pipeline
     /**
      * Retrieves the current prompt.
      *
-     * @return string The current prompt text.
+     * @return string|{{modelPrompt}} The current prompt text.
      */
     public function getPrompt()
     {
