@@ -4,7 +4,7 @@ namespace LaravelNeuro\Enums;
 
 /**
  * Enum PNSQFquality
- *
+ * DEPRECATED
  * @package LaravelNeuro
  */
 enum PNSQFquality: string

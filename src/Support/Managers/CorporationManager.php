@@ -22,7 +22,7 @@ class CorporationManager implements CorporationManagerContract
     /**
      * The injected Corporation instance available via the Corporation Facade.
      * 
-     * @var LaravelNeuro\Networking\Corporation
+     * @var \LaravelNeuro\Networking\Corporation
      */
     protected $corporationInstance;
 

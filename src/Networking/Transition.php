@@ -245,7 +245,8 @@ class Transition {
                         ->first()->data);
                     if(count($loader) > 0)
                     {
-                        $mutate = $getValueFromDotNotationParts($data, $loader);
+                        $result = $getValueFromDotNotationParts($data, $loader);
+                        $mutate = is_array($result) || is_object($result) ? json_encode($result, JSON_PRETTY_PRINT) : (string)$result;
                     }
                     else
                     {

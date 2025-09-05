@@ -6,7 +6,7 @@ use LaravelNeuro\Networking\Database\Models\NetworkProject;
 use LaravelNeuro\Networking\Transition;
 use LaravelNeuro\Networking\TuringHead;
 use LaravelNeuro\Prompts\SUAprompt;
-use LaravelNeuro\Pipeline;
+use LaravelNeuro\Contracts\AiModel\Pipeline;
 
 use {{CorporationNameSpace}}\Config;
 

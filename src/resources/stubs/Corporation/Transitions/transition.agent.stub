@@ -5,7 +5,7 @@ use LaravelNeuro\Networking\Database\Models\NetworkCorporation;
 use LaravelNeuro\Networking\Database\Models\NetworkProject;
 use LaravelNeuro\Networking\TuringHead;
 use LaravelNeuro\Networking\Transition;
-use LaravelNeuro\Pipeline;
+use LaravelNeuro\Contracts\AiModel\Pipeline;
 
 use {{CorporationNameSpace}}\Config;
 
