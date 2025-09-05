@@ -30,6 +30,10 @@ return [
             'model' => 'dall-e-2',
             'api' => 'https://api.openai.com/v1/images/generations',
         ],
+        'gpt-image-1' => [
+            'model' => 'gpt-image-1',
+            'api' => 'https://api.openai.com/v1/images/generations',
+        ],
         'tts-1' => [
             'model' => 'tts-1',
             'api' => 'https://api.openai.com/v1/audio/speech',

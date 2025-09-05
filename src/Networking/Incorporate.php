@@ -704,12 +704,21 @@ class Incorporate {
                                 $autoloadTransitions .= "use $transitionNamespace\\$transitionName;\n";
 
                             $intermediateTransitions .= "\t\t\tcase ".$key.":\n";
-                            $intermediateTransitions .= "\t\t\t\t".'$transition = new '.$transitionName.'($this->project->id, $head, $this->models);'."\n";
+                            $intermediateTransitions .= "\t\t\t\t".'$transition = new '.$transitionName.'(projectId: $this->project->id, 
+                                                            '."\n\t\t\t\t\t\t".'head: $head, 
+                                                            '."\n\t\t\t\t\t\t".'models: $this->models, 
+                                                            '."\n\t\t\t\t\t\t".'debug: $this->debug, 
+                                                            '."\n\t\t\t\t\t\t".'saveHistory: $this->saveHistory);'."\n";
+                            $intermediateTransitions .= "\t\t\t\t\t\t".'$transition->setup();'."\n";
                             $intermediateTransitions .= "\t\t\t\tbreak;"."\n";
                         }
 
                         $intermediateTransitions .= "\t\t\tdefault:"."\n";
-                        $intermediateTransitions .= "\t\t\t\t".'$transition = new Transition($this->project->id, $head, $this->models);'."\n";
+                        $intermediateTransitions .= "\t\t\t\t".'$transition = new Transition(projectId: $this->project->id, 
+                                                            '."\n\t\t\t\t\t\t".'head: $head, 
+                                                            '."\n\t\t\t\t\t\t".'models: $this->models, 
+                                                            '."\n\t\t\t\t\t\t".'debug: $this->debug, 
+                                                            '."\n\t\t\t\t\t\t".'saveHistory: $this->saveHistory);'."\n";
                         $intermediateTransitions .= "\t\t\t\tbreak;"."\n\t\t}";
                         $autoloadBasicTransition = true;
 
@@ -719,7 +728,11 @@ class Incorporate {
                     else
                     {
                         $continue = Incorporate::getStub('corporation.continue');
-                        $continue = str_replace('{{IntermediateTransitions}}', '$transition = new Transition($this->project->id, $head, $this->models);', $continue);
+                        $continue = str_replace('{{IntermediateTransitions}}', '$transition = new Transition(projectId: $this->project->id, 
+                                                            '."\n\t\t\t\t\t\t".'head: $head, 
+                                                            '."\n\t\t\t\t\t\t".'models: $this->models, 
+                                                            '."\n\t\t\t\t\t\t".'debug: $this->debug, 
+                                                            '."\n\t\t\t\t\t\t".'saveHistory: $this->saveHistory);', $continue);
                         $corporationFile = str_replace('{{continue}}', $continue, $corporationFile);
                         $autoloadBasicTransition = true;
                     }
@@ -729,7 +742,11 @@ class Incorporate {
                     $initial = Incorporate::getStub('corporation.initial');
                     $initial = str_replace('{{InitialTransition}}', 'Transition', $initial);
                     $continue = Incorporate::getStub('corporation.continue');
-                    $continue = str_replace('{{IntermediateTransitions}}', '$transition = new Transition($this->project->id, $head, $this->models);', $continue);
+                    $continue = str_replace('{{IntermediateTransitions}}', '$transition = new Transition(projectId: $this->project->id, 
+                                                            '."\n\t\t\t\t\t\t".'head: $head, 
+                                                            '."\n\t\t\t\t\t\t".'models: $this->models, 
+                                                            '."\n\t\t\t\t\t\t".'debug: $this->debug, 
+                                                            '."\n\t\t\t\t\t\t".'saveHistory: $this->saveHistory);', $continue);
                     $final = Incorporate::getStub('corporation.final');
                     $final = str_replace('{{FinalTransition}}', 'Transition', $final);
                     $autoloadBasicTransition = true;

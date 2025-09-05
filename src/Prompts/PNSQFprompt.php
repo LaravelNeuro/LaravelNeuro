@@ -81,12 +81,17 @@ class PNSQFprompt extends BasicPrompt {
     /**
      * Sets the quality of the generated image.
      *
-     * @param PNSQFquality $enum The quality value, defaults to PNSQFquality::STANDARD.
      * @return $this Returns the current instance for method chaining.
      */
-    public function setQuality(PNSQFquality $enum = PNSQFquality::STANDARD)
+    public function setQuality(string $quality)
     {
-        $this->put("quality", $enum->value);
+        if(strtolower($quality) !== "null")
+        {
+            $this->put("quality", $quality);
+        }
+        else {
+            $this->pull("quality");
+        }
         return $this;
     }
 
@@ -139,7 +144,7 @@ class PNSQFprompt extends BasicPrompt {
      */
     public function getQuality()
     {
-        return $this->get('quality');
+        return $this->get('quality') ?? null;
     }
 
     /**
@@ -205,7 +210,7 @@ class PNSQFprompt extends BasicPrompt {
             $p = preg_replace('/{{NSQF:.*?}}/', '', $promptData->prompt);
             $n = $NSQF[0] ?? 1;
             $s = explode('x', ($NSQF[1] ?? "1024x1024")) ?? [1024, 1024];
-            $q = PNSQFquality::tryFrom($NSQF[2]) ?? PNSQFquality::STANDARD;
+            $q = $NSQF[2] ?? 'null';
             $f = $NSQF[3] ?? 'url';
         }
 

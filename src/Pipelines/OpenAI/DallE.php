@@ -166,10 +166,14 @@ class DallE implements Pipeline {
         if ($prompt instanceof PNSQFprompt) {
             $this->prompt = $prompt->getPrompt();
             $this->driver->setPrompt($this->prompt, "prompt");
-            $this->driver->modifyRequest("n", $prompt->getNumber());
-            $this->driver->modifyRequest("size", $prompt->getSize());
-            $this->driver->modifyRequest("quality", $prompt->getQuality());
-            $this->driver->modifyRequest("response_format", $prompt->getFormat());
+            if($prompt->getNumber())
+                $this->driver->modifyRequest("n", $prompt->getNumber());
+            if($prompt->getSize())
+                $this->driver->modifyRequest("size", $prompt->getSize());
+            if($prompt->getQuality())
+                $this->driver->modifyRequest("quality", $prompt->getQuality());
+            if($prompt->getFormat())
+                $this->driver->modifyRequest("response_format", $prompt->getFormat());
         } else {
             throw new \Exception("The DallE Pipeline requires a PNSQFprompt class prompt.");
         }
