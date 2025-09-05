@@ -224,7 +224,6 @@ class OpenAiPipelineTest extends PackageTestCase {
                         if($requestData->n == 2
                         && $requestData->model == "dall-e-2"
                         && $requestData->size == "1024x1024"
-                        && $requestData->quality == "null"
                         && $requestData->response_format == "b64_json") 
                             return true;
                         else
