@@ -208,7 +208,7 @@ class OpenAiPipelineTest extends PackageTestCase {
         $prompt->setPrompt("A digital painting of artificial intelligence attaining consciousness.");
         $prompt->setNumber(2);
         $prompt->setSize(...[1024, 1024]);
-        $prompt->setQuality(PNSQFquality::STANDARD);
+        $prompt->setQuality('null');
         $prompt->setFormat('b64_json');
 
         Storage::fake('lneuro');
@@ -224,7 +224,7 @@ class OpenAiPipelineTest extends PackageTestCase {
                         if($requestData->n == 2
                         && $requestData->model == "dall-e-2"
                         && $requestData->size == "1024x1024"
-                        && $requestData->quality == "standard"
+                        && $requestData->quality == "null"
                         && $requestData->response_format == "b64_json") 
                             return true;
                         else
